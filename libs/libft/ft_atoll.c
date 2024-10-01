@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_intmax.c                                   :+:      :+:    :+:   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 12:18:19 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/04/30 17:30:27 by cdomet-d         ###   ########lyon.fr   */
+/*   Created: 2024/05/14 13:23:09 by cdomet-d          #+#    #+#             */
+/*   Updated: 2024/05/16 14:44:54 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ static int	ft_issign(char *str, int i)
 		return (sign);
 }
 
-long	ft_atoi_intmax(char *nptr)
+unsigned long long int	ft_atoll(char *nptr)
 {
-	int			sign;
-	long		nbr;
-	size_t		i;
+	size_t					i;
+	int						sign;
+	unsigned long long int	nbr;
 
 	nbr = 0;
 	if (!nptr)
@@ -48,8 +48,6 @@ long	ft_atoi_intmax(char *nptr)
 		i++;
 	while (ft_isdigit(nptr[i]))
 	{
-		if (nbr >= INT_MAX || nbr <= INT_MIN)
-			return (nbr * sign);
 		nbr = nbr * 10 + nptr[i] - '0';
 		i++;
 	}

@@ -6,35 +6,50 @@
 #    By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 10:23:52 by cdomet-d          #+#    #+#              #
-#    Updated: 2024/10/01 11:06:52 by cdomet-d         ###   ########.fr        #
+#    Updated: 2024/10/01 18:17:17 by cdomet-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = gcc
+CC = cc
 CFLAGS = -Werror -Wextra -Wall
 CPPFLAGS = -MMD -MP
 
-BUILD_DIR := .bdir
-SRCS := ft_atoi.c \
-		ft_atoi_intmax.c \
+BUILD_DIR := .dir_build
+SRCS := ft_atoi_intmax.c \
+		ft_atoi.c \
+		ft_atoll.c \
 		ft_bzero.c \
 		ft_calloc.c \
+		ft_free_dtab.c \
 		ft_isalnum.c \
 		ft_isalpha.c \
 		ft_isascii.c \
+		ft_isdigit_negative.c \
 		ft_isdigit.c \
 		ft_isprint.c \
+		ft_isspace.c \
 		ft_itoa.c \
+		ft_lstadd_back.c \
+		ft_lstclear.c \
+		ft_lstdelone.c \
+		ft_lstfree.c \
+		ft_lstiter.c \
+		ft_lstmap.c \
+		ft_lstnew.c \
 		ft_memchr.c \
 		ft_memcmp.c \
 		ft_memcpy.c \
 		ft_memmove.c \
 		ft_memset.c \
+		ft_print_chars.c \
+		ft_print_nums.c \
+		ft_printf.c \
 		ft_putchar_fd.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
+		ft_putnbrs.c \
 		ft_putstr_fd.c \
 		ft_split.c \
 		ft_strchr.c \
@@ -52,24 +67,12 @@ SRCS := ft_atoi.c \
 		ft_substr.c \
 		ft_tolower.c \
 		ft_toupper.c \
-		ft_putnbrs.c \
-		ft_printf.c \
-		ft_print_chars.c \
-		ft_print_nums.c \
-		ft_lstadd_back.c \
-		ft_lstclear.c \
-		ft_lstdelone.c \
-		ft_lstiter.c \
-		ft_lstnew.c \
-		ft_lstmap.c \
+		get_next_line_utils.c \
+		get_next_line.c \
  		ft_lstadd_front.c \
  		ft_lstlast.c \
  		ft_lstsize.c \
-		get_next_line.c \
-		get_next_line_utils.c \
-		ft_isspace.c \
-		ft_isdigit_negative.c \
-		ft_lstfree.c \
+		ft_arrlen.c \
 		
 OBJS := $(SRCS:%.c=$(BUILD_DIR)/%.o)
 				
@@ -79,15 +82,13 @@ RM := rm -rf
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@echo
-	@echo "$(PURPLE)|=========== \t\t Creating libft.a... \t\t ===========|$(BLACK)"
-	@echo
+	@echo "$(RESET)"
+	@echo "$(PINK)$(BOLD) \t • • ┈┈┈┈ ๑ ⋅ ⋯ ୨ \t making libft \t ୧ ⋯ ⋅ ๑ ┈┈┈┈ • •$(RESET)"
+	@echo "$(FAINT)"
 	ar -rcs $(NAME) $(OBJS)
-	@echo
-	@echo "$(GREEN)|=========== \t\t libft.a done ! \t\t ===========|$(BLACK)"
-	@echo
+	@echo "$(RESET)"
 
-$(BUILD_DIR)/%.o:%.c libft.h
+$(BUILD_DIR)/%.o:%.c libft.h Makefile
 	@mkdir -p $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
@@ -103,5 +104,12 @@ re: fclean all
 BLACK=\033[30m
 GREEN=\033[32m
 PURPLE=\033[35m
+PINK=\033[38;5;206m.
+
+RESET=\033[0m
+FAINT=\033[2m
+UNDERLINE=\033[4m
+BOLD=\033[1m
+
 
 .PHONY : clean fclean all re BLACK PURPLE GREEN

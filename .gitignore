@@ -1,0 +1,12 @@
+# # Files
+# *.a
+# *.md
+
+# # Directories
+# obj
+# # .bdir
+# .vscode
+# scripts
+
+# # Executables
+# cub3D

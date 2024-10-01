@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:18:18 by cdomet-d          #+#    #+#             */
-/*   Updated: 2023/11/23 12:24:37 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/02/12 14:53:01 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ char	*ft_strdup(const char *s)
 	char	*arr;
 	size_t	i;
 
-	arr = malloc((ft_strlen(s) + 1) * sizeof(unsigned char));
+	if (!s)
+		return (NULL);
+	arr = malloc((ft_strlen(s) + 1) * sizeof(char));
 	if (!arr)
 		return (arr);
 	i = -1;

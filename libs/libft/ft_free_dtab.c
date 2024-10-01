@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_free_dtab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jauseff <jauseff@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 09:12:20 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/05/16 20:06:48 by jauseff          ###   ########lyon.fr   */
+/*   Created: 2024/02/15 15:09:28 by cdomet-d          #+#    #+#             */
+/*   Updated: 2024/03/07 10:58:31 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+void	free_dtab(char **dtab)
 {
 	size_t	i;
 
 	i = 0;
-	if (!s || !*s)
-		return (0);
-	while (s && s[i])
+	if (!dtab)
+		return ;
+	while (dtab[i])
+	{
+		free(dtab[i]);
 		i++;
-	return (i);
+	}
+	free(dtab);
+	dtab = NULL;
+	return ;
 }
