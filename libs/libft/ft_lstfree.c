@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstfree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 09:52:20 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/01/17 15:36:35 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/01 11:59:07 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 t_list	*ft_lstfree(t_list **lst)
 {
 	t_list	*temp;
+
 	if (lst && *lst)
 	{
 		while ((*lst)->next)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 10:23:52 by cdomet-d          #+#    #+#              #
-#    Updated: 2024/01/19 16:15:57 by cdomet-d         ###   ########lyon.fr    #
+#    Updated: 2024/10/01 11:06:52 by cdomet-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = gcc
 CFLAGS = -Werror -Wextra -Wall
 CPPFLAGS = -MMD -MP
 
-BUILD_DIR := .dir_build
+BUILD_DIR := .bdir
 SRCS := ft_atoi.c \
 		ft_atoi_intmax.c \
 		ft_bzero.c \
