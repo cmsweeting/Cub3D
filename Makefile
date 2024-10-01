@@ -8,7 +8,7 @@ MLX_DIR = ./minilibx
 MLX = $(MLX_DIR)/libmlx.a
 
 INCLUDES = -I $(MLX_DIR)
-LIBS = -L $(MLX_DIR) -lmlx -L /usr/lib/X11 -lXext -lX11
+LIBS = -L $(MLX_DIR) -lmlx -L /usr/lib/X11 -lXext -lX11 -lm
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
@@ -16,6 +16,7 @@ CPPFLAGS:= $(INCLUDES) -MMD -MP
 
 SRC = 	main.c \
 		display.c \
+		raycasting.c \
 
 OBJS = $(SRC:%.c=$(BUILD_DIR)%.o)
 DEPS:= $(OBJS:%.o=%.d)

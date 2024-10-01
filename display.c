@@ -2,11 +2,6 @@
 
 #include "raycasting.h"
 
-int	handle_R(void)
-{
-	return (0);
-}
-
 int	stop_loop(t_data *data)
 {
 	mlx_loop_end(data->mlx_ptr);
@@ -20,21 +15,22 @@ int	escape(int keysym, t_data *data)
 	return (0);
 }
 
-int	init_display()
+int	init_display(char **map)
 {
 	t_data	data;
 
+	data.map = map;
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 	 	return (1);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, 1050, 550, "Cub3D");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
 	if (!data.win_ptr)
 	{
 		mlx_destroy_display(data.mlx_ptr);
 		free(data.mlx_ptr);
 		return (1);
 	}
-	mlx_loop_hook(data.mlx_ptr, &handle_R, NULL);
+	mlx_loop_hook(data.mlx_ptr, &raycasting, NULL);
 	mlx_hook(data.win_ptr, 17, 0, &stop_loop, &data);
 	mlx_hook(data.win_ptr, 3, 1L<<1, &escape, &data);
 	mlx_loop(data.mlx_ptr);
