@@ -2,7 +2,7 @@
 
 #include "raycasting.h"
 
-int	stop_loop(t_data *data)
+int	close_win(t_data *data)
 {
 	mlx_loop_end(data->mlx_ptr);
 	return (0);
@@ -11,7 +11,7 @@ int	stop_loop(t_data *data)
 int	escape(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
-		stop_loop(data);
+		close_win(data);
 	return (0);
 }
 
@@ -20,6 +20,8 @@ int	init_display(char **map)
 	t_data	data;
 
 	data.map = map;
+	data.Px = 3;
+	data.Py = 2;
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 	 	return (1);
@@ -30,8 +32,8 @@ int	init_display(char **map)
 		free(data.mlx_ptr);
 		return (1);
 	}
-	mlx_loop_hook(data.mlx_ptr, &raycasting, NULL);
-	mlx_hook(data.win_ptr, 17, 0, &stop_loop, &data);
+	mlx_loop_hook(data.mlx_ptr, &raycasting, &data);
+	mlx_hook(data.win_ptr, 17, 0, &close_win, &data);
 	mlx_hook(data.win_ptr, 3, 1L<<1, &escape, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_window(data.mlx_ptr, data.win_ptr);

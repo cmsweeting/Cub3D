@@ -21,9 +21,11 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	char	**map;
+	int		Px;
+	int		Py;
 } t_data;
 
 int	init_display(char **map);
-int	raycasting(void);
+int	raycasting(t_data *data);
 
 #endif

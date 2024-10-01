@@ -2,8 +2,8 @@
 
 #include "raycasting.h"
 
-int	raycasting(void)
+int	raycasting(t_data *data)
 {
-	
+	(void)data;
 	return (0);
 }

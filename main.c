@@ -63,9 +63,10 @@ int	main()
 	map = create_map();
 	if (!map)
 		return (1);
-	// int i = 0;
-	// while (map[i])
-	// 	printf("%s\n", map[i++]);
+	int i = 0;
+	while (map[i])
+		printf("%s\n", map[i++]);
+	printf("\n");
 	if (init_display(map))
 	{
 		free_map(map);
