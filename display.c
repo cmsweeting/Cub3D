@@ -42,4 +42,5 @@ int	init_display()
 	data.win_ptr = NULL;
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
+	return (0);
 }
