@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_arrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 14:09:33 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/04/26 14:11:15 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/02 16:01:11 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ size_t	ft_arrlen(char **arr)
 		return (i);
 	while (arr[i])
 		i++;
-	return (i);
+	return (i + 1);
 }

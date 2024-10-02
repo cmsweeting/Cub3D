@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:29:30 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/02 10:34:07 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/02 13:25:23 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 # include "libft.h"
 # include <stdio.h>
+# include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
 # include <stdbool.h>
 # include <errno.h>
+#include <sys/stat.h> // open
+#include <fcntl.h> // open
 
 
 # define SUCESS 0
@@ -30,7 +33,6 @@ typedef struct s_map
 	char	*so_texture;
 	char	*we_texture;
 	char	*ea_texture;
-	char	*so_texture;
 	int		fcolor[3];
 	int		ccolor[3];
 	char	**map;
@@ -42,4 +44,9 @@ typedef struct s_map
 int		verror(char *s1, char *s2, char *s3);
 void	*print_error(int error_code, char *error_message);
 
-#endif 	
+// parsing -------------------
+
+/* fetch_map.c */
+bool	fetch_map(char *arg, t_map *_map);
+
+#endif

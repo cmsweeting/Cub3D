@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:25:00 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/02 10:17:26 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/02 11:11:58 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static int	errjoin(int error_code, char *error_message)
 	char	*error;
 	char	*tmp;
 
-	tmp = ft_strjoin(error_message, ": ");
+	tmp = ft_strjoin(strerror(error_code), ": ");
 	if (!tmp)
 		return (print_error(0, "Congrats ! The error message crashed."), false);
-	error = ft_strjoin(tmp, strerror(error_code));
+	error = ft_strjoin(tmp, error_message);
 	if (!error)
 		return (print_error(0, "Congrats ! The error message crashed."), false);
 	free(tmp);
