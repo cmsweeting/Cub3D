@@ -15,6 +15,22 @@ int	escape(int keysym, t_data *data)
 	return (0);
 }
 
+void	get_first_ray_angle(t_data *data)
+{
+	int	P_angle;
+
+	if (data->map[data->Py][data->Px] == 'N')
+		P_angle = 0;
+	// else if (data->map[data->Py][data->Px] == 'E')
+	// 	P_angle = 90;
+	// else if (data->map[data->Py][data->Px] == 'S')
+	// 	P_angle = 180;
+	// else if (data->map[data->Py][data->Px] == 'W')
+	// 	P_angle = 270;
+	data->angle = P_angle - (FOV / 2);
+}
+
+
 int	init_display(char **map)
 {
 	t_data	data;
@@ -22,6 +38,7 @@ int	init_display(char **map)
 	data.map = map;
 	data.Px = 3;
 	data.Py = 2;
+	get_first_ray_angle(&data);
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 	 	return (1);

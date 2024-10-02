@@ -23,9 +23,11 @@ typedef struct s_data
 	char	**map;
 	int		Px;
 	int		Py;
+	int		angle;
 } t_data;
 
-int	init_display(char **map);
-int	raycasting(t_data *data);
+int		init_display(char **map);
+int		raycasting(t_data *data);
+void	draw_column(distance);
 
 #endif
