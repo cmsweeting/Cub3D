@@ -17,6 +17,7 @@ CPPFLAGS:= $(INCLUDES) -MMD -MP
 SRC = 	main.c \
 		display.c \
 		raycasting.c \
+		draw.c \
 
 OBJS = $(SRC:%.c=$(BUILD_DIR)%.o)
 DEPS:= $(OBJS:%.o=%.d)
