@@ -6,13 +6,15 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/01 17:15:18 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:29:32 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int ac, char *av[])
+#include "cub3D.h"
+
+int	main(int ac, char *av[])
 {
-	(void)ac;
-	if (!av[1])
-		return (1);
+	if (ac != 2)
+		return (print_error(EINVAL, NULL), EINVAL);
+	fetch_map(av[1]);
 }

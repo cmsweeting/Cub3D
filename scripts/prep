@@ -2,16 +2,14 @@
 
 make fclean
 if [ "$1" = "-n" ]; then
-	norminette > norm
-	grep -v "OK" norm
-	rm norm
+	bash scripts/norm
 fi
 
 if [ -f "out" ]; then
 	rm out
 fi
-if [ -f "minilog" ]; then
-	rm minilog
+if [ -f "log" ]; then
+	rm log
 fi
 
 if [ -d "scripts/output" ]; then

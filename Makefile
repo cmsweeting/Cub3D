@@ -6,7 +6,7 @@
 #    By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:01:27 by cdomet-d          #+#    #+#              #
-#    Updated: 2024/10/01 18:36:07 by cdomet-d         ###   ########.fr        #
+#    Updated: 2024/10/02 10:07:38 by cdomet-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MLXDIR := libs/mlx
 SDIR:= src/
 
 MLX = $(MLXDIR)/libmlx_Linux.a
-LIB := libft.a
+LIB := $(LFTDIR)/libft.a
 
 H:= -I includes/ -I libs/libft
 
@@ -53,12 +53,12 @@ RM := rm -rf
 
 all: $(NAME)
 
-$(NAME): $(LFTDIR)/$(LIB) $(MLX) $(OBJS)
+$(NAME): $(LIB) $(MLX) $(OBJS)
 	@printf '$(B)\n%.40s\n$(R)' "-- Making $(NAME)... ------------------------------------------------------------------"
 	$(CC) $(CFLAGS) $(OBJS) -L $(LFTDIR) $(MFLAGS) -o $(NAME) -lft
 	@printf '$(B)%.40s\n\n$(R)' "-- $(NAME) done ! ---------------------------------------------------------------------"
 
-$(LFTDIR)/$(LIB): FORCE
+$(LIB): FORCE
 	@echo "$(FAINT)"
 	make -C $(LFTDIR)
 	@echo "$(RESET)"
