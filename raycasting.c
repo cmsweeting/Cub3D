@@ -12,24 +12,24 @@ int	get_vertical_intersection(t_data *data)
 
 	Ya = 0;
 	if (data->angle != 90)
-		Ya = CUB * tan(data->angle);
+		Ya = CUB * tan(data->angle * (PI / 180));
 	Xa = CUB;
 	if (data->angle < 90)
 	{
 		Xa *= -1;
-		Bx = (int)((data->Py * CUB) / CUB) * CUB - 1; //besoin de connaitre position joueur en pixel
+		Bx = (int)((data->Px * CUB) / CUB) * CUB - 1; //besoin de connaitre position joueur en pixel
 	}
 	else if (data->angle > 90)
-		Bx = (int)((data->Py * CUB) / CUB) * CUB + 64;
+		Bx = (int)((data->Px * CUB) / CUB) * CUB + 64;
 	else
 		Bx = data->Px * 64;
-	By = (data->Px * 64) + (abs((data->Px * 64) - Bx) * tan(data->angle));
+	By = (data->Py * 64) + (abs((data->Px * 64) - Bx) * tan(data->angle * (PI / 180)));
 	while (data->map[By / CUB][Bx / CUB] && data->map[By / CUB][Bx / CUB] != '1')
 	{
 		Bx += Xa;
 		By += Ya;
 	}
-	PB = abs(data->Px * 64 - Bx) / cos(data->angle);
+	PB = abs(data->Px * 64 - Bx) / cos(data->angle * (PI / 180));
 	return (PB);
 }
 
@@ -43,7 +43,7 @@ int	get_horizontal_intersection(t_data *data)
 
 	Xa = 0;
 	if (data->angle != 90)
-		Xa = CUB / tan(data->angle);
+		Xa = CUB / tan(data->angle * (PI / 180));
 	if (data->angle < 90)
 		Xa *= -1;
 	Ya = -CUB;
@@ -53,13 +53,13 @@ int	get_horizontal_intersection(t_data *data)
 	// 	Ya = CUB;
 	// 	Ay = (int)((data->Py * CUB) / CUB) * CUB + 64;
 	// }
-	Ax = (data->Px * 64) + (((data->Py * 64) - Ay) / tan(data->angle));
+	Ax = (data->Px * 64) + (((data->Py * 64) - Ay) / tan(data->angle * (PI / 180)));
 	while (data->map[Ay / CUB][Ax / CUB] && data->map[Ay / CUB][Ax / CUB] != '1')
 	{
 		Ax += Xa;
 		Ay += Ya;
 	}
-	PA = abs(data->Px * 64 - Ax) / cos(data->angle);
+	PA = abs(data->Px * 64 - Ax) / cos(data->angle * (PI / 180));
 	return (PA);
 }
 
@@ -73,9 +73,9 @@ int	get_correct_distance(int horizontal, int vertical, t_data *data)
 	else
 		smallest = vertical;
 	if (data->angle < 90)
-		distance = smallest * cos(30);
+		distance = smallest * cos(30 * (PI / 180));
 	else if (data->angle > 90)
-		distance = smallest * cos(-30);
+		distance = smallest * cos(-30 * (PI / 180));
 	return (distance);
 }
 
@@ -87,7 +87,7 @@ int	raycasting(t_data *data)
 	int	distance;
 
 	i = 0;
-	while (i < SCREEN_WIDTH)
+	while (i < 1000/*SCREEN_WIDTH*/)
 	{
 		horizontal = get_horizontal_intersection(data);
 		vertical = get_vertical_intersection(data);

@@ -17,17 +17,17 @@ int	escape(int keysym, t_data *data)
 
 void	get_first_ray_angle(t_data *data)
 {
-	int	P_angle;
+	// int	P_angle;
 
 	// if (data->map[data->Py][data->Px] == 'N')
-	P_angle = 0;
+	// P_angle = 90;
 	// else if (data->map[data->Py][data->Px] == 'E')
 	// 	P_angle = 90;
 	// else if (data->map[data->Py][data->Px] == 'S')
 	// 	P_angle = 180;
 	// else if (data->map[data->Py][data->Px] == 'W')
 	// 	P_angle = 270;
-	data->angle = P_angle - (FOV / 2);
+	data->angle = 60;//P_angle - (FOV / 2);
 }
 
 int	init_display(char **map)
