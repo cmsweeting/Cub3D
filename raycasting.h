@@ -15,6 +15,19 @@
 # define SCREEN_HEIGHT 550
 # define DISTANCE (SCREEN_WIDTH / 2) / tan(FOV / 2)
 # define ANGLE_BT_RAYS (FOV / (SCREEN_WIDTH - 1))
+# define BLUE 0x00CCCC
+# define GREEN 0x009900
+# define BROWN 0x994C00
+
+typedef struct s_img
+{
+	void	*ptr;
+	char	*addr;
+	int		bpp;
+	int		length;
+	int		endian;
+}	t_img;
+
 
 typedef struct s_data
 {
@@ -24,10 +37,11 @@ typedef struct s_data
 	int		Px;
 	int		Py;
 	int		angle;
-} t_data;
+	t_img	img;
+}	t_data;
 
 int		init_display(char **map);
 int		raycasting(t_data *data);
-void	draw_column(distance);
+void	draw_column(t_data *data, int distance, int colomn);
 
 #endif

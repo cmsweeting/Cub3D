@@ -2,7 +2,7 @@
 
 #include "raycasting.h"
 
-get_vertical_intersection(t_data *data)
+int	get_vertical_intersection(t_data *data)
 {
 	int	Xa;
 	int	Ya;
@@ -24,7 +24,7 @@ get_vertical_intersection(t_data *data)
 	else
 		Bx = data->Px * 64;
 	By = (data->Px * 64) + (abs((data->Px * 64) - Bx) * tan(data->angle));
-	while (data->map[By / CUB][Bx / CUB] != '1')
+	while (data->map[By / CUB][Bx / CUB] && data->map[By / CUB][Bx / CUB] != '1')
 	{
 		Bx += Xa;
 		By += Ya;
@@ -54,7 +54,7 @@ int	get_horizontal_intersection(t_data *data)
 	// 	Ay = (int)((data->Py * CUB) / CUB) * CUB + 64;
 	// }
 	Ax = (data->Px * 64) + (((data->Py * 64) - Ay) / tan(data->angle));
-	while (data->map[Ay / CUB][Ax / CUB] != '1')
+	while (data->map[Ay / CUB][Ax / CUB] && data->map[Ay / CUB][Ax / CUB] != '1')
 	{
 		Ax += Xa;
 		Ay += Ya;
@@ -92,9 +92,10 @@ int	raycasting(t_data *data)
 		horizontal = get_horizontal_intersection(data);
 		vertical = get_vertical_intersection(data);
 		distance = get_correct_distance(horizontal, vertical, data);
-		draw_column(distance);
+		draw_column(data, distance, i);
 		i++;
 		data->angle += (i * ANGLE_BT_RAYS);
 	}
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.ptr, 0, 0);
 	return (0);
 }
