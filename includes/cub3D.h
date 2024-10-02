@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:29:30 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/02 10:25:36 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:34:07 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,15 @@
 
 typedef struct s_map
 {
-	
-} t_map;
+	char	*no_texture;
+	char	*so_texture;
+	char	*we_texture;
+	char	*ea_texture;
+	char	*so_texture;
+	int		fcolor[3];
+	int		ccolor[3];
+	char	**map;
+}	t_map;
 
 // error_handling ------------
 
