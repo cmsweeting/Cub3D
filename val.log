@@ -1,29 +1,32 @@
-==81292== Memcheck, a memory error detector
-==81292== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==81292== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==81292== Command: ./cub3D maps/map1.cub
-==81292== Parent PID: 57741
-==81292== 
-==81292== 
-==81292== FILE DESCRIPTORS: 7 open (3 std) at exit.
-==81292== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==81292==    <inherited from parent>
-==81292== 
-==81292== Open file descriptor 39: /home/cdomet-d/.config/Code/logs/20241003T094728/ptyhost.log
-==81292==    <inherited from parent>
-==81292== 
-==81292== Open file descriptor 38: /usr/share/code/resources/app/node_modules.asar
-==81292==    <inherited from parent>
-==81292== 
-==81292== Open file descriptor 3: /home/cdomet-d/Documents/WIP/Cub3D/val.log
-==81292==    <inherited from parent>
-==81292== 
-==81292== 
-==81292== HEAP SUMMARY:
-==81292==     in use at exit: 0 bytes in 0 blocks
-==81292==   total heap usage: 32 allocs, 32 frees, 1,560 bytes allocated
-==81292== 
-==81292== All heap blocks were freed -- no leaks are possible
-==81292== 
-==81292== For lists of detected and suppressed errors, rerun with: -s
-==81292== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==137153== Memcheck, a memory error detector
+==137153== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==137153== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==137153== Command: ./cub3D maps/map1.cub
+==137153== Parent PID: 102642
+==137153== 
+==137153== 
+==137153== FILE DESCRIPTORS: 8 open (3 std) at exit.
+==137153== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==137153==    <inherited from parent>
+==137153== 
+==137153== Open AF_UNIX socket 39: <unknown>
+==137153==    <inherited from parent>
+==137153== 
+==137153== Open file descriptor 38: /home/cdomet-d/.config/Code/logs/20241003T143902/ptyhost.log
+==137153==    <inherited from parent>
+==137153== 
+==137153== Open file descriptor 37: /usr/share/code/resources/app/node_modules.asar
+==137153==    <inherited from parent>
+==137153== 
+==137153== Open file descriptor 3: /home/cdomet-d/Documents/WIP/Cub3D/val.log
+==137153==    <inherited from parent>
+==137153== 
+==137153== 
+==137153== HEAP SUMMARY:
+==137153==     in use at exit: 0 bytes in 0 blocks
+==137153==   total heap usage: 287 allocs, 287 frees, 10,452 bytes allocated
+==137153== 
+==137153== All heap blocks were freed -- no leaks are possible
+==137153== 
+==137153== For lists of detected and suppressed errors, rerun with: -s
+==137153== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

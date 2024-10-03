@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fetch_map.c                                        :+:      :+:    :+:   */
+/*   extract_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:31:22 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/03 11:25:44 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:46:34 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	print_darr(char **arr)
-{
-	size_t	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		printf("arr[%ld]: %s", i, arr[i]);
-		i++;
-	}
-}
 
 static bool	resize_arr(size_t size, char ***rfile)
 {
@@ -87,7 +75,7 @@ static bool	open_file(char *arg, char ***rfile)
 
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
-		return (print_error(EINVAL, "could not open file"), false);
+		return (print_error(errno, "could not open file"), false);
 	if (!extract_file(fd, rfile))
 		return (close(fd), print_error(errno, "during file extraction"), false);
 	close (fd);
@@ -98,7 +86,6 @@ bool	fetch_map(char *arg, t_map *_map)
 {
 	char	**rfile;
 
-	(void)_map;
 	rfile = NULL;
 	if (!arg)
 		return (print_error(EINVAL, "expected file, got NULL pointer"), false);
@@ -106,7 +93,11 @@ bool	fetch_map(char *arg, t_map *_map)
 		return (print_error(EINVAL, "extension should be .cub"), false);
 	if (!open_file(arg, &rfile))
 		return (false);
-	print_darr(rfile);
+	if (!get_values(_map, rfile))
+	{
+		free_dtab(rfile);
+		return (print_error(errno, "while processing file data"), false);
+	}
 	free_dtab(rfile);
 	return (true);
 }
