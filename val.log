@@ -1,66 +1,29 @@
-==58063== Memcheck, a memory error detector
-==58063== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==58063== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==58063== Command: ./cub3D maps/map1.cub
-==58063== Parent PID: 5582
-==58063== 
-==58063== Conditional jump or move depends on uninitialised value(s)
-==58063==    at 0x401936: free_dtab (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
-==58063==    by 0x4015C3: resize_arr (fetch_map.c:43)
-==58063==    by 0x401484: extract_file (fetch_map.c:65)
-==58063==    by 0x401372: open_file (fetch_map.c:93)
-==58063==    by 0x40128A: fetch_map (fetch_map.c:108)
-==58063==    by 0x4011F0: main (main.c:20)
-==58063==  Uninitialised value was created by a heap allocation
-==58063==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==58063==    by 0x4013DF: extract_file (fetch_map.c:55)
-==58063==    by 0x401372: open_file (fetch_map.c:93)
-==58063==    by 0x40128A: fetch_map (fetch_map.c:108)
-==58063==    by 0x4011F0: main (main.c:20)
-==58063== 
-==58063== Use of uninitialised value of size 8
-==58063==    at 0x401582: resize_arr (fetch_map.c:37)
-==58063==    by 0x401484: extract_file (fetch_map.c:65)
-==58063==    by 0x401372: open_file (fetch_map.c:93)
-==58063==    by 0x40128A: fetch_map (fetch_map.c:108)
-==58063==    by 0x4011F0: main (main.c:20)
-==58063==  Uninitialised value was created by a stack allocation
-==58063==    at 0x401210: fetch_map (fetch_map.c:99)
-==58063== 
-==58063== Invalid read of size 8
-==58063==    at 0x401582: resize_arr (fetch_map.c:37)
-==58063==    by 0x401484: extract_file (fetch_map.c:65)
-==58063==    by 0x401372: open_file (fetch_map.c:93)
-==58063==    by 0x40128A: fetch_map (fetch_map.c:108)
-==58063==    by 0x4011F0: main (main.c:20)
-==58063==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
-==58063== 
-==58063== 
-==58063== Process terminating with default action of signal 11 (SIGSEGV)
-==58063==  Access not within mapped region at address 0x0
-==58063==    at 0x401582: resize_arr (fetch_map.c:37)
-==58063==    by 0x401484: extract_file (fetch_map.c:65)
-==58063==    by 0x401372: open_file (fetch_map.c:93)
-==58063==    by 0x40128A: fetch_map (fetch_map.c:108)
-==58063==    by 0x4011F0: main (main.c:20)
-==58063==  If you believe this happened as a result of a stack
-==58063==  overflow in your program's main thread (unlikely but
-==58063==  possible), you can try to increase the size of the
-==58063==  main thread stack using the --main-stacksize= flag.
-==58063==  The main thread stack size used in this run was 8388608.
-==58063== 
-==58063== HEAP SUMMARY:
-==58063==     in use at exit: 1,089 bytes in 4 blocks
-==58063==   total heap usage: 13 allocs, 9 frees, 1,187 bytes allocated
-==58063== 
-==58063== LEAK SUMMARY:
-==58063==    definitely lost: 0 bytes in 0 blocks
-==58063==    indirectly lost: 0 bytes in 0 blocks
-==58063==      possibly lost: 0 bytes in 0 blocks
-==58063==    still reachable: 1,089 bytes in 4 blocks
-==58063==         suppressed: 0 bytes in 0 blocks
-==58063== Reachable blocks (those to which a pointer was found) are not shown.
-==58063== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==58063== 
-==58063== For lists of detected and suppressed errors, rerun with: -s
-==58063== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 0 from 0)
+==81292== Memcheck, a memory error detector
+==81292== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==81292== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==81292== Command: ./cub3D maps/map1.cub
+==81292== Parent PID: 57741
+==81292== 
+==81292== 
+==81292== FILE DESCRIPTORS: 7 open (3 std) at exit.
+==81292== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==81292==    <inherited from parent>
+==81292== 
+==81292== Open file descriptor 39: /home/cdomet-d/.config/Code/logs/20241003T094728/ptyhost.log
+==81292==    <inherited from parent>
+==81292== 
+==81292== Open file descriptor 38: /usr/share/code/resources/app/node_modules.asar
+==81292==    <inherited from parent>
+==81292== 
+==81292== Open file descriptor 3: /home/cdomet-d/Documents/WIP/Cub3D/val.log
+==81292==    <inherited from parent>
+==81292== 
+==81292== 
+==81292== HEAP SUMMARY:
+==81292==     in use at exit: 0 bytes in 0 blocks
+==81292==   total heap usage: 32 allocs, 32 frees, 1,560 bytes allocated
+==81292== 
+==81292== All heap blocks were freed -- no leaks are possible
+==81292== 
+==81292== For lists of detected and suppressed errors, rerun with: -s
+==81292== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
