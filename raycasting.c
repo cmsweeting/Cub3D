@@ -1,101 +1,83 @@
-//HEADER
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/03 15:02:27 by csweetin          #+#    #+#             */
+/*   Updated: 2024/10/03 15:33:14 by csweetin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "raycasting.h"
 
-int	get_vertical_intersection(t_data *data)
+double	get_correct_distance(double horizontal, double vertical, t_data *data)
 {
-	int	Xa;
-	int	Ya;
-	int	Bx;
-	int	By;
-	int	PB;
+	double	distance = 0;
+	double	smallest;
 
-	Ya = 0;
-	if (data->angle != 90)
-		Ya = CUB * tan(data->angle * (PI / 180));
-	Xa = CUB;
-	if (data->angle < 90)
-	{
-		Xa *= -1;
-		Bx = (int)((data->Px * CUB) / CUB) * CUB - 1; //besoin de connaitre position joueur en pixel
-	}
-	else if (data->angle > 90)
-		Bx = (int)((data->Px * CUB) / CUB) * CUB + 64;
-	else
-		Bx = data->Px * 64;
-	By = (data->Py * 64) + (abs((data->Px * 64) - Bx) * tan(data->angle * (PI / 180)));
-	while (data->map[By / CUB][Bx / CUB] && data->map[By / CUB][Bx / CUB] != '1')
-	{
-		Bx += Xa;
-		By += Ya;
-	}
-	PB = abs(data->Px * 64 - Bx) / cos(data->angle * (PI / 180));
-	return (PB);
+	(void)vertical;
+	(void)data;
+	// if (horizontal < vertical)
+	smallest = horizontal;
+	// else
+	// 	smallest = vertical;
+	// if (data->angle < 90)
+	distance = smallest * cos(30 * (PI / 180));
+	// else if (data->angle > 90)
+	// 	distance = smallest * cos(-30 * (PI / 180));
+	return (distance);
 }
 
-int	get_horizontal_intersection(t_data *data)
+double	get_horizontal_intersection(t_data *data)
 {
-	int	Xa;
-	int	Ya;
-	int	Ax;
-	int	Ay;
-	int	PA;
+	double	Xa;
+	double	Ya;
+	double	Ax;
+	double	Ay;
+	double	PA;
 
-	Xa = 0;
-	if (data->angle != 90)
-		Xa = CUB / tan(data->angle * (PI / 180));
-	if (data->angle < 90)
-		Xa *= -1;
-	Ya = -CUB;
-	Ay = (int)((data->Py * CUB) / CUB) * CUB - 1; //besoin de connaitre position joueur en pixel
-	// else
-	// {
-	// 	Ya = CUB;
-	// 	Ay = (int)((data->Py * CUB) / CUB) * CUB + 64;
-	// }
-	Ax = (data->Px * 64) + (((data->Py * 64) - Ay) / tan(data->angle * (PI / 180)));
-	while (data->map[Ay / CUB][Ax / CUB] && data->map[Ay / CUB][Ax / CUB] != '1')
+	Ya = -64;
+	Xa = -1 * (64 / tan(data->angle * (PI / 180)));
+	// printf("Xa : %d\n", Xa);
+	Ay = (int)(data->Py / 64) * 64 - 1;
+	// printf("Ay : %d\n", Ay);
+	Ax = data->Px - ((data->Py - Ay) / tan(data->angle * (PI / 180)));
+	// printf("Ax : %d\n", Ax);
+	while (data->map[(int)(Ay / CUB)][(int)(Ax / CUB)] && data->map[(int)(Ay / CUB)][(int)(Ax / CUB)] != '1')
 	{
 		Ax += Xa;
 		Ay += Ya;
 	}
-	PA = abs(data->Px * 64 - Ax) / cos(data->angle * (PI / 180));
+	// printf("Ax : %d\n", Ax);
+	// printf("Ax coordonnee : %d\n", (Ax / CUB));
+	// printf("Ay : %d\n", Ay);
+	// printf("Ay coordonnee : %d\n", (Ay / CUB));
+	// printf("map[Ay][Ax] : %c\n", data->map[Ay / CUB][Ax / CUB]);
+	PA = fabs(data->Px - Ax) / cos(data->angle * (PI / 180));
 	return (PA);
-}
-
-int	get_correct_distance(int horizontal, int vertical, t_data *data)
-{
-	int	distance;
-	int	smallest;
-
-	if (horizontal < vertical)
-		smallest = horizontal;
-	else
-		smallest = vertical;
-	if (data->angle < 90)
-		distance = smallest * cos(30 * (PI / 180));
-	else if (data->angle > 90)
-		distance = smallest * cos(-30 * (PI / 180));
-	return (distance);
 }
 
 int	raycasting(t_data *data)
 {
 	int	i;
-	int	horizontal;
-	int	vertical;
-	int	distance;
+	double	horizontal;
+	int	vertical = 0;
+	double	distance;
 
 	i = 0;
-	while (i < 525/*SCREEN_WIDTH*/)
-	{
+	// while (i < 525/*SCREEN_WIDTH*/)
+	// {
 		horizontal = get_horizontal_intersection(data);
-		vertical = get_vertical_intersection(data);
+		// printf("PA : %f\n", horizontal);
+		// vertical = get_vertical_intersection(data);
 		distance = get_correct_distance(horizontal, vertical, data);
+		// printf("distance : %f\n", distance);
 		draw_column(data, distance, i);
-		i++;
-		data->angle += (i * ANGLE_BT_RAYS);
-	}
+		// i++;
+		// data->angle += (i * data->angle_bt_rays);
+	// }
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.ptr, 0, 0);
 	return (0);
 }

@@ -14,7 +14,7 @@
 # define SCREEN_WIDTH 1050
 # define SCREEN_HEIGHT 550
 # define DISTANCE (SCREEN_WIDTH / 2) / tan(FOV / 2)
-# define ANGLE_BT_RAYS (FOV / (SCREEN_WIDTH - 1))
+// # define ANGLE_BT_RAYS (FOV / (SCREEN_WIDTH - 1))
 # define BLUE 0x112ACD
 # define GREEN 0x070E3F
 # define BROWN 0x5365D8
@@ -36,7 +36,8 @@ typedef struct s_data
 	char	**map;
 	int		Px;
 	int		Py;
-	int		angle;
+	double	angle;
+	double	angle_bt_rays;
 	t_img	img;
 }	t_data;
 

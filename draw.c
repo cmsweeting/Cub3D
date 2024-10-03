@@ -16,7 +16,10 @@ void	draw_column(t_data *data, int distance, int colomn)
 
 	i = 0;
 	hr = CUB / 2;
-	hp = CUB / distance * DISTANCE;
+	// printf("distance : %d\n", distance);
+	// printf("distance : %f\n", DISTANCE);
+	hp = CUB * DISTANCE / distance;
+	// printf("hp : %d\n", hp);
 	half_hp = hp / 2;
 	while (i < (hr - half_hp))
 	{

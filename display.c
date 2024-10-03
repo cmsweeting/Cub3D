@@ -28,6 +28,7 @@ void	get_first_ray_angle(t_data *data)
 	// else if (data->map[data->Py][data->Px] == 'W')
 	// 	P_angle = 270;
 	data->angle = 60;//P_angle - (FOV / 2);
+	data->angle_bt_rays = 60 / (SCREEN_WIDTH - 1);
 }
 
 int	init_display(char **map)
@@ -35,8 +36,8 @@ int	init_display(char **map)
 	t_data	data;
 
 	data.map = map;
-	data.Px = 3;
-	data.Py = 2;
+	data.Px = 224;
+	data.Py = 160;
 	get_first_ray_angle(&data);
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
