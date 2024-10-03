@@ -22,10 +22,10 @@ char	**create_map(void)
 	int		j;
 
 	i = 0;
-	map = malloc(sizeof(char *) * 5);
+	map = malloc(sizeof(char *) * 9);
 	if (!map)
 		return (NULL);
-	while (i < 4)
+	while (i < 8)
 	{
 		j = 0;
 		map[i] = malloc(sizeof(char) * 9);
@@ -34,7 +34,7 @@ char	**create_map(void)
 			free_map(map);
 			return (NULL);
 		}
-		if (i == 0 || i == 3)
+		if (i == 0 || i == 7)
 		{
 			while (j < 8)
 				map[i][j++] = '1';

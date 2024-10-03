@@ -87,7 +87,7 @@ int	raycasting(t_data *data)
 	int	distance;
 
 	i = 0;
-	while (i < 1000/*SCREEN_WIDTH*/)
+	while (i < 525/*SCREEN_WIDTH*/)
 	{
 		horizontal = get_horizontal_intersection(data);
 		vertical = get_vertical_intersection(data);
