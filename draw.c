@@ -1,4 +1,14 @@
-//HEADER
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
+/*   Updated: 2024/10/03 20:13:11 by csweetin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "raycasting.h"
 
@@ -19,6 +29,8 @@ void	draw_column(t_data *data, int distance, int colomn)
 	// printf("distance : %d\n", distance);
 	// printf("distance : %f\n", DISTANCE);
 	hp = CUB * DISTANCE / distance;
+	if (hp < 0)
+		hp *= -1;
 	// printf("hp : %d\n", hp);
 	half_hp = hp / 2;
 	while (i < (hr - half_hp))

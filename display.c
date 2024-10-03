@@ -1,4 +1,14 @@
-//HEADER
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
+/*   Updated: 2024/10/03 20:13:31 by csweetin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "raycasting.h"
 
@@ -12,6 +22,8 @@ int	escape(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 		close_win(data);
+	else if (keysym == XK_w)
+		raycasting(data);
 	return (0);
 }
 
@@ -28,7 +40,8 @@ void	get_first_ray_angle(t_data *data)
 	// else if (data->map[data->Py][data->Px] == 'W')
 	// 	P_angle = 270;
 	data->angle = 60;//P_angle - (FOV / 2);
-	data->angle_bt_rays = 60 / (SCREEN_WIDTH - 1);
+	data->angle_bt_rays = (double)(60 / 1049);
+	// printf("angle_bt_rays : %f\n", data->angle_bt_rays);
 }
 
 int	init_display(char **map)
@@ -36,8 +49,8 @@ int	init_display(char **map)
 	t_data	data;
 
 	data.map = map;
-	data.Px = 224;
-	data.Py = 160;
+	data.Px = (3 * 64) + 32;
+	data.Py = (2 * 64) + 32;
 	get_first_ray_angle(&data);
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
@@ -58,9 +71,9 @@ int	init_display(char **map)
 		free(data.mlx_ptr);
 		return (1);
 	}
-	mlx_loop_hook(data.mlx_ptr, &raycasting, &data);
-	mlx_hook(data.win_ptr, 17, 0, &close_win, &data);
+	// mlx_loop_hook(data.mlx_ptr, &raycasting, &data);
 	mlx_hook(data.win_ptr, 3, 1L<<1, &escape, &data);
+	mlx_hook(data.win_ptr, 17, 0, &close_win, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_image(data.mlx_ptr, data.img.ptr);
 	mlx_destroy_window(data.mlx_ptr, data.win_ptr);

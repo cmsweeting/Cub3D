@@ -1,4 +1,14 @@
-#HEADER
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/10/03 20:13:46 by csweetin          #+#    #+#              #
+#    Updated: 2024/10/03 20:13:48 by csweetin         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME = cub
 
@@ -11,7 +21,7 @@ INCLUDES = -I $(MLX_DIR)
 LIBS = -L $(MLX_DIR) -lmlx -L /usr/lib/X11 -lXext -lX11 -lm
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3
 CPPFLAGS:= $(INCLUDES) -MMD -MP
 
 SRC = 	main.c \
