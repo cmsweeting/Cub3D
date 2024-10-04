@@ -14,6 +14,8 @@
 
 void	ft_put_pixel(t_img *img, int colomn, int line, int color)
 {
+	if (colomn < 0 || colomn >= SCREEN_WIDTH || line < 0 || line >= SCREEN_HEIGHT)
+		return ;
 	*(int *)(img->addr + (line * img->length + colomn * (img->bpp / 8))) = color;
 }
  
@@ -26,11 +28,7 @@ void	draw_column(t_data *data, int distance, int colomn)
 
 	i = 0;
 	hr = CUB / 2;
-	// printf("distance : %d\n", distance);
-	// printf("distance : %f\n", DISTANCE);
-	hp = CUB * DISTANCE / distance;
-	// if (hp < 0)
-	// 	hp *= -1;
+	hp = CUB * data->distance_screen / distance;
 	// printf("hp : %d\n", hp);
 	half_hp = hp / 2;
 	while (i < (hr - half_hp))
