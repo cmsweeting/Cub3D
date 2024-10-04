@@ -19,15 +19,14 @@
 # include <X11/keysym.h>
 # include <math.h>
 # include <stdio.h>
+# include <stdbool.h>
 
+// # define EPSILON 0.0001f
 # define PI 3.14159265359f
-# define EPSILON 0.0001f
 # define CUB 64.0f
-# define FOV (PI / 3) * 1.0f
+# define FOV 60
 # define SCREEN_WIDTH 1050
 # define SCREEN_HEIGHT 550
-# define DISTANCE (SCREEN_WIDTH / 2) / tanf(FOV / 2) * 1.0f
-// # define ANGLE_BT_RAYS (FOV / (SCREEN_WIDTH - 1))
 # define BLUE 0x112ACD
 # define GREEN 0x070E3F
 # define BROWN 0x5365D8
@@ -41,7 +40,6 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-
 typedef struct s_data
 {
 	void	*mlx_ptr;
@@ -49,7 +47,9 @@ typedef struct s_data
 	char	**map;
 	int		Px;
 	int		Py;
-	float	angle;
+	float	distance_screen;
+	float	P_angle;
+	float	ray_angle;
 	float	angle_bt_rays;
 	t_img	img;
 }	t_data;
