@@ -20,12 +20,13 @@
 # include <math.h>
 # include <stdio.h>
 
-# define PI 3.14f
-# define CUB 64
-# define FOV (PI / 3)
+# define PI 3.14159265359f
+# define EPSILON 0.0001f
+# define CUB 64.0f
+# define FOV (PI / 3) * 1.0f
 # define SCREEN_WIDTH 1050
 # define SCREEN_HEIGHT 550
-# define DISTANCE (SCREEN_WIDTH / 2) / tan(FOV / 2)
+# define DISTANCE (SCREEN_WIDTH / 2) / tanf(FOV / 2) * 1.0f
 // # define ANGLE_BT_RAYS (FOV / (SCREEN_WIDTH - 1))
 # define BLUE 0x112ACD
 # define GREEN 0x070E3F
@@ -48,8 +49,8 @@ typedef struct s_data
 	char	**map;
 	int		Px;
 	int		Py;
-	double	angle;
-	double	angle_bt_rays;
+	float	angle;
+	float	angle_bt_rays;
 	t_img	img;
 }	t_data;
 

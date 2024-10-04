@@ -22,7 +22,7 @@ int	get_vertical_intersection(t_data *data)
 
 	Ya = 0;
 	if (data->angle != 90)
-		Ya = CUB * tan(data->angle * (PI / 180));
+		Ya = CUB * tanf(data->angle * (PI / 180.0f));
 	Xa = CUB;
 	if (data->angle < 90)
 	{
@@ -33,13 +33,13 @@ int	get_vertical_intersection(t_data *data)
 		Bx = (int)((data->Px * CUB) / CUB) * CUB + 64;
 	else
 		Bx = data->Px * 64;
-	By = (data->Py * 64) + (abs((data->Px * 64) - Bx) * tan(data->angle * (PI / 180)));
+	By = (data->Py * 64) + (abs((data->Px * 64) - Bx) * tanf(data->angle * (PI / 180.0f)));
 	while (data->map[By / CUB][Bx / CUB] && data->map[By / CUB][Bx / CUB] != '1')
 	{
 		Bx += Xa;
 		By += Ya;
 	}
-	PB = abs(data->Px * 64 - Bx) / cos(data->angle * (PI / 180));
+	PB = abs(data->Px * 64 - Bx) / cosf(data->angle * (PI / 180.0f));
 	return (PB);
 }
 
@@ -53,7 +53,7 @@ int	get_horizontal_intersection(t_data *data)
 
 	Xa = 0;
 	if (data->angle != 90)
-		Xa = CUB / tan(data->angle * (PI / 180));
+		Xa = CUB / tanf(data->angle * (PI / 180.0f));
 	if (data->angle < 90)
 		Xa *= -1;
 	Ya = -CUB;
@@ -63,13 +63,13 @@ int	get_horizontal_intersection(t_data *data)
 	// 	Ya = CUB;
 	// 	Ay = (int)((data->Py * CUB) / CUB) * CUB + 64;
 	// }
-	Ax = (data->Px * 64) + (((data->Py * 64) - Ay) / tan(data->angle * (PI / 180)));
+	Ax = (data->Px * 64) + (((data->Py * 64) - Ay) / tanf(data->angle * (PI / 180.0f)));
 	while (data->map[Ay / CUB][Ax / CUB] && data->map[Ay / CUB][Ax / CUB] != '1')
 	{
 		Ax += Xa;
 		Ay += Ya;
 	}
-	PA = abs(data->Px * 64 - Ax) / cos(data->angle * (PI / 180));
+	PA = abs(data->Px * 64 - Ax) / cosf(data->angle * (PI / 180.0f));
 	return (PA);
 }
 
@@ -83,9 +83,9 @@ int	get_correct_distance(int horizontal, int vertical, t_data *data)
 	else
 		smallest = vertical;
 	if (data->angle < 90)
-		distance = smallest * cos(30 * (PI / 180));
+		distance = smallest * cosf(30 * (PI / 180.0f));
 	else if (data->angle > 90)
-		distance = smallest * cos(-30 * (PI / 180));
+		distance = smallest * cosf(-30 * (PI / 180.0f));
 	return (distance);
 }
 

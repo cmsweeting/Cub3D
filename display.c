@@ -40,7 +40,7 @@ void	get_first_ray_angle(t_data *data)
 	// else if (data->map[data->Py][data->Px] == 'W')
 	// 	P_angle = 270;
 	data->angle = 60;//P_angle - (FOV / 2);
-	data->angle_bt_rays = (double)(60 / 1049);
+	data->angle_bt_rays = (float)(60 / 1049);
 	// printf("angle_bt_rays : %f\n", data->angle_bt_rays);
 }
 
