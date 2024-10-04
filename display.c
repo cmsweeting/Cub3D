@@ -27,31 +27,40 @@ int	escape(int keysym, t_data *data)
 	return (0);
 }
 
-void	get_first_ray_angle(t_data *data)
+void	get_angles(t_data *data)
 {
-	// int	P_angle;
+	if (data->map[data->Py][data->Px] == 'N')
+		data->P_angle = 0;
+	else if (data->map[data->Py][data->Px] == 'E')
+		data->P_angle = 90;
+	else if (data->map[data->Py][data->Px] == 'S')
+		data->P_angle = 180;
+	else if (data->map[data->Py][data->Px] == 'W')
+		data->P_angle = 270;
+	data->ray_angle = 60;//data->P_angle - (FOV / 2);
+	data->angle_bt_rays = 0.05719;//FOV / 1049 * 1.0f;
+	printf("angle_bt_rays : %f\n", data->angle_bt_rays);
+}
 
-	// if (data->map[data->Py][data->Px] == 'N')
-	// P_angle = 90;
-	// else if (data->map[data->Py][data->Px] == 'E')
-	// 	P_angle = 90;
-	// else if (data->map[data->Py][data->Px] == 'S')
-	// 	P_angle = 180;
-	// else if (data->map[data->Py][data->Px] == 'W')
-	// 	P_angle = 270;
-	data->angle = 60;//P_angle - (FOV / 2);
-	data->angle_bt_rays = (float)(60 / 1049);
-	// printf("angle_bt_rays : %f\n", data->angle_bt_rays);
+void	init_data(t_data *data, char **map)
+{
+	float	half_fov_radian;
+
+	data->map = map;
+	data->Px = 3;
+	data->Py = 2;
+	half_fov_radian = (FOV / 2) * (PI / 180) * 1.0f;
+	data->distance_screen = (SCREEN_WIDTH / 2) / tanf(half_fov_radian) * 1.0f;
+	get_angles(data);
+	data->Px = (3 * CUB) + (CUB / 2);
+	data->Py = (2 * CUB) + (CUB / 2);
 }
 
 int	init_display(char **map)
 {
 	t_data	data;
 
-	data.map = map;
-	data.Px = (3 * 64) + 32;
-	data.Py = (2 * 64) + 32;
-	get_first_ray_angle(&data);
+	init_data(&data, map);
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
 	 	return (1);
