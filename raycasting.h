@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/07 15:10:43 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:35:13 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 # define FOV 60
 # define SCREEN_WIDTH 1050
 # define SCREEN_HEIGHT 550
-# define BLUE 0x112ACD
-# define GREEN 0x070E3F
-# define BROWN 0x5365D8
+# define SKY 0x112ACD
+# define GROUND 0x070E3F
+# define WALL 0x5365D8
 
 typedef struct s_img
 {
@@ -51,12 +51,15 @@ typedef struct s_data
 	float	P_angle;
 	float	ray_angle;
 	float	angle_bt_rays;
+	bool	left;
 	t_img	img;
 }	t_data;
 
 int		init_display(char **map);
 int		raycasting(t_data *data);
 void	draw_column(t_data *data, int distance, int colomn);
-void	move(t_data *data);
+void	clean_display(t_data *data);
+int		close_win(t_data *data);
+int		escape(int keysym, t_data *data);
 
 #endif
