@@ -6,26 +6,11 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/07 15:04:52 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:22:47 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
-
-int	close_win(t_data *data)
-{
-	mlx_loop_end(data->mlx_ptr);
-	return (0);
-}
-
-int	escape(int keysym, t_data *data)
-{
-	if (keysym == XK_Escape)
-		close_win(data);
-	else if (keysym == XK_w)
-		move(data);
-	return (0);
-}
 
 void	get_angles(t_data *data)
 {
@@ -46,14 +31,16 @@ void	init_data(t_data *data, char **map)
 {
 	float	half_fov_radian;
 
+	data->left = true;
 	data->map = map;
 	data->Px = 3;
 	data->Py = 2;
+	data->map[data->Py][data->Px] = 'N';
 	half_fov_radian = (FOV / 2) * (PI / 180) * 1.0f;
-	data->distance_screen = (SCREEN_WIDTH / 2) / tanf(half_fov_radian) * 1.0f;
+	data->distance_screen = (SCREEN_WIDTH / 2) / tanf(half_fov_radian)* 1.0f;
 	get_angles(data);
-	data->Px = (3 * CUB) + (CUB / 2);
-	data->Py = (2 * CUB) + (CUB / 2);
+	data->Px = (data->Px * CUB) + (CUB / 2);
+	data->Py = (data->Py * CUB) + (CUB / 2);
 }
 
 int	init_display(char **map)
@@ -84,10 +71,6 @@ int	init_display(char **map)
 	mlx_hook(data.win_ptr, 3, 1L<<1, &escape, &data);
 	mlx_hook(data.win_ptr, 17, 0, &close_win, &data);
 	mlx_loop(data.mlx_ptr);
-	mlx_destroy_image(data.mlx_ptr, data.img.ptr);
-	mlx_destroy_window(data.mlx_ptr, data.win_ptr);
-	data.win_ptr = NULL;
-	mlx_destroy_display(data.mlx_ptr);
-	free(data.mlx_ptr);
+	clean_display(&data);
 	return (0);
 }
