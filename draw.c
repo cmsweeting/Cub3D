@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/03 20:13:11 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:50:35 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ void	draw_column(t_data *data, int distance, int colomn)
 	half_hp = hp / 2;
 	while (i < (hr - half_hp))
 	{
-		ft_put_pixel(&data->img, colomn, i, BLUE);
+		ft_put_pixel(&data->img, colomn, i, SKY);
 		i++;
 	}
 	while (i <= (hr + half_hp))
 	{
-		ft_put_pixel(&data->img, colomn, i, BROWN);
+		ft_put_pixel(&data->img, colomn, i, WALL);
 		i++;
 	}
 	while (i < SCREEN_HEIGHT)
 	{
-		ft_put_pixel(&data->img, colomn, i, GREEN);
+		ft_put_pixel(&data->img, colomn, i, GROUND);
 		i++;
 	}
 }
