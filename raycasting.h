@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/07 16:35:13 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/07 18:18:52 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ int		raycasting(t_data *data);
 void	draw_column(t_data *data, int distance, int colomn);
 void	clean_display(t_data *data);
 int		close_win(t_data *data);
-int		escape(int keysym, t_data *data);
+int		keys(int keysym, t_data *data);
 
 #endif

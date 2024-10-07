@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/07 16:22:47 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/07 18:49:19 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	get_angles(t_data *data)
 	else if (data->map[data->Py][data->Px] == 'W')
 		data->P_angle = 270;
 	data->ray_angle = 60;//data->P_angle - (FOV / 2);
-	data->angle_bt_rays = 0.05719;//FOV / 1049 * 1.0f;
+	data->angle_bt_rays = /*0.05719;*/FOV / 1049 * 1.0f;
 	// printf("angle_bt_rays : %f\n", data->angle_bt_rays);
 }
 
@@ -68,7 +68,7 @@ int	init_display(char **map)
 		return (1);
 	}
 	mlx_loop_hook(data.mlx_ptr, &raycasting, &data);
-	mlx_hook(data.win_ptr, 3, 1L<<1, &escape, &data);
+	mlx_hook(data.win_ptr, 2, 1L<<0, &keys, &data);
 	mlx_hook(data.win_ptr, 17, 0, &close_win, &data);
 	mlx_loop(data.mlx_ptr);
 	clean_display(&data);
