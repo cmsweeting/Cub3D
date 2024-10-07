@@ -20,7 +20,7 @@ float	get_correct_distance(float horizontal, float vertical, t_data *data, int i
 	
 	(void)i;
 	distance = 0;
-	angle = 90 - data->ray_angle;//(i - SCREEN_WIDTH / 2) * 0.0571;
+	angle = (90 - data->ray_angle) * 1.0f;//(i - SCREEN_WIDTH / 2) * 0.0571;
 	if (horizontal < vertical || vertical < 0)
 		smallest = horizontal;
 	else
@@ -53,8 +53,14 @@ float	get_vertical_intersection(t_data *data)
 	int		i;
 
 	Xa = -64;
-	Ya = -1 * (CUB * tanf(data->ray_angle * (PI / 180.0f)));
-	Bx = (int)(data->Px / CUB) * CUB - 1;
+	Ya = CUB * tanf(data->ray_angle * (PI / 180.0f));
+	if (data->ray_angle < 90.0f)
+		Xa *= -1;
+	Bx = (int)(data->Px / CUB) * CUB;
+	if (data->ray_angle < 90)
+		Bx -= 1;
+	else
+		Bx += 64;
 	By = (data->Py) - (fabs((data->Px) - Bx) * tanf(data->ray_angle * (PI / 180.0f)));
 	i = check_collisions(Bx, By, data->map);
 	while (!i)
@@ -80,7 +86,9 @@ float	get_horizontal_intersection(t_data *data)
 	int		i;
 
 	Ya = -64;
-	Xa = -1 * (64 / tanf(data->ray_angle * (PI / 180.0f)));
+	Xa = 64 / tanf(data->ray_angle * (PI / 180.0f));
+	if (data->ray_angle < 90.0f)
+		Xa *= -1;
 	Ay = (int)(data->Py / 64) * 64 - 1;
 	Ax = data->Px - ((data->Py - Ay) / tanf(data->ray_angle * (PI / 180.0f)));
 	i = check_collisions(Ax, Ay, data->map);
@@ -105,8 +113,10 @@ int	raycasting(t_data *data)
 	float	distance;
 
 	i = 0;
-	while (i < 525/*SCREEN_WIDTH*/)
+	while (i < SCREEN_WIDTH)
 	{
+		if (data->ray_angle == 90.0f)
+			data->angle_bt_rays *= -1;
 		horizontal = get_horizontal_intersection(data);
 		// printf("PA : %f\n", horizontal);
 		vertical = get_vertical_intersection(data);
