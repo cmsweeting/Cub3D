@@ -105,7 +105,7 @@ int	raycasting(t_data *data)
 	float	distance;
 
 	i = 0;
-	while (i < 32/*SCREEN_WIDTH*/)
+	while (i < 525/*SCREEN_WIDTH*/)
 	{
 		horizontal = get_horizontal_intersection(data);
 		// printf("PA : %f\n", horizontal);
@@ -115,7 +115,8 @@ int	raycasting(t_data *data)
 		// printf("i : %d : distance : %f\n", i, distance);
 		draw_column(data, distance, i);
 		i++;
-		data->ray_angle += (i * data->angle_bt_rays);
+		data->ray_angle += data->angle_bt_rays;
+		// printf("ray angle : %f\n", data->ray_angle);
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.ptr, 0, 0);
 	return (0);
