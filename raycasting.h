@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/03 20:13:40 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:10:43 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ typedef struct s_data
 int		init_display(char **map);
 int		raycasting(t_data *data);
 void	draw_column(t_data *data, int distance, int colomn);
+void	move(t_data *data);
 
 #endif

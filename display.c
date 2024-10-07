@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/03 20:13:31 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:04:52 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	escape(int keysym, t_data *data)
 	if (keysym == XK_Escape)
 		close_win(data);
 	else if (keysym == XK_w)
-		raycasting(data);
+		move(data);
 	return (0);
 }
 
@@ -39,7 +39,7 @@ void	get_angles(t_data *data)
 		data->P_angle = 270;
 	data->ray_angle = 60;//data->P_angle - (FOV / 2);
 	data->angle_bt_rays = 0.05719;//FOV / 1049 * 1.0f;
-	printf("angle_bt_rays : %f\n", data->angle_bt_rays);
+	// printf("angle_bt_rays : %f\n", data->angle_bt_rays);
 }
 
 void	init_data(t_data *data, char **map)
@@ -80,7 +80,7 @@ int	init_display(char **map)
 		free(data.mlx_ptr);
 		return (1);
 	}
-	// mlx_loop_hook(data.mlx_ptr, &raycasting, &data);
+	mlx_loop_hook(data.mlx_ptr, &raycasting, &data);
 	mlx_hook(data.win_ptr, 3, 1L<<1, &escape, &data);
 	mlx_hook(data.win_ptr, 17, 0, &close_win, &data);
 	mlx_loop(data.mlx_ptr);

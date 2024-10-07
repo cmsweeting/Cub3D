@@ -6,7 +6,7 @@
 #    By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 20:13:46 by csweetin          #+#    #+#              #
-#    Updated: 2024/10/03 20:13:48 by csweetin         ###   ########.fr        #
+#    Updated: 2024/10/07 15:10:23 by csweetin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC = 	main.c \
 		display.c \
 		raycasting.c \
 		draw.c \
+		movement.c \
 
 OBJS = $(SRC:%.c=$(BUILD_DIR)%.o)
 DEPS:= $(OBJS:%.o=%.d)
