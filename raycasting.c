@@ -6,21 +6,22 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 15:02:27 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/07 15:00:15 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:31:46 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 
-float	get_correct_distance(float horizontal, float vertical, t_data *data, int i)
+float	get_correct_distance(float horizontal, float vertical, t_data *data)
 {
 	float	distance;
 	float	smallest;
-	float angle;
+	float 	angle;
 	
-	(void)i;
 	distance = 0;
-	angle = (90 - data->ray_angle) * 1.0f;//(i - SCREEN_WIDTH / 2) * 0.0571;
+	angle = (90 - data->ray_angle) * 1.0f;
+	if (data->left == false)
+		angle *= -1;
 	if (horizontal < vertical || vertical < 0)
 		smallest = horizontal;
 	else
@@ -52,12 +53,14 @@ float	get_vertical_intersection(t_data *data)
 	float	PB;
 	int		i;
 
-	Xa = -64;
-	Ya = CUB * tanf(data->ray_angle * (PI / 180.0f));
-	if (data->ray_angle < 90.0f)
+	Xa = 64;
+	if (data->left)//data->ray_angle < 90.0f)
 		Xa *= -1;
+	Ya = CUB * tanf(data->ray_angle * (PI / 180.0f));
+	if (data->P_angle < 90 && data->P_angle > 270)
+		Ya *= -1;
 	Bx = (int)(data->Px / CUB) * CUB;
-	if (data->ray_angle < 90)
+	if (data->left)//data->ray_angle < 90)
 		Bx -= 1;
 	else
 		Bx += 64;
@@ -85,9 +88,11 @@ float	get_horizontal_intersection(t_data *data)
 	float	PA;
 	int		i;
 
-	Ya = -64;
+	Ya = 64;
+	if (data->P_angle < 90 && data->P_angle > 270)
+		Ya *= -1;
 	Xa = 64 / tanf(data->ray_angle * (PI / 180.0f));
-	if (data->ray_angle < 90.0f)
+	if (data->left)//data->ray_angle < 90.0f)
 		Xa *= -1;
 	Ay = (int)(data->Py / 64) * 64 - 1;
 	Ax = data->Px - ((data->Py - Ay) / tanf(data->ray_angle * (PI / 180.0f)));
@@ -108,20 +113,27 @@ float	get_horizontal_intersection(t_data *data)
 int	raycasting(t_data *data)
 {
 	int	i;
-	float	horizontal = 0;
-	float	vertical = 0;
+	float	horizontal;
+	float	vertical;
 	float	distance;
 
 	i = 0;
+	data->ray_angle = 60;
 	while (i < SCREEN_WIDTH)
 	{
 		if (data->ray_angle >= 90.0f)
-			data->angle_bt_rays *= -1;
+		{
+			if (data->left)
+			{
+				data->left = false;
+				data->angle_bt_rays *= -1;
+			}
+		}
 		horizontal = get_horizontal_intersection(data);
 		// printf("PA : %f\n", horizontal);
 		vertical = get_vertical_intersection(data);
 		// printf("PB : %f\n", vertical);
-		distance = get_correct_distance(horizontal, vertical, data, i);
+		distance = get_correct_distance(horizontal, vertical, data);
 		// printf("i : %d : distance : %f\n", i, distance);
 		draw_column(data, distance, i);
 		i++;
@@ -131,7 +143,6 @@ int	raycasting(t_data *data)
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.ptr, 0, 0);
 	return (0);
 }
-
 
 // float angle_radians = data->ray_angle * (PI / 180.0f);
 
