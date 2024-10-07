@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 15:02:27 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/03 19:59:55 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:00:15 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	raycasting(t_data *data)
 	i = 0;
 	while (i < SCREEN_WIDTH)
 	{
-		if (data->ray_angle == 90.0f)
+		if (data->ray_angle >= 90.0f)
 			data->angle_bt_rays *= -1;
 		horizontal = get_horizontal_intersection(data);
 		// printf("PA : %f\n", horizontal);
