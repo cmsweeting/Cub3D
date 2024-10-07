@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 15:02:27 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/07 16:31:46 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/07 18:45:41 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	check_collisions(float x, float y, char **map)
 	int	i;
 	int	j;
 
-	i = y / 64;
-	j = x / 64;
+	i = y / CUB;
+	j = x / CUB;
 	if (i < 0 || j < 0 || i > 7 || j > 7 || !map[i][j])
 		return (-1);
 	if (map[i][j] == '1')
@@ -53,7 +53,7 @@ float	get_vertical_intersection(t_data *data)
 	float	PB;
 	int		i;
 
-	Xa = 64;
+	Xa = CUB;
 	if (data->left)//data->ray_angle < 90.0f)
 		Xa *= -1;
 	Ya = CUB * tanf(data->ray_angle * (PI / 180.0f));
@@ -63,7 +63,7 @@ float	get_vertical_intersection(t_data *data)
 	if (data->left)//data->ray_angle < 90)
 		Bx -= 1;
 	else
-		Bx += 64;
+		Bx += CUB;
 	By = (data->Py) - (fabs((data->Px) - Bx) * tanf(data->ray_angle * (PI / 180.0f)));
 	i = check_collisions(Bx, By, data->map);
 	while (!i)
@@ -75,7 +75,7 @@ float	get_vertical_intersection(t_data *data)
 	if (i == -1)
 		PB = -1;
 	else
-		PB = fabs(data->Px * 64 - Bx) / cosf(data->ray_angle * (PI / 180.0f));
+		PB = fabs(data->Px * CUB - Bx) / cosf(data->ray_angle * (PI / 180.0f));
 	return (PB);
 }
 
@@ -88,13 +88,13 @@ float	get_horizontal_intersection(t_data *data)
 	float	PA;
 	int		i;
 
-	Ya = 64;
+	Ya = CUB;
 	if (data->P_angle < 90 && data->P_angle > 270)
 		Ya *= -1;
-	Xa = 64 / tanf(data->ray_angle * (PI / 180.0f));
+	Xa = CUB / tanf(data->ray_angle * (PI / 180.0f));
 	if (data->left)//data->ray_angle < 90.0f)
 		Xa *= -1;
-	Ay = (int)(data->Py / 64) * 64 - 1;
+	Ay = (int)(data->Py / CUB) * CUB - 1;
 	Ax = data->Px - ((data->Py - Ay) / tanf(data->ray_angle * (PI / 180.0f)));
 	i = check_collisions(Ax, Ay, data->map);
 	while (!i)
@@ -110,6 +110,12 @@ float	get_horizontal_intersection(t_data *data)
 	return (PA);
 }
 
+void	change_side(t_data *data)
+{
+	data->left = false;
+	data->angle_bt_rays *= -1;
+}
+
 int	raycasting(t_data *data)
 {
 	int	i;
@@ -122,13 +128,8 @@ int	raycasting(t_data *data)
 	while (i < SCREEN_WIDTH)
 	{
 		if (data->ray_angle >= 90.0f)
-		{
 			if (data->left)
-			{
-				data->left = false;
-				data->angle_bt_rays *= -1;
-			}
-		}
+				change_side(data);
 		horizontal = get_horizontal_intersection(data);
 		// printf("PA : %f\n", horizontal);
 		vertical = get_vertical_intersection(data);
