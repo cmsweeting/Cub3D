@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/03 17:46:05 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:31:38 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	init_map(t_map *map)
 	map->we_texture = NULL;
 	map->ea_texture = NULL;
 	map->allt_found = 0;
+	map->map_start = false;
 	i = 0;
 	while (i < 3)
 	{
@@ -48,6 +49,11 @@ static void	print_map(t_map map)
 	printf("%s", map.we_texture);
 	printf("%s", map.no_texture);
 	printf("%s", map.so_texture);
+	printf("\n");
+	printf("floor color:	%d	|	%d	|	%d\n", map.fcolor[0], \
+	map.fcolor[1], map.fcolor[2]);
+	printf("celling color:	%d	|	%d	|	%d\n", map.ccolor[0], \
+	map.ccolor[1], map.ccolor[2]);
 }
 
 int	main(int ac, char *av[])

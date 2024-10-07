@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:29:30 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/03 17:33:53 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:30:58 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,19 @@
 # include <sys/stat.h> // open
 # include <fcntl.h> // open
 
-
 # define SUCESS 0
 # define ERROR 1
 
 typedef struct s_map
 {
-	unsigned char	allt_found; 
+	unsigned char	allt_found;
+	bool			map_start;
 	char			*no_texture;
 	char			*so_texture;
 	char			*we_texture;
 	char			*ea_texture;
-	int				fcolor[3];
-	int				ccolor[3];
+	short int		fcolor[3];
+	short int		ccolor[3];
 	char			**map;
 }	t_map;
 
@@ -52,5 +52,10 @@ bool	fetch_map(char *arg, t_map *_map);
 
 /* get_map_data.c */
 bool	get_values(t_map *map, char **rfile);
+
+/* p_utils.c */
+char	*skip_whitespaces(char *str);
+bool	rgb_is_valid(char **rgb);
+bool	is_map(char *str);
 
 #endif

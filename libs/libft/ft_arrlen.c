@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 14:09:33 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/02 16:01:11 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:38:07 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ size_t	ft_arrlen(char **arr)
 		return (i);
 	while (arr[i])
 		i++;
-	return (i + 1);
+	return (i);
 }

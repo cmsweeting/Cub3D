@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:20:53 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/03 14:08:13 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/07 09:23:57 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdint.h> // for SIZE_MAX
 # include <stdarg.h> // for viadic functions handling
 # include <limits.h> // NULL, MAX_INT, etc...
+# include <stdbool.h>
 
 /* GNL */
 
@@ -43,7 +44,7 @@ typedef struct s_list
 
 /* libc like */
 unsigned long long int	ft_atoll(char *nptr);
-void					print_darr(char **arr);
+void					print_darr(char **arr, bool verbose);
 char					**ft_split(char const *s, char c);
 char					*ft_itoa(int n);
 char					*ft_strchr(const char *s, int c);

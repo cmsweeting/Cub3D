@@ -6,7 +6,7 @@
 #    By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:01:27 by cdomet-d          #+#    #+#              #
-#    Updated: 2024/10/03 14:29:10 by cdomet-d         ###   ########.fr        #
+#    Updated: 2024/10/07 16:29:18 by cdomet-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SDIR:= src/
 MLX = $(MLXDIR)/libmlx_Linux.a
 LIB := $(LFTDIR)/libft.a
 
-H:= -I includes/ -I libs/libft
+H:= -I src/includes/ -I libs/libft
 
 CC := cc
 CFLAGS := -Werror -Wextra -Wall -g3 
@@ -38,6 +38,7 @@ SRC += $(addprefix $(PDIR), $(PSRC))
 PDIR:=	parsing/
 PSRC:=	extract_file.c \
 		get_map_data.c \
+		p_utils.c \
 
 # ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ ERRORS ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ #
 SRC += $(addprefix $(EDIR), $(ESRC))
@@ -82,6 +83,11 @@ fclean: clean
 	make -C $(LFTDIR) $@
 	$(RM) $(NAME)
 	@echo
+
+cdir:= $(shell pwd)
+val:= valgrind --track-fds=yes --log-file="$(cdir)/val.log" --leak-check=full --show-leak-kinds=all --track-origins=yes
+run: all
+	$(val) ./$(NAME) maps/map1.cub
 
 re: fclean all
 # Formatting combinations

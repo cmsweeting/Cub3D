@@ -6,20 +6,38 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 14:13:36 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/03 17:47:18 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:48:28 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static char	*skip_whitespaces(char *str)
+static bool	rgb_to_int(t_map *map, char **rgb, bool floor)
 {
 	size_t	i;
 
 	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+	if (!rgb_is_valid(rgb))
+		return (false);
+	while (rgb[i])
+	{
+		if (floor)
+		{
+			map->fcolor[i] = ft_atoi(rgb[i]);
+			if (map->fcolor[i] < 0 || map->fcolor[i] > 255)
+				return (verror(strerror(EINVAL), ": invalid RGB value: ", \
+				rgb[i]), false);
+		}
+		else
+		{
+			map->ccolor[i] = ft_atoi(rgb[i]);
+			if (map->ccolor[i] < 0 || map->ccolor[i] > 255)
+				return (verror(strerror(EINVAL), ": invalid RGB value: ", \
+				rgb[i]), false);
+		}
 		i++;
-	return (&str[i]);
+	}
+	return (true);
 }
 
 static bool	is_texture(t_map *map, char *str)
@@ -51,14 +69,32 @@ static bool	is_texture(t_map *map, char *str)
 	return (true);
 }
 
-// static bool	is_color(char *str)
-// {
-// 	if (ft_strncmp("F", str, 2) == 0)
-// 		return (true);
-// 	if (ft_strncmp("C", str, 2) == 0)
-// 		return (true);
-// 	return (false);
-// }
+static bool	is_color(t_map *map, char *str)
+{
+	char	**rgb;
+
+	rgb = NULL;
+	if (ft_strncmp("F ", str, 2) == 0)
+	{
+		rgb = ft_split(skip_whitespaces(&str[1]), ',');
+		if (!rgb)
+			return (print_error(errno, "while retrieving RGB colors"), false);
+		if (!rgb_to_int(map, rgb, true))
+			return (free_dtab(rgb), false);
+		map->allt_found += 1;
+	}
+	if (ft_strncmp("C ", str, 2) == 0)
+	{
+		rgb = ft_split(skip_whitespaces(&str[1]), ',');
+		if (!rgb)
+			return (print_error(errno, "while retrieving RGB colors"), false);
+		if (!rgb_to_int(map, rgb, false))
+			return (free_dtab(rgb), false);
+		map->allt_found += 1;
+	}
+	free_dtab(rgb);
+	return (true);
+}
 
 bool	get_values(t_map *map, char **rfile)
 {
@@ -71,11 +107,14 @@ bool	get_values(t_map *map, char **rfile)
 		{
 			if (!is_texture(map, rfile[i]))
 				return (false);
+			else if (!is_color(map, rfile[i]))
+				return (false);
+			else if (is_map(rfile[i]))
+				break ;
 		}
 		i++;
 	}
-	printf("%d\n", map->allt_found);
-	if (map->allt_found != 4)
-		return (false);
+	if (map->allt_found != 6)
+		return (print_error(0, "Error: missing texture"), false);
 	return (true);
 }
