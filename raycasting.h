@@ -29,11 +29,11 @@
 # define SCREEN_HEIGHT 550
 # define SKY 0x112ACD
 # define GROUND 0x070E3F
-# define WALL 0x5365D8
-// # define WALL_N 0x5365D8
-// # define WALL_S 0x5365D8
-// # define WALL_W 0x5365D8
-// # define WALL_E 0x5365D8
+// # define WALL
+# define WALL_N 0xFF9933 //orange
+# define WALL_S 0xFF3399 //pink
+# define WALL_W 0x4C0099 //purple
+# define WALL_E 0xFFFF00 //yellow
 
 typedef struct s_img
 {
@@ -56,6 +56,7 @@ typedef struct s_data
 	float	ray_angle;
 	float	angle_bt_rays;
 	bool	left;
+	int		color;
 	t_img	img;
 }	t_data;
 

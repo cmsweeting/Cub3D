@@ -21,10 +21,10 @@ void	ft_put_pixel(t_img *img, int colomn, int line, int color)
  
 void	draw_column(t_data *data, float distance, int colomn)
 {
-	float	hp;
-	int		i;
-	float	hr;
-	float	half_hp;
+	int	hp;
+	int	i;
+	int	hr;
+	int	half_hp;
 
 	i = 0;
 	distance *= 64;
@@ -42,7 +42,7 @@ void	draw_column(t_data *data, float distance, int colomn)
 	// }
 	while (i <= (hr + half_hp))
 	{
-		ft_put_pixel(&data->img, colomn, i, WALL);
+		ft_put_pixel(&data->img, colomn, i, data->color);
 		i++;
 	}
 	// while (i < SCREEN_HEIGHT)
