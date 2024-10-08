@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:29:30 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/07 16:30:58 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:09:53 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 typedef struct s_map
 {
 	unsigned char	allt_found;
-	bool			map_start;
 	char			*no_texture;
 	char			*so_texture;
 	char			*we_texture;
@@ -38,7 +37,6 @@ typedef struct s_map
 	short int		ccolor[3];
 	char			**map;
 }	t_map;
-
 // error_handling ------------
 
 /* error_handling.c */
@@ -54,8 +52,20 @@ bool	fetch_map(char *arg, t_map *_map);
 bool	get_values(t_map *map, char **rfile);
 
 /* p_utils.c */
+bool	is_texture(char *str);
+bool	cpy_map(t_map *map, char **rfile, size_t i);
 char	*skip_whitespaces(char *str);
-bool	rgb_is_valid(char **rgb);
-bool	is_map(char *str);
+bool	found_all_elements(t_map map);
+
+/* handle_colors.c */
+bool	rgb_to_int(t_map *map, char **rgb, bool floor);
+
+/* ft_realloc.c */
+bool	ft_realloc(size_t size, char ***arr);
+
+// src -----------------------
+
+/* main.c */
+void	print_map(t_map map);
 
 #endif

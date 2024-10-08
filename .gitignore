@@ -1,7 +1,6 @@
 # Files
 *.a
 *.md
-*.log
 
 # Directories
 obj

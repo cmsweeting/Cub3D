@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/07 13:31:38 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/08 15:26:59 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	free_map(t_map *map)
 		free(map->we_texture);
 	if (map->ea_texture)
 		free(map->ea_texture);
+	free_dtab(map->map);
 }
 
 static void	init_map(t_map *map)
@@ -33,7 +34,7 @@ static void	init_map(t_map *map)
 	map->we_texture = NULL;
 	map->ea_texture = NULL;
 	map->allt_found = 0;
-	map->map_start = false;
+	map->map = NULL;
 	i = 0;
 	while (i < 3)
 	{
@@ -43,17 +44,20 @@ static void	init_map(t_map *map)
 	}
 }
 
-static void	print_map(t_map map)
+void	print_map(t_map map)
 {
-	printf("%s", map.ea_texture);
-	printf("%s", map.we_texture);
-	printf("%s", map.no_texture);
-	printf("%s", map.so_texture);
+	printf("%s\n", map.ea_texture);
+	printf("%s\n", map.we_texture);
+	printf("%s\n", map.no_texture);
+	printf("%s\n", map.so_texture);
 	printf("\n");
 	printf("floor color:	%d	|	%d	|	%d\n", map.fcolor[0], \
 	map.fcolor[1], map.fcolor[2]);
 	printf("celling color:	%d	|	%d	|	%d\n", map.ccolor[0], \
 	map.ccolor[1], map.ccolor[2]);
+	printf("\n");
+	print_darr(map.map, false);
+	printf("\n");
 }
 
 int	main(int ac, char *av[])

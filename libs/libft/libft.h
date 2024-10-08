@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:20:53 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/07 09:23:57 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/08 11:44:18 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,33 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+/* utilities */
+// allocates and returns a trimmed copy of s1, excluding the "set" characters
+char					*ft_strtrim(char const *s1, char const *set);
+// allocates and returns a copy of s, starting at index start
+char					*ft_substr(char const *s, unsigned int start, \
+						size_t len);
+// allocates and returns a concatenation of s1 and s2
+char					*ft_strjoin(char *s1, char *s2);
+// allocates and returns a NULL terminated **char separating *s by c.
+char					**ft_split(char const *s, char c);
+// allocates and return a string representing n
+char					*ft_itoa(int n);
+// applies f to each character in s. Return an allocated string resulting from f
+// modifications
+char					*ft_strmapi(char const *s, char (*f) \
+						(unsigned int, char));
+// applies f to each character in s
+void					ft_striteri(char *s, void (*f)(unsigned int, char*));
+
 /* libc like */
 unsigned long long int	ft_atoll(char *nptr);
 void					print_darr(char **arr, bool verbose);
-char					**ft_split(char const *s, char c);
-char					*ft_itoa(int n);
 char					*ft_strchr(const char *s, int c);
 char					*ft_strdup(const char *s);
-char					*ft_strjoin(char *s1, char *s2);
-char					*ft_strmapi(char const *s, char (*f) \
-						(unsigned int, char));
 char					*ft_strnstr(const char *big, const char *little, \
 						size_t len);
 char					*ft_strrchr(const char *s, int c);
-char					*ft_strtrim(char const *s1, char const *set);
-char					*ft_substr(char const *s, unsigned int start, \
-						size_t len);
 int						ft_atoi(char *nptr);
 int						ft_isalnum(int c);
 int						ft_isalpha(int c);
@@ -86,7 +97,6 @@ void					*ft_memmove(void *dest, const void *src, size_t n);
 void					*ft_memset(void *s, int c, size_t n);
 void					ft_bzero(void *s, size_t n);
 void					ft_putnbr_fd(int n, int fd);
-void					ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 /* ft_printf */
 ssize_t					read_str(char flag, va_list arg_list);

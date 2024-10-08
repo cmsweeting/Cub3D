@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 11:36:50 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/08 11:34:33 by cdomet-d         ###   ########.fr       */
+/*   Created: 2024/10/08 13:07:10 by cdomet-d          #+#    #+#             */
+/*   Updated: 2024/10/08 15:40:41 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3D.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+bool	ft_realloc(size_t size, char ***arr)
 {
-	size_t		i;
-	size_t		j;
-	size_t		end;
+	char	**copy;
+	size_t	i;
 
 	i = 0;
-	if (!s1 || !set)
-		return (NULL);
-	while (ft_strchr(set, (int)s1[i]))
+	copy = malloc((size + 1) * sizeof(char *));
+	if (!copy)
+		return (false);
+	copy[size] = NULL;
+	while ((*arr) && (*arr)[i])
+	{
+		copy[i] = (*arr)[i];
 		i++;
-	j = ft_strlen(s1);
-	while (ft_strchr(set, (int)s1[j]))
-		j--;
-	end = j - i + 1;
-	return (ft_substr(s1, i, end));
+	}
+	free(*arr);
+	*arr = copy;
+	return (true);
 }

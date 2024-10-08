@@ -6,31 +6,11 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:31:22 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/03 17:46:34 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:06:58 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-static bool	resize_arr(size_t size, char ***rfile)
-{
-	char	**copy;
-	size_t	i;
-
-	i = 0;
-	copy = (char **)malloc((size + 1) * sizeof(char *));
-	if (!copy)
-		return (false);
-	copy[size] = NULL;
-	while ((*rfile)[i])
-	{
-		copy[i] = (*rfile)[i];
-		i++;
-	}
-	free(*rfile);
-	*rfile = copy;
-	return (true);
-}
 
 static bool	extract_file(int _fd, char ***rfile)
 {
@@ -39,7 +19,7 @@ static bool	extract_file(int _fd, char ***rfile)
 
 	i = 0;
 	size = 1;
-	*rfile = (char **)malloc((size + 1) * sizeof(char *));
+	*rfile = malloc((size + 1) * sizeof(char *));
 	if (!*rfile)
 		return (false);
 	(*rfile)[size] = NULL;
@@ -49,7 +29,7 @@ static bool	extract_file(int _fd, char ***rfile)
 	while ((*rfile)[i])
 	{
 		size++;
-		if (!resize_arr(size, rfile))
+		if (!ft_realloc(size, rfile))
 			return (free_dtab(*rfile), false);
 		i++;
 		(*rfile)[i] = get_next_line(_fd);
@@ -94,10 +74,8 @@ bool	fetch_map(char *arg, t_map *_map)
 	if (!open_file(arg, &rfile))
 		return (false);
 	if (!get_values(_map, rfile))
-	{
-		free_dtab(rfile);
-		return (print_error(errno, "while processing file data"), false);
-	}
+		return (free_dtab(rfile), print_error(errno, "while processing \
+		file data"), false);
 	free_dtab(rfile);
 	return (true);
 }
