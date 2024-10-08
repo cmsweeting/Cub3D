@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/07 17:50:35 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/08 15:23:21 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,35 @@ void	ft_put_pixel(t_img *img, int colomn, int line, int color)
 	*(int *)(img->addr + (line * img->length + colomn * (img->bpp / 8))) = color;
 }
  
-void	draw_column(t_data *data, int distance, int colomn)
+void	draw_column(t_data *data, float distance, int colomn)
 {
-	int	hp;
-	int	i;
-	int	hr;
-	int	half_hp;
+	float	hp;
+	int		i;
+	float	hr;
+	float	half_hp;
 
 	i = 0;
-	hr = CUB / 2;
-	hp = CUB * data->distance_screen / distance;
-	// printf("hp : %d\n", hp);
+	distance *= 64;
+	// printf("distance : %f\n", distance);
+	hr = 64 / 2;
+	hp = 64.0 * data->distance_screen / distance;
+	// printf("hp : %f\n", hp);
 	half_hp = hp / 2;
-	while (i < (hr - half_hp))
-	{
-		ft_put_pixel(&data->img, colomn, i, SKY);
-		i++;
-	}
+	if ((hr - half_hp) > 0)
+		i = hr - half_hp;
+	// while (i < (hr - half_hp))
+	// {
+	// 	ft_put_pixel(&data->img, colomn, i, SKY);
+	// 	i++;
+	// }
 	while (i <= (hr + half_hp))
 	{
 		ft_put_pixel(&data->img, colomn, i, WALL);
 		i++;
 	}
-	while (i < SCREEN_HEIGHT)
-	{
-		ft_put_pixel(&data->img, colomn, i, GROUND);
-		i++;
-	}
+	// while (i < SCREEN_HEIGHT)
+	// {
+	// 	ft_put_pixel(&data->img, colomn, i, GROUND);
+	// 	i++;
+	// }
 }

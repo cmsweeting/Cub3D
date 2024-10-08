@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/07 18:49:19 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:05:10 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	get_angles(t_data *data)
 	else if (data->map[data->Py][data->Px] == 'W')
 		data->P_angle = 270;
 	data->ray_angle = 60;//data->P_angle - (FOV / 2);
-	data->angle_bt_rays = /*0.05719;*/FOV / 1049 * 1.0f;
-	// printf("angle_bt_rays : %f\n", data->angle_bt_rays);
+	data->angle_bt_rays = 60.0 / 1050.0 * 1.0f;
 }
 
 void	init_data(t_data *data, char **map)
@@ -39,8 +38,8 @@ void	init_data(t_data *data, char **map)
 	half_fov_radian = (FOV / 2) * (PI / 180) * 1.0f;
 	data->distance_screen = (SCREEN_WIDTH / 2) / tanf(half_fov_radian)* 1.0f;
 	get_angles(data);
-	data->Px = (data->Px * CUB) + (CUB / 2);
-	data->Py = (data->Py * CUB) + (CUB / 2);
+	data->Px = data->Px + 0.5;
+	data->Py = data->Py + 0.5;
 }
 
 int	init_display(char **map)
@@ -67,7 +66,7 @@ int	init_display(char **map)
 		free(data.mlx_ptr);
 		return (1);
 	}
-	mlx_loop_hook(data.mlx_ptr, &raycasting, &data);
+	// mlx_loop_hook(data.mlx_ptr, &raycasting, &data);
 	mlx_hook(data.win_ptr, 2, 1L<<0, &keys, &data);
 	mlx_hook(data.win_ptr, 17, 0, &close_win, &data);
 	mlx_loop(data.mlx_ptr);
