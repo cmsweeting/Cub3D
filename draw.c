@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/08 15:23:21 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:20:23 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ void	draw_column(t_data *data, float distance, int colomn)
 {
 	int	hp;
 	int	i;
-	int	hr;
+	// int	hr;
 	int	half_hp;
 
 	i = 0;
-	distance *= 64;
+	// distance *= 64;
 	// printf("distance : %f\n", distance);
-	hr = 64 / 2;
-	hp = 64.0 * data->distance_screen / distance;
-	// printf("hp : %f\n", hp);
+	// hr = 64 / 2;
+	hp = 64 * data->distance_screen / distance;
+	// printf("hp : %d\n", hp);
 	half_hp = hp / 2;
 	int	half_screen_height = SCREEN_HEIGHT / 2;
 	i = half_screen_height - half_hp;
@@ -42,10 +42,11 @@ void	draw_column(t_data *data, float distance, int colomn)
 	// 	ft_put_pixel(&data->img, colomn, i, SKY);
 	// 	i++;
 	// }
-	while (i <= (hr + half_hp))
+	while (hp > 0 && i < SCREEN_HEIGHT)//i <= (hr + half_hp))
 	{
 		ft_put_pixel(&data->img, colomn, i, data->color);
 		i++;
+		hp--;
 	}
 	// while (i < SCREEN_HEIGHT)
 	// {
