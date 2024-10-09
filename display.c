@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/08 17:05:10 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:15:20 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,15 @@
 
 void	get_angles(t_data *data)
 {
-	if (data->map[(int)data->Py][(int)data->Px] == 'N')
-	{
-		data->dir_x = 0;
-		data->dir_y = -1;
-	}
-	else if (data->map[(int)data->Py][(int)data->Px] == 'E')
-	{
-		data->dir_x = 1;
-		data->dir_y = 0;
-	}
-	else if (data->map[(int)data->Py][(int)data->Px] == 'S')
-	{
-		data->dir_x = 0;
-		data->dir_y = 1;
-	}
+	if (data->map[(int)data->Py][(int)data->Px] == 'E')
+		data->P_angle = 0.0f;
+	else if (data->map[(int)data->Py][(int)data->Px] == 'N')
+		data->P_angle = 90.0f;//PI * 0.5f;
 	else if (data->map[(int)data->Py][(int)data->Px] == 'W')
-	{
-		data->dir_x = -1;
-		data->dir_y = 0;
-	}
-	data->camera_plane_x = -1 * data->dir_y;
-	data->camera_plane_y = data->dir_x;
-	data->ray_angle = 60;//data->P_angle - (FOV / 2);
+		data->P_angle = 180.0f;//PI;
+	else if (data->map[(int)data->Py][(int)data->Px] == 'S')
+		data->P_angle = 270.0f;//1.5f * PI;
+	// data->ray_angle = 60;//data->P_angle - (FOV / 2);
 	data->angle_bt_rays = 60.0 / 1049.0 * 1.0f;
 }
 

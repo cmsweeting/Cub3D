@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/08 17:09:42 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:40:44 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,17 @@ typedef struct s_data
 	float	distance_screen;
 	float	ray_angle;
 	float	angle_bt_rays;
-	float	dir_x;
-	float	dir_y;
-	float	camera_plane_x;
-	float	camera_plane_y;
-	float	ray_dir_x;
-	float	ray_dir_y;
+	float	dir_ray;
+	// float	dir_x;
+	// float	dir_y;
+	// float	camera_plane_x;
+	// float	camera_plane_y;
+	// float	ray_dir_x;
+	// float	ray_dir_y;
 	int		color;
 	t_img	img;
 	bool	left;
+	float	P_angle;
 }	t_data;
 
 int		init_display(char **map);
