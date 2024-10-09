@@ -23,34 +23,29 @@ void	draw_column(t_data *data, float distance, int colomn)
 {
 	int	hp;
 	int	i;
-	// int	hr;
 	int	half_hp;
 
 	i = 0;
-	// distance *= 64;
+	distance *= 64;
 	// printf("distance : %f\n", distance);
-	// hr = 64 / 2;
 	hp = 64 * data->distance_screen / distance;
 	// printf("hp : %d\n", hp);
 	half_hp = hp / 2;
 	int	half_screen_height = SCREEN_HEIGHT / 2;
-	i = half_screen_height - half_hp;
-	if (i < 0)
-		i = 0;
-	// while (i < (hr - half_hp))
-	// {
-	// 	ft_put_pixel(&data->img, colomn, i, SKY);
-	// 	i++;
-	// }
-	while (hp > 0 && i < SCREEN_HEIGHT)//i <= (hr + half_hp))
+	while (i < (half_screen_height - half_hp) && i < SCREEN_HEIGHT)
+	{
+		ft_put_pixel(&data->img, colomn, i, SKY);
+		i++;
+	}
+	while (hp > 0 && i < SCREEN_HEIGHT)
 	{
 		ft_put_pixel(&data->img, colomn, i, data->color);
 		i++;
 		hp--;
 	}
-	// while (i < SCREEN_HEIGHT)
-	// {
-	// 	ft_put_pixel(&data->img, colomn, i, GROUND);
-	// 	i++;
-	// }
+	while (i < SCREEN_HEIGHT)
+	{
+		ft_put_pixel(&data->img, colomn, i, GROUND);
+		i++;
+	}
 }
