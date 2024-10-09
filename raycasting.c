@@ -19,6 +19,7 @@ float	get_correct_distance(float horizontal, float vertical, t_data *data)
 	float 	angle;
 
 	distance = 0;
+	(void)distance;
 	angle = (90 - data->ray_angle) * 1.0f;
 	if (!data->left)
 		angle *= -1;
@@ -33,7 +34,7 @@ float	get_correct_distance(float horizontal, float vertical, t_data *data)
 		data->color = WALL_S;
 	}
 	distance = smallest * cosf(angle * (PI / 180.0f));
-	return (distance);
+	return (smallest);
 }
 
 int	check_collisions(float x, float y, char **map)
@@ -60,20 +61,20 @@ float	get_vertical_intersection(t_data *data)
 	int		i;
 
 	Xa = CUB;
-	if (data->left)//data->ray_angle < 90.0f)
+	if (data->ray_dir_x < 0)
 		Xa *= -1;
 	Ya = CUB * tanf(data->ray_angle * (PI / 180.0f));
-	if (data->P_angle < 90 || data->P_angle > 270)
+	if (data->ray_dir_y < 0)
 		Ya *= -1;
-	if (data->ray_angle == 90)
-	{
-		if (data->P_angle == 0 || data->P_angle == 180)
-			return (-1);
-		else
-			Ya = 0;
-	}
+	// if (data->ray_angle == 90)
+	// {
+	// 	if (data->P_angle == 0 || data->P_angle == 180)
+	// 		return (-1);
+	// 	else
+	// 		Ya = 0;
+	// }
 	Bx = (int)(data->Px);
-	if (data->left)//data->ray_angle < 90)
+	if (data->ray_dir_x < 0)
 		Bx -= 1;
 	else
 		Bx += 1;
@@ -102,20 +103,20 @@ float	get_horizontal_intersection(t_data *data)
 	int		i;
 
 	Ya = CUB;
-	if (data->P_angle < 90 || data->P_angle > 270)
+	if (data->ray_dir_y < 0.0)
 		Ya *= -1;
 	Xa = CUB / tanf(data->ray_angle * (PI / 180.0f));
-	if (data->left)//data->ray_angle < 90.0f)
+	if (data->ray_dir_x < 0.0)
 		Xa *= -1;
-	if (data->ray_angle == 90)
-	{
-		if (data->P_angle == 0 || data->P_angle == 180)
-			Xa = 0;
-		else
-			return (-1);
-	}
+	// if (data->ray_dir_x == 0.0)
+	// {
+	// 	if (data->P_angle == 0 || data->P_angle == 180)
+	// 		Xa = 0;
+	// 	else
+	// 		return (-1);
+	// }
 	Ay = (int)(data->Py);
-	if (data->P_angle < 90 || data->P_angle > 270)
+	if (data->ray_dir_y < 0.0)
 		Ay -= 1;
 	else
 		Ay += 1;
@@ -127,10 +128,6 @@ float	get_horizontal_intersection(t_data *data)
 		Ay += Ya;
 		i = check_collisions(Ax, Ay, data->map);
 	}
-	// printf("Ay : %f\n", Ay);
-	// printf("Ax : %f\n", Ax);
-	// data->Px *= 64.0;
-	// Ax *= 64.0;
 	if (i == -1)
 		PA = -1;
 	else
@@ -144,6 +141,14 @@ void	change_side(t_data *data)
 	data->angle_bt_rays *= -1;
 }
 
+void	get_ray_direction(t_data *data, int i)
+{
+	float	camera_x = 2 * i / SCREEN_WIDTH - 1;
+
+	data->ray_dir_x = data->dir_x + data->camera_plane_x * camera_x;
+	data->ray_dir_y = data->dir_y + data->camera_plane_y * camera_x;
+}
+
 int	raycasting(t_data *data)
 {
 	int	i;
@@ -154,11 +159,12 @@ int	raycasting(t_data *data)
 	i = 0;
 	data->ray_angle = 60;
 	data->left = true;
-	while (i < SCREEN_WIDTH)
+	while (i < /*525)*/SCREEN_WIDTH)
 	{
 		if (data->ray_angle >= 90.0f)
 			if (data->left)
 				change_side(data);
+		get_ray_direction(data, i);
 		horizontal = get_horizontal_intersection(data);
 		// printf("i : %d PA : %f\n", i, horizontal);
 		vertical = get_vertical_intersection(data);

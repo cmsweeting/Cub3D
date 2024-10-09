@@ -49,15 +49,20 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	char	**map;
-	int		Px;
-	int		Py;
+	float	Px;
+	float	Py;
 	float	distance_screen;
-	float	P_angle;
 	float	ray_angle;
 	float	angle_bt_rays;
-	bool	left;
+	float	dir_x;
+	float	dir_y;
+	float	camera_plane_x;
+	float	camera_plane_y;
+	float	ray_dir_x;
+	float	ray_dir_y;
 	int		color;
 	t_img	img;
+	bool	left;
 }	t_data;
 
 int		init_display(char **map);
