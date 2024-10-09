@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:29:30 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/08 16:09:53 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:18:04 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_map
 	short int		ccolor[3];
 	char			**map;
 }	t_map;
+
 // error_handling ------------
 
 /* error_handling.c */

@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 14:13:36 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/08 16:10:34 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:19:55 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static bool	is_path(t_map *map, char *str)
 	if (ft_strncmp("WE ", str, 3) == 0)
 	{
 		map->allt_found += 1;
-		map->we_texture = ft_strtrim(skip_whitespaces(&str[3]), "\n");
+		map->we_texture =  ft_strtrim(skip_whitespaces(&str[3]), "\n");
 		return (map->we_texture);
 	}
 	if (ft_strncmp("EA ", str, 3) == 0)
@@ -103,6 +103,7 @@ bool	get_values(t_map *map, char **rfile)
 				return (false);
 			if (is_map(rfile[i]))
 			{
+				print_map(*map);
 				if (!cpy_map(map, rfile, i))
 					return (print_error(errno, "while retrieving map"));
 				break ;
