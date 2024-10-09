@@ -18,6 +18,7 @@ float	get_correct_distance(float horizontal, float vertical, t_data *data)
 	float	smallest;
 	float 	angle;
 
+	(void)distance;
 	distance = 0;
 	angle = (90 - data->ray_angle) * 1.0f;
 	if (!data->left)
@@ -64,14 +65,18 @@ float	get_vertical_intersection(t_data *data)
 	if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
 		Ya *= -1;
 	Bx = (int)(data->Px);
-	if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)//data->left)//data->ray_angle < 90.0f)
+	if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
 	{
 		Xa *= -1;
 		Bx -= 0.1f;
 	}
 	else
 		Bx += 1;
-	By = (data->Py) - (fabs((data->Px) - Bx) * tanf(data->ray_angle * (PI / 180.0f)));
+	int	y = (fabs((data->Px) - Bx) * tanf(data->ray_angle * (PI / 180.0f)));
+	if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
+		By = (data->Py) - y;
+	else
+		By = (data->Py) + y;
 	i = check_collisions(Bx, By, data->map);
 	while (!i)
 	{
@@ -97,7 +102,7 @@ float	get_horizontal_intersection(t_data *data)
 
 	Ya = CUB;
 	Xa = CUB / tanf(data->ray_angle * (PI / 180.0f));
-	if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)//data->left)//data->ray_angle < 90.0f)
+	if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
 		Xa *= -1;
 	Ay = (int)(data->Py);
 	if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
@@ -107,7 +112,11 @@ float	get_horizontal_intersection(t_data *data)
 	}
 	else
 		Ay += 1;
-	Ax = data->Px - ((data->Py - Ay) / tanf(data->ray_angle * (PI / 180.0f)));
+	int	x = (fabs(data->Py - Ay) / tanf(data->ray_angle * (PI / 180.0f)));
+	if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
+		Ax = data->Px - x;
+	else
+		Ax = data->Px + x;
 	i = check_collisions(Ax, Ay, data->map);
 	while (!i)
 	{
@@ -135,7 +144,6 @@ int	raycasting(t_data *data)
 	float	horizontal;
 	float	vertical;
 	float	distance;
-	// float	dir_ray;
 	float		j;
 
 	i = 0;
@@ -143,6 +151,8 @@ int	raycasting(t_data *data)
 	data->ray_angle = 60.0f;
 	data->left = true;
 	data->dir_ray = data->P_angle + 30.0f;
+	if (data->dir_ray > 360.0f)
+		data->dir_ray -= 360;
 	while (i < SCREEN_WIDTH)
 	{
 		if (data->ray_angle >= 90.0f)
@@ -156,13 +166,10 @@ int	raycasting(t_data *data)
 		data->dir_ray += data->angle_bt_rays * j;
 		if (data->dir_ray < 0.0f)
 			data->dir_ray = 360 - data->ray_angle;
-		if (i > 524)
-		{
-			// printf("PA : %f\n", horizontal);
-			// printf("PB : %f\n", vertical);
-			// printf("i : %d : distance : %f\n", i, distance);
-			// printf("i : %d | dir ray : %f | ray angle : %f\n", i, data->dir_ray, data->ray_angle);
-		}
+		// printf("PA : %f\n", horizontal);
+		// printf("PB : %f\n", vertical);
+		// printf("i : %d : distance : %f\n", i, distance);
+		// printf("i : %d | dir ray : %f | ray angle : %f\n", i, data->dir_ray, data->ray_angle);
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.ptr, 0, 0);
