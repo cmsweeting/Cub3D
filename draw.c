@@ -33,8 +33,10 @@ void	draw_column(t_data *data, float distance, int colomn)
 	hp = 64.0 * data->distance_screen / distance;
 	// printf("hp : %f\n", hp);
 	half_hp = hp / 2;
-	if ((hr - half_hp) > 0)
-		i = hr - half_hp;
+	int	half_screen_height = SCREEN_HEIGHT / 2;
+	i = half_screen_height - half_hp;
+	if (i < 0)
+		i = 0;
 	// while (i < (hr - half_hp))
 	// {
 	// 	ft_put_pixel(&data->img, colomn, i, SKY);
