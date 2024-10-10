@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/09 15:52:42 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:54:35 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	init_map(t_map *map)
 	map->p.i = -1;
 	map->p.j = -1;
 	map->found_p = false;
+	map->mnot_enclosed = false;
 	map->no_texture = NULL;
 	map->so_texture = NULL;
 	map->we_texture = NULL;

@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:24:31 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/09 14:25:59 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:07:23 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static bool	is_invalid_char(char *str)
 		return (false);
 	if (str[i] == '\n')
 		return (true);
-	while(str[i])
+	while (str[i])
 	{
-		if (str[i] != '1' && str[i] != '0'&& str[i] != ' '&& str[i] != 'N' && \
-		str[i] != 'S' && str[i] != 'E'&& str[i] != 'W' && str[i] != '\n')
+		if (str[i] != '1' && str[i] != '0' && str[i] != ' ' && str[i] != 'N' \
+		&& str[i] != 'S' && str[i] != 'E' && str[i] != 'W' && str[i] != '\n')
 			return (true);
 		i++;
 	}
