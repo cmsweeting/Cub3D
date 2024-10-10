@@ -21,12 +21,12 @@
 # include <stdio.h>
 # include <stdbool.h>
 
-// # define EPSILON 0.0001f
+# define EPSILON 0.0001f
 # define PI 3.14159265359f
-# define CUB 1.0f
+# define CUB /*64.0f*/1.0f
 # define FOV 60
-# define SCREEN_WIDTH 1050
-# define SCREEN_HEIGHT 550
+# define SCREEN_WIDTH 1050.0f
+# define SCREEN_HEIGHT 550.0f
 # define SKY 0x112ACD
 # define GROUND 0x070E3F
 // # define WALL
@@ -55,12 +55,6 @@ typedef struct s_data
 	float	ray_angle;
 	float	angle_bt_rays;
 	float	dir_ray;
-	// float	dir_x;
-	// float	dir_y;
-	// float	camera_plane_x;
-	// float	camera_plane_y;
-	// float	ray_dir_x;
-	// float	ray_dir_y;
 	int		color;
 	t_img	img;
 	bool	left;
