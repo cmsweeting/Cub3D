@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:24:31 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/09 13:42:55 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:25:59 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ bool	cpy_map(t_map *map, char **rfile, size_t i)
 bool	found_all_elements(t_map map)
 {
 	if ((map.allt_found < 6) || !map.ea_texture || !map.no_texture || \
-	!map.so_texture || !map.we_texture)
-		return (print_error(0, "Error 1 : missing texture"), false);
+	!map.so_texture || !map.we_texture || !map.map)
+		return (print_error(0, "Error: missing element"), false);
 	return (true);
 }
 

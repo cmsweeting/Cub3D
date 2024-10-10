@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:31:22 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/08 16:06:58 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:37:27 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static bool	open_file(char *arg, char ***rfile)
 	return (true);
 }
 
-bool	fetch_map(char *arg, t_map *_map)
+bool	fill_struct(char *arg, t_map *_map)
 {
 	char	**rfile;
 

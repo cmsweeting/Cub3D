@@ -1,26 +1,129 @@
-==19141== Memcheck, a memory error detector
-==19141== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==19141== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==19141== Command: ./cub3D maps/map1.cub
-==19141== Parent PID: 19140
-==19141== 
-==19141== 
-==19141== FILE DESCRIPTORS: 6 open (3 std) at exit.
-==19141== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==19141==    <inherited from parent>
-==19141== 
-==19141== Open file descriptor 43: /home/cdomet-d/.config/Code/logs/20241009T124143/ptyhost.log
-==19141==    <inherited from parent>
-==19141== 
-==19141== Open file descriptor 3: /home/cdomet-d/Documents/WIP/Cub3D/val.log
-==19141==    <inherited from parent>
-==19141== 
-==19141== 
-==19141== HEAP SUMMARY:
-==19141==     in use at exit: 0 bytes in 0 blocks
-==19141==   total heap usage: 312 allocs, 312 frees, 11,302 bytes allocated
-==19141== 
-==19141== All heap blocks were freed -- no leaks are possible
-==19141== 
-==19141== For lists of detected and suppressed errors, rerun with: -s
-==19141== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==84200== Memcheck, a memory error detector
+==84200== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==84200== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==84200== Command: ./cub3D maps/map1.cub
+==84200== Parent PID: 84199
+==84200== 
+==84200== Invalid read of size 1
+==84200==    at 0x4029AE: has_walls (is_map_valid.c:71)
+==84200==    by 0x4029CC: has_walls (is_map_valid.c:72)
+==84200==    by 0x4029CC: has_walls (is_map_valid.c:72)
+==84200==    by 0x4029CC: has_walls (is_map_valid.c:72)
+==84200==    by 0x4029CC: has_walls (is_map_valid.c:72)
+==84200==    by 0x4026F2: map_is_valid (is_map_valid.c:82)
+==84200==    by 0x40135F: main (main.c:77)
+==84200==  Address 0x15 is not stack'd, malloc'd or (recently) free'd
+==84200== 
+==84200== 
+==84200== Process terminating with default action of signal 11 (SIGSEGV)
+==84200==  Access not within mapped region at address 0x15
+==84200==    at 0x4029AE: has_walls (is_map_valid.c:71)
+==84200==    by 0x4029CC: has_walls (is_map_valid.c:72)
+==84200==    by 0x4029CC: has_walls (is_map_valid.c:72)
+==84200==    by 0x4029CC: has_walls (is_map_valid.c:72)
+==84200==    by 0x4029CC: has_walls (is_map_valid.c:72)
+==84200==    by 0x4026F2: map_is_valid (is_map_valid.c:82)
+==84200==    by 0x40135F: main (main.c:77)
+==84200==  If you believe this happened as a result of a stack
+==84200==  overflow in your program's main thread (unlikely but
+==84200==  possible), you can try to increase the size of the
+==84200==  main thread stack using the --main-stacksize= flag.
+==84200==  The main thread stack size used in this run was 8388608.
+==84200== 
+==84200== FILE DESCRIPTORS: 6 open (3 std) at exit.
+==84200== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==84200==    <inherited from parent>
+==84200== 
+==84200== Open file descriptor 43: /home/cdomet-d/.config/Code/logs/20241010T102041/ptyhost.log
+==84200==    <inherited from parent>
+==84200== 
+==84200== Open file descriptor 3: /home/cdomet-d/Documents/WIP/Cub3D/val.log
+==84200==    <inherited from parent>
+==84200== 
+==84200== 
+==84200== HEAP SUMMARY:
+==84200==     in use at exit: 1,666 bytes in 19 blocks
+==84200==   total heap usage: 294 allocs, 275 frees, 10,719 bytes allocated
+==84200== 
+==84200== 27 bytes in 1 blocks are still reachable in loss record 1 of 7
+==84200==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==84200==    by 0x40403B: ft_calloc (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x403A07: ft_substr (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x40393F: ft_strtrim (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x401B3A: is_path (get_map_data.c:65)
+==84200==    by 0x4018A2: get_values (get_map_data.c:109)
+==84200==    by 0x401568: fill_struct (extract_file.c:76)
+==84200==    by 0x401339: main (main.c:75)
+==84200== 
+==84200== 27 bytes in 1 blocks are still reachable in loss record 2 of 7
+==84200==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==84200==    by 0x40403B: ft_calloc (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x403A07: ft_substr (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x40393F: ft_strtrim (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x401ACB: is_path (get_map_data.c:59)
+==84200==    by 0x4018A2: get_values (get_map_data.c:109)
+==84200==    by 0x401568: fill_struct (extract_file.c:76)
+==84200==    by 0x401339: main (main.c:75)
+==84200== 
+==84200== 28 bytes in 1 blocks are still reachable in loss record 3 of 7
+==84200==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==84200==    by 0x40403B: ft_calloc (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x403A07: ft_substr (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x40393F: ft_strtrim (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x4019ED: is_path (get_map_data.c:47)
+==84200==    by 0x4018A2: get_values (get_map_data.c:109)
+==84200==    by 0x401568: fill_struct (extract_file.c:76)
+==84200==    by 0x401339: main (main.c:75)
+==84200== 
+==84200== 28 bytes in 1 blocks are still reachable in loss record 4 of 7
+==84200==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==84200==    by 0x40403B: ft_calloc (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x403A07: ft_substr (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x40393F: ft_strtrim (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x401A5C: is_path (get_map_data.c:53)
+==84200==    by 0x4018A2: get_values (get_map_data.c:109)
+==84200==    by 0x401568: fill_struct (extract_file.c:76)
+==84200==    by 0x401339: main (main.c:75)
+==84200== 
+==84200== 112 bytes in 1 blocks are still reachable in loss record 5 of 7
+==84200==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==84200==    by 0x4025E8: ft_realloc (ft_realloc.c:21)
+==84200==    by 0x401F43: cpy_map (p_utils.c:57)
+==84200==    by 0x401908: get_values (get_map_data.c:115)
+==84200==    by 0x401568: fill_struct (extract_file.c:76)
+==84200==    by 0x401339: main (main.c:75)
+==84200== 
+==84200== 420 bytes in 13 blocks are still reachable in loss record 6 of 7
+==84200==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==84200==    by 0x40403B: ft_calloc (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x403A07: ft_substr (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x40393F: ft_strtrim (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x401F88: cpy_map (p_utils.c:60)
+==84200==    by 0x401908: get_values (get_map_data.c:115)
+==84200==    by 0x401568: fill_struct (extract_file.c:76)
+==84200==    by 0x401339: main (main.c:75)
+==84200== 
+==84200== 1,024 bytes in 1 blocks are still reachable in loss record 7 of 7
+==84200==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==84200==    by 0x4B4CBA3: _IO_file_doallocate (filedoalloc.c:101)
+==84200==    by 0x4B5BCDF: _IO_doallocbuf (genops.c:347)
+==84200==    by 0x4B5AF5F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:744)
+==84200==    by 0x4B596D4: _IO_new_file_xsputn (fileops.c:1243)
+==84200==    by 0x4B596D4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1196)
+==84200==    by 0x4B4500B: outstring_func (vfprintf-internal.c:239)
+==84200==    by 0x4B4500B: __vfprintf_internal (vfprintf-internal.c:1517)
+==84200==    by 0x4B2E79E: printf (printf.c:33)
+==84200==    by 0x403F69: print_darr (in /home/cdomet-d/Documents/WIP/Cub3D/cub3D)
+==84200==    by 0x402977: has_walls (is_map_valid.c:68)
+==84200==    by 0x4026F2: map_is_valid (is_map_valid.c:82)
+==84200==    by 0x40135F: main (main.c:77)
+==84200== 
+==84200== LEAK SUMMARY:
+==84200==    definitely lost: 0 bytes in 0 blocks
+==84200==    indirectly lost: 0 bytes in 0 blocks
+==84200==      possibly lost: 0 bytes in 0 blocks
+==84200==    still reachable: 1,666 bytes in 19 blocks
+==84200==         suppressed: 0 bytes in 0 blocks
+==84200== 
+==84200== For lists of detected and suppressed errors, rerun with: -s
+==84200== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
