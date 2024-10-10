@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:10:09 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/09 16:47:53 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:40:38 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static void	has_walls(size_t i, size_t j, char **map)
 	else if (map[i][j] == 'x')
 		return;
 	print_darr(map, false);
+	printf("%ld || %ld\n", i, j);
 	printf("\n");
 	map[i][j] = 'x';
 	if (map[i + 1][j])
