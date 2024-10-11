@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/11 16:08:48 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/11 18:08:32 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define EPSILON 0.0001f
 # define PI 3.14159265359f
-# define CUB /*64.0f*/1.0f
+# define CUB 64.0f//1.0f
 # define FOV 60
 # define SCREEN_WIDTH 1050.0f
 # define SCREEN_HEIGHT 550.0f

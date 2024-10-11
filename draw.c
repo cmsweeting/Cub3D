@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/09 18:20:23 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/11 18:09:04 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_column(t_data *data, float distance, int colomn)
 	int	half_hp;
 
 	i = 0;
-	distance *= 64;
+	// distance *= 64;
 	// printf("distance : %f\n", distance);
 	hp = 64 * data->distance_screen / distance;
 	// printf("hp : %d\n", hp);
