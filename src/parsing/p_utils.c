@@ -6,13 +6,13 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:24:31 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/10 18:07:23 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/11 12:11:11 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static bool	is_invalid_char(char *str)
+bool	is_invalid_char(char *str)
 {
 	size_t	i;
 
@@ -23,7 +23,9 @@ static bool	is_invalid_char(char *str)
 		return (true);
 	while (str[i])
 	{
-		if (str[i] != '1' && str[i] != '0' && str[i] != ' ' && str[i] != 'N' \
+		if (str[i] == ' ')
+			str[i] = '0';
+		if (str[i] != '1' && str[i] != '0' && str[i] != 'N' \
 		&& str[i] != 'S' && str[i] != 'E' && str[i] != 'W' && str[i] != '\n')
 			return (true);
 		i++;
@@ -43,27 +45,22 @@ bool	is_texture(char *str)
 	return (false);
 }
 
-bool	cpy_map(t_map *map, char **rfile, size_t i)
+size_t	max_len(char **map)
 {
-	size_t	size;
-	size_t	j;
+	size_t	i;
+	size_t	max;
+	size_t	len;
 
-	j = 0;
-	size = 1;
-	while (rfile[i])
+	i = 0;
+	max = 0;
+	while (map[i])
 	{
-		if (is_invalid_char(rfile[i]))
-			return (verror("In map:", " forbidden char at ", rfile[i]), false);
-		if (!ft_realloc(size, &map->map))
-			return (free_dtab(map->map), false);
-		size++;
-		map->map[j] = ft_strtrim(rfile[i], "\n");
-		if (!map->map[j])
-			return (false);
+		len = ft_strlen(map[i]);
+		if (len > max)
+			max = len;
 		i++;
-		j++;
 	}
-	return (true);
+	return (max);
 }
 
 bool	found_all_elements(t_map map)

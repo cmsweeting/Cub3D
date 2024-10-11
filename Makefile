@@ -6,7 +6,7 @@
 #    By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:01:27 by cdomet-d          #+#    #+#              #
-#    Updated: 2024/10/09 15:25:41 by cdomet-d         ###   ########.fr        #
+#    Updated: 2024/10/11 18:23:16 by cdomet-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,14 +34,18 @@ MFLAGS = -L$(MLXDIR) -lmlx_Linux -L/usr/lib -I $(MLX) -lX11 -lm -lz -lXext $(MLX
 SRC += main.c
 
 # ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ PARSING ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ #
+SRC += $(addprefix $(MADIR), $(MASRC))
+MADIR:=	parsing/memory_allocation/
+MASRC:=	memalloc.c \
+
 SRC += $(addprefix $(PDIR), $(PSRC))
 PDIR:=	parsing/
 PSRC:=	extract_file.c \
 		get_map_data.c \
 		p_utils.c \
 		handle_colors.c \
-		ft_realloc.c \
 		is_map_valid.c \
+		iterative_floodfill.c \
 
 # ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ ERRORS ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ #
 SRC += $(addprefix $(EDIR), $(ESRC))

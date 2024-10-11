@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:31:22 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/09 14:37:27 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/11 12:22:25 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static bool	open_file(char *arg, char ***rfile)
 		return (print_error(errno, "could not open file"), false);
 	if (!extract_file(fd, rfile))
 		return (close(fd), print_error(errno, "during file extraction"), false);
-	close (fd);
+	close(fd);
 	return (true);
 }
 
@@ -74,8 +74,8 @@ bool	fill_struct(char *arg, t_map *_map)
 	if (!open_file(arg, &rfile))
 		return (false);
 	if (!get_values(_map, rfile))
-		return (free_dtab(rfile), print_error(errno, "while processing \
-		file data"), false);
+		return (free_dtab(rfile), print_error(errno, "Error while processing \
+file"), false);
 	free_dtab(rfile);
 	return (true);
 }

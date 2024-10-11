@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/10 15:54:35 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/11 13:14:12 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	init_map(t_map *map)
 	map->p.i = -1;
 	map->p.j = -1;
 	map->found_p = false;
-	map->mnot_enclosed = false;
 	map->no_texture = NULL;
 	map->so_texture = NULL;
 	map->we_texture = NULL;
@@ -51,6 +50,14 @@ static void	init_map(t_map *map)
 void	print_map(t_map map)
 {
 	printf("player position : %ld || %ld\n", map.p.i, map.p.j);
+	if (map.pcard == SO)
+		printf("Player starts facing south\n");
+	if (map.pcard == NO)
+		printf("Player starts facing north\n");
+	if (map.pcard == WE)
+		printf("Player starts facing west\n");
+	if (map.pcard == EA)
+		printf("Player starts facing east\n");
 	printf("\n");
 	printf("%s\n", map.ea_texture);
 	printf("%s\n", map.we_texture);
@@ -76,6 +83,10 @@ int	main(int ac, char *av[])
 	if (!fill_struct(av[1], &map))
 		return (free_map(&map), EINVAL);
 	if (!map_is_valid(&map))
+	{
+		// print_map(map);
 		return (free_map(&map), EINVAL);
+	}
+	// print_map(map);
 	free_map(&map);
 }
