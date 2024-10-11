@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 15:02:27 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/11 15:10:44 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:59:37 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ float	get_vertical_intersection(t_data *data)
 	}
 	else
 		Bx += CUB;
-	int	y = fabs((data->Px) - Bx) * tanf(to_radian(data->ray_angle));
+	float	y = fabs((data->Px) - Bx) * tanf(to_radian(data->ray_angle));
 	if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
 		By = (data->Py) - y;
 	else
@@ -112,7 +112,7 @@ float	get_horizontal_intersection(t_data *data)
 	}
 	else
 		Ay += CUB;
-	int	x = fabs(data->Py - Ay) / tanf(to_radian(data->ray_angle));
+	float	x = fabs(data->Py - Ay) / tanf(to_radian(data->ray_angle));
 	if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
 		Ax = data->Px - x;
 	else
