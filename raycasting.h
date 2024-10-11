@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/11 15:07:45 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/11 16:08:48 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_point
+{
+	float	distX;
+	float	distY;
+}	t_point;
+
+
 typedef struct s_data
 {
 	void	*mlx_ptr;
@@ -68,5 +75,7 @@ void	clean_display(t_data *data);
 int		close_win(t_data *data);
 int		keys(int keysym, t_data *data);
 float	to_radian(float angle);
+float	get_opposite(float adj, float angle);
+float	get_adjacent(float opposite, float angle);
 
 #endif
