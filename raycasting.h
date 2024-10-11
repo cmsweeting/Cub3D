@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/09 17:40:44 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:07:45 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ void	draw_column(t_data *data, float distance, int colomn);
 void	clean_display(t_data *data);
 int		close_win(t_data *data);
 int		keys(int keysym, t_data *data);
+float	to_radian(float angle);
 
 #endif

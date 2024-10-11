@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 15:02:27 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/10 18:45:46 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:10:44 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ float	get_correct_distance(float horizontal, float vertical, t_data *data)
 		smallest = vertical;
 		data->color = WALL_S;
 	}
-	distance = smallest * cosf(angle * (PI / 180.0f));
+	distance = smallest * cosf(to_radian(angle));
 	return (smallest);
 }
 
@@ -61,7 +61,7 @@ float	get_vertical_intersection(t_data *data)
 	int		i;
 
 	Xa = CUB;
-	Ya = CUB * tanf(data->ray_angle * (PI / 180.0f));
+	Ya = CUB * tanf(to_radian(data->ray_angle));
 	if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
 		Ya *= -1;
 	Bx = (int)(data->Px / CUB) * CUB;
@@ -72,7 +72,7 @@ float	get_vertical_intersection(t_data *data)
 	}
 	else
 		Bx += CUB;
-	int	y = (fabs((data->Px) - Bx) * tanf(data->ray_angle * (PI / 180.0f)));
+	int	y = fabs((data->Px) - Bx) * tanf(to_radian(data->ray_angle));
 	if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
 		By = (data->Py) - y;
 	else
@@ -87,7 +87,7 @@ float	get_vertical_intersection(t_data *data)
 	if (i == -1)
 		PB = -1;
 	else
-		PB = sqrtf(powf((data->Px - Bx), 2) + powf((data->Py - By), 2));//fabs(data->Px * CUB - Bx) / cosf(data->ray_angle * (PI / 180.0f));
+		PB = /*sqrtf(powf((data->Px - Bx), 2) + powf((data->Py - By), 2));/*/fabs(data->Px * CUB - Bx) / cosf(to_radian(data->ray_angle));
 	return (PB);
 }
 
@@ -101,7 +101,7 @@ float	get_horizontal_intersection(t_data *data)
 	int		i;
 
 	Ya = CUB;
-	Xa = CUB / tanf(data->ray_angle * (PI / 180.0f));
+	Xa = CUB / tanf(to_radian(data->ray_angle));
 	if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
 		Xa *= -1;
 	Ay = (int)(data->Py / CUB) * CUB;
@@ -112,7 +112,7 @@ float	get_horizontal_intersection(t_data *data)
 	}
 	else
 		Ay += CUB;
-	int	x = (fabs(data->Py - Ay) / tanf(data->ray_angle * (PI / 180.0f)));
+	int	x = fabs(data->Py - Ay) / tanf(to_radian(data->ray_angle));
 	if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
 		Ax = data->Px - x;
 	else
@@ -127,7 +127,7 @@ float	get_horizontal_intersection(t_data *data)
 	if (i == -1)
 		PA = -1;
 	else
-		PA = sqrtf(powf((data->Px - Ax), 2) + powf((data->Py - Ay), 2));//fabs(data->Px - Ax) / cosf(data->ray_angle * (PI / 180.0f));
+		PA = /*sqrtf(powf((data->Px - Ax), 2) + powf((data->Py - Ay), 2));/*/fabs(data->Px - Ax) / cosf(to_radian(data->ray_angle));
 	return (PA);
 }
 
