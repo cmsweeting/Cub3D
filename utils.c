@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:23:41 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/11 15:07:36 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:19:48 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,20 @@ void	clean_display(t_data *data)
 float	to_radian(float angle)
 {
 	return (angle * (PI / 180.0f));
+}
+
+float	get_opposite(float adj, float angle)
+{
+	float	op;
+	
+	op = tanf(to_radian(angle)) * adj;
+	return (op);
+}
+
+float	get_adjacent(float opposite, float angle)
+{
+	float	adj;
+	
+	adj = opposite / tanf(to_radian(angle));
+	return (adj);
 }
