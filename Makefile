@@ -6,7 +6,7 @@
 #    By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 20:13:46 by csweetin          #+#    #+#              #
-#    Updated: 2024/10/07 15:36:48 by csweetin         ###   ########.fr        #
+#    Updated: 2024/10/11 17:53:50 by csweetin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,10 +26,11 @@ CPPFLAGS:= $(INCLUDES) -MMD -MP
 
 SRC = 	main.c \
 		display.c \
-		raycasting.c \
 		draw.c \
 		events.c \
 		utils.c \
+		raycasting_2.c \
+		#raycasting.c
 
 OBJS = $(SRC:%.c=$(BUILD_DIR)%.o)
 DEPS:= $(OBJS:%.o=%.d)
