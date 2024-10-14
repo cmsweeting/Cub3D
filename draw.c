@@ -26,7 +26,7 @@ void	draw_column(t_data *data, float distance, int colomn)
 	int	half_hp;
 
 	i = 0;
-	// distance *= 64;
+	distance *= 64;
 	// printf("distance : %f\n", distance);
 	hp = 64 * data->distance_screen / distance;
 	// printf("hp : %d\n", hp);

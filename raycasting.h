@@ -23,7 +23,7 @@
 
 # define EPSILON 0.0001f
 # define PI 3.14159265359f
-# define CUB 64.0f//1.0f
+# define CUB /*64.0f/*/1.0f
 # define FOV 60
 # define SCREEN_WIDTH 1050.0f
 # define SCREEN_HEIGHT 550.0f
