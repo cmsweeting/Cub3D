@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/11 18:00:03 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/14 17:02:45 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,13 +128,19 @@ float	get_smallest_distance(t_point hor, t_point ver, t_data *data)
 	if (hit_h == -1)
 	{
 		smallest = sqrtf(powf((data->Px - ver.distX), 2) + powf((data->Py - ver.distY), 2));
-		data->color = WALL_S;
+		if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
+			data->color = WALL_W;
+		else
+			data->color = WALL_E;
 		return (smallest);
 	}
 	else if (hit_v == -1)
 	{
 		smallest = sqrtf(powf((data->Px - hor.distX), 2) + powf((data->Py - hor.distY), 2));
-		data->color = WALL_N;
+		if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
+			data->color = WALL_N;
+		else
+			data->color = WALL_S;
 		return (smallest);
 	}
 	dist_hor = sqrtf(powf((data->Px - hor.distX), 2) + powf((data->Py - hor.distY), 2));
@@ -142,12 +148,18 @@ float	get_smallest_distance(t_point hor, t_point ver, t_data *data)
 	if (dist_hor < dist_ver)
 	{
 		smallest = dist_hor;
-		data->color = WALL_N;
+		if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
+			data->color = WALL_N;
+		else
+			data->color = WALL_S;
 	}
 	else
 	{
 		smallest = dist_ver;
-		data->color = WALL_S;
+		if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
+			data->color = WALL_W;
+		else
+			data->color = WALL_E;
 	}
 	return (smallest);
 }
@@ -171,6 +183,8 @@ int	raycasting(t_data *data)
 	data->dir_ray = data->P_angle + 30.0f;
 	if (data->dir_ray > 360.0f)
 		data->dir_ray -= 360;
+	leftmost_angle(data);
+	data->ray_angle += 30.0f;
 	while (i < SCREEN_WIDTH)
 	{
 		if (data->ray_angle <= 0.0f)
