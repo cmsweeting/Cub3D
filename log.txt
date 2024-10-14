@@ -1,0 +1,41 @@
+
+make -C libs/libft
+make[1]: Nothing to be done for 'all'.
+
+
+make -C libs/mlx
+./configure
+[96m[1mconfigure[0m [[92minfo[0m] : Found X11 include path directory: /usr/include
+[96m[1mconfigure[0m [[92minfo[0m] : Generate "makefile.gen" from template "makefile.mk"
+[96m[1mconfigure[0m [[92minfo[0m] : Generate "test/makefile.gen" from template "test/makefile.mk"
+[96m[1mconfigure[0m [[92minfo[0m] : Execute "make all" from file "makefile.gen"
+make[2]: Nothing to be done for 'all'.
+[96m[1mconfigure[0m [[92minfo[0m] : Execute "make all" from file "test/makefile.gen"
+make[2]: Nothing to be done for 'all'.
+
+mkdir -p .bdir/parsing/
+cc -Werror -Wextra -Wall -g3 -MMD -MP -I src/includes/ -I libs/libft -o .bdir/parsing/iterative_floodfill.o -c src/parsing/iterative_floodfill.c
+[0;34m
+-- Making cub3D... ---------------------
+[0mcc -Werror -Wextra -Wall -g3 .bdir/main.o .bdir/parsing/memory_allocation/memalloc.o .bdir/parsing/extract_file.o .bdir/parsing/get_map_data.o .bdir/parsing/p_utils.o .bdir/parsing/handle_colors.o .bdir/parsing/is_map_valid.o .bdir/parsing/iterative_floodfill.o .bdir/error_handling/error_handling.o -L libs/libft -Llibs/mlx -lmlx_Linux -L/usr/lib -I libs/mlx/libmlx_Linux.a -lX11 -lm -lz -lXext libs/mlx/libmlx_Linux.a -o cub3D -lft
+[0;34m-- cub3D done ! ------------------------
+
+[0mvalgrind --track-fds=yes --log-file="/home/cdomet-d/Documents/WIP/Cub3D/val.log" --leak-check=full --show-leak-kinds=all --track-origins=yes ./cub3D maps/map1.cub
+14, 35, 490
+14, 35, 490
+sizeof: 735.000000
+630 || 630
+00000000001111111111111111111111111
+00000000001                       1
+00000000001                       1
+00000000001                       1
+00000000001                       1
+11111111111                 1111111
+1                                 1
+1                                 1
+1                                 1
+1                                 1
+1                                 1
+1                                 1
+1                                 1
+11111111111111111111111111111111111

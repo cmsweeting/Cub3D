@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:10:09 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/11 18:38:32 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/14 17:02:02 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,26 +78,6 @@ static bool	find_player(t_map *map)
 	return (map->found_p);
 }
 
-// static void	has_walls(size_t i, size_t j, t_map map, bool *_wismissing)
-// {
-// 	if (i == 0 || i == (map.msize.i - 1) || j == 0 || (j == map.msize.j -1) || \
-// 	map.map[i][j] != '0')
-// 	{
-// 		if (map.map[i][j] == '0')
-// 		{
-// 			map.map[i][j] = '.';
-// 			*_wismissing = true;
-// 			return ;
-// 		}
-// 		return ;
-// 	}
-// 	map.map[i][j] = ' ';
-// 	has_walls(i + 1, j, map, _wismissing);
-// 	has_walls(i, j + 1, map, _wismissing);
-// 	has_walls(i - 1, j, map, _wismissing);
-// 	has_walls(i, j - 1, map, _wismissing);
-// }
-
 bool	map_is_valid(t_map *map)
 {
 	bool	wismissing;
@@ -107,9 +87,12 @@ bool	map_is_valid(t_map *map)
 		return (print_error(0, "Error: invalid player start position"), false);
 	sqalloc_map(map);
 	printf("%ld, %ld, %ld\n", map->msize.i, map->msize.j, map->msize.i * map->msize.j);
-	if (iwall(*map))
+	if (!iwall(*map))
+	{
+		// print_darr(map->map, false);
 		return (print_error(0, "Error: invalid map"), false);
-	print_darr(map->map, false);
+	}
+	// print_darr(map->map, false);
 	reset_map(map);
 	return (true);
 }
