@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/11 15:11:07 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:24:17 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@ void	get_angles(t_data *data)
 	if (data->map[(int)data->Py][(int)data->Px] == 'E')
 		data->P_angle = 0.0f;
 	else if (data->map[(int)data->Py][(int)data->Px] == 'N')
-		data->P_angle = 90.0f;//PI * 0.5f;
+		data->P_angle = 90.0f;
 	else if (data->map[(int)data->Py][(int)data->Px] == 'W')
-		data->P_angle = 180.0f;//PI;
+		data->P_angle = 180.0f;
 	else if (data->map[(int)data->Py][(int)data->Px] == 'S')
-		data->P_angle = 270.0f;//1.5f * PI;
+		data->P_angle = 270.0f;
 	data->angle_bt_rays = 60.0f / (SCREEN_WIDTH -  1.0f) * 1.0f;
-	data->ray_angle = 30.0f;
-	// printf("p angle : %f\n", data->P_angle);
+	data->ray_angle = 0.0f;
 }
 
 void	init_data(t_data *data, char **map)
@@ -33,9 +32,9 @@ void	init_data(t_data *data, char **map)
 
 	data->left = true;
 	data->map = map;
-	data->Px = 5.0f;
-	data->Py = 3.0f;
-	data->map[(int)data->Py][(int)data->Px] = 'S';
+	data->Px = 4.0f;
+	data->Py = 5.0f;
+	data->map[(int)data->Py][(int)data->Px] = 'E';
 	half_fov_radian = (FOV / 2) * (PI / 180) * 1.0f;
 	data->distance_screen = (SCREEN_WIDTH / 2) / tanf(half_fov_radian)* 1.0f;
 	get_angles(data);
@@ -67,7 +66,7 @@ int	init_display(char **map)
 		free(data.mlx_ptr);
 		return (1);
 	}
-	// mlx_loop_hook(data.mlx_ptr, &raycasting, &data);
+	mlx_loop_hook(data.mlx_ptr, &raycasting, &data);
 	mlx_hook(data.win_ptr, 2, 1L<<0, &keys, &data);
 	mlx_hook(data.win_ptr, 17, 0, &close_win, &data);
 	mlx_loop(data.mlx_ptr);
