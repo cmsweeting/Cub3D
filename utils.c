@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:23:41 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/11 15:19:48 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:17:14 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,23 @@ float	get_adjacent(float opposite, float angle)
 	
 	adj = opposite / tanf(to_radian(angle));
 	return (adj);
+}
+
+int	get_quarter(t_data *data)
+{
+	int	quarter;
+
+	quarter = ((int)data->P_angle / 90) % 4;
+	return (quarter);
+}
+
+void	leftmost_angle(t_data *data)
+{
+	int		index_axis;
+	float	angle_ref;
+	
+	index_axis = get_quarter(data);
+	angle_ref = 90 * index_axis;
+	data->ray_angle = data->P_angle - angle_ref;
+	// printf("ray angle : %f\n", data->ray_angle);
 }

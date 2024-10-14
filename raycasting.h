@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/11 18:08:32 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:17:28 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,7 @@ int		keys(int keysym, t_data *data);
 float	to_radian(float angle);
 float	get_opposite(float adj, float angle);
 float	get_adjacent(float opposite, float angle);
+void	leftmost_angle(t_data *data);
+int		get_quarter(t_data *data);
 
 #endif
