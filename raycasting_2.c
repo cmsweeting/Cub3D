@@ -17,8 +17,8 @@ int	check_collisions(float x, float y, char **map)
 	int	i;
 	int	j;
 
-	i = /*(int)*/trunc(y / CUB);
-	j = /*(int)*/trunc(x / CUB);
+	i = (int)(y / CUB);
+	j = (int)(x / CUB);
 	if (i < 0 || j < 0 || i > 7 || j > 7 || !map[i][j])
 		return (-1);
 	if (map[i][j] == '1')
@@ -47,7 +47,7 @@ void	get_vertical_intersection(t_data *data, t_point *pt)
 
 	//get Bx and Xa
 	stepX = CUB;
-	pt->distX = /*(int)*/trunc(data->Px / CUB) * CUB;
+	pt->distX = (int)(data->Px / CUB) * CUB;
 	if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
 	{
 		stepX *= -1;
@@ -58,7 +58,7 @@ void	get_vertical_intersection(t_data *data, t_point *pt)
 	
 	//get By et Ya
 	if ((data->dir_ray > 0.0f && data->dir_ray < 90.0f) \
-		|| (data->ray_angle > 180.0f && data->ray_angle < 270.0f))
+		|| (data->dir_ray > 180.0f && data->dir_ray < 270.0f))
 	{
 		stepY = get_opposite(CUB, data->ray_angle);
 		e = get_opposite(fabs((data->Px) - pt->distX), data->ray_angle);
@@ -85,7 +85,7 @@ void	get_horizontal_intersection(t_data *data, t_point *pt)
 
 	//get Ay and Ya
 	stepY = CUB;
-	pt->distY = /*(int)*/trunc(data->Py / CUB) * CUB;
+	pt->distY = (int)(data->Py / CUB) * CUB;
 	if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
 	{
 		stepY *= -1;
@@ -96,7 +96,7 @@ void	get_horizontal_intersection(t_data *data, t_point *pt)
 	
 	//get Ax and Xa
 	if ((data->dir_ray > 0.0f && data->dir_ray < 90.0f) \
-		|| (data->ray_angle > 180.0f && data->ray_angle < 270.0f))
+		|| (data->dir_ray > 180.0f && data->dir_ray < 270.0f))
 	{
 		stepX = get_adjacent(CUB, data->ray_angle);
 		e = get_adjacent(fabs(data->Py - pt->distY), data->ray_angle);
@@ -113,21 +113,6 @@ void	get_horizontal_intersection(t_data *data, t_point *pt)
 	}
 	pt->distX = data->Px + e;
 	find_wall(data, pt, stepX, stepY);
-}
-
-
-void	get_angle(t_data *data)
-{
-	float	axis;
-
-	axis = 0;
-	if (data->dir_ray > 90 && data->dir_ray < 180)
-		axis = 90;
-	else if (data->dir_ray > 180 && data->dir_ray < 270)
-		axis = 180;
-	else if (data->dir_ray > 270 && data->dir_ray < 360)
-		axis = 270;
-	data->ray_angle = data->dir_ray - axis;
 }
 
 float	get_smallest_distance(t_point hor, t_point ver, t_data *data)
@@ -178,14 +163,18 @@ int	raycasting(t_data *data)
 	data->dir_ray = data->P_angle + 30.0f;
 	if (data->dir_ray > 360.0f)
 		data->dir_ray -= 360;
-	get_angle(data);
-	printf("ray angle : %f\n", data->ray_angle);
-	printf("dir angle : %f\n", data->dir_ray);
+	// printf("dir angle : %f\n", data->dir_ray);
+	// printf("ray angle : %f\n", data->ray_angle);
 	while (i < SCREEN_WIDTH)
 	{
 		if (data->ray_angle <= 0.0f)
-			get_angle(data);
+			data->ray_angle = 90.0f;
 		// printf("ray angle : %f\n", data->ray_angle);
+		// if (i == 526)
+		// {
+		// 	printf("dir angle : %f\n", data->dir_ray);
+		// 	printf("ray angle : %f\n", data->ray_angle);
+		// }
 		get_horizontal_intersection(data, &horizontal);
 		get_vertical_intersection(data, &vertical);
 		distance = get_smallest_distance(horizontal, vertical, data);
