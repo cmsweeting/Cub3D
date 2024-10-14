@@ -57,22 +57,22 @@ void	get_vertical_intersection(t_data *data, t_point *pt)
 		pt->distX += CUB;
 	
 	//get By et Ya
-	if ((data->dir_ray > 0.0f && data->dir_ray < 90.0f) \
-		|| (data->dir_ray > 180.0f && data->dir_ray < 270.0f))
-	{
-		stepY = get_opposite(CUB, data->ray_angle);
-		e = get_opposite(fabs((data->Px) - pt->distX), data->ray_angle);
-	}
-	else
-	{
-		stepY = get_adjacent(CUB, data->ray_angle);
-		e = get_adjacent(fabs((data->Px) - pt->distX), data->ray_angle);
-	}
-	if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
-	{
-		stepY *= -1;
-		e *= -1;;
-	}
+	// if ((data->dir_ray > 0.0f && data->dir_ray < 90.0f) 
+	// 	|| (data->dir_ray > 180.0f && data->dir_ray < 270.0f))
+	// {
+	stepY = get_opposite(CUB, data->dir_ray);// ray_angle);
+	e = get_opposite(/*fabs*/((data->Px) - pt->distX), data->dir_ray);// ray_angle);
+	// }
+	// else
+	// {
+	// 	stepY = get_adjacent(CUB, data->ray_angle);
+	// 	e = get_adjacent(fabs((data->Px) - pt->distX), data->ray_angle);
+	// }
+	// if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
+	// {
+	// 	stepY *= -1;
+	// 	e *= -1;;
+	// }
 	pt->distY = data->Py + e;
 	find_wall(data, pt, stepX, stepY);
 }
@@ -95,22 +95,22 @@ void	get_horizontal_intersection(t_data *data, t_point *pt)
 		pt->distY += CUB;
 	
 	//get Ax and Xa
-	if ((data->dir_ray > 0.0f && data->dir_ray < 90.0f) \
-		|| (data->dir_ray > 180.0f && data->dir_ray < 270.0f))
-	{
-		stepX = get_adjacent(CUB, data->ray_angle);
-		e = get_adjacent(fabs(data->Py - pt->distY), data->ray_angle);
-	}
-	else
-	{
-		stepX = get_opposite(CUB, data->ray_angle);
-		e = get_opposite(fabs(data->Py - pt->distY), data->ray_angle);
-	}
-	if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
-	{
-		stepX *= -1.0f;
-		e *= -1.0f;
-	}
+	// if ((data->dir_ray > 0.0f && data->dir_ray < 90.0f) 
+	// 	|| (data->dir_ray > 180.0f && data->dir_ray < 270.0f))
+	// {
+	stepX = get_adjacent(CUB, data->dir_ray);// ray_angle);
+	e = get_adjacent(/*fabs*/(data->Py - pt->distY), data->dir_ray);// ray_angle);
+	// }
+	// else
+	// {
+	// 	stepX = get_opposite(CUB, data->ray_angle);
+	// 	e = get_opposite(fabs(data->Py - pt->distY), data->ray_angle);
+	// }
+	// if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
+	// {
+	// 	stepX *= -1.0f;
+	// 	e *= -1.0f;
+	// }
 	pt->distX = data->Px + e;
 	find_wall(data, pt, stepX, stepY);
 }
@@ -168,7 +168,8 @@ void	fish_eye(float *distance, int i, t_data *data)
 {
 	float	angle;
 
-	angle = (i - SCREEN_WIDTH / 2) * data->angle_bt_rays;
+	(void)i;
+	angle = /*data->dir_ray - 30.0f - data->dir_ray ;/*/((i - SCREEN_WIDTH / 2) * data->angle_bt_rays) * -1.0f;
 	*distance *= cosf(to_radian(angle));
 }
 
@@ -183,18 +184,18 @@ int	raycasting(t_data *data)
 	data->dir_ray = data->P_angle + 30.0f;
 	if (data->dir_ray > 360.0f)
 		data->dir_ray -= 360;
-	leftmost_angle(data);
-	data->ray_angle += 30.0f;
+	// leftmost_angle(data);
+	// data->ray_angle += 30.0f;
 	while (i < SCREEN_WIDTH)
 	{
-		if (data->ray_angle <= 0.0f)
-			data->ray_angle = 90.0f;
+		// if (data->ray_angle <= 0.0f)
+		// 	data->ray_angle = 90.0f;
 		get_horizontal_intersection(data, &horizontal);
 		get_vertical_intersection(data, &vertical);
 		distance = get_smallest_distance(horizontal, vertical, data);
 		fish_eye(&distance, i, data);
 		draw_column(data, distance, i);
-		data->ray_angle -= data->angle_bt_rays;
+		// data->ray_angle -= data->angle_bt_rays;
 		data->dir_ray -= data->angle_bt_rays;
 		if (data->dir_ray < 0.0f)
 			data->dir_ray = 360 - data->ray_angle;

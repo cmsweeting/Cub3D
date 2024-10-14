@@ -14,79 +14,83 @@
 
 void	step_left(t_data *data, float adj, float op, int quarter)
 {
-	float	x;
-	float	y;
+	// float	x;
+	// float	y;
 	
-	x = adj;
-	y = op;
-	if (quarter == 0 || quarter == 2)
-	{
-		x = op;
-		y = adj;
-	}
-	if (quarter == 0 || quarter == 1)
-		x *= -1;
-	if (quarter == 0 || quarter == 3)
-		y *= -1;
-	data->Px += x;
-	data->Py += y;
+	(void)quarter;
+	// x = adj;
+	// y = op;
+	// if (quarter == 0 || quarter == 2)
+	// {
+	// 	x = op;
+	// 	y = adj;
+	// }
+	// if (quarter == 0 || quarter == 1)
+	// 	x *= -1;
+	// if (quarter == 0 || quarter == 3)
+	// 	y *= -1;
+	data->Px += adj;
+	data->Py += op;
 }
 void	step_right(t_data *data, float adj, float op, int quarter)
 {
-	float	x;
-	float	y;
+	// float	x;
+	// float	y;
 	
-	x = adj;
-	y = op;
-	if (quarter == 0 || quarter == 2)
-	{
-		x = op;
-		y = adj;
-	}
-	if (quarter == 2 || quarter == 3)
-		x *= -1;
-	if (quarter == 1 || quarter == 2)
-		y *= -1;
-	data->Px += x;
-	data->Py += y;
+	(void)quarter;
+	// x = adj;
+	// y = op;
+	// if (quarter == 0 || quarter == 2)
+	// {
+	// 	x = op;
+	// 	y = adj;
+	// }
+	// if (quarter == 2 || quarter == 3)
+	// 	x *= -1;
+	// if (quarter == 1 || quarter == 2)
+	// 	y *= -1;
+	data->Px -= adj;
+	data->Py -= op;
 }
 void	step_up(t_data *data, float adj, float op, int quarter)
 {
-	float	x;
-	float	y;
+	// float	x;
+	// float	y;
 	
-	x = adj;
-	y = op;
-	if (quarter == 1 || quarter == 3)
-	{
-		x = op;
-		y = adj;
-	}
-	if (quarter == 1 || quarter == 2)
-		x *= -1;
-	if (quarter == 0 || quarter == 1)
-		y *= -1;
-	data->Px += x;
-	data->Py += y;
+	(void)quarter;
+	// x = adj;
+	// y = op;
+	// if (quarter == 1 || quarter == 3)
+	// {
+	// 	x = op;
+	// 	y = adj;
+	// }
+	// if (quarter == 1 || quarter == 2)
+	// 	x *= -1;
+	// if (quarter == 0 || quarter == 1)
+	// 	y *= -1;
+	data->Px += adj;//x;
+	data->Py -= op;//y;
 }
 void	step_down(t_data *data, float adj, float op, int quarter)
 {
-	float	x;
-	float	y;
+	// float	x;
+	// float	y;
 	
-	x = adj;
-	y = op;
-	if (quarter == 1 || quarter == 3)
-	{
-		x = op;
-		y = adj;
-	}
-	if (quarter == 0 || quarter == 3)
-		x *= -1;
-	if (quarter == 2 || quarter == 3)
-		y *= -1;
-	data->Px += x;
-	data->Py += y;
+	(void)quarter;
+	// x = adj;
+	// y = op;
+	// if (quarter == 1 || quarter == 3)
+	// {
+	// 	x = op;
+	// 	y = adj;
+	// }
+	// if (quarter == 0 || quarter == 3)
+	// 	x *= -1;
+	// if (quarter == 2 || quarter == 3)
+	// 	y *= -1;
+	data->Px -= adj;//x;
+	data->Py += op;//y;
 }
 
 void	move(int keysym, t_data *data)
@@ -100,7 +104,7 @@ void	move(int keysym, t_data *data)
 	
 
 	quarter = get_quarter(data);
-	angle = data->P_angle - (90 * (quarter + 1));
+	angle = data->P_angle;//(90 * (quarter + 1));
 	adj = cos(angle) * 0.1f;
 	op = sin(angle) * 0.1f;
 	if (keysym == XK_w)

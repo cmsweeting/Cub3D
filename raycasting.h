@@ -21,7 +21,7 @@
 # include <stdio.h>
 # include <stdbool.h>
 
-# define EPSILON 0.0001f
+# define EPSILON 0.00001f
 # define PI 3.14159265359f
 # define CUB /*64.0f/*/1.0f
 # define FOV 60
