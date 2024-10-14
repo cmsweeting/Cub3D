@@ -152,6 +152,14 @@ float	get_smallest_distance(t_point hor, t_point ver, t_data *data)
 	return (smallest);
 }
 
+void	fish_eye(float *distance, int i, t_data *data)
+{
+	float	angle;
+
+	angle = (i - SCREEN_WIDTH / 2) * data->angle_bt_rays;
+	*distance *= cosf(to_radian(angle));
+}
+
 int	raycasting(t_data *data)
 {
 	int	i;
@@ -163,22 +171,14 @@ int	raycasting(t_data *data)
 	data->dir_ray = data->P_angle + 30.0f;
 	if (data->dir_ray > 360.0f)
 		data->dir_ray -= 360;
-	// printf("dir angle : %f\n", data->dir_ray);
-	// printf("ray angle : %f\n", data->ray_angle);
 	while (i < SCREEN_WIDTH)
 	{
 		if (data->ray_angle <= 0.0f)
 			data->ray_angle = 90.0f;
-		// printf("ray angle : %f\n", data->ray_angle);
-		// if (i == 526)
-		// {
-		// 	printf("dir angle : %f\n", data->dir_ray);
-		// 	printf("ray angle : %f\n", data->ray_angle);
-		// }
 		get_horizontal_intersection(data, &horizontal);
 		get_vertical_intersection(data, &vertical);
 		distance = get_smallest_distance(horizontal, vertical, data);
-		//fix_fish_eye
+		fish_eye(&distance, i, data);
 		draw_column(data, distance, i);
 		data->ray_angle -= data->angle_bt_rays;
 		data->dir_ray -= data->angle_bt_rays;
