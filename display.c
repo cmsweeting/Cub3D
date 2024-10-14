@@ -22,7 +22,8 @@ void	get_angles(t_data *data)
 		data->P_angle = 180.0f;//PI;
 	else if (data->map[(int)data->Py][(int)data->Px] == 'S')
 		data->P_angle = 270.0f;//1.5f * PI;
-	data->angle_bt_rays = 60.0 / (SCREEN_WIDTH -  1.0f) * 1.0f;
+	data->angle_bt_rays = 60.0f / (SCREEN_WIDTH -  1.0f) * 1.0f;
+	data->ray_angle = 30.0f;
 	// printf("p angle : %f\n", data->P_angle);
 }
 
@@ -32,9 +33,9 @@ void	init_data(t_data *data, char **map)
 
 	data->left = true;
 	data->map = map;
-	data->Px = 2.0f;
-	data->Py = 5.0f;
-	data->map[(int)data->Py][(int)data->Px] = 'N';
+	data->Px = 5.0f;
+	data->Py = 3.0f;
+	data->map[(int)data->Py][(int)data->Px] = 'S';
 	half_fov_radian = (FOV / 2) * (PI / 180) * 1.0f;
 	data->distance_screen = (SCREEN_WIDTH / 2) / tanf(half_fov_radian)* 1.0f;
 	get_angles(data);
