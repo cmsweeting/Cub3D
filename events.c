@@ -12,10 +12,15 @@
 
 #include "raycasting.h"
 
+void	leftmost_angle(t_data *data)
+{
+	
+}
+
 void	move(int keysym, t_data *data)
 {
-	if (keysym == XK_l)
-		raycasting(data);
+	// if (keysym == XK_l)
+	// 	raycasting(data);
 	if (keysym == XK_w)
 	{
 		// data->Py -= sin(a) * 0.1
@@ -38,10 +43,11 @@ void	move(int keysym, t_data *data)
 	{
 		data->Px += 0.1;
 	}
-	//left arrow :
-	// data->P_angle -= (0.1 * data->angle_bt_rays);
-	//right arrow :
-	// data->P_angle += (0.1 * data->angle_bt_rays);
+	else if (keysym == XK_Left)
+		data->P_angle -= (0.1 * data->angle_bt_rays);
+	else if (keysym == XK_Right)
+		data->P_angle += (0.1 * data->angle_bt_rays);
+	leftmost_angle(data);
 }
 
 int	close_win(t_data *data)
