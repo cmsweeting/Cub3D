@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/15 15:26:54 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:27:50 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ void	draw_column(t_data *data, double distance, int colomn)
 	int	hp;
 	int	i;
 	int	half_hp;
+	int	half_screen_height;
 
 	i = 0;
 	distance *= 64;
 	hp = 64 * data->distance_screen / distance;
 	half_hp = hp * 0.5;
-	int	half_screen_height = SCREEN_HEIGHT * 0.5;
+	half_screen_height = SCREEN_HEIGHT * 0.5;
 	while (i < (half_screen_height - half_hp) && i < SCREEN_HEIGHT)
 	{
 		ft_put_pixel(&data->img, colomn, i, SKY);

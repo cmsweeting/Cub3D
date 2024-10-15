@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/15 18:15:03 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:25:04 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,12 @@ void	get_angles(t_data *data, t_card pcard)
 void	init_data(t_data *data, t_map *map)
 {
 	data->map = map->map;
-	data->Px = (double)map->p.j;
-	data->Py = (double)map->p.i;
+	data->Px = (double)map->p.j + 0.5;
+	data->Py = (double)map->p.i + 0.5;
 	data->map_x = map->msize.j - 1;
 	data->map_y = map->msize.i - 1;
 	data->distance_screen = (SCREEN_WIDTH * 0.5) / tanf(to_radian(FOV * 0.5));
 	get_angles(data, map->pcard);
-	data->Px = data->Px + 0.5;
-	data->Py = data->Py + 0.5;
 }
 
 int	init_display(t_map *map)

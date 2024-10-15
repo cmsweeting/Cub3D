@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/15 17:52:39 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:29:25 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_data
 	double	Px;
 	double	Py;
 	double	angle_bt_rays;
-	double	dir_ray;
+	double	ray_angle;
 	double	P_angle;
 	int		color;
 	t_img	img;

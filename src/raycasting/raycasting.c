@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/15 18:05:25 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:29:25 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ double	vertical_intersection(t_data *data)
 	//get Bx and Xa
 	stepX = CUB;
 	pt.distX = (int)(data->Px);
-	if (data->dir_ray > 90.0 && data->dir_ray < 270.0)
+	if (data->ray_angle > 90.0 && data->ray_angle < 270.0)
 	{
 		stepX *= -1;
 		pt.distX -= EPSILON;
@@ -58,8 +58,8 @@ double	vertical_intersection(t_data *data)
 	else
 		pt.distX += CUB;
 	//get By et Ya
-	stepY = get_opposite(CUB, data->dir_ray);
-	e = get_opposite(((data->Px) - pt.distX), data->dir_ray);
+	stepY = get_opposite(CUB, data->ray_angle);
+	e = get_opposite(((data->Px) - pt.distX), data->ray_angle);
 	pt.distY = data->Py + e;
 	if (find_wall(data, &pt, stepX, stepY) == -1)
 		return (-1);
@@ -76,7 +76,7 @@ double	horizontal_intersection(t_data *data)
 	//get Ay and Ya
 	stepY = CUB;
 	pt.distY = (int)(data->Py);
-	if (data->dir_ray > 0.0 && data->dir_ray < 180.0)
+	if (data->ray_angle > 0.0 && data->ray_angle < 180.0)
 	{
 		stepY *= -1;
 		pt.distY -= EPSILON;
@@ -84,8 +84,8 @@ double	horizontal_intersection(t_data *data)
 	else
 		pt.distY += CUB;
 	//get Ax and Xa
-	stepX = get_adjacent(CUB, data->dir_ray);
-	e = get_adjacent((data->Py - pt.distY), data->dir_ray);
+	stepX = get_adjacent(CUB, data->ray_angle);
+	e = get_adjacent((data->Py - pt.distY), data->ray_angle);
 	pt.distX = data->Px + e;
 	if (find_wall(data, &pt, stepX, stepY) == -1)
 		return (-1);
@@ -100,7 +100,7 @@ double	smallest_distance(double hor, double ver, t_data *data)
 	if (ver == -1 || (hor < ver && hor > 0))
 	{
 		smallest = hor;
-		// if (data->dir_ray > 0.0 && data->dir_ray < 180.0)
+		// if (data->ray_angle > 0.0 && data->ray_angle < 180.0)
 		data->color = WALL_N;
 		// else
 		// 	data->color = WALL_S;
@@ -110,7 +110,7 @@ double	smallest_distance(double hor, double ver, t_data *data)
 	{
 		smallest = ver;
 		data->color = WALL_S;
-		// if (data->dir_ray > 90.0 && data->dir_ray < 270.0)
+		// if (data->ray_angle > 90.0 && data->ray_angle < 270.0)
 		// 	data->color = WALL_W;
 		// else
 		// 	data->color = WALL_E;
@@ -134,8 +134,8 @@ int	raycasting(t_data *data)
 	double	distance;
 
 	i = 0;
-	data->dir_ray = data->P_angle + 30.0f;
-	normalise_angle(&data->dir_ray);
+	data->ray_angle = data->P_angle + 30.0f;
+	normalise_angle(&data->ray_angle);
 	while (i < SCREEN_WIDTH)
 	{
 		horizontal = horizontal_intersection(data);
@@ -147,8 +147,8 @@ int	raycasting(t_data *data)
 		distance = smallest_distance(horizontal, vertical, data);
 		fish_eye(&distance, i, data);
 		draw_column(data, distance, i);
-		data->dir_ray -= data->angle_bt_rays;
-		normalise_angle(&data->dir_ray);
+		data->ray_angle -= data->angle_bt_rays;
+		normalise_angle(&data->ray_angle);
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.ptr, 0, 0);
