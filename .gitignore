@@ -1,3 +1,4 @@
+
 # Files
 *.a
 *.md
@@ -5,6 +6,7 @@
 
 # Directories
 obj
+brouillon
 .bdir
 .vscode
 scripts
