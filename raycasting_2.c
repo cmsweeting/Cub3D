@@ -12,7 +12,7 @@
 
 #include "raycasting.h"
 
-int	check_collisions(float x, float y, char **map)
+int	check_collisions(double x, double y, char **map)
 {
 	int	i;
 	int	j;
@@ -26,7 +26,7 @@ int	check_collisions(float x, float y, char **map)
 	return (0);
 }
 
-void	find_wall(t_data *data, t_point *pt, float stepX, float stepY)
+int	find_wall(t_data *data, t_point *pt, double stepX, double stepY)
 {
 	int		i;
 
@@ -37,125 +37,105 @@ void	find_wall(t_data *data, t_point *pt, float stepX, float stepY)
 		pt->distY += stepY;
 		i = check_collisions(pt->distX, pt->distY, data->map);
 	}
+	return (i);
 }
 
-void	get_vertical_intersection(t_data *data, t_point *pt)
+double	get_vertical_intersection(t_data *data, t_point *pt)
 {
-	float	stepX;
-	float	stepY;
-	float	e;
+	double	stepX;
+	double	stepY;
+	double	e;
 
 	//get Bx and Xa
 	stepX = CUB;
-	pt->distX = (int)(data->Px / CUB) * CUB;
+	pt->distX = (int)(data->Px);
 	if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
 	{
 		stepX *= -1;
-		pt->distX -= EPSILON;//0.1f;*/1.0f;
+		pt->distX -= EPSILON;
 	}
 	else
 		pt->distX += CUB;
 	
 	//get By et Ya
-	// if ((data->dir_ray > 0.0f && data->dir_ray < 90.0f) 
-	// 	|| (data->dir_ray > 180.0f && data->dir_ray < 270.0f))
-	// {
-	stepY = get_opposite(CUB, data->dir_ray);// ray_angle);
-	e = get_opposite(/*fabs*/((data->Px) - pt->distX), data->dir_ray);// ray_angle);
-	// }
-	// else
-	// {
-	// 	stepY = get_adjacent(CUB, data->ray_angle);
-	// 	e = get_adjacent(fabs((data->Px) - pt->distX), data->ray_angle);
-	// }
-	// if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
-	// {
-	// 	stepY *= -1;
-	// 	e *= -1;;
-	// }
-	pt->distY = data->Py + e;
-	find_wall(data, pt, stepX, stepY);
-}
-
-void	get_horizontal_intersection(t_data *data, t_point *pt)
-{
-	float	stepX;
-	float	stepY;
-	float	e;
-
-	//get Ay and Ya
-	stepY = CUB;
-	pt->distY = (int)(data->Py / CUB) * CUB;
+	if ((data->dir_ray > 0.0f && data->dir_ray < 90.0f) 
+		|| (data->dir_ray > 180.0f && data->dir_ray < 270.0f))
+	{
+	stepY = get_opposite(CUB, data->ray_angle);
+	e = get_opposite(fabs((data->Px) - pt->distX), data->ray_angle);
+	}
+	else
+	{
+		stepY = get_adjacent(CUB, data->ray_angle);
+		e = get_adjacent(fabs((data->Px) - pt->distX), data->ray_angle);
+	}
 	if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
 	{
 		stepY *= -1;
-		pt->distY -= EPSILON;//0.1f;*/1.0f;
+		e *= -1;;
+	}
+	pt->distY = data->Py + e;
+	if (find_wall(data, pt, stepX, stepY) == -1)
+		return (-1);
+	return (get_distance(pt, data));
+}
+
+double	get_horizontal_intersection(t_data *data, t_point *pt)
+{
+	double	stepX;
+	double	stepY;
+	double	e;
+
+	//get Ay and Ya
+	stepY = CUB;
+	pt->distY = (int)(data->Py);
+	if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
+	{
+		stepY *= -1;
+		pt->distY -= EPSILON;
 	}
 	else
 		pt->distY += CUB;
 	
 	//get Ax and Xa
-	// if ((data->dir_ray > 0.0f && data->dir_ray < 90.0f) 
-	// 	|| (data->dir_ray > 180.0f && data->dir_ray < 270.0f))
-	// {
-	stepX = get_adjacent(CUB, data->dir_ray);// ray_angle);
-	e = get_adjacent(/*fabs*/(data->Py - pt->distY), data->dir_ray);// ray_angle);
-	// }
-	// else
-	// {
-	// 	stepX = get_opposite(CUB, data->ray_angle);
-	// 	e = get_opposite(fabs(data->Py - pt->distY), data->ray_angle);
-	// }
-	// if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
-	// {
-	// 	stepX *= -1.0f;
-	// 	e *= -1.0f;
-	// }
-	pt->distX = data->Px + e;
-	find_wall(data, pt, stepX, stepY);
-}
-
-float	get_smallest_distance(t_point hor, t_point ver, t_data *data)
-{
-	float	smallest;
-	float	dist_hor;
-	float	dist_ver;
-	int		hit_h;
-	int		hit_v;
-	
-	hit_h = check_collisions(hor.distX, hor.distY, data->map);
-	hit_v = check_collisions(ver.distX, ver.distY, data->map);
-	if (hit_h == -1)
+	if ((data->dir_ray > 0.0f && data->dir_ray < 90.0f)
+		|| (data->dir_ray > 180.0f && data->dir_ray < 270.0f))
 	{
-		smallest = sqrtf(powf((data->Px - ver.distX), 2) + powf((data->Py - ver.distY), 2));
-		if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
-			data->color = WALL_W;
-		else
-			data->color = WALL_E;
-		return (smallest);
-	}
-	else if (hit_v == -1)
-	{
-		smallest = sqrtf(powf((data->Px - hor.distX), 2) + powf((data->Py - hor.distY), 2));
-		if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
-			data->color = WALL_N;
-		else
-			data->color = WALL_S;
-		return (smallest);
-	}
-	dist_hor = sqrtf(powf((data->Px - hor.distX), 2) + powf((data->Py - hor.distY), 2));
-	dist_ver = sqrtf(powf((data->Px - ver.distX), 2) + powf((data->Py - ver.distY), 2));
-	if (dist_hor < dist_ver)
-	{
-		smallest = dist_hor;
-		if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
-			data->color = WALL_N;
-		else
-			data->color = WALL_S;
+		stepX = get_adjacent(CUB, data->ray_angle);
+		e = get_adjacent(fabs(data->Py - pt->distY), data->ray_angle);
 	}
 	else
 	{
-		smallest = dist_ver;
+		stepX = get_opposite(CUB, data->ray_angle);
+		e = get_opposite(fabs(data->Py - pt->distY), data->ray_angle);
+	}
+	if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
+	{
+		stepX *= -1.0f;
+		e *= -1.0f;
+	}
+	pt->distX = data->Px + e;
+	if (find_wall(data, pt, stepX, stepY) == -1)
+		return (-1);
+	return (get_distance(pt, data));
+}
+
+double	get_smallest_distance(double hor, double ver, t_data *data)
+{
+	double	smallest;
+
+	if (ver == -1 || (hor < ver && hor > 0))
+	{
+		smallest = hor;
+		if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
+			data->color = WALL_N;
+		else
+			data->color = WALL_S;
+		return (smallest);
+	}
+	else if (ver > 0)
+	{
+		smallest = ver;
 		if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
 			data->color = WALL_W;
 		else
@@ -164,12 +144,12 @@ float	get_smallest_distance(t_point hor, t_point ver, t_data *data)
 	return (smallest);
 }
 
-void	fish_eye(float *distance, int i, t_data *data)
+void	fish_eye(double *distance, int i, t_data *data)
 {
-	float	angle;
+	double	angle;
 
 	(void)i;
-	angle = /*data->dir_ray - 30.0f - data->dir_ray ;/*/((i - SCREEN_WIDTH / 2) * data->angle_bt_rays) * -1.0f;
+	angle = ((i - SCREEN_WIDTH / 2) * data->angle_bt_rays) *  -1.0f;
 	*distance *= cosf(to_radian(angle));
 }
 
@@ -178,24 +158,26 @@ int	raycasting(t_data *data)
 	int	i;
 	t_point	horizontal;
 	t_point	vertical;
-	float	distance;
+	double	h;
+	double	v;
+	double	distance;
 
 	i = 0;
 	data->dir_ray = data->P_angle + 30.0f;
 	if (data->dir_ray > 360.0f)
 		data->dir_ray -= 360;
-	// leftmost_angle(data);
-	// data->ray_angle += 30.0f;
+	leftmost_angle(data);
+	data->ray_angle += 30.0f;
 	while (i < SCREEN_WIDTH)
 	{
-		// if (data->ray_angle <= 0.0f)
-		// 	data->ray_angle = 90.0f;
-		get_horizontal_intersection(data, &horizontal);
-		get_vertical_intersection(data, &vertical);
-		distance = get_smallest_distance(horizontal, vertical, data);
+		if (data->ray_angle <= 0.0f)
+			data->ray_angle = 90.0f;
+		h = get_horizontal_intersection(data, &horizontal);
+		v = get_vertical_intersection(data, &vertical);
+		distance = get_smallest_distance(h, v, data);
 		fish_eye(&distance, i, data);
 		draw_column(data, distance, i);
-		// data->ray_angle -= data->angle_bt_rays;
+		data->ray_angle -= data->angle_bt_rays;
 		data->dir_ray -= data->angle_bt_rays;
 		if (data->dir_ray < 0.0f)
 			data->dir_ray = 360 - data->ray_angle;
