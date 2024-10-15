@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:29:30 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/11 18:32:03 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/15 11:53:25 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,10 @@ typedef enum e_cardinal
 	EA,
 }	t_card;
 
-typedef struct s_co
-{
-	size_t	i;
-	size_t	j;
-}	t_co;
-
 typedef struct s_queue
 {
 	t_co	*item;
+	size_t	size;
 	size_t	frt;
 	size_t	end;
 	

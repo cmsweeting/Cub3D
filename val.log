@@ -1,36 +1,36 @@
-==394264== Memcheck, a memory error detector
-==394264== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==394264== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==394264== Command: ./cub3D maps/map1.cub
-==394264== Parent PID: 394263
-==394264== 
-==394264== Invalid read of size 1
-==394264==    at 0x403169: iwall (iterative_floodfill.c:50)
-==394264==    by 0x402A72: map_is_valid (is_map_valid.c:90)
-==394264==    by 0x4013EF: main (main.c:85)
-==394264==  Address 0x4d65a28 is 8 bytes before a block of size 490 alloc'd
-==394264==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==394264==    by 0x402F2B: iwall (iterative_floodfill.c:31)
-==394264==    by 0x402A72: map_is_valid (is_map_valid.c:90)
-==394264==    by 0x4013EF: main (main.c:85)
-==394264== 
-==394264== 
-==394264== FILE DESCRIPTORS: 6 open (3 std) at exit.
-==394264== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==394264==    <inherited from parent>
-==394264== 
-==394264== Open file descriptor 43: /home/cdomet-d/.config/Code/logs/20241014T104611/ptyhost.log
-==394264==    <inherited from parent>
-==394264== 
-==394264== Open file descriptor 3: /home/cdomet-d/Documents/WIP/Cub3D/val.log
-==394264==    <inherited from parent>
-==394264== 
-==394264== 
-==394264== HEAP SUMMARY:
-==394264==     in use at exit: 0 bytes in 0 blocks
-==394264==   total heap usage: 154 allocs, 154 frees, 41,119 bytes allocated
-==394264== 
-==394264== All heap blocks were freed -- no leaks are possible
-==394264== 
-==394264== For lists of detected and suppressed errors, rerun with: -s
-==394264== ERROR SUMMARY: 175 errors from 1 contexts (suppressed: 0 from 0)
+==44152== Memcheck, a memory error detector
+==44152== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==44152== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==44152== Command: ./cub3D maps/map1.cub
+==44152== Parent PID: 44151
+==44152== 
+==44152== Invalid read of size 1
+==44152==    at 0x40316A: iwall (iterative_floodfill.c:69)
+==44152==    by 0x402A40: map_is_valid (is_map_valid.c:90)
+==44152==    by 0x4013EF: main (main.c:85)
+==44152==  Address 0x4d61d39 is 7 bytes before a block of size 490 alloc'd
+==44152==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44152==    by 0x402EDF: iwall (iterative_floodfill.c:47)
+==44152==    by 0x402A40: map_is_valid (is_map_valid.c:90)
+==44152==    by 0x4013EF: main (main.c:85)
+==44152== 
+==44152== 
+==44152== FILE DESCRIPTORS: 6 open (3 std) at exit.
+==44152== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==44152==    <inherited from parent>
+==44152== 
+==44152== Open file descriptor 43: /home/cdomet-d/.config/Code/logs/20241015T121457/ptyhost.log
+==44152==    <inherited from parent>
+==44152== 
+==44152== Open file descriptor 3: /home/cdomet-d/Documents/WIP/Cub3D/val.log
+==44152==    <inherited from parent>
+==44152== 
+==44152== 
+==44152== HEAP SUMMARY:
+==44152==     in use at exit: 0 bytes in 0 blocks
+==44152==   total heap usage: 162 allocs, 162 frees, 58,159 bytes allocated
+==44152== 
+==44152== All heap blocks were freed -- no leaks are possible
+==44152== 
+==44152== For lists of detected and suppressed errors, rerun with: -s
+==44152== ERROR SUMMARY: 169 errors from 1 contexts (suppressed: 0 from 0)

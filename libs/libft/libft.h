@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:20:53 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/14 15:42:19 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/15 11:53:38 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@
 # define DEL 127
 
 # define _ULLONG 
+
+typedef struct s_co
+{
+	size_t	i;
+	size_t	j;
+}	t_co;
 
 /* Simple chained list*/
 typedef struct s_list
