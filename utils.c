@@ -21,22 +21,22 @@ void	clean_display(t_data *data)
 	free(data->mlx_ptr);
 }
 
-float	to_radian(float angle)
+double	to_radian(double angle)
 {
 	return (angle * (PI / 180.0f));
 }
 
-float	get_opposite(float adj, float angle)
+double	get_opposite(double adj, double angle)
 {
-	float	op;
+	double	op;
 	
 	op = tanf(to_radian(angle)) * adj;
 	return (op);
 }
 
-float	get_adjacent(float opposite, float angle)
+double	get_adjacent(double opposite, double angle)
 {
-	float	adj;
+	double	adj;
 	
 	adj = opposite / tanf(to_radian(angle));
 	return (adj);
@@ -53,10 +53,27 @@ int	get_quarter(t_data *data)
 void	leftmost_angle(t_data *data)
 {
 	int		index_axis;
-	float	angle_ref;
+	double	angle_ref;
 	
 	index_axis = get_quarter(data);
 	angle_ref = 90 * index_axis;
 	data->ray_angle = data->P_angle - angle_ref;
 	// printf("ray angle : %f\n", data->ray_angle);
+}
+
+double	get_distance(t_point *pt, t_data *data)
+{
+	double	distance;
+
+	// distance = fabs(data->Px /** CUB*/ - pt->distX) / cosf(to_radian(data->ray_angle - 90 * quarter));
+	distance = sqrtf(powf((data->Px - pt->distX), 2) + powf((data->Py - pt->distY), 2));
+	return (distance);
+}
+
+int	on_axis(float angle)
+{
+	if (angle == 0.0f || angle == 90.0f || angle == 180.0f \
+		|| angle == 270.0f || angle == 360.0f)
+		return (1);
+	return (0);
 }
