@@ -29,8 +29,8 @@ SRC = 	main.c \
 		draw.c \
 		events.c \
 		utils.c \
-		raycasting_2.c \
-		#raycasting.c
+		raycasting.c \
+		#raycasting_2.c
 
 OBJS = $(SRC:%.c=$(BUILD_DIR)%.o)
 DEPS:= $(OBJS:%.o=%.d)
