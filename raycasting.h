@@ -46,8 +46,8 @@ typedef struct s_img
 
 typedef struct s_point
 {
-	float	distX;
-	float	distY;
+	double	distX;
+	double	distY;
 }	t_point;
 
 
@@ -56,28 +56,30 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	char	**map;
-	float	Px;
-	float	Py;
-	float	distance_screen;
-	float	ray_angle;
-	float	angle_bt_rays;
-	float	dir_ray;
+	double	Px;
+	double	Py;
+	double	distance_screen;
+	double	ray_angle;
+	double	angle_bt_rays;
+	double	dir_ray;
 	int		color;
 	t_img	img;
 	bool	left;
-	float	P_angle;
+	double	P_angle;
 }	t_data;
 
 int		init_display(char **map);
 int		raycasting(t_data *data);
-void	draw_column(t_data *data, float distance, int colomn);
+void	draw_column(t_data *data, double distance, int colomn);
 void	clean_display(t_data *data);
 int		close_win(t_data *data);
 int		keys(int keysym, t_data *data);
-float	to_radian(float angle);
-float	get_opposite(float adj, float angle);
-float	get_adjacent(float opposite, float angle);
+double	to_radian(double angle);
+double	get_opposite(double adj, double angle);
+double	get_adjacent(double opposite, double angle);
 void	leftmost_angle(t_data *data);
 int		get_quarter(t_data *data);
+double	get_distance(t_point *pt, t_data *data);
+int		on_axis(float angle);
 
 #endif
