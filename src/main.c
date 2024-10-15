@@ -6,11 +6,11 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 13:47:45 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:04:57 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "parsing.h"
 
 static void	free_map(t_map *map)
 {
@@ -83,8 +83,6 @@ int	main(int ac, char *av[])
 	if (!fill_struct(av[1], &map))
 		return (free_map(&map), EINVAL);
 	if (!map_is_valid(&map))
-	{
 		return (free_map(&map), EINVAL);
-	}
 	free_map(&map);
 }

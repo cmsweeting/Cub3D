@@ -6,11 +6,11 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 17:39:27 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 15:59:23 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:04:57 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "parsing.h"
 
 static bool	is_invalid_z(t_co msize, t_co cur, char **map)
 {

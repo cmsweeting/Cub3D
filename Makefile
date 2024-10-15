@@ -6,7 +6,7 @@
 #    By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:01:27 by cdomet-d          #+#    #+#              #
-#    Updated: 2024/10/14 16:37:42 by cdomet-d         ###   ########.fr        #
+#    Updated: 2024/10/15 17:04:07 by cdomet-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SDIR:= src/
 MLX = $(MLXDIR)/libmlx_Linux.a
 LIB := $(LFTDIR)/libft.a
 
-H:= -I src/includes/ -I libs/libft
+H:= -I src/includes/ -I libs/libft -I libs/mlx
 
 CC := cc
 CFLAGS := -Werror -Wextra -Wall -g3
@@ -48,9 +48,18 @@ PSRC:=	extract_file.c \
 		iterative_floodfill.c \
 
 # ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ ERRORS ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ #
+SRC += $(addprefix $(RAYDIR), $(RAYSRC))
+RAYDIR:=	error_handling/
+RAYSRC:=	error_handling.c
+		
+# ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ RAYCASTING ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ #
 SRC += $(addprefix $(EDIR), $(ESRC))
-EDIR:=	error_handling/
-ESRC:=	error_handling.c
+EDIR:=	raycasting/
+ESRC:=	display.c \
+		draw.c \
+		events.c \
+		raycasting.c \
+		utils.c \
 
 $(BDIR)%.o: $(SDIR)%.c 
 	mkdir -p $(dir $@)

@@ -6,11 +6,11 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 14:13:36 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/11 12:24:51 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:04:57 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "parsing.h"
 
 static bool	is_map(char *str)
 {

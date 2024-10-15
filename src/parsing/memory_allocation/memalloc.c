@@ -6,11 +6,11 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:07:10 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 13:48:19 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:04:57 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "parsing.h"
 
 bool	ft_realloc(size_t size, char ***arr)
 {
