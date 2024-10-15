@@ -28,18 +28,18 @@ void	get_angles(t_data *data)
 
 void	init_data(t_data *data, char **map)
 {
-	float	half_fov_radian;
+	double	half_fov_radian;
 
 	data->left = true;
 	data->map = map;
-	data->Px = 4.0f;
+	data->Px = 3.0f;
 	data->Py = 5.0f;
-	data->map[(int)data->Py][(int)data->Px] = 'E';
+	data->map[(int)data->Py][(int)data->Px] = 'N';
 	half_fov_radian = (FOV / 2) * (PI / 180) * 1.0f;
 	data->distance_screen = (SCREEN_WIDTH / 2) / tanf(half_fov_radian)* 1.0f;
 	get_angles(data);
-	data->Px = (data->Px * CUB) + (CUB / 2);
-	data->Py = (data->Py * CUB) + (CUB / 2);
+	data->Px = data->Px + 0.5;
+	data->Py = data->Py + 0.5;
 }
 
 int	init_display(char **map)
