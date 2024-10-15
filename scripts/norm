@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# norminette includes > norm.log
+# norminette libs/libft >> norm.log
+norminette src >> norm.log
+
+cat norm.log | grep -v "OK"
+rm norm.log

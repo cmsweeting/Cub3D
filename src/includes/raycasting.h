@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/15 15:09:01 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:07:20 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
 
-# include <stdlib.h>
-# include "minilibx/mlx.h"
+# include "mlx.h"
+# include "parsing.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>
-# include <stdio.h>
-# include <stdbool.h>
 
 # define EPSILON 0.00001
 # define PI 3.14159265359
@@ -66,20 +64,46 @@ typedef struct s_data
 	double	P_angle;
 }	t_data;
 
-int		init_display(char **map);
-int		raycasting(t_data *data);
+// raycasting ----------------
+
+/* raycasting.c */
+int	check_collisions(double x, double y, char **map);
+int	find_wall(t_data *data, t_point *pt, double stepX, double stepY);
+double	vertical_intersection(t_data *data);
+double	horizontal_intersection(t_data *data);
+double	smallest_distance(double hor, double ver, t_data *data);
+void	fish_eye(double *distance, int i, t_data *data);
+int	raycasting(t_data *data);
+
+/* display.c */
+void	get_angles(t_data *data);
+void	init_data(t_data *data, char **map);
+int	init_display(char **map);
+
+/* draw.c */
+void	ft_put_pixel(t_img *img, int colomn, int line, int color);
 void	draw_column(t_data *data, double distance, int colomn);
+
+/* events.c */
+void	step_left(t_data *data, double x, double y);
+void	step_right(t_data *data, double x, double y);
+void	step_up(t_data *data, double x, double y);
+void	step_down(t_data *data, double x, double y);
+void	move(int keysym, t_data *data);
+int	close_win(t_data *data);
+int	keys(int keysym, t_data *data);
+
+/* utils.c */
 void	clean_display(t_data *data);
-int		close_win(t_data *data);
-int		keys(int keysym, t_data *data);
 double	to_radian(double angle);
 double	get_opposite(double adj, double angle);
 double	get_adjacent(double opposite, double angle);
+int	get_quarter(t_data *data);
 void	leftmost_angle(t_data *data);
-int		get_quarter(t_data *data);
 double	get_distance(t_point *pt, t_data *data);
-int		on_axis(float angle);
+int	on_axis(float angle);
 void	normalise_angle(double *angle);
-int		check_collisions(double x, double y, char **map);
+
+
 
 #endif

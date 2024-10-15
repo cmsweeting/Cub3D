@@ -1,1 +1,15 @@
-brouillon/
+
+# Files
+*.a
+*.md
+*.log
+
+# Directories
+obj
+brouillon
+.bdir
+.vscode
+scripts
+
+# Executables
+cub3D
