@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/15 18:29:25 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:38:10 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ double	vertical_intersection(t_data *data)
 	double	e;
 
 	//get Bx and Xa
-	stepX = CUB;
+	stepX = 1;
 	pt.distX = (int)(data->Px);
 	if (data->ray_angle > 90.0 && data->ray_angle < 270.0)
 	{
@@ -56,9 +56,9 @@ double	vertical_intersection(t_data *data)
 		pt.distX -= EPSILON;
 	}
 	else
-		pt.distX += CUB;
+		pt.distX += 1;
 	//get By et Ya
-	stepY = get_opposite(CUB, data->ray_angle);
+	stepY = get_opposite(1, data->ray_angle);
 	e = get_opposite(((data->Px) - pt.distX), data->ray_angle);
 	pt.distY = data->Py + e;
 	if (find_wall(data, &pt, stepX, stepY) == -1)
@@ -74,7 +74,7 @@ double	horizontal_intersection(t_data *data)
 	double	e;
 
 	//get Ay and Ya
-	stepY = CUB;
+	stepY = 1;
 	pt.distY = (int)(data->Py);
 	if (data->ray_angle > 0.0 && data->ray_angle < 180.0)
 	{
@@ -82,9 +82,9 @@ double	horizontal_intersection(t_data *data)
 		pt.distY -= EPSILON;
 	}
 	else
-		pt.distY += CUB;
+		pt.distY += 1;
 	//get Ax and Xa
-	stepX = get_adjacent(CUB, data->ray_angle);
+	stepX = get_adjacent(1, data->ray_angle);
 	e = get_adjacent((data->Py - pt.distY), data->ray_angle);
 	pt.distX = data->Px + e;
 	if (find_wall(data, &pt, stepX, stepY) == -1)
