@@ -6,18 +6,44 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 17:39:27 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 12:38:35 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:59:23 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static bool	is_invalid_z(t_co msize, t_co cur, char **map)
+{
+	if ((cur.i == 0 || cur.i == msize.i -1 || cur.j == 0 || \
+	cur.j == msize.j - 1) && map[cur.i][cur.j] == '0')
+		return (true);
+	return (false);
+}
+
+static void	push(t_queue *q, t_co node)
+{
+	q->item[q->end] = node;
+	q->end++;
+}
+
+static void	add_to_queue(t_co cur, char **map, t_queue *q)
+{
+	if (map[cur.i + 1][cur.j] == '0')
+		push(q, (t_co){cur.i + 1, cur.j});
+	if (map[cur.i - 1][cur.j] == '0')
+		push(q, (t_co){cur.i - 1, cur.j});
+	if (map[cur.i][cur.j + 1] == '0')
+		push(q, (t_co){cur.i, cur.j + 1});
+	if (map[cur.i][cur.j - 1] == '0')
+		push(q, (t_co){cur.i, cur.j - 1});
+}
 
 static bool	vresize(t_queue *q)
 {
 	t_co	*tmp;
 
 	tmp = q->item;
-	q->item = malloc((q->size * 2)* sizeof(t_co));
+	q->item = malloc((q->size * 2) * sizeof(t_co));
 	if (!q->item)
 		return (free(tmp), false);
 	ft_memmove((t_co *)q->item, tmp, q->end);
@@ -26,17 +52,9 @@ static bool	vresize(t_queue *q)
 	return (true);
 }
 
-static void	push(t_queue *q, t_co node)
-{
-	printf("size: %ld || frt %ld || end: %ld\n", q->size, q->frt, q->end);
-	q->item[q->end] = node;
-	q->end++;
-}
-
 bool	iwall(t_map map)
 {
 	t_queue	q;
-	bool	*visited;
 	t_co	cur;
 
 	q = (t_queue){0};
@@ -44,38 +62,19 @@ bool	iwall(t_map map)
 	q.item = malloc((q.size + 1) * sizeof(t_co));
 	if (!q.item)
 		return (false);
-	visited = malloc(((map.msize.i * map.msize.j)) * sizeof(bool));
-	if (!visited)
-		return (false);
-	for (size_t i = 0; i < map.msize.i * map.msize.j; i++)
-		visited[i] = false;
 	push(&q, (t_co){map.p.i, map.p.j});
 	while (q.frt < q.end)
 	{
 		cur = q.item[q.frt++];
-		if ((cur.i == 0 || cur.i == map.msize.i -1 || \
-		cur.j == 0 || cur.j == map.msize.j - 1) && \
-		map.map[cur.i][cur.j] == '0')
-			return (false);
+		if (is_invalid_z(map.msize, cur, map.map))
+			return (free(q.item), false);
 		if (map.map[cur.i][cur.j] != '0')
-			continue;
+			continue ;
 		map.map[cur.i][cur.j] = ' ';
-		visited[cur.i * (map.msize.j -1) + cur.j] = true;
 		if ((q.end + 4) >= q.size)
 			if (!vresize(&q))
 				return (false);
-		if (map.map[cur.i + 1][cur.j] == '0' && !visited[cur.i + 1 * (map.msize.j -1) + cur.j])
-			push(&q, (t_co){cur.i + 1, cur.j});
-		if (map.map[cur.i - 1][cur.j] == '0' && !visited[cur.i - 1 * (map.msize.j -1) + cur.j])
-			push(&q, (t_co){cur.i - 1, cur.j});
-		if (map.map[cur.i][cur.j + 1] == '0' && !visited[cur.i * (map.msize.j -1) + cur.j + 1])
-			push(&q, (t_co){cur.i, cur.j + 1});
-		if (map.map[cur.i][cur.j - 1] == '0' && !visited[cur.i * (map.msize.j -1) + cur.j - 1])
-			push(&q, (t_co){cur.i, cur.j - 1});
+		add_to_queue(cur, map.map, &q);
 	}
-	// print_darr(map.map, false);
-	free(q.item);
-	free(visited);
-	return (true);
+	return (free(q.item), true);
 }
-

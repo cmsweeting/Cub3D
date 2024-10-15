@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:07:10 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/11 14:51:39 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:48:19 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ bool	sqalloc_map(t_map *map)
 			cmap[it.i][it.j++] = '0';
 		it.i++;
 	}
-	printf("%ld, %ld, %ld\n", map->msize.i, map->msize.j, map->msize.i * map->msize.j);
 	free_dtab(map->map);
 	map->map = cmap;
 	return (true);

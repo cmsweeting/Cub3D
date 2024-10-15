@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:29:30 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 11:53:25 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:48:39 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct s_queue
 	size_t	size;
 	size_t	frt;
 	size_t	end;
-	
 }	t_queue;
 
 typedef struct s_map
@@ -103,7 +102,5 @@ bool	iwall(t_map map);
 /* main.c */
 void	print_map(t_map map);
 int		main(int ac, char *av[]);
-
-
 
 #endif

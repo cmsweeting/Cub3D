@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:10:09 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 11:52:07 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:46:47 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,12 @@ bool	map_is_valid(t_map *map)
 	if (!find_player(map))
 		return (print_error(0, "Error: invalid player start position"), false);
 	sqalloc_map(map);
-	// printf("%ld, %ld, %ld\n", map->msize.i, map->msize.j, map->msize.i * map->msize.j);
 	if (!iwall(*map))
 	{
-		// print_darr(map->map, false);
+		print_darr(map->map, false);
 		return (print_error(0, "Error: invalid map"), false);
 	}
-	// print_darr(map->map, false);
+	print_darr(map->map, false);
 	reset_map(map);
 	return (true);
 }

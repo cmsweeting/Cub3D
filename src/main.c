@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/14 15:42:13 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:47:45 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,7 @@ int	main(int ac, char *av[])
 		return (free_map(&map), EINVAL);
 	if (!map_is_valid(&map))
 	{
-		// print_map(map);
 		return (free_map(&map), EINVAL);
 	}
-	// print_map(map);
 	free_map(&map);
 }
