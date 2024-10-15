@@ -12,10 +12,10 @@
 
 #include "raycasting.h"
 
-void	step_left(t_data *data, float adj, float op, int quarter)
+void	step_left(t_data *data, double adj, double op, int quarter)
 {
-	// float	x;
-	// float	y;
+	// double	x;
+	// double	y;
 	
 	(void)quarter;
 	// x = adj;
@@ -29,13 +29,13 @@ void	step_left(t_data *data, float adj, float op, int quarter)
 	// 	x *= -1;
 	// if (quarter == 0 || quarter == 3)
 	// 	y *= -1;
-	data->Px += adj;
-	data->Py += op;
+	data->Px -= adj;
+	data->Py -= op;
 }
-void	step_right(t_data *data, float adj, float op, int quarter)
+void	step_right(t_data *data, double adj, double op, int quarter)
 {
-	// float	x;
-	// float	y;
+	// double	x;
+	// double	y;
 	
 	(void)quarter;
 	// x = adj;
@@ -49,13 +49,13 @@ void	step_right(t_data *data, float adj, float op, int quarter)
 	// 	x *= -1;
 	// if (quarter == 1 || quarter == 2)
 	// 	y *= -1;
-	data->Px -= adj;
+	data->Px += adj;
 	data->Py -= op;
 }
-void	step_up(t_data *data, float adj, float op, int quarter)
+void	step_up(t_data *data, double adj, double op, int quarter)
 {
-	// float	x;
-	// float	y;
+	// double	x;
+	// double	y;
 	
 	(void)quarter;
 	// x = adj;
@@ -72,10 +72,10 @@ void	step_up(t_data *data, float adj, float op, int quarter)
 	data->Px += adj;//x;
 	data->Py -= op;//y;
 }
-void	step_down(t_data *data, float adj, float op, int quarter)
+void	step_down(t_data *data, double adj, double op, int quarter)
 {
-	// float	x;
-	// float	y;
+	// double	x;
+	// double	y;
 	
 	(void)quarter;
 	// x = adj;
@@ -98,10 +98,9 @@ void	move(int keysym, t_data *data)
 	// if (keysym == XK_l)
 	// 	raycasting(data);
 	int		quarter;
-	float	angle;
-	float	adj;
-	float	op;
-	
+	double	angle;
+	double	adj;
+	double	op;
 
 	quarter = get_quarter(data);
 	angle = data->P_angle;//(90 * (quarter + 1));
@@ -116,9 +115,9 @@ void	move(int keysym, t_data *data)
 	else if (keysym == XK_d)
 		step_right(data, adj, op, quarter);
 	else if (keysym == XK_Left)
-		data->P_angle += (10.0f * data->angle_bt_rays);
+		data->P_angle += (20.0f * data->angle_bt_rays);
 	else if (keysym == XK_Right)
-		data->P_angle -= (10.0f * data->angle_bt_rays);
+		data->P_angle -= (20.0f * data->angle_bt_rays);
 }
 
 int	close_win(t_data *data)
