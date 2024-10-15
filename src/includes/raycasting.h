@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/15 17:07:20 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:52:39 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,27 +47,27 @@ typedef struct s_point
 	double	distY;
 }	t_point;
 
-
 typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	char	**map;
+	double	distance_screen;
 	double	Px;
 	double	Py;
-	double	distance_screen;
-	double	ray_angle;
 	double	angle_bt_rays;
 	double	dir_ray;
+	double	P_angle;
 	int		color;
 	t_img	img;
-	double	P_angle;
+	int		map_x;
+	int		map_y;
 }	t_data;
 
 // raycasting ----------------
 
 /* raycasting.c */
-int	check_collisions(double x, double y, char **map);
+int	check_collisions(double x, double y, t_data *map);
 int	find_wall(t_data *data, t_point *pt, double stepX, double stepY);
 double	vertical_intersection(t_data *data);
 double	horizontal_intersection(t_data *data);
@@ -76,9 +76,7 @@ void	fish_eye(double *distance, int i, t_data *data);
 int	raycasting(t_data *data);
 
 /* display.c */
-void	get_angles(t_data *data);
-void	init_data(t_data *data, char **map);
-int	init_display(char **map);
+int	init_display(t_map *map);
 
 /* draw.c */
 void	ft_put_pixel(t_img *img, int colomn, int line, int color);

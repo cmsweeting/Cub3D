@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:05:10 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/14 18:22:03 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:52:52 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	step_left(t_data *data, double x, double y)
 {
-	if (!check_collisions(data->Px + y, data->Py - x, data->map))
+	if (!check_collisions(data->Px + y, data->Py - x, data))
 	{
 		data->Px += y;
 		data->Py -= x;
@@ -22,7 +22,7 @@ void	step_left(t_data *data, double x, double y)
 }
 void	step_right(t_data *data, double x, double y)
 {
-	if (!check_collisions(data->Px - y, data->Py + x, data->map))
+	if (!check_collisions(data->Px - y, data->Py + x, data))
 	{
 		data->Px -= y;
 		data->Py += x;
@@ -30,7 +30,7 @@ void	step_right(t_data *data, double x, double y)
 }
 void	step_up(t_data *data, double x, double y)
 {
-	if (!check_collisions(data->Px + x, data->Py - y, data->map))
+	if (!check_collisions(data->Px + x, data->Py - y, data))
 	{
 		data->Px += x;
 		data->Py -= y;
@@ -38,7 +38,7 @@ void	step_up(t_data *data, double x, double y)
 }
 void	step_down(t_data *data, double x, double y)
 {
-	if (!check_collisions(data->Px - x, data->Py + y, data->map))
+	if (!check_collisions(data->Px - x, data->Py + y, data))
 	{
 		data->Px -= x;
 		data->Py += y;

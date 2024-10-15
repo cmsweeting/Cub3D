@@ -6,22 +6,22 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/15 15:31:52 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:05:25 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 
-int	check_collisions(double x, double y, char **map)
+int	check_collisions(double x, double y, t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = (int)y;
 	j = (int)x;
-	if (i < 0 || j < 0 || i > 7 || j > 7 || !map[i][j])
+	if (i < 0 || j < 0 || i > data->map_y || j > data->map_x || !data->map[i][j])
 		return (-1);
-	if (map[i][j] == '1')
+	if (data->map[i][j] == '1')
 		return (1);
 	return (0);
 }
@@ -30,12 +30,12 @@ int	find_wall(t_data *data, t_point *pt, double stepX, double stepY)
 {
 	int		i;
 
-	i = check_collisions(pt->distX, pt->distY, data->map);
+	i = check_collisions(pt->distX, pt->distY, data);
 	while (!i)
 	{
 		pt->distX += stepX;
 		pt->distY += stepY;
-		i = check_collisions(pt->distX, pt->distY, data->map);
+		i = check_collisions(pt->distX, pt->distY, data);
 	}
 	return (i);
 }
@@ -140,10 +140,10 @@ int	raycasting(t_data *data)
 	{
 		horizontal = horizontal_intersection(data);
 		vertical = vertical_intersection(data);
-		if (i == SCREEN_WIDTH - 1)
-		{
-			printf("horizontal = %f\nvertical = %f\n", horizontal ,vertical);
-		}
+		// if (i == SCREEN_WIDTH - 1)
+		// {
+		// 	printf("horizontal = %f\nvertical = %f\n", horizontal ,vertical);
+		// }
 		distance = smallest_distance(horizontal, vertical, data);
 		fish_eye(&distance, i, data);
 		draw_column(data, distance, i);
