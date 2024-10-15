@@ -30,10 +30,9 @@ void	init_data(t_data *data, char **map)
 {
 	double	half_fov_radian;
 
-	data->left = true;
 	data->map = map;
 	data->Px = 3.0f;
-	data->Py = 5.0f;
+	data->Py = 3.0f;
 	data->map[(int)data->Py][(int)data->Px] = 'N';
 	half_fov_radian = (FOV / 2) * (PI / 180) * 1.0f;
 	data->distance_screen = (SCREEN_WIDTH / 2) / tanf(half_fov_radian)* 1.0f;

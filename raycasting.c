@@ -40,57 +40,59 @@ int	find_wall(t_data *data, t_point *pt, double stepX, double stepY)
 	return (i);
 }
 
-double	get_vertical_intersection(t_data *data, t_point *pt)
+double	vertical_intersection(t_data *data)
 {
+	t_point pt;
 	double	stepX;
 	double	stepY;
 	double	e;
 
 	//get Bx and Xa
 	stepX = CUB;
-	pt->distX = (int)(data->Px);
+	pt.distX = (int)(data->Px);
 	if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
 	{
 		stepX *= -1;
-		pt->distX -= EPSILON;
+		pt.distX -= EPSILON;
 	}
 	else
-		pt->distX += CUB;
+		pt.distX += CUB;
 	//get By et Ya
 	stepY = get_opposite(CUB, data->dir_ray);
-	e = get_opposite(fabs((data->Px) - pt->distX), data->dir_ray);
-	pt->distY = data->Py + e;
-	if (find_wall(data, pt, stepX, stepY) == -1)
+	e = get_opposite(fabs((data->Px) - pt.distX), data->dir_ray);
+	pt.distY = data->Py + e;
+	if (find_wall(data, &pt, stepX, stepY) == -1)
 		return (-1);
-	return (get_distance(pt, data));
+	return (get_distance(&pt, data));
 }
 
-double	get_horizontal_intersection(t_data *data, t_point *pt)
+double	horizontal_intersection(t_data *data)
 {
+	t_point pt;
 	double	stepX;
 	double	stepY;
 	double	e;
 
 	//get Ay and Ya
 	stepY = CUB;
-	pt->distY = (int)(data->Py);
+	pt.distY = (int)(data->Py);
 	if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
 	{
 		stepY *= -1;
-		pt->distY -= EPSILON;
+		pt.distY -= EPSILON;
 	}
 	else
-		pt->distY += CUB;
+		pt.distY += CUB;
 	//get Ax and Xa
 	stepX = get_adjacent(CUB, data->dir_ray);
-	e = get_adjacent(fabs(data->Py - pt->distY), data->dir_ray);
-	pt->distX = data->Px + e;
-	if (find_wall(data, pt, stepX, stepY) == -1)
+	e = get_adjacent(fabs(data->Py - pt.distY), data->dir_ray);
+	pt.distX = data->Px + e;
+	if (find_wall(data, &pt, stepX, stepY) == -1)
 		return (-1);
-	return (get_distance(pt, data));
+	return (get_distance(&pt, data));
 }
 
-double	get_smallest_distance(double hor, double ver, t_data *data)
+double	smallest_distance(double hor, double ver, t_data *data)
 {
 	double	smallest;
 
@@ -125,10 +127,8 @@ void	fish_eye(double *distance, int i, t_data *data)
 int	raycasting(t_data *data)
 {
 	int	i;
-	t_point	horizontal;
-	t_point	vertical;
-	double	h;
-	double	v;
+	double	horizontal;
+	double	vertical;
 	double	distance;
 
 	i = 0;
@@ -136,9 +136,9 @@ int	raycasting(t_data *data)
 	data->dir_ray = remainder((data->dir_ray + 360), 360);
 	while (i < SCREEN_WIDTH)
 	{
-		h = get_horizontal_intersection(data, &horizontal);
-		v = get_vertical_intersection(data, &vertical);
-		distance = get_smallest_distance(h, v, data);
+		horizontal = horizontal_intersection(data);
+		vertical = vertical_intersection(data);
+		distance = smallest_distance(horizontal, vertical, data);
 		fish_eye(&distance, i, data);
 		draw_column(data, distance, i);
 		data->dir_ray -= data->angle_bt_rays;
