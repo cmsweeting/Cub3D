@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/14 18:17:28 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:09:01 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 # include <stdio.h>
 # include <stdbool.h>
 
-# define EPSILON 0.00001f
-# define PI 3.14159265359f
-# define CUB /*64.0f/*/1.0f
+# define EPSILON 0.00001
+# define PI 3.14159265359
+# define CUB 1.0
 # define FOV 60
-# define SCREEN_WIDTH 1050.0f
-# define SCREEN_HEIGHT 550.0f
+# define SCREEN_WIDTH 1050.0
+# define SCREEN_HEIGHT 550.0
 # define SKY 0x112ACD
 # define GROUND 0x070E3F
 # define WALL_N 0xFF9933 //orange

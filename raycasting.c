@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting_2.c                                     :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/14 17:02:45 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:31:52 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ double	vertical_intersection(t_data *data)
 		pt.distX += CUB;
 	//get By et Ya
 	stepY = get_opposite(CUB, data->dir_ray);
-	e = get_opposite(fabs((data->Px) - pt.distX), data->dir_ray);
+	e = get_opposite(((data->Px) - pt.distX), data->dir_ray);
 	pt.distY = data->Py + e;
 	if (find_wall(data, &pt, stepX, stepY) == -1)
 		return (-1);
@@ -85,7 +85,7 @@ double	horizontal_intersection(t_data *data)
 		pt.distY += CUB;
 	//get Ax and Xa
 	stepX = get_adjacent(CUB, data->dir_ray);
-	e = get_adjacent(fabs(data->Py - pt.distY), data->dir_ray);
+	e = get_adjacent((data->Py - pt.distY), data->dir_ray);
 	pt.distX = data->Px + e;
 	if (find_wall(data, &pt, stepX, stepY) == -1)
 		return (-1);
@@ -96,6 +96,7 @@ double	smallest_distance(double hor, double ver, t_data *data)
 {
 	double	smallest;
 
+	smallest = 0.0;
 	if (ver == -1 || (hor < ver && hor > 0))
 	{
 		smallest = hor;
@@ -139,6 +140,10 @@ int	raycasting(t_data *data)
 	{
 		horizontal = horizontal_intersection(data);
 		vertical = vertical_intersection(data);
+		if (i == SCREEN_WIDTH - 1)
+		{
+			printf("horizontal = %f\nvertical = %f\n", horizontal ,vertical);
+		}
 		distance = smallest_distance(horizontal, vertical, data);
 		fish_eye(&distance, i, data);
 		draw_column(data, distance, i);
