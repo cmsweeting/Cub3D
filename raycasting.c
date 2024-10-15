@@ -17,8 +17,8 @@ int	check_collisions(double x, double y, char **map)
 	int	i;
 	int	j;
 
-	i = (int)(y / CUB);
-	j = (int)(x / CUB);
+	i = (int)y;
+	j = (int)x;
 	if (i < 0 || j < 0 || i > 7 || j > 7 || !map[i][j])
 		return (-1);
 	if (map[i][j] == '1')
@@ -50,7 +50,7 @@ double	vertical_intersection(t_data *data)
 	//get Bx and Xa
 	stepX = CUB;
 	pt.distX = (int)(data->Px);
-	if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
+	if (data->dir_ray > 90.0 && data->dir_ray < 270.0)
 	{
 		stepX *= -1;
 		pt.distX -= EPSILON;
@@ -76,7 +76,7 @@ double	horizontal_intersection(t_data *data)
 	//get Ay and Ya
 	stepY = CUB;
 	pt.distY = (int)(data->Py);
-	if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
+	if (data->dir_ray > 0.0 && data->dir_ray < 180.0)
 	{
 		stepY *= -1;
 		pt.distY -= EPSILON;
@@ -99,19 +99,20 @@ double	smallest_distance(double hor, double ver, t_data *data)
 	if (ver == -1 || (hor < ver && hor > 0))
 	{
 		smallest = hor;
-		if (data->dir_ray > 0.0f && data->dir_ray < 180.0f)
-			data->color = WALL_N;
-		else
-			data->color = WALL_S;
+		// if (data->dir_ray > 0.0 && data->dir_ray < 180.0)
+		data->color = WALL_N;
+		// else
+		// 	data->color = WALL_S;
 		return (smallest);
 	}
 	else if (ver > 0)
 	{
 		smallest = ver;
-		if (data->dir_ray > 90.0f && data->dir_ray < 270.0f)
-			data->color = WALL_W;
-		else
-			data->color = WALL_E;
+		data->color = WALL_S;
+		// if (data->dir_ray > 90.0 && data->dir_ray < 270.0)
+		// 	data->color = WALL_W;
+		// else
+		// 	data->color = WALL_E;
 	}
 	return (smallest);
 }
@@ -120,7 +121,7 @@ void	fish_eye(double *distance, int i, t_data *data)
 {
 	double	angle;
 
-	angle = ((i - SCREEN_WIDTH / 2) * data->angle_bt_rays) * -1.0f;
+	angle = ((i - SCREEN_WIDTH / 2) * data->angle_bt_rays) * -1.0;
 	*distance *= cosf(to_radian(angle));
 }
 
@@ -133,7 +134,7 @@ int	raycasting(t_data *data)
 
 	i = 0;
 	data->dir_ray = data->P_angle + 30.0f;
-	data->dir_ray = remainder((data->dir_ray + 360), 360);
+	normalise_angle(&data->dir_ray);
 	while (i < SCREEN_WIDTH)
 	{
 		horizontal = horizontal_intersection(data);
@@ -142,7 +143,7 @@ int	raycasting(t_data *data)
 		fish_eye(&distance, i, data);
 		draw_column(data, distance, i);
 		data->dir_ray -= data->angle_bt_rays;
-		data->dir_ray = remainder((data->dir_ray + 360), 360);
+		normalise_angle(&data->dir_ray);
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.ptr, 0, 0);

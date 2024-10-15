@@ -17,8 +17,8 @@ int	check_collisions(double x, double y, char **map)
 	int	i;
 	int	j;
 
-	i = (int)(y / CUB);
-	j = (int)(x / CUB);
+	i = (int)y;
+	j = (int)x;
 	if (i < 0 || j < 0 || i > 7 || j > 7 || !map[i][j])
 		return (-1);
 	if (map[i][j] == '1')

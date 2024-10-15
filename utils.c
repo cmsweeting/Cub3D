@@ -77,3 +77,8 @@ int	on_axis(float angle)
 		return (1);
 	return (0);
 }
+
+void	normalise_angle(double *angle)
+{
+	*angle = remainder((*angle + 360), 360);
+}

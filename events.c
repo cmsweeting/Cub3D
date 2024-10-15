@@ -12,113 +12,60 @@
 
 #include "raycasting.h"
 
-void	step_left(t_data *data, double adj, double op, int quarter)
+void	step_left(t_data *data, double x, double y)
 {
-	// double	x;
-	// double	y;
-	
-	(void)quarter;
-	// x = adj;
-	// y = op;
-	// if (quarter == 0 || quarter == 2)
-	// {
-	// 	x = op;
-	// 	y = adj;
-	// }
-	// if (quarter == 0 || quarter == 1)
-	// 	x *= -1;
-	// if (quarter == 0 || quarter == 3)
-	// 	y *= -1;
-	data->Px -= adj;
-	data->Py -= op;
+	if (!check_collisions(data->Px + y, data->Py - x, data->map))
+	{
+		data->Px += y;
+		data->Py -= x;
+	}
 }
-void	step_right(t_data *data, double adj, double op, int quarter)
+void	step_right(t_data *data, double x, double y)
 {
-	// double	x;
-	// double	y;
-	
-	(void)quarter;
-	// x = adj;
-	// y = op;
-	// if (quarter == 0 || quarter == 2)
-	// {
-	// 	x = op;
-	// 	y = adj;
-	// }
-	// if (quarter == 2 || quarter == 3)
-	// 	x *= -1;
-	// if (quarter == 1 || quarter == 2)
-	// 	y *= -1;
-	data->Px += adj;
-	data->Py -= op;
+	if (!check_collisions(data->Px - y, data->Py + x, data->map))
+	{
+		data->Px -= y;
+		data->Py += x;
+	}
 }
-void	step_up(t_data *data, double adj, double op, int quarter)
+void	step_up(t_data *data, double x, double y)
 {
-	// double	x;
-	// double	y;
-	
-	(void)quarter;
-	// x = adj;
-	// y = op;
-	// if (quarter == 1 || quarter == 3)
-	// {
-	// 	x = op;
-	// 	y = adj;
-	// }
-	// if (quarter == 1 || quarter == 2)
-	// 	x *= -1;
-	// if (quarter == 0 || quarter == 1)
-	// 	y *= -1;
-	data->Px += adj;//x;
-	data->Py -= op;//y;
+	if (!check_collisions(data->Px + x, data->Py - y, data->map))
+	{
+		data->Px += x;
+		data->Py -= y;
+	}
 }
-void	step_down(t_data *data, double adj, double op, int quarter)
+void	step_down(t_data *data, double x, double y)
 {
-	// double	x;
-	// double	y;
-	
-	(void)quarter;
-	// x = adj;
-	// y = op;
-	// if (quarter == 1 || quarter == 3)
-	// {
-	// 	x = op;
-	// 	y = adj;
-	// }
-	// if (quarter == 0 || quarter == 3)
-	// 	x *= -1;
-	// if (quarter == 2 || quarter == 3)
-	// 	y *= -1;
-	data->Px -= adj;//x;
-	data->Py += op;//y;
+	if (!check_collisions(data->Px - x, data->Py + y, data->map))
+	{
+		data->Px -= x;
+		data->Py += y;
+	}
 }
 
 void	move(int keysym, t_data *data)
 {
-	// if (keysym == XK_l)
-	// 	raycasting(data);
-	int		quarter;
-	double	angle;
-	double	adj;
-	double	op;
+	double	x;
+	double	y;
 
-	quarter = get_quarter(data);
-	angle = data->P_angle;//(90 * (quarter + 1));
-	adj = cos(angle) * 0.1f;
-	op = sin(angle) * 0.1f;
+	x = cosf(to_radian(data->P_angle)) * 0.1;
+	y = sinf(to_radian(data->P_angle)) * 0.1;
 	if (keysym == XK_w)
-		step_up(data, adj, op, quarter);
+		step_up(data, x, y);
 	else if (keysym == XK_s)
-		step_down(data, adj, op, quarter);
+		step_down(data, x, y);
 	else if (keysym == XK_a)
-		step_left(data, adj, op, quarter);
+		step_left(data, x, y);
 	else if (keysym == XK_d)
-		step_right(data, adj, op, quarter);
+		step_right(data, x, y);
 	else if (keysym == XK_Left)
-		data->P_angle += (20.0f * data->angle_bt_rays);
+		data->P_angle += (20.0 * data->angle_bt_rays);
 	else if (keysym == XK_Right)
-		data->P_angle -= (20.0f * data->angle_bt_rays);
-}
+		data->P_angle -= (20.0 * data->angle_bt_rays);
+	normalise_angle(&data->P_angle);
+} 
 
 int	close_win(t_data *data)
 {

@@ -28,8 +28,8 @@ void	draw_column(t_data *data, double distance, int colomn)
 	i = 0;
 	distance *= 64;
 	hp = 64 * data->distance_screen / distance;
-	half_hp = hp / 2;
-	int	half_screen_height = SCREEN_HEIGHT / 2;
+	half_hp = hp * 0.5;
+	int	half_screen_height = SCREEN_HEIGHT * 0.5;
 	while (i < (half_screen_height - half_hp) && i < SCREEN_HEIGHT)
 	{
 		ft_put_pixel(&data->img, colomn, i, SKY);

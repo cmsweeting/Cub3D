@@ -79,5 +79,7 @@ void	leftmost_angle(t_data *data);
 int		get_quarter(t_data *data);
 double	get_distance(t_point *pt, t_data *data);
 int		on_axis(float angle);
+void	normalise_angle(double *angle);
+int		check_collisions(double x, double y, char **map);
 
 #endif
