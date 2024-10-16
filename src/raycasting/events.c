@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:05:10 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/16 18:30:38 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:01:28 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,47 @@ void	step_down(t_data *data, double x, double y)
 	}
 }
 
+void	new_position(t_data *data, double angle)
+{
+	double	x;
+	double	y;
+	int		quarter;
+
+	x = cosf(to_radian(data->p_angle)) * 0.1;
+	y = sinf(to_radian(data->p_angle)) * 0.1;
+	quarter = get_quarter(data, angle);
+	if (quarter == 0 || quarter == 3)
+		y *= -1;
+}
+
 void	move(int keysym, t_data *data)
 {
 	double	x;
 	double	y;
+	double	angle;
 
-	x = cosf(to_radian(data->p_angle)) * 0.1;
-	y = sinf(to_radian(data->p_angle)) * 0.1;
-	if (keysym == XK_w)
-		step_up(data, x, y);
-	else if (keysym == XK_s)
-		step_down(data, x, y);
+	angle = data->p_angle;
+	// x = cosf(to_radian(data->p_angle)) * 0.1;
+	// y = sinf(to_radian(data->p_angle)) * 0.1;
+	if (keysym == XK_w || keysym == XK_s)
+		new_position(data, angle);
+		// step_up(data, x, y);
+	// else if (keysym == XK_s)
+	// 	step_down(data, x, y);
 	else if (keysym == XK_a)
-		step_left(data, x, y);
+	{
+		angle += 90;
+		normalise_angle(&data->p_angle);
+		new_position(data, angle);
+		// step_left(data, x, y);
+	}
 	else if (keysym == XK_d)
-		step_right(data, x, y);
+	{
+		angle -= 90;
+		normalise_angle(&data->p_angle);
+		new_position(data, angle);
+		// step_right(data, x, y);
+	}
 	else if (keysym == XK_Left)
 		data->p_angle += (20.0 * data->angle_bt_rays);
 	else if (keysym == XK_Right)

@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/16 18:29:28 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:59:45 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,6 @@ double	get_opposite(double adj, double angle);
 double	get_adjacent(double opposite, double angle);
 double	get_distance(t_point *pt, t_data *data);
 void	normalise_angle(double *angle);
-// int	get_quarter(t_data *data);
+int		get_quarter(t_data *data, double angle);
 
 #endif

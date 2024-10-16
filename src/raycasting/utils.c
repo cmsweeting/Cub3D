@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:23:41 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/16 18:32:29 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:59:26 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ double	get_adjacent(double opposite, double angle)
 	return (adj);
 }
 
-// int	get_quarter(t_data *data)
-// {
-// 	int	quarter;
+int	get_quarter(t_data *data, double angle)
+{
+	int	quarter;
 
-// 	quarter = ((int)data->p_angle / 90) % 4;
-// 	return (quarter);
-// }
+	quarter = ((int)angle / 90) % 4;
+	return (quarter);
+}
 
 double	get_distance(t_point *pt, t_data *data)
 {
