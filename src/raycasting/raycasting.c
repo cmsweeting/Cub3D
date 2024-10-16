@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/15 18:38:10 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:44:50 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,20 +104,19 @@ double	smallest_distance(double hor, double ver, t_data *data)
 	if (ver == -1 || (hor < ver && hor > 0))
 	{
 		smallest = hor;
-		// if (data->ray_angle > 0.0 && data->ray_angle < 180.0)
-		data->color = WALL_N;
-		// else
-		// 	data->color = WALL_S;
+		if (data->ray_angle > 0.0 && data->ray_angle < 180.0)
+			data->color = WALL_N;
+		else
+			data->color = WALL_S;
 		return (smallest);
 	}
 	else if (ver > 0)
 	{
 		smallest = ver;
-		data->color = WALL_S;
-		// if (data->ray_angle > 90.0 && data->ray_angle < 270.0)
-		// 	data->color = WALL_W;
-		// else
-		// 	data->color = WALL_E;
+		if (data->ray_angle > 90.0 && data->ray_angle < 270.0)
+			data->color = WALL_W;
+		else
+			data->color = WALL_E;
 	}
 	return (smallest);
 }
