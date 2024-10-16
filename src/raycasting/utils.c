@@ -42,39 +42,20 @@ double	get_adjacent(double opposite, double angle)
 	return (adj);
 }
 
-int	get_quarter(t_data *data)
-{
-	int	quarter;
-
-	quarter = ((int)data->P_angle / 90) % 4;
-	return (quarter);
-}
-
-// void	leftmost_angle(t_data *data)
+// int	get_quarter(t_data *data)
 // {
-// 	int		index_axis;
-// 	double	angle_ref;
-	
-// 	index_axis = get_quarter(data);
-// 	angle_ref = 90 * index_axis;
-// 	data->ray_angle = data->P_angle - angle_ref;
+// 	int	quarter;
+
+// 	quarter = ((int)data->P_angle / 90) % 4;
+// 	return (quarter);
 // }
 
 double	get_distance(t_point *pt, t_data *data)
 {
 	double	distance;
 
-	// distance = fabs(data->P.X /** CUB*/ - pt->X) / cosf(to_radian(data->ray_angle - 90 * quarter));
 	distance = sqrtf(powf((data->P.X - pt->X), 2) + powf((data->P.Y - pt->Y), 2));
 	return (distance);
-}
-
-int	on_axis(float angle)
-{
-	if (angle == 0.0f || angle == 90.0f || angle == 180.0f \
-		|| angle == 270.0f || angle == 360.0f)
-		return (1);
-	return (0);
 }
 
 void	normalise_angle(double *angle)
