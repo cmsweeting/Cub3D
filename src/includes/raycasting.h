@@ -53,8 +53,7 @@ typedef struct s_data
 	void	*win_ptr;
 	char	**map;
 	double	distance_screen;
-	double	Px;
-	double	Py;
+	t_point	P;
 	double	angle_bt_rays;
 	double	ray_angle;
 	double	P_angle;

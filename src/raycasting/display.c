@@ -28,8 +28,8 @@ void	get_angles(t_data *data, t_card pcard)
 void	init_data(t_data *data, t_map *map)
 {
 	data->map = map->map;
-	data->Px = (double)map->p.j + 0.5;
-	data->Py = (double)map->p.i + 0.5;
+	data->P.X = (double)map->p.j + 0.5;
+	data->P.Y = (double)map->p.i + 0.5;
 	data->map_x = map->msize.j - 1;
 	data->map_y = map->msize.i - 1;
 	data->distance_screen = (SCREEN_WIDTH * 0.5) / tanf(to_radian(FOV * 0.5));

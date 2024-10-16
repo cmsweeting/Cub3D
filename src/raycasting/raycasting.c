@@ -47,7 +47,7 @@ double	vertical_intersection(t_data *data)
 
 	step.X = 1;
 	step.Y = get_opposite(1, data->ray_angle);
-	pt.X = (int)(data->Px);
+	pt.X = (int)(data->P.X);
 	if (data->ray_angle > 90.0 && data->ray_angle < 270.0)
 	{
 		step.X *= -1;
@@ -55,7 +55,7 @@ double	vertical_intersection(t_data *data)
 	}
 	else
 		pt.X += 1;
-	pt.Y = data->Py + get_opposite((data->Px) - pt.X, data->ray_angle);
+	pt.Y = data->P.Y+ get_opposite((data->P.X) - pt.X, data->ray_angle);
 	if (find_wall(data, &pt, &step) == -1)
 		return (-1);
 	return (get_distance(&pt, data));
@@ -68,7 +68,7 @@ double	horizontal_intersection(t_data *data)
 
 	step.Y = 1;
 	step.X = get_adjacent(1, data->ray_angle);
-	pt.Y = (int)(data->Py);
+	pt.Y = (int)(data->P.Y);
 	if (data->ray_angle > 0.0 && data->ray_angle < 180.0)
 	{
 		step.Y *= -1;
@@ -76,7 +76,7 @@ double	horizontal_intersection(t_data *data)
 	}
 	else
 		pt.Y += 1;
-	pt.X = data->Px + get_adjacent(data->Py - pt.Y, data->ray_angle);
+	pt.X = data->P.X + get_adjacent(data->P.Y- pt.Y, data->ray_angle);
 	if (find_wall(data, &pt, &step) == -1)
 		return (-1);
 	return (get_distance(&pt, data));
