@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 17:15:34 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:55:59 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	print_map(t_map map)
 
 int	main(int ac, char *av[])
 {
+	t_data	data;
 	t_map	map;
 
 	if (ac != 2)
@@ -84,6 +85,8 @@ int	main(int ac, char *av[])
 		return (free_map(&map), EINVAL);
 	if (!map_is_valid(&map))
 		return (free_map(&map), EINVAL);
-	init_display(&map);
+	if (init_display(&map, &data))
+		return (free_map(&map), EINVAL);
+	run_game(&data);
 	free_map(&map);
 }

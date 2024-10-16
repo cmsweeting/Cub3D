@@ -14,34 +14,34 @@
 
 void	step_left(t_data *data, double x, double y)
 {
-	if (!check_collisions(data->Px + y, data->Py - x, data))
+	if (!check_collisions(data->P.X + y, data->P.Y - x, data))
 	{
-		data->Px += y;
-		data->Py -= x;
+		data->P.X += y;
+		data->P.Y -= x;
 	}
 }
 void	step_right(t_data *data, double x, double y)
 {
-	if (!check_collisions(data->Px - y, data->Py + x, data))
+	if (!check_collisions(data->P.X - y, data->P.Y + x, data))
 	{
-		data->Px -= y;
-		data->Py += x;
+		data->P.X -= y;
+		data->P.Y += x;
 	}
 }
 void	step_up(t_data *data, double x, double y)
 {
-	if (!check_collisions(data->Px + x, data->Py - y, data))
+	if (!check_collisions(data->P.X + x, data->P.X - y, data))
 	{
-		data->Px += x;
-		data->Py -= y;
+		data->P.X += x;
+		data->P.Y -= y;
 	}
 }
 void	step_down(t_data *data, double x, double y)
 {
-	if (!check_collisions(data->Px - x, data->Py + y, data))
+	if (!check_collisions(data->P.X - x, data->P.Y + y, data))
 	{
-		data->Px -= x;
-		data->Py += y;
+		data->P.X -= x;
+		data->P.Y += y;
 	}
 }
 
