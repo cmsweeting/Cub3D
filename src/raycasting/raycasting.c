@@ -122,7 +122,7 @@ void	fish_eye(double *distance, int i, t_data *data)
 {
 	double	angle;
 
-	angle = ((i - SCREEN_WIDTH / 2) * data->angle_bt_rays) * -1.0;
+	angle = ((i - SCREEN_WIDTH * 0.5) * data->angle_bt_rays) * -1.0;
 	*distance *= cosf(to_radian(angle));
 }
 
