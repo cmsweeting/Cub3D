@@ -60,7 +60,7 @@ double	vertical_intersection(t_data *data)
 		step.Y *= -1;
 		pt.X += 1;
 	}
-	pt.Y = data->P.Y+ get_opposite((data->P.X) - pt.X, data->ray_angle);
+	pt.Y = data->P.Y + get_opposite((data->P.X) - pt.X, data->ray_angle);
 	if (find_wall(data, &pt, &step) == -1)
 		return (-1);
 	return (get_distance(&pt, data));
@@ -72,7 +72,9 @@ double	horizontal_intersection(t_data *data)
 	t_point	step;
 
 	step.Y = 1;
-	step.X = get_adjacent(1, data->ray_angle);
+	step.X = 0;
+	if (cos(to_radian(data->ray_angle)) != 0)
+		step.X = get_adjacent(1, data->ray_angle);
 	pt.Y = (int)(data->P.Y);
 	if (sinf(to_radian(data->ray_angle)) == 0)
 		return (-1);
@@ -86,7 +88,9 @@ double	horizontal_intersection(t_data *data)
 		step.X *= -1;
 		pt.Y += 1;
 	}
-	pt.X = data->P.X + get_adjacent(data->P.Y- pt.Y, data->ray_angle);
+	pt.X = data->P.X;
+	if (cos(to_radian(data->ray_angle)) != 0)
+		pt.X = data->P.X + get_adjacent(data->P.Y- pt.Y, data->ray_angle);
 	if (find_wall(data, &pt, &step) == -1)
 		return (-1);
 	return (get_distance(&pt, data));
@@ -122,7 +126,7 @@ void	fish_eye(double *distance, int i, t_data *data)
 {
 	double	angle;
 
-	angle = ((i - SCREEN_WIDTH * 0.5) * data->angle_bt_rays) * -1.0;
+	angle = (i - SCREEN_WIDTH * 0.5) * data->angle_bt_rays;
 	*distance *= cosf(to_radian(angle));
 }
 
