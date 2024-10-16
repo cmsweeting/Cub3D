@@ -79,5 +79,8 @@ int	on_axis(float angle)
 
 void	normalise_angle(double *angle)
 {
-	*angle = remainder((*angle + 360), 360);
+	if (*angle > 360)
+		*angle -= 360;
+	else if (*angle < 0)
+		*angle += 360;
 }
