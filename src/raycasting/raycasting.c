@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/15 18:38:10 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:44:50 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,20 @@ double	vertical_intersection(t_data *data)
 
 	step.X = 1;
 	step.Y = get_opposite(1, data->ray_angle);
-	pt.X = (int)(data->Px);
+	pt.X = (int)(data->P.X);
+	if (cos(to_radian(data->ray_angle)) == 0)
+		return (-1);
 	if (data->ray_angle > 90.0 && data->ray_angle < 270.0)
 	{
 		step.X *= -1;
 		pt.X -= EPSILON;
 	}
 	else
+	{
+		step.Y *= -1;
 		pt.X += 1;
-	pt.Y = data->Py + get_opposite((data->Px) - pt.X, data->ray_angle);
+	}
+	pt.Y = data->P.Y + get_opposite((data->P.X) - pt.X, data->ray_angle);
 	if (find_wall(data, &pt, &step) == -1)
 		return (-1);
 	return (get_distance(&pt, data));
@@ -67,16 +72,25 @@ double	horizontal_intersection(t_data *data)
 	t_point	step;
 
 	step.Y = 1;
-	step.X = get_adjacent(1, data->ray_angle);
-	pt.Y = (int)(data->Py);
+	step.X = 0;
+	if (cos(to_radian(data->ray_angle)) != 0)
+		step.X = get_adjacent(1, data->ray_angle);
+	pt.Y = (int)(data->P.Y);
+	if (sinf(to_radian(data->ray_angle)) == 0)
+		return (-1);
 	if (data->ray_angle > 0.0 && data->ray_angle < 180.0)
 	{
 		step.Y *= -1;
 		pt.Y -= EPSILON;
 	}
 	else
+	{
+		step.X *= -1;
 		pt.Y += 1;
-	pt.X = data->Px + get_adjacent(data->Py - pt.Y, data->ray_angle);
+	}
+	pt.X = data->P.X;
+	if (cos(to_radian(data->ray_angle)) != 0)
+		pt.X = data->P.X + get_adjacent(data->P.Y- pt.Y, data->ray_angle);
 	if (find_wall(data, &pt, &step) == -1)
 		return (-1);
 	return (get_distance(&pt, data));
@@ -90,20 +104,19 @@ double	smallest_distance(double hor, double ver, t_data *data)
 	if (ver == -1 || (hor < ver && hor > 0))
 	{
 		smallest = hor;
-		// if (data->ray_angle > 0.0 && data->ray_angle < 180.0)
-		data->color = WALL_N;
-		// else
-		// 	data->color = WALL_S;
+		if (data->ray_angle > 0.0 && data->ray_angle < 180.0)
+			data->color = WALL_N;
+		else
+			data->color = WALL_S;
 		return (smallest);
 	}
 	else if (ver > 0)
 	{
 		smallest = ver;
-		data->color = WALL_S;
-		// if (data->ray_angle > 90.0 && data->ray_angle < 270.0)
-		// 	data->color = WALL_W;
-		// else
-		// 	data->color = WALL_E;
+		if (data->ray_angle > 90.0 && data->ray_angle < 270.0)
+			data->color = WALL_W;
+		else
+			data->color = WALL_E;
 	}
 	return (smallest);
 }
@@ -112,7 +125,7 @@ void	fish_eye(double *distance, int i, t_data *data)
 {
 	double	angle;
 
-	angle = ((i - SCREEN_WIDTH / 2) * data->angle_bt_rays) * -1.0;
+	angle = (i - SCREEN_WIDTH * 0.5) * data->angle_bt_rays;
 	*distance *= cosf(to_radian(angle));
 }
 
@@ -130,10 +143,6 @@ int	raycasting(t_data *data)
 	{
 		horizontal = horizontal_intersection(data);
 		vertical = vertical_intersection(data);
-		// if (i == SCREEN_WIDTH - 1)
-		// {
-		// 	printf("horizontal = %f\nvertical = %f\n", horizontal ,vertical);
-		// }
 		distance = smallest_distance(horizontal, vertical, data);
 		fish_eye(&distance, i, data);
 		draw_column(data, distance, i);
