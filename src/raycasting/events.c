@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:05:10 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/15 17:52:52 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:30:38 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,37 @@
 
 void	step_left(t_data *data, double x, double y)
 {
-	if (!check_collisions(data->P.X + y, data->P.Y - x, data))
+	if (!check_collisions(data->p.x + y, data->p.y - x, data))
 	{
-		data->P.X += y;
-		data->P.Y -= x;
+		data->p.x += y;
+		data->p.y -= x;
 	}
 }
+
 void	step_right(t_data *data, double x, double y)
 {
-	if (!check_collisions(data->P.X - y, data->P.Y + x, data))
+	if (!check_collisions(data->p.x - y, data->p.y + x, data))
 	{
-		data->P.X -= y;
-		data->P.Y += x;
+		data->p.x -= y;
+		data->p.y += x;
 	}
 }
+
 void	step_up(t_data *data, double x, double y)
 {
-	if (!check_collisions(data->P.X + x, data->P.X - y, data))
+	if (!check_collisions(data->p.x + x, data->p.x - y, data))
 	{
-		data->P.X += x;
-		data->P.Y -= y;
+		data->p.x += x;
+		data->p.y -= y;
 	}
 }
+
 void	step_down(t_data *data, double x, double y)
 {
-	if (!check_collisions(data->P.X - x, data->P.Y + y, data))
+	if (!check_collisions(data->p.x - x, data->p.y + y, data))
 	{
-		data->P.X -= x;
-		data->P.Y += y;
+		data->p.x -= x;
+		data->p.y += y;
 	}
 }
 
@@ -50,8 +53,8 @@ void	move(int keysym, t_data *data)
 	double	x;
 	double	y;
 
-	x = cosf(to_radian(data->P_angle)) * 0.1;
-	y = sinf(to_radian(data->P_angle)) * 0.1;
+	x = cosf(to_radian(data->p_angle)) * 0.1;
+	y = sinf(to_radian(data->p_angle)) * 0.1;
 	if (keysym == XK_w)
 		step_up(data, x, y);
 	else if (keysym == XK_s)
@@ -61,11 +64,11 @@ void	move(int keysym, t_data *data)
 	else if (keysym == XK_d)
 		step_right(data, x, y);
 	else if (keysym == XK_Left)
-		data->P_angle += (20.0 * data->angle_bt_rays);
+		data->p_angle += (20.0 * data->angle_bt_rays);
 	else if (keysym == XK_Right)
-		data->P_angle -= (20.0 * data->angle_bt_rays);
-	normalise_angle(&data->P_angle);
-} 
+		data->p_angle -= (20.0 * data->angle_bt_rays);
+	normalise_angle(&data->p_angle);
+}
 
 int	close_win(t_data *data)
 {

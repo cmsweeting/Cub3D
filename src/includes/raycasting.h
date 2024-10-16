@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/16 15:55:35 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:29:28 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define PI 3.14159265359
 # define CUB 1.0
 # define FOV 60
-# define SCREEN_WIDTH 1050.0
-# define SCREEN_HEIGHT 550.0
+# define S_WIDTH 1050.0
+# define S_HEIGHT 550.0
 # define SKY 0x112ACD
 # define GROUND 0x070E3F
 # define WALL_N 0xFF9933 //orange
@@ -43,8 +43,8 @@ typedef struct s_img
 
 typedef struct s_point
 {
-	double	X;
-	double	Y;
+	double	x;
+	double	y;
 }	t_point;
 
 typedef struct s_data
@@ -53,10 +53,10 @@ typedef struct s_data
 	void	*win_ptr;
 	char	**map;
 	double	distance_screen;
-	t_point	P;
+	t_point	p;
 	double	angle_bt_rays;
 	double	ray_angle;
-	double	P_angle;
+	double	p_angle;
 	int		color;
 	t_img	img;
 	int		map_x;
