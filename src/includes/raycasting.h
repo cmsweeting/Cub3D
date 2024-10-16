@@ -43,8 +43,8 @@ typedef struct s_img
 
 typedef struct s_point
 {
-	double	distX;
-	double	distY;
+	double	X;
+	double	Y;
 }	t_point;
 
 typedef struct s_data
@@ -68,7 +68,7 @@ typedef struct s_data
 
 /* raycasting.c */
 int	check_collisions(double x, double y, t_data *map);
-int	find_wall(t_data *data, t_point *pt, double stepX, double stepY);
+int	find_wall(t_data *data, t_point *pt, t_point *step);
 double	vertical_intersection(t_data *data);
 double	horizontal_intersection(t_data *data);
 double	smallest_distance(double hor, double ver, t_data *data);

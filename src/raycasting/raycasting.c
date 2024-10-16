@@ -26,16 +26,16 @@ int	check_collisions(double x, double y, t_data *data)
 	return (0);
 }
 
-int	find_wall(t_data *data, t_point *pt, double stepX, double stepY)
+int	find_wall(t_data *data, t_point *pt, t_point *step)
 {
-	int		i;
+	int	i;
 
-	i = check_collisions(pt->distX, pt->distY, data);
+	i = check_collisions(pt->X, pt->Y, data);
 	while (!i)
 	{
-		pt->distX += stepX;
-		pt->distY += stepY;
-		i = check_collisions(pt->distX, pt->distY, data);
+		pt->X += step->X;
+		pt->Y += step->Y;
+		i = check_collisions(pt->X, pt->Y, data);
 	}
 	return (i);
 }
@@ -43,25 +43,20 @@ int	find_wall(t_data *data, t_point *pt, double stepX, double stepY)
 double	vertical_intersection(t_data *data)
 {
 	t_point pt;
-	double	stepX;
-	double	stepY;
-	double	e;
+	t_point	step;
 
-	//get Bx and Xa
-	stepX = 1;
-	pt.distX = (int)(data->Px);
+	step.X = 1;
+	step.Y = get_opposite(1, data->ray_angle);
+	pt.X = (int)(data->Px);
 	if (data->ray_angle > 90.0 && data->ray_angle < 270.0)
 	{
-		stepX *= -1;
-		pt.distX -= EPSILON;
+		step.X *= -1;
+		pt.X -= EPSILON;
 	}
 	else
-		pt.distX += 1;
-	//get By et Ya
-	stepY = get_opposite(1, data->ray_angle);
-	e = get_opposite(((data->Px) - pt.distX), data->ray_angle);
-	pt.distY = data->Py + e;
-	if (find_wall(data, &pt, stepX, stepY) == -1)
+		pt.X += 1;
+	pt.Y = data->Py + get_opposite((data->Px) - pt.X, data->ray_angle);
+	if (find_wall(data, &pt, &step) == -1)
 		return (-1);
 	return (get_distance(&pt, data));
 }
@@ -69,25 +64,20 @@ double	vertical_intersection(t_data *data)
 double	horizontal_intersection(t_data *data)
 {
 	t_point pt;
-	double	stepX;
-	double	stepY;
-	double	e;
+	t_point	step;
 
-	//get Ay and Ya
-	stepY = 1;
-	pt.distY = (int)(data->Py);
+	step.Y = 1;
+	step.X = get_adjacent(1, data->ray_angle);
+	pt.Y = (int)(data->Py);
 	if (data->ray_angle > 0.0 && data->ray_angle < 180.0)
 	{
-		stepY *= -1;
-		pt.distY -= EPSILON;
+		step.Y *= -1;
+		pt.Y -= EPSILON;
 	}
 	else
-		pt.distY += 1;
-	//get Ax and Xa
-	stepX = get_adjacent(1, data->ray_angle);
-	e = get_adjacent((data->Py - pt.distY), data->ray_angle);
-	pt.distX = data->Px + e;
-	if (find_wall(data, &pt, stepX, stepY) == -1)
+		pt.Y += 1;
+	pt.X = data->Px + get_adjacent(data->Py - pt.Y, data->ray_angle);
+	if (find_wall(data, &pt, &step) == -1)
 		return (-1);
 	return (get_distance(&pt, data));
 }

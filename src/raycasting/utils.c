@@ -64,8 +64,8 @@ double	get_distance(t_point *pt, t_data *data)
 {
 	double	distance;
 
-	// distance = fabs(data->Px /** CUB*/ - pt->distX) / cosf(to_radian(data->ray_angle - 90 * quarter));
-	distance = sqrtf(powf((data->Px - pt->distX), 2) + powf((data->Py - pt->distY), 2));
+	// distance = fabs(data->Px /** CUB*/ - pt->X) / cosf(to_radian(data->ray_angle - 90 * quarter));
+	distance = sqrtf(powf((data->Px - pt->X), 2) + powf((data->Py - pt->Y), 2));
 	return (distance);
 }
 
