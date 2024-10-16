@@ -48,13 +48,18 @@ double	vertical_intersection(t_data *data)
 	step.X = 1;
 	step.Y = get_opposite(1, data->ray_angle);
 	pt.X = (int)(data->P.X);
+	if (cos(to_radian(data->ray_angle)) == 0)
+		return (-1);
 	if (data->ray_angle > 90.0 && data->ray_angle < 270.0)
 	{
 		step.X *= -1;
 		pt.X -= EPSILON;
 	}
 	else
+	{
+		step.Y *= -1;
 		pt.X += 1;
+	}
 	pt.Y = data->P.Y+ get_opposite((data->P.X) - pt.X, data->ray_angle);
 	if (find_wall(data, &pt, &step) == -1)
 		return (-1);
@@ -69,13 +74,18 @@ double	horizontal_intersection(t_data *data)
 	step.Y = 1;
 	step.X = get_adjacent(1, data->ray_angle);
 	pt.Y = (int)(data->P.Y);
+	if (sinf(to_radian(data->ray_angle)) == 0)
+		return (-1);
 	if (data->ray_angle > 0.0 && data->ray_angle < 180.0)
 	{
 		step.Y *= -1;
 		pt.Y -= EPSILON;
 	}
 	else
+	{
+		step.X *= -1;
 		pt.Y += 1;
+	}
 	pt.X = data->P.X + get_adjacent(data->P.Y- pt.Y, data->ray_angle);
 	if (find_wall(data, &pt, &step) == -1)
 		return (-1);
@@ -130,10 +140,6 @@ int	raycasting(t_data *data)
 	{
 		horizontal = horizontal_intersection(data);
 		vertical = vertical_intersection(data);
-		// if (i == SCREEN_WIDTH - 1)
-		// {
-		// 	printf("horizontal = %f\nvertical = %f\n", horizontal ,vertical);
-		// }
 		distance = smallest_distance(horizontal, vertical, data);
 		fish_eye(&distance, i, data);
 		draw_column(data, distance, i);
