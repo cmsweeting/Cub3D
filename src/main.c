@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 17:04:57 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:15:34 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "raycasting.h"
 
 static void	free_map(t_map *map)
 {
@@ -84,5 +84,6 @@ int	main(int ac, char *av[])
 		return (free_map(&map), EINVAL);
 	if (!map_is_valid(&map))
 		return (free_map(&map), EINVAL);
+	init_display(&map);
 	free_map(&map);
 }

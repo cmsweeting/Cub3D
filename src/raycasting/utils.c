@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:23:41 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/14 18:17:14 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:49:16 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,22 @@ int	get_quarter(t_data *data)
 	return (quarter);
 }
 
-void	leftmost_angle(t_data *data)
-{
-	int		index_axis;
-	double	angle_ref;
+// void	leftmost_angle(t_data *data)
+// {
+// 	int		index_axis;
+// 	double	angle_ref;
 	
-	index_axis = get_quarter(data);
-	angle_ref = 90 * index_axis;
-	data->ray_angle = data->P_angle - angle_ref;
-	// printf("ray angle : %f\n", data->ray_angle);
-}
+// 	index_axis = get_quarter(data);
+// 	angle_ref = 90 * index_axis;
+// 	data->ray_angle = data->P_angle - angle_ref;
+// }
 
 double	get_distance(t_point *pt, t_data *data)
 {
 	double	distance;
 
-	// distance = fabs(data->Px /** CUB*/ - pt->distX) / cosf(to_radian(data->ray_angle - 90 * quarter));
-	distance = sqrtf(powf((data->Px - pt->distX), 2) + powf((data->Py - pt->distY), 2));
+	// distance = fabs(data->Px /** CUB*/ - pt->X) / cosf(to_radian(data->ray_angle - 90 * quarter));
+	distance = sqrtf(powf((data->Px - pt->X), 2) + powf((data->Py - pt->Y), 2));
 	return (distance);
 }
 
@@ -80,5 +79,8 @@ int	on_axis(float angle)
 
 void	normalise_angle(double *angle)
 {
-	*angle = remainder((*angle + 360), 360);
+	if (*angle > 360)
+		*angle -= 360;
+	else if (*angle < 0)
+		*angle += 360;
 }

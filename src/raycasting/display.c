@@ -6,39 +6,37 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/14 18:24:17 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:25:04 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 
-void	get_angles(t_data *data)
+void	get_angles(t_data *data, t_card pcard)
 {
-	if (data->map[(int)data->Py][(int)data->Px] == 'E')
+	if (pcard == EA)
 		data->P_angle = 0.0;
-	else if (data->map[(int)data->Py][(int)data->Px] == 'N')
+	else if (pcard == NO)
 		data->P_angle = 90.0;
-	else if (data->map[(int)data->Py][(int)data->Px] == 'W')
+	else if (pcard == WE)
 		data->P_angle = 180.0;
-	else if (data->map[(int)data->Py][(int)data->Px] == 'S')
+	else if (pcard == SO)
 		data->P_angle = 270.0;
-	data->angle_bt_rays = 60.0 / (SCREEN_WIDTH -  1.0) * 1.0;
-	data->ray_angle = 0.0f;
+	data->angle_bt_rays = 60.0 / (SCREEN_WIDTH -  1.0);
 }
 
-void	init_data(t_data *data, char **map)
+void	init_data(t_data *data, t_map *map)
 {
-	data->map = map;
-	data->Px = 3.0;
-	data->Py = 3.0;
-	data->map[(int)data->Py][(int)data->Px] = 'N';
+	data->map = map->map;
+	data->Px = (double)map->p.j + 0.5;
+	data->Py = (double)map->p.i + 0.5;
+	data->map_x = map->msize.j - 1;
+	data->map_y = map->msize.i - 1;
 	data->distance_screen = (SCREEN_WIDTH * 0.5) / tanf(to_radian(FOV * 0.5));
-	get_angles(data);
-	data->Px = data->Px + 0.5;
-	data->Py = data->Py + 0.5;
+	get_angles(data, map->pcard);
 }
 
-int	init_display(char **map)
+int	init_display(t_map *map)
 {
 	t_data	data;
 
