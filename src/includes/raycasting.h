@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/15 18:29:25 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:55:35 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,17 @@ typedef struct s_data
 // raycasting ----------------
 
 /* raycasting.c */
-int	check_collisions(double x, double y, t_data *map);
-int	find_wall(t_data *data, t_point *pt, t_point *step);
+int		check_collisions(double x, double y, t_data *map);
+int		find_wall(t_data *data, t_point *pt, t_point *step);
 double	vertical_intersection(t_data *data);
 double	horizontal_intersection(t_data *data);
 double	smallest_distance(double hor, double ver, t_data *data);
 void	fish_eye(double *distance, int i, t_data *data);
-int	raycasting(t_data *data);
+int		raycasting(t_data *data);
 
 /* display.c */
-int	init_display(t_map *map);
+int		init_display(t_map *map, t_data *data);
+void	run_game(t_data *data);
 
 /* draw.c */
 void	ft_put_pixel(t_img *img, int colomn, int line, int color);
@@ -87,20 +88,16 @@ void	step_right(t_data *data, double x, double y);
 void	step_up(t_data *data, double x, double y);
 void	step_down(t_data *data, double x, double y);
 void	move(int keysym, t_data *data);
-int	close_win(t_data *data);
-int	keys(int keysym, t_data *data);
+int		close_win(t_data *data);
+int		keys(int keysym, t_data *data);
 
 /* utils.c */
 void	clean_display(t_data *data);
 double	to_radian(double angle);
 double	get_opposite(double adj, double angle);
 double	get_adjacent(double opposite, double angle);
-int	get_quarter(t_data *data);
-void	leftmost_angle(t_data *data);
 double	get_distance(t_point *pt, t_data *data);
-int	on_axis(float angle);
 void	normalise_angle(double *angle);
-
-
+// int	get_quarter(t_data *data);
 
 #endif
