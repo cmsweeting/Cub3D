@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/17 15:13:05 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:21:13 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <X11/keysym.h>
 # include <math.h>
 
-# define EPSILON 0.00001
+# define EP 0.00001
 # define PI 3.14159265359
 # define CUB 1.0
 # define FOV 60
@@ -31,13 +31,6 @@
 # define WALL_S 0xFF3399 //pink
 # define WALL_W 0x4C0099 //purple
 # define WALL_E 0xFFFF00 //yellow
-
-// # define EP 0.00001
-// # define PI 3.14159265359
-// # define CUB 1.0
-// # define FOV 60
-// # define S_WIDTH 1050.0
-// # define S_HEIGHT 550.0
 
 typedef struct s_point
 {

@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/17 15:05:53 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:21:05 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ double	vertical_intersection(t_ray *rdata)
 	if (rdata->r_angle > 90.0 && rdata->r_angle < 270.0)
 	{
 		step.x *= -1;
-		pt.x -= EPSILON;
+		pt.x -= EP;
 	}
 	else
 	{
@@ -82,7 +82,7 @@ double	horizontal_intersection(t_ray *rdata)
 	if (rdata->r_angle > 0.0 && rdata->r_angle < 180.0)
 	{
 		step.y *= -1;
-		pt.y -= EPSILON;
+		pt.y -= EP;
 	}
 	else
 	{
