@@ -83,10 +83,6 @@ void	ft_put_pixel(t_img *img, int colomn, int line, int color);
 void	draw_column(t_data *data, double distance, int colomn);
 
 /* events.c */
-void	step_left(t_data *data, double x, double y);
-void	step_right(t_data *data, double x, double y);
-void	step_up(t_data *data, double x, double y);
-void	step_down(t_data *data, double x, double y);
 void	move(int keysym, t_data *data);
 int		close_win(t_data *data);
 int		keys(int keysym, t_data *data);
