@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/17 14:56:20 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:30:40 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#include "cub3D.h"
 
 void	ft_put_pixel(t_img *img, int colomn, int line, int color)
 {
@@ -19,7 +19,7 @@ void	ft_put_pixel(t_img *img, int colomn, int line, int color)
 	if (colomn < 0 || colomn >= S_WIDTH || line < 0 \
 		|| line >= S_HEIGHT)
 		return ;
-	pixel = img->xpm_data + (line * img->len + colomn * (img->bpp / 8));
+	pixel = img->strxpm + (line * img->len + colomn * (img->bpp / 8));
 	*(int *)pixel = color;
 }
 

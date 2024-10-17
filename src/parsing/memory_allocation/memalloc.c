@@ -6,11 +6,11 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:07:10 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 17:04:57 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:11:31 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "cub3D.h"
 
 bool	ft_realloc(size_t size, char ***arr)
 {
@@ -32,7 +32,7 @@ bool	ft_realloc(size_t size, char ***arr)
 	return (true);
 }
 
-bool	sqalloc_map(t_map *map)
+bool	sqalloc_map(t_parser *map)
 {
 	t_co	it;
 	char	**cmap;
@@ -61,7 +61,7 @@ bool	sqalloc_map(t_map *map)
 	return (true);
 }
 
-bool	cpy_map(t_map *map, char **rfile, size_t i)
+bool	cpy_fdata(t_parser *map, char **rfile, size_t i)
 {
 	size_t	size;
 	size_t	j;
@@ -82,4 +82,32 @@ bool	cpy_map(t_map *map, char **rfile, size_t i)
 		j++;
 	}
 	return (true);
+}
+
+void	free_fdata(t_parser *map)
+{
+	if (map->no.pto_file)
+		free(map->no.pto_file);
+	if (map->no.pto_file)
+		free(map->so.pto_file);
+	if (map->we.pto_file)
+		free(map->we.pto_file);
+	if (map->ea.pto_file)
+		free(map->ea.pto_file);
+	free_dtab(map->map);
+}
+
+void	free_rdata(t_ray *ray)
+{
+	if (ray->map.ea.ptr)
+		mlx_destroy_image(ray->mlx, ray->map.ea.ptr);
+	if (ray->map.so.ptr)
+		mlx_destroy_image(ray->mlx, ray->map.so.ptr);
+	if (ray->map.we.ptr)
+		mlx_destroy_image(ray->mlx, ray->map.we.ptr);
+	if (ray->map.no.ptr)
+		mlx_destroy_image(ray->mlx, ray->map.no.ptr);
+	if (ray->img.ptr)
+		mlx_destroy_image(ray->mlx, ray->img.ptr);
+	clean_display(ray);
 }
