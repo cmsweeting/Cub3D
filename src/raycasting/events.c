@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:05:10 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/17 17:08:54 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 19:25:48 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	new_position(t_ray *rdata, double angle)
 	y *= -1.0;
 	x += rdata->p.x;
 	y += rdata->p.y;
-	if ((size_t)x >= 0 || (size_t)x <= rdata->map.msize.j)
+	if (((size_t)x >= 0 || (size_t)x <= rdata->map.msize.j) \
+		&& rdata->map.map[(size_t)y][(size_t)x] != '1')
 		rdata->p.x = x;
-	if ((size_t)y >= 0 || (size_t)y <= rdata->map.msize.i)
+	if (((size_t)y >= 0 || (size_t)y <= rdata->map.msize.i) \
+		&& rdata->map.map[(size_t)y][(size_t)x] != '1')
 		rdata->p.y = y;
 }
 
