@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:24:31 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 17:04:57 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:09:31 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ size_t	max_len(char **map)
 	return (max);
 }
 
-bool	found_all_elements(t_map map)
+bool	found_all_elements(t_parser map)
 {
 	if ((map.allt_found < 6) || !map.ea_texture || !map.no_texture || \
 	!map.so_texture || !map.we_texture || !map.map)

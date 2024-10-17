@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map_data.c                                     :+:      :+:    :+:   */
+/*   get_parser_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -30,36 +30,36 @@ static bool	is_map(char *str)
 	return (false);
 }
 
-static bool	is_path(t_map *map, char *str)
+static bool	is_path(t_parser *fdata, char *str)
 {
 	if (ft_strncmp("NO ", str, 3) == 0)
 	{
-		map->allt_found += 1;
-		map->no_texture = ft_strtrim(skip_whitespaces(&str[2]), "\n");
-		return (map->no_texture);
+		fdata->allt_found += 1;
+		fdata->no_texture = ft_strtrim(skip_whitespaces(&str[2]), "\n");
+		return (fdata->no_texture);
 	}
 	if (ft_strncmp("SO ", str, 3) == 0)
 	{
-		map->allt_found += 1;
-		map->so_texture = ft_strtrim(skip_whitespaces(&str[2]), "\n");
-		return (map->so_texture);
+		fdata->allt_found += 1;
+		fdata->so_texture = ft_strtrim(skip_whitespaces(&str[2]), "\n");
+		return (fdata->so_texture);
 	}
 	if (ft_strncmp("WE ", str, 3) == 0)
 	{
-		map->allt_found += 1;
-		map->we_texture = ft_strtrim(skip_whitespaces(&str[2]), "\n");
-		return (map->we_texture);
+		fdata->allt_found += 1;
+		fdata->we_texture = ft_strtrim(skip_whitespaces(&str[2]), "\n");
+		return (fdata->we_texture);
 	}
 	if (ft_strncmp("EA ", str, 3) == 0)
 	{
-		map->allt_found += 1;
-		map->ea_texture = ft_strtrim(skip_whitespaces(&str[2]), "\n");
-		return (map->ea_texture);
+		fdata->allt_found += 1;
+		fdata->ea_texture = ft_strtrim(skip_whitespaces(&str[2]), "\n");
+		return (fdata->ea_texture);
 	}
 	return (true);
 }
 
-static bool	is_color(t_map *map, char *str)
+static bool	is_color(t_parser *fdata, char *str)
 {
 	char	**rgb;
 
@@ -69,24 +69,24 @@ static bool	is_color(t_map *map, char *str)
 		rgb = ft_split(skip_whitespaces(&str[1]), ',');
 		if (!rgb)
 			return (print_error(errno, "while retrieving RGB colors"), false);
-		if (!rgb_to_int(map, rgb, true))
+		if (!rgb_to_int(fdata, rgb, true))
 			return (free_dtab(rgb), false);
-		map->allt_found += 1;
+		fdata->allt_found += 1;
 	}
 	if (ft_strncmp("C ", str, 2) == 0)
 	{
 		rgb = ft_split(skip_whitespaces(&str[1]), ',');
 		if (!rgb)
 			return (print_error(errno, "while retrieving RGB colors"), false);
-		if (!rgb_to_int(map, rgb, false))
+		if (!rgb_to_int(fdata, rgb, false))
 			return (free_dtab(rgb), false);
-		map->allt_found += 1;
+		fdata->allt_found += 1;
 	}
 	free_dtab(rgb);
 	return (true);
 }
 
-bool	get_values(t_map *map, char **rfile)
+bool	get_values(t_parser *fdata, char **rfile)
 {
 	size_t	i;
 
@@ -95,20 +95,20 @@ bool	get_values(t_map *map, char **rfile)
 	{
 		if (rfile[i][0] != '\n')
 		{
-			if (map->allt_found > 6)
+			if (fdata->allt_found > 6)
 				return (print_error(0, "Error: extra texture"), false);
-			if (!is_path(map, rfile[i]))
+			if (!is_path(fdata, rfile[i]))
 				return (print_error(0, "Error: invalid texture"), false);
-			if (!is_color(map, rfile[i]))
+			if (!is_color(fdata, rfile[i]))
 				return (false);
 			if (is_map(rfile[i]))
 			{
-				if (!cpy_map(map, rfile, i))
+				if (!cpy_fdata(fdata, rfile, i))
 					return (print_error(errno, "while retrieving map"), false);
 				break ;
 			}
 		}
 		i++;
 	}
-	return (found_all_elements(*map));
+	return (found_all_elements(*fdata));
 }

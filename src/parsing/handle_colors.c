@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:09:25 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 17:04:57 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:09:21 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static bool	rgb_is_valid(char **rgb)
 	return (true);
 }
 
-bool	rgb_to_int(t_map *map, char **rgb, bool floor)
+bool	rgb_to_int(t_parser *map, char **rgb, bool floor)
 {
 	size_t	i;
 

@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:31:22 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 17:04:57 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:28:48 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static bool	open_file(char *arg, char ***rfile)
 	return (true);
 }
 
-bool	fill_struct(char *arg, t_map *_map)
+bool	fill_fdata(char *arg, t_parser *fdata)
 {
 	char	**rfile;
 
@@ -73,7 +73,7 @@ bool	fill_struct(char *arg, t_map *_map)
 		return (print_error(EINVAL, "extension should be .cub"), false);
 	if (!open_file(arg, &rfile))
 		return (false);
-	if (!get_values(_map, rfile))
+	if (!get_values(fdata, rfile))
 		return (free_dtab(rfile), print_error(errno, "Error while processing \
 file"), false);
 	free_dtab(rfile);

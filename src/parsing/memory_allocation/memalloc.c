@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:07:10 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 17:04:57 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:32:30 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	ft_realloc(size_t size, char ***arr)
 	return (true);
 }
 
-bool	sqalloc_map(t_map *map)
+bool	sqalloc_map(t_parser *map)
 {
 	t_co	it;
 	char	**cmap;
@@ -61,7 +61,7 @@ bool	sqalloc_map(t_map *map)
 	return (true);
 }
 
-bool	cpy_map(t_map *map, char **rfile, size_t i)
+bool	cpy_fdata(t_parser *map, char **rfile, size_t i)
 {
 	size_t	size;
 	size_t	j;
@@ -82,4 +82,17 @@ bool	cpy_map(t_map *map, char **rfile, size_t i)
 		j++;
 	}
 	return (true);
+}
+
+void	free_fdata(t_parser *map)
+{
+	if (map->no_texture)
+		free(map->no_texture);
+	if (map->so_texture)
+		free(map->so_texture);
+	if (map->we_texture)
+		free(map->we_texture);
+	if (map->ea_texture)
+		free(map->ea_texture);
+	free_dtab(map->map);
 }

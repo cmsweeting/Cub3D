@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/16 18:31:35 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:09:36 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	get_angles(t_data *data, t_card pcard)
 	data->angle_bt_rays = 60.0 / (S_WIDTH - 1.0);
 }
 
-void	init_data(t_data *data, t_map *map)
+void	init_data(t_data *data, t_parser *map)
 {
 	data->map = map->map;
 	data->p.x = (double)map->p.j + 0.5;
@@ -36,7 +36,7 @@ void	init_data(t_data *data, t_map *map)
 	get_angles(data, map->pcard);
 }
 
-int	init_display(t_map *map, t_data *data)
+int	init_display(t_parser *map, t_data *data)
 {
 	init_data(data, map);
 	data->mlx_ptr = mlx_init();

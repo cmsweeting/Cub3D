@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/17 11:44:50 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:47:37 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,45 +38,6 @@
 // # define FOV 60
 // # define S_WIDTH 1050.0
 // # define S_HEIGHT 550.0
-
-typedef struct s_point
-{
-	double	x;
-	double	y;
-}	t_point;
-
-typedef struct s_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	char	**map;
-	double	distance_screen;
-	t_point	p;
-	double	angle_bt_rays;
-	double	ray_angle;
-	double	p_angle;
-	int		color;
-	t_img	img;
-	int		map_x;
-	int		map_y;
-}	t_data;
-
-typedef struct s_ray
-{
-	t_mlx	mlx;
-	t_map	map;
-	// angle between rays used to draw each pixel column
-	double	rayspacing;
-	// central ray angle (player)
-	double	c_angle;
-	// distance from player to screen
-	double	d_screen;
-	// current ray angle
-	double	r_angle;
-	int		color;
-	t_img	img;
-	t_point	p;
-}	t_ray;
 
 // raycasting ----------------
 
