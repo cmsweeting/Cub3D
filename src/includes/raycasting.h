@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/16 15:55:35 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:04:52 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,12 @@ typedef struct s_img
 {
 	void	*ptr;
 	char	*addr;
+	// bits per pixel
 	int		bpp;
 	int		length;
 	int		endian;
 }	t_img;
 
-typedef struct s_point
-{
-	double	X;
-	double	Y;
-}	t_point;
 
 typedef struct s_data
 {
