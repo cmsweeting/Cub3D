@@ -6,11 +6,11 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:25:00 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 17:04:57 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:30:19 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "cub3D.h"
 
 static int	errjoin(int error_code, char *error_message)
 {

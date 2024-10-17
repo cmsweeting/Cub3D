@@ -6,13 +6,13 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:10:09 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 17:04:57 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:59:16 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "cub3D.h"
 
-static void	reset_map(t_map *map)
+static void	reset_parser(t_parser *map)
 {
 	t_co	it;
 
@@ -38,7 +38,7 @@ static void	reset_map(t_map *map)
 		map->map[map->p.i][map->p.j] = 'S';
 }
 
-static void	save_start(t_map *map, t_co _it)
+static void	save_start(t_parser *map, t_co _it)
 {
 	map->p.i = _it.i;
 	map->p.j = _it.j;
@@ -54,7 +54,7 @@ static void	save_start(t_map *map, t_co _it)
 	map->map[_it.i][_it.j] = '0';
 }
 
-static bool	find_player(t_map *map)
+static bool	find_player(t_parser *map)
 {
 	t_co	it;
 
@@ -78,20 +78,21 @@ static bool	find_player(t_map *map)
 	return (map->found_p);
 }
 
-bool	map_is_valid(t_map *map)
+bool	fdata_is_valid(t_parser *map)
 {
 	bool	wismissing;
 
 	wismissing = false;
 	if (!find_player(map))
 		return (print_error(0, "Error: invalid player start position"), false);
-	sqalloc_map(map);
+	if (!sqalloc_map(map))
+		return (print_error(errno, "in fdata_is_valid"), false);
 	if (!iwall(*map))
 	{
 		print_darr(map->map, false);
 		return (print_error(0, "Error: invalid map"), false);
 	}
 	print_darr(map->map, false);
-	reset_map(map);
+	reset_parser(map);
 	return (true);
 }
