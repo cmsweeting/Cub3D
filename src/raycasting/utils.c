@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:23:41 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/15 17:49:16 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:59:26 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ double	to_radian(double angle)
 double	get_opposite(double adj, double angle)
 {
 	double	op;
-	
+
 	op = tanf(to_radian(angle)) * adj;
 	return (op);
 }
@@ -37,24 +37,25 @@ double	get_opposite(double adj, double angle)
 double	get_adjacent(double opposite, double angle)
 {
 	double	adj;
-	
+
 	adj = opposite / tanf(to_radian(angle));
 	return (adj);
 }
 
-// int	get_quarter(t_data *data)
-// {
-// 	int	quarter;
+int	get_quarter(t_data *data, double angle)
+{
+	int	quarter;
 
-// 	quarter = ((int)data->P_angle / 90) % 4;
-// 	return (quarter);
-// }
+	quarter = ((int)angle / 90) % 4;
+	return (quarter);
+}
 
 double	get_distance(t_point *pt, t_data *data)
 {
 	double	distance;
 
-	distance = sqrtf(powf((data->P.X - pt->X), 2) + powf((data->P.Y - pt->Y), 2));
+	distance = sqrtf(powf((data->p.x - pt->x), 2) \
+				+ powf((data->p.y - pt->y), 2));
 	return (distance);
 }
 

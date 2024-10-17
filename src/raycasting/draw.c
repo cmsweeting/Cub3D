@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/16 15:40:55 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:26:15 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 void	ft_put_pixel(t_img *img, int colomn, int line, int color)
 {
-	if (colomn < 0 || colomn >= SCREEN_WIDTH || line < 0 || line >= SCREEN_HEIGHT)
+	char	*pixel;
+
+	if (colomn < 0 || colomn >= S_WIDTH || line < 0 \
+		|| line >= S_HEIGHT)
 		return ;
-	*(int *)(img->addr + (line * img->length + colomn * (img->bpp / 8))) = color;
+	pixel = img->addr + (line * img->length + colomn * (img->bpp / 8));
+	*(int *)pixel = color;
 }
- 
+
 void	draw_column(t_data *data, double distance, int colomn)
 {
 	int	hp;
@@ -29,19 +33,19 @@ void	draw_column(t_data *data, double distance, int colomn)
 	i = 0;
 	hp = data->distance_screen / distance;
 	half_hp = hp * 0.5;
-	half_screen_height = SCREEN_HEIGHT * 0.5;
-	while (i < (half_screen_height - half_hp) && i < SCREEN_HEIGHT)
+	half_screen_height = S_HEIGHT * 0.5;
+	while (i < (half_screen_height - half_hp) && i < S_HEIGHT)
 	{
 		ft_put_pixel(&data->img, colomn, i, SKY);
 		i++;
 	}
-	while (hp > 0 && i < SCREEN_HEIGHT)
+	while (hp > 0 && i < S_HEIGHT)
 	{
 		ft_put_pixel(&data->img, colomn, i, data->color);
 		i++;
 		hp--;
 	}
-	while (i < SCREEN_HEIGHT)
+	while (i < S_HEIGHT)
 	{
 		ft_put_pixel(&data->img, colomn, i, GROUND);
 		i++;
