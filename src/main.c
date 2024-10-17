@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 11:48:31 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:47:20 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	main(int ac, char *av[])
 	if (!fdata_is_valid(&fdata))
 		return (free_fdata(&fdata), EINVAL);
 // TODO: init rdata.map based on fdata
-	if (init_display(&fdata, &rdata))
+	if (init_display(&rdata))
 		return (free_fdata(&fdata), EINVAL);
 	run_game(&rdata);
 	free_fdata(&fdata);

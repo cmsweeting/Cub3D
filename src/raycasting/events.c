@@ -6,13 +6,13 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:05:10 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/16 19:01:28 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:59:14 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 
-void	new_position(t_data *data, double angle)
+void	new_position(t_ray *rdata, double angle)
 {
 	double	x;
 	double	y;
@@ -20,56 +20,56 @@ void	new_position(t_data *data, double angle)
 	x = cosf(to_radian(angle)) * 0.2;
 	y = sinf(to_radian(angle)) * 0.2;
 	y *= -1.0;
-	x += data->p.x;
-	y += data->p.y;
-	if ((int)x >= 0 || (int)x <= data->map_x)
-		data->p.x = x;
-	if ((int)y >= 0 || (int)y <= data->map_y)
-		data->p.y = y;
+	x += rdata->p.x;
+	y += rdata->p.y;
+	if ((int)x >= 0 || (int)x <= rdata->maplen.j)
+		rdata->p.x = x;
+	if ((int)y >= 0 || (int)y <= rdata->maplen.i)
+		rdata->p.y = y;
 }
 
-void	move(int keysym, t_data *data)
+void	move(int keysym, t_ray *rdata)
 {
 	double	angle;
 
-	angle = data->p_angle;
+	angle = rdata->c_angle;
 	if (keysym == XK_w)
-		new_position(data, angle);
+		new_position(rdata, angle);
 	else if (keysym == XK_s)
 	{
 		angle += 180;
-		normalise_angle(&data->p_angle);
-		new_position(data, angle);
+		normalise_angle(&rdata->c_angle);
+		new_position(rdata, angle);
 	}
 	else if (keysym == XK_a)
 	{
 		angle += 90;
-		normalise_angle(&data->p_angle);
-		new_position(data, angle);
+		normalise_angle(&rdata->c_angle);
+		new_position(rdata, angle);
 	}
 	else if (keysym == XK_d)
 	{
 		angle -= 90;
-		normalise_angle(&data->p_angle);
-		new_position(data, angle);
+		normalise_angle(&rdata->c_angle);
+		new_position(rdata, angle);
 	}
 	else if (keysym == XK_Left)
-		data->p_angle += (30.0 * data->angle_bt_rays);
+		rdata->c_angle += (30.0 * rdata->rayspacing);
 	else if (keysym == XK_Right)
-		data->p_angle -= (30.0 * data->angle_bt_rays);
+		rdata->c_angle -= (30.0 * rdata->rayspacing);
 }
 
-int	close_win(t_data *data)
+int	close_win(t_ray *rdata)
 {
-	mlx_loop_end(data->mlx_ptr);
+	mlx_loop_end(rdata->mlx.mlx);
 	return (0);
 }
 
-int	keys(int keysym, t_data *data)
+int	keys(int keysym, t_ray *rdata)
 {
 	if (keysym == XK_Escape)
-		close_win(data);
+		close_win(rdata);
 	else
-		move(keysym, data);
+		move(keysym, rdata);
 	return (0);
 }
