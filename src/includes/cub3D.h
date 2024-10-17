@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 11:45:07 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:41:38 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ typedef struct s_map
 	t_img		no;
 	t_img		so;
 	t_img		we;
-} t_map;
+}	t_map;
 
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
-} t_mlx;
+}	t_mlx;
 
 #endif

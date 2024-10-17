@@ -6,20 +6,11 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:23:41 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/16 18:59:26 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:08:59 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
-
-void	clean_display(t_data *data)
-{
-	mlx_destroy_image(data->mlx_ptr, data->img.ptr);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	data->win_ptr = NULL;
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
-}
 
 double	to_radian(double angle)
 {
@@ -42,21 +33,12 @@ double	get_adjacent(double opposite, double angle)
 	return (adj);
 }
 
-int	get_quarter(t_data *data, double angle)
+double	get_distance(t_point *pt, t_ray *rdata)
 {
-	int	quarter;
+	double	d;
 
-	quarter = ((int)angle / 90) % 4;
-	return (quarter);
-}
-
-double	get_distance(t_point *pt, t_data *data)
-{
-	double	distance;
-
-	distance = sqrtf(powf((data->p.x - pt->x), 2) \
-				+ powf((data->p.y - pt->y), 2));
-	return (distance);
+	d = sqrtf(powf((rdata->p.x - pt->x), 2) + powf((rdata->p.y - pt->y), 2));
+	return (d);
 }
 
 void	normalise_angle(double *angle)
