@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 17:40:54 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 20:32:10 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static bool	fill_rdata(t_ray *rdata, t_parser fdata)
 {
-	size_t	i;
-
-	i = -1;
 	rdata->map = fdata;
 	if (init_display(rdata, fdata))
 		return (false);
