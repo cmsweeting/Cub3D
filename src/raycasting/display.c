@@ -6,67 +6,73 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/17 14:09:36 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:47:10 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 
-void	get_angles(t_data *data, t_card pcard)
+void	clean_display(t_ray *rdata)
+{
+	mlx_destroy_image(rdata->mlx.mlx, rdata->img.ptr);
+	mlx_destroy_window(rdata->mlx.mlx, rdata->mlx.win);
+	rdata->mlx.win = NULL;
+	mlx_destroy_display(rdata->mlx.mlx);
+	free(rdata->mlx.mlx);
+}
+
+void	get_angles(t_data *rdata, t_card pcard)
 {
 	if (pcard == EA)
-		data->p_angle = 0.0;
+		rdata->p_angle = 0.0;
 	else if (pcard == NO)
-		data->p_angle = 90.0;
+		rdata->p_angle = 90.0;
 	else if (pcard == WE)
-		data->p_angle = 180.0;
+		rdata->p_angle = 180.0;
 	else if (pcard == SO)
-		data->p_angle = 270.0;
-	data->angle_bt_rays = 60.0 / (S_WIDTH - 1.0);
+		rdata->p_angle = 270.0;
+	rdata->angle_bt_rays = 60.0 / (S_WIDTH - 1.0);
 }
 
-void	init_data(t_data *data, t_parser *map)
+void	init_data(t_ray *rdata)
 {
-	data->map = map->map;
-	data->p.x = (double)map->p.j + 0.5;
-	data->p.y = (double)map->p.i + 0.5;
-	data->map_x = map->msize.j - 1;
-	data->map_y = map->msize.i - 1;
-	data->distance_screen = (S_WIDTH * 0.5) / tanf(to_radian(FOV * 0.5));
-	get_angles(data, map->pcard);
+	rdata->p.x = (double)rdata->map.p.j + 0.5;
+	rdata->p.y = (double)rdata->map.p.i + 0.5;
+	rdata->d_screen = (S_WIDTH * 0.5) / tanf(to_radian(FOV * 0.5));
+	get_angles(rdata, rdata->map.pcard);
 }
 
-int	init_display(t_parser *map, t_data *data)
+int	init_display(t_ray *rdata)
 {
-	init_data(data, map);
-	data->mlx_ptr = mlx_init();
-	if (!data->mlx_ptr)
+	init_data(rdata);
+	rdata->mlx.mlx = mlx_init();
+	if (!rdata->mlx.mlx)
 		return (1);
-	data->img.ptr = mlx_new_image(data->mlx_ptr, S_WIDTH, S_HEIGHT);
-	if (!data->img.ptr)
+	rdata->img.ptr = mlx_new_image(rdata->mlx.mlx, S_WIDTH, S_HEIGHT);
+	if (!rdata->img.ptr)
 		return (1);
-	data->img.addr = mlx_get_data_addr(data->img.ptr, &data->img.bpp, \
-					&data->img.length, &data->img.endian);
-	if (!data->img.addr)
+	rdata->img.xpm_data = mlx_get_data_addr(rdata->img.ptr, &rdata->img.bpp, \
+					&rdata->img.len, &rdata->img.endian);
+	if (!rdata->img.xpm_data)
 	{
-		mlx_destroy_image(data->mlx_ptr, data->img.ptr);
+		mlx_destroy_image(rdata->mlx.mlx, rdata->img.ptr);
 		return (1);
 	}
-	data->win_ptr = mlx_new_window(data->mlx_ptr, S_WIDTH, S_HEIGHT, "Cub3D");
-	if (!data->win_ptr)
+	rdata->mlx.win = mlx_new_window(rdata->mlx.mlx, S_WIDTH, S_HEIGHT, "Cub3D");
+	if (!rdata->mlx.win)
 	{
-		mlx_destroy_display(data->mlx_ptr);
-		free(data->mlx_ptr);
+		mlx_destroy_display(rdata->mlx.mlx);
+		free(rdata->mlx.mlx);
 		return (1);
 	}
 	return (0);
 }
 
-void	run_game(t_data *data)
+void	run_game(t_ray *rdata)
 {
-	mlx_loop_hook(data->mlx_ptr, &raycasting, data);
-	mlx_hook(data->win_ptr, 2, 1L << 0, &keys, data);
-	mlx_hook(data->win_ptr, 17, 0, &close_win, data);
-	mlx_loop(data->mlx_ptr);
-	clean_display(data);
+	mlx_loop_hook(rdata->mlx.mlx, &raycasting, rdata);
+	mlx_hook(rdata->mlx.win, 2, 1L << 0, &keys, rdata);
+	mlx_hook(rdata->mlx.win, 17, 0, &close_win, rdata);
+	mlx_loop(rdata->mlx.mlx);
+	clean_display(rdata);
 }

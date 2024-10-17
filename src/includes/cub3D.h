@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 15:28:57 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:45:49 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ typedef struct s_map
 	t_img		no;
 	t_img		so;
 	t_img		we;
-} t_map;
+}	t_map;
 
 typedef struct s_ray
 {

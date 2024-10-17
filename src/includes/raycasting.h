@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/17 14:47:37 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:46:29 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,34 +42,33 @@
 // raycasting ----------------
 
 /* raycasting.c */
-int		check_collisions(double x, double y, t_data *map);
-int		find_wall(t_data *data, t_point *pt, t_point *step);
-double	vertical_intersection(t_data *data);
-double	horizontal_intersection(t_data *data);
-double	smallest_distance(double hor, double ver, t_data *data);
-void	fish_eye(double *distance, int i, t_data *data);
-int		raycasting(t_data *data);
+int		check_collisions(double x, double y, t_ray *map);
+int		find_wall(t_ray *rdata, t_point *pt, t_point *step);
+double	vertical_intersection(t_ray *rdata);
+double	horizontal_intersection(t_ray *rdata);
+double	smallest_distance(double hor, double ver, t_ray *rdata);
+void	fish_eye(double *distance, int i, t_ray *rdata);
+int		raycasting(t_ray *rdata);
 
 /* display.c */
-int		init_display(t_map *map, t_data *data);
-void	run_game(t_data *data);
+int		init_display(t_ray *rdata);
+void	run_game(t_ray *rdata);
 
 /* draw.c */
 void	ft_put_pixel(t_img *img, int colomn, int line, int color);
-void	draw_column(t_data *data, double distance, int colomn);
+void	draw_column(t_ray *rdata, double distance, int colomn);
 
 /* events.c */
-void	move(int keysym, t_data *data);
-int		close_win(t_data *data);
-int		keys(int keysym, t_data *data);
+void	move(int keysym, t_ray *rdata);
+int		close_win(t_ray *rdata);
+int		keys(int keysym, t_ray *rdata);
 
 /* utils.c */
-void	clean_display(t_data *data);
+void	clean_display(t_ray *rdata);
 double	to_radian(double angle);
 double	get_opposite(double adj, double angle);
 double	get_adjacent(double opposite, double angle);
-double	get_distance(t_point *pt, t_data *data);
+double	get_distance(t_point *pt, t_ray *rdata);
 void	normalise_angle(double *angle);
-int		get_quarter(t_data *data, double angle);
 
 #endif

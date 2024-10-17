@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 15:41:44 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:43:57 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	main(int ac, char *av[])
 	fill_rdata(&rdata, fdata);
 	print_ray(rdata);
 // TODO: init rdata.map based on fdata
-	// if (init_display(&fdata, &rdata))
-	// 	return (free_fdata(&fdata), EINVAL);
-	// run_game(&rdata);
+	if (init_display(&rdata))
+		return (free_fdata(&fdata), EINVAL);
+	run_game(&rdata);
 	free_fdata(&fdata);
 }
