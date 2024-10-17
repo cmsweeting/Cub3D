@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/16 18:04:52 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:08:22 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define PI 3.14159265359
 # define CUB 1.0
 # define FOV 60
-# define SCREEN_WIDTH 1050.0
-# define SCREEN_HEIGHT 550.0
+# define S_WIDTH 1050.0
+# define S_HEIGHT 550.0
 # define SKY 0x112ACD
 # define GROUND 0x070E3F
 # define WALL_N 0xFF9933 //orange
@@ -42,6 +42,11 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_point
+{
+	double	x;
+	double	y;
+}	t_point;
 
 typedef struct s_data
 {
@@ -49,10 +54,10 @@ typedef struct s_data
 	void	*win_ptr;
 	char	**map;
 	double	distance_screen;
-	t_point	P;
+	t_point	p;
 	double	angle_bt_rays;
 	double	ray_angle;
-	double	P_angle;
+	double	p_angle;
 	int		color;
 	t_img	img;
 	int		map_x;
@@ -79,10 +84,6 @@ void	ft_put_pixel(t_img *img, int colomn, int line, int color);
 void	draw_column(t_data *data, double distance, int colomn);
 
 /* events.c */
-void	step_left(t_data *data, double x, double y);
-void	step_right(t_data *data, double x, double y);
-void	step_up(t_data *data, double x, double y);
-void	step_down(t_data *data, double x, double y);
 void	move(int keysym, t_data *data);
 int		close_win(t_data *data);
 int		keys(int keysym, t_data *data);
@@ -94,6 +95,6 @@ double	get_opposite(double adj, double angle);
 double	get_adjacent(double opposite, double angle);
 double	get_distance(t_point *pt, t_data *data);
 void	normalise_angle(double *angle);
-// int	get_quarter(t_data *data);
+int		get_quarter(t_data *data, double angle);
 
 #endif
