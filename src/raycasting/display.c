@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/17 15:08:31 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:50:07 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ void	clean_display(t_ray *rdata)
 	free(rdata->mlx.mlx);
 }
 
-void	get_angles(t_data *rdata, t_card pcard)
+void	get_angles(t_ray *rdata, t_card pcard)
 {
 	if (pcard == EA)
-		rdata->p_angle = 0.0;
+		rdata->c_angle = 0.0;
 	else if (pcard == NO)
-		rdata->p_angle = 90.0;
+		rdata->c_angle = 90.0;
 	else if (pcard == WE)
-		rdata->p_angle = 180.0;
+		rdata->c_angle = 180.0;
 	else if (pcard == SO)
-		rdata->p_angle = 270.0;
-	rdata->angle_bt_rays = 60.0 / (S_WIDTH - 1.0);
+		rdata->c_angle = 270.0;
+	rdata->rayspacing = 60.0 / (S_WIDTH - 1.0);
 }
 
 void	init_data(t_ray *rdata)
@@ -61,6 +61,7 @@ int	init_display(t_ray *rdata)
 	rdata->mlx.win = mlx_new_window(rdata->mlx.mlx, S_WIDTH, S_HEIGHT, "Cub3D");
 	if (!rdata->mlx.win)
 	{
+		mlx_destroy_image(rdata->mlx.mlx, rdata->img.ptr);
 		mlx_destroy_display(rdata->mlx.mlx);
 		free(rdata->mlx.mlx);
 		return (1);

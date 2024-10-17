@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:38 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/17 15:21:13 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:58:21 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # define EP 0.00001
 # define PI 3.14159265359
-# define CUB 1.0
+# define CUB 64
 # define FOV 60
 # define S_WIDTH 1050.0
 # define S_HEIGHT 550.0
@@ -86,6 +86,7 @@ int		raycasting(t_ray *rdata);
 /* display.c */
 int		init_display(t_ray *rdata);
 void	run_game(t_ray *rdata);
+void	clean_display(t_ray *rdata);
 
 /* draw.c */
 void	ft_put_pixel(t_img *img, int colomn, int line, int color);
@@ -97,7 +98,6 @@ int		close_win(t_ray *rdata);
 int		keys(int keysym, t_ray *rdata);
 
 /* utils.c */
-void	clean_display(t_ray *rdata);
 double	to_radian(double angle);
 double	get_opposite(double adj, double angle);
 double	get_adjacent(double opposite, double angle);
