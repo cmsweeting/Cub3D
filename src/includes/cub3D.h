@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 17:52:12 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:35:45 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ bool	found_all_elements(t_parser map);
 char	*skip_whitespaces(char *str);
 
 /* init_mlx.c */
-bool	create_images(t_ray *rdata, t_parser fdata);
+bool	create_images(t_ray *rdata);
 
 // raycasting ----------------
 
@@ -92,7 +92,7 @@ bool	create_images(t_ray *rdata, t_parser fdata);
 void	clean_display(t_ray *rdata);
 void	get_angles(t_ray *rdata, t_card pcard);
 void	init_data(t_ray *rdata);
-int		init_display(t_ray *rdata, t_parser fdata);
+int		init_display(t_ray *rdata);
 void	run_game(t_ray *rdata);
 
 /* draw.c */
