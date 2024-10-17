@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 17:43:37 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:52:12 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # include <X11/X.h>
 # include <X11/X.h>
 
-# define EPSILON 0.00001
+# define EP 0.00001
 # define PI 3.14159265359
 # define CUB 64
 # define FOV 60
