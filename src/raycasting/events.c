@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:05:10 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/17 14:59:14 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:08:54 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#include "cub3D.h"
 
 void	new_position(t_ray *rdata, double angle)
 {
@@ -22,9 +22,9 @@ void	new_position(t_ray *rdata, double angle)
 	y *= -1.0;
 	x += rdata->p.x;
 	y += rdata->p.y;
-	if ((int)x >= 0 || (int)x <= rdata->maplen.j)
+	if ((size_t)x >= 0 || (size_t)x <= rdata->map.msize.j)
 		rdata->p.x = x;
-	if ((int)y >= 0 || (int)y <= rdata->maplen.i)
+	if ((size_t)y >= 0 || (size_t)y <= rdata->map.msize.i)
 		rdata->p.y = y;
 }
 
@@ -61,7 +61,7 @@ void	move(int keysym, t_ray *rdata)
 
 int	close_win(t_ray *rdata)
 {
-	mlx_loop_end(rdata->mlx.mlx);
+	mlx_loop_end(rdata->mlx);
 	return (0);
 }
 

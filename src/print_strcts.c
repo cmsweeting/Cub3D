@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:49:09 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 15:32:06 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:40:25 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,25 @@ static void	pstart(t_card pcard, t_co p)
 	printf("i: %ld || j: %ld\n", p.i, p.j);
 }
 
-// static void pimg(t_img	texture)
-// {
-// 	printf("Img\n---\n");
-// 	printf("ptr: %p\n", texture.ptr);
-// 	printf("xpm_data: %s\n", texture.xpm_data);
-// 	printf("BPP: %d\n", texture.bpp);
-// 	printf("len: %d\n", texture.len);
-// 	printf("endian: %d\n", texture.endian);
-// 	printf("---\n");
-// }
+static void	pimg(t_img	texture)
+{
+	printf("Img\n---\n");
+	printf("ptr: %p\n", texture.ptr);
+	printf("xpm_data: %s\n", texture.strxpm);
+	printf("BPP: %d\n", texture.bpp);
+	printf("len: %d\n", texture.len);
+	printf("endian: %d\n", texture.endian);
+	printf("---\n");
+}
 
 void	print_parser(t_parser parse)
 {
 	printf("player position : %ld || %ld\n", parse.p.i, parse.p.j);
 	printf("\n");
-	printf("%s\n", parse.ea_texture);
-	printf("%s\n", parse.we_texture);
-	printf("%s\n", parse.no_texture);
-	printf("%s\n", parse.so_texture);
+	printf("%s\n", parse.ea.pto_file);
+	printf("%s\n", parse.we.pto_file);
+	printf("%s\n", parse.no.pto_file);
+	printf("%s\n", parse.so.pto_file);
 	printf("\n");
 	printf("floor color:	%d	|	%d	|	%d\n", parse.fcolor[0], \
 	parse.fcolor[1], parse.fcolor[2]);
@@ -64,9 +64,9 @@ void	print_ray(t_ray ray)
 	printf("celling color:	%d	|	%d	|	%d\n", ray.map.ccolor[0], \
 	ray.map.ccolor[1], ray.map.ccolor[2]);
 	pstart(ray.map.pcard, ray.map.p);
-	printf("MapHeight: %ld || MapWidth %ld\n", ray.map.msize.i, ray.map.msize.j);
-	// pimg(ray.map.ea);
-	// pimg(ray.map.we);
-	// pimg(ray.map.so);
-	// pimg(ray.map.no);
+	printf("MHeight: %ld || MWidth %ld\n", ray.map.msize.i, ray.map.msize.j);
+	pimg(ray.map.ea);
+	pimg(ray.map.we);
+	pimg(ray.map.so);
+	pimg(ray.map.no);
 }

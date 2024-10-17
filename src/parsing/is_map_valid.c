@@ -6,11 +6,11 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:10:09 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 14:11:54 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:59:16 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "cub3D.h"
 
 static void	reset_parser(t_parser *map)
 {
@@ -85,7 +85,8 @@ bool	fdata_is_valid(t_parser *map)
 	wismissing = false;
 	if (!find_player(map))
 		return (print_error(0, "Error: invalid player start position"), false);
-	sqalloc_map(map);
+	if (!sqalloc_map(map))
+		return (print_error(errno, "in fdata_is_valid"), false);
 	if (!iwall(*map))
 	{
 		print_darr(map->map, false);

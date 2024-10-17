@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/17 15:05:53 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:09:13 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#include "cub3D.h"
 
 int	check_collisions(double x, double y, t_ray *rdata)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
-	i = (int)y;
-	j = (int)x;
-	if (i < 0 || j < 0 || i > rdata->maplen.i || j > rdata->maplen.j \
+	i = (size_t)y;
+	j = (size_t)x;
+	if (i < 0 || j < 0 || i > rdata->map.msize.i || j > rdata->map.msize.j \
 		|| !rdata->map.map[i][j])
 		return (-1);
 	if (rdata->map.map[i][j] == '1')
@@ -151,7 +151,7 @@ int	raycasting(t_ray *rdata)
 		normalise_angle(&rdata->r_angle);
 		i++;
 	}
-	mlx_put_image_to_window(rdata->mlx.mlx, rdata->mlx.win, \
+	mlx_put_image_to_window(rdata->mlx, rdata->win, \
 		rdata->img.ptr, 0, 0);
 	return (0);
 }

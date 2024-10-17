@@ -6,7 +6,7 @@
 #    By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:01:27 by cdomet-d          #+#    #+#              #
-#    Updated: 2024/10/17 15:03:47 by cdomet-d         ###   ########.fr        #
+#    Updated: 2024/10/17 17:34:01 by cdomet-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ LIB := $(LFTDIR)/libft.a
 H:= -I src/includes/ -I libs/libft -I libs/mlx
 
 CC := cc
-CFLAGS := -Werror -Wextra -Wall -Wshadow -g3
+CFLAGS := -Werror -Wextra -Wall -Wshadow -Ofast
+# -g3
 CPPFLAGS = -MMD -MP $(H)
 MAKEFLAGS += --no-print-directory
 MFLAGS = -L$(MLXDIR) -lmlx_Linux -L/usr/lib -I $(MLX) -lX11 -lm -lz -lXext $(MLX)
@@ -45,20 +46,21 @@ PSRC:=	extract_file.c \
 		handle_colors.c \
 		is_map_valid.c \
 		iterative_floodfill.c \
+		init_mlx.c \
 
 # ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ ERRORS ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ #
 SRC += $(addprefix $(RAYDIR), $(RAYSRC))
 RAYDIR:=	error_handling/
 RAYSRC:=	error_handling.c
 		
-# # ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ RAYCASTING ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ #
-# SRC += $(addprefix $(EDIR), $(ESRC))
-# EDIR:=	raycasting/
-# ESRC:=	display.c \
-# 		draw.c \
-# 		events.c \
-# 		raycasting.c \
-# 		utils.c \
+# ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ RAYCASTING ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ #
+SRC += $(addprefix $(EDIR), $(ESRC))
+EDIR:=	raycasting/
+ESRC:=	display.c \
+		draw.c \
+		events.c \
+		raycasting.c \
+		utils.c \
 
 $(BDIR)%.o: $(SDIR)%.c 
 	mkdir -p $(dir $@)

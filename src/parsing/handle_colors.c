@@ -6,11 +6,11 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:09:25 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 14:09:21 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:30:19 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "cub3D.h"
 
 static bool	str_is_num(char	*str)
 {

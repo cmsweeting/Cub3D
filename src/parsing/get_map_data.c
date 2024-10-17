@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_parser_data.c                                     :+:      :+:    :+:   */
+/*   get_map_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 14:13:36 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 17:04:57 by cdomet-d         ###   ########.fr       */
+/*   Created: 2024/10/17 17:43:19 by cdomet-d          #+#    #+#             */
+/*   Updated: 2024/10/17 17:43:23 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "cub3D.h"
 
 static bool	is_map(char *str)
 {
@@ -35,26 +35,26 @@ static bool	is_path(t_parser *fdata, char *str)
 	if (ft_strncmp("NO ", str, 3) == 0)
 	{
 		fdata->allt_found += 1;
-		fdata->no_texture = ft_strtrim(skip_whitespaces(&str[2]), "\n");
-		return (fdata->no_texture);
+		fdata->no.pto_file = ft_strtrim(skip_whitespaces(&str[2]), "\n");
+		return (fdata->no.pto_file);
 	}
 	if (ft_strncmp("SO ", str, 3) == 0)
 	{
 		fdata->allt_found += 1;
-		fdata->so_texture = ft_strtrim(skip_whitespaces(&str[2]), "\n");
-		return (fdata->so_texture);
+		fdata->so.pto_file = ft_strtrim(skip_whitespaces(&str[2]), "\n");
+		return (fdata->so.pto_file);
 	}
 	if (ft_strncmp("WE ", str, 3) == 0)
 	{
 		fdata->allt_found += 1;
-		fdata->we_texture = ft_strtrim(skip_whitespaces(&str[2]), "\n");
-		return (fdata->we_texture);
+		fdata->we.pto_file = ft_strtrim(skip_whitespaces(&str[2]), "\n");
+		return (fdata->we.pto_file);
 	}
 	if (ft_strncmp("EA ", str, 3) == 0)
 	{
 		fdata->allt_found += 1;
-		fdata->ea_texture = ft_strtrim(skip_whitespaces(&str[2]), "\n");
-		return (fdata->ea_texture);
+		fdata->ea.pto_file = ft_strtrim(skip_whitespaces(&str[2]), "\n");
+		return (fdata->ea.pto_file);
 	}
 	return (true);
 }
