@@ -54,9 +54,9 @@ void	move(int keysym, t_data *data)
 		new_position(data, angle);
 	}
 	else if (keysym == XK_Left)
-		data->p_angle += (20.0 * data->angle_bt_rays);
+		data->p_angle += (30.0 * data->angle_bt_rays);
 	else if (keysym == XK_Right)
-		data->p_angle -= (20.0 * data->angle_bt_rays);
+		data->p_angle -= (30.0 * data->angle_bt_rays);
 }
 
 int	close_win(t_data *data)
