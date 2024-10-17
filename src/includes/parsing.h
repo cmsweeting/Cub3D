@@ -13,15 +13,16 @@
 #ifndef PARSING_H
 # define PARSING_H
 
-# include "libft.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <stdbool.h>
-# include <errno.h>
-# include <sys/stat.h> // open
-# include <fcntl.h> // open
+# include "cub3D.h"
+// # include "libft.h"
+// # include <stdio.h>
+// # include <stdlib.h>
+// # include <unistd.h>
+// # include <string.h>
+// # include <stdbool.h>
+// # include <errno.h>
+// # include <sys/stat.h> // open
+// # include <fcntl.h> // open
 
 # define SUCESS 0
 # define ERROR 1
@@ -42,7 +43,7 @@ typedef struct s_queue
 	size_t	end;
 }	t_queue;
 
-typedef struct s_map
+typedef struct s_parser
 {
 	t_co			p;
 	t_co			msize;
@@ -56,7 +57,7 @@ typedef struct s_map
 	short int		fcolor[3];
 	short int		ccolor[3];
 	char			**map;
-}	t_map;
+}	t_parser;
 
 // error_handling ------------
 
@@ -67,40 +68,40 @@ void	*print_error(int error_code, char *error_message);
 // parsing -------------------
 
 /* extract_file.c */
-bool	fill_struct(char *arg, t_map *_map);
+bool	fill_struct(char *arg, t_parser *_map);
 
-/* get_map_data.c */
-bool	get_values(t_map *map, char **rfile);
+/* get_parser_data.c */
+bool	get_values(t_parser *map, char **rfile);
 
 /* p_utils.c */
 bool	is_invalid_char(char *str);
 bool	is_texture(char *str);
 size_t	max_len(char **map);
-bool	found_all_elements(t_map map);
+bool	found_all_elements(t_parser map);
 char	*skip_whitespaces(char *str);
 
 /* handle_colors.c */
-bool	rgb_to_int(t_map *map, char **rgb, bool floor);
+bool	rgb_to_int(t_parser *map, char **rgb, bool floor);
 
 /* is_map_valid.c */
-bool	map_is_valid(t_map *map);
+bool	map_is_valid(t_parser *map);
 
 // memory_allocation ---------
 
 /* memalloc.c */
 bool	ft_realloc(size_t size, char ***arr);
-bool	sqalloc_map(t_map *map);
-bool	cpy_map(t_map *map, char **rfile, size_t i);
+bool	sqalloc_map(t_parser *map);
+bool	cpy_map(t_parser *map, char **rfile, size_t i);
 
 // parsing -------------------
 
 /* iterative_floodfill.c */
-bool	iwall(t_map map);
+bool	iwall(t_parser map);
 
 // src -----------------------
 
 /* main.c */
-void	print_map(t_map map);
+void	print_parser(t_parser map);
 int		main(int ac, char *av[]);
 
 #endif

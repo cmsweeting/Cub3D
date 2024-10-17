@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/16 15:55:59 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:48:31 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 
-static void	free_map(t_map *map)
+static void	free_file_data(t_parser *map)
 {
 	if (map->no_texture)
 		free(map->no_texture);
@@ -25,7 +25,7 @@ static void	free_map(t_map *map)
 	free_dtab(map->map);
 }
 
-static void	init_map(t_map *map)
+static void	init_parser(t_parser *map)
 {
 	size_t	i;
 
@@ -47,7 +47,7 @@ static void	init_map(t_map *map)
 	}
 }
 
-void	print_map(t_map map)
+void	print_parser(t_parser map)
 {
 	printf("player position : %ld || %ld\n", map.p.i, map.p.j);
 	if (map.pcard == SO)
@@ -75,18 +75,19 @@ void	print_map(t_map map)
 
 int	main(int ac, char *av[])
 {
-	t_data	data;
-	t_map	map;
+	t_parser	fdata;
+	t_ray		rdata;
 
 	if (ac != 2)
 		return (print_error(EINVAL, "expected one argument"), EINVAL);
-	init_map(&map);
-	if (!fill_struct(av[1], &map))
-		return (free_map(&map), EINVAL);
-	if (!map_is_valid(&map))
-		return (free_map(&map), EINVAL);
-	if (init_display(&map, &data))
-		return (free_map(&map), EINVAL);
-	run_game(&data);
-	free_map(&map);
+	init_parser(&fdata);
+	if (!fill_struct(av[1], &fdata))
+		return (free_fdata(&fdata), EINVAL);
+	if (!fdata_is_valid(&fdata))
+		return (free_fdata(&fdata), EINVAL);
+// TODO: init rdata.map based on fdata
+	if (init_display(&fdata, &rdata))
+		return (free_fdata(&fdata), EINVAL);
+	run_game(&rdata);
+	free_fdata(&fdata);
 }
