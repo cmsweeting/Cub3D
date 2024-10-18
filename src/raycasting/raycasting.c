@@ -138,6 +138,7 @@ int	raycasting(t_ray *rdata)
 	double	distance;
 
 	i = 0;
+	move(rdata);
 	rdata->r_angle = rdata->c_angle + 30.0f;
 	normalise_angle(&rdata->r_angle);
 	while (i < S_WIDTH)

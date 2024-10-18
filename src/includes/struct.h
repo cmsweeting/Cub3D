@@ -64,6 +64,16 @@ typedef struct s_parser
 	unsigned char	allt_found;
 }	t_parser;
 
+typedef struct	s_moves
+{
+	bool			up;
+	bool			down;
+	bool			left;
+	bool			right;
+	bool			lturn;
+	bool			rturn;
+}	t_moves;
+
 typedef struct s_ray
 {
 	void			*mlx;
@@ -80,6 +90,7 @@ typedef struct s_ray
 	int				color;
 	t_img			img;
 	t_point			p;
+	t_moves			moves;
 }	t_ray;
 
 // error_handling ------------

@@ -101,9 +101,10 @@ void	draw_column(t_ray *rdata, double distance, int colomn);
 
 /* events.c */
 void	new_position(t_ray *rdata, double angle);
-void	move(int keysym, t_ray *rdata);
+void	move(t_ray *rdata);
 int		close_win(t_ray *rdata);
-int		keys(int keysym, t_ray *rdata);
+int		key_press(int keysym, t_ray *rdata);
+int		key_release(int keysym, t_ray *rdata);
 
 /* raycasting.c */
 int		check_collisions(double x, double y, t_ray *rdata);

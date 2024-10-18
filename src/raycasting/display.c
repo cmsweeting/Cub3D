@@ -67,7 +67,8 @@ int	init_display(t_ray *rdata)
 void	run_game(t_ray *rdata)
 {
 	mlx_loop_hook(rdata->mlx, &raycasting, rdata);
-	mlx_hook(rdata->win, 2, 1L << 0, &keys, rdata);
+	mlx_hook(rdata->win, 2, 1L << 0, &key_press, rdata);
+	mlx_hook(rdata->win, 3, 1L << 1, &key_release, rdata);
 	mlx_hook(rdata->win, 17, 0, &close_win, rdata);
 	mlx_loop(rdata->mlx);
 }
