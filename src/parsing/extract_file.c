@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:31:22 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 16:30:19 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:21:47 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static bool	open_file(char *arg, char ***rfile)
 
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
-		return (print_error(errno, "could not open file"), false);
+		return (perr(errno, "could not open file"), false);
 	if (!extract_file(fd, rfile))
-		return (close(fd), print_error(errno, "during file extraction"), false);
+		return (close(fd), perr(errno, "during file extraction"), false);
 	close(fd);
 	return (true);
 }
@@ -68,13 +68,13 @@ bool	fill_fdata(char *arg, t_parser *fdata)
 
 	rfile = NULL;
 	if (!arg)
-		return (print_error(EINVAL, "expected file, got NULL pointer"), false);
+		return (perr(EINVAL, "expected file, got NULL pointer"), false);
 	if (!ext_is_valid(arg))
-		return (print_error(EINVAL, "extension should be .cub"), false);
+		return (perr(EINVAL, "extension should be .cub"), false);
 	if (!open_file(arg, &rfile))
 		return (false);
 	if (!get_values(fdata, rfile))
-		return (free_dtab(rfile), print_error(errno, "Error while processing \
+		return (free_dtab(rfile), perr(errno, "Error while processing \
 file"), false);
 	free_dtab(rfile);
 	return (true);

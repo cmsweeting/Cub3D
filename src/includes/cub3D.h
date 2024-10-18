@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 17:43:37 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:21:47 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 
 /* error_handling.c */
 int		verror(char *s1, char *s2, char *s3);
-void	*print_error(int error_code, char *error_message);
+void	*perr(int error_code, char *error_message);
 
 // memory_allocation ---------
 
@@ -56,8 +56,11 @@ void	*print_error(int error_code, char *error_message);
 bool	ft_realloc(size_t size, char ***arr);
 bool	sqalloc_map(t_parser *map);
 bool	cpy_fdata(t_parser *map, char **rfile, size_t i);
+
+/* destroy_structs.c */
 void	free_fdata(t_parser *map);
 void	free_rdata(t_ray *ray);
+void	dall(t_parser *map, t_ray *ray);
 
 // parsing -------------------
 
@@ -69,6 +72,9 @@ bool	get_values(t_parser *fdata, char **rfile);
 
 /* handle_colors.c */
 bool	rgb_to_int(t_parser *map, char **rgb, bool floor);
+
+/* init_mlx.c */
+bool	create_images(t_ray *rdata, t_parser fdata);
 
 /* is_map_valid.c */
 bool	fdata_is_valid(t_parser *map);
@@ -83,16 +89,13 @@ size_t	max_len(char **map);
 bool	found_all_elements(t_parser map);
 char	*skip_whitespaces(char *str);
 
-/* init_mlx.c */
-bool	create_images(t_ray *rdata, t_parser fdata);
-
 // raycasting ----------------
 
 /* display.c */
 void	clean_display(t_ray *rdata);
 void	get_angles(t_ray *rdata, t_card pcard);
 void	init_data(t_ray *rdata);
-int		init_display(t_ray *rdata, t_parser fdata);
+int	init_display(t_ray *rdata, t_parser fdata);
 void	run_game(t_ray *rdata);
 
 /* draw.c */
@@ -102,17 +105,17 @@ void	draw_column(t_ray *rdata, double distance, int colomn);
 /* events.c */
 void	new_position(t_ray *rdata, double angle);
 void	move(int keysym, t_ray *rdata);
-int		close_win(t_ray *rdata);
-int		keys(int keysym, t_ray *rdata);
+int	close_win(t_ray *rdata);
+int	keys(int keysym, t_ray *rdata);
 
 /* raycasting.c */
-int		check_collisions(double x, double y, t_ray *rdata);
-int		find_wall(t_ray *rdata, t_point *pt, t_point *step);
+int	check_collisions(double x, double y, t_ray *rdata);
+int	find_wall(t_ray *rdata, t_point *pt, t_point *step);
 double	vertical_intersection(t_ray *rdata);
 double	horizontal_intersection(t_ray *rdata);
 double	smallest_distance(double hor, double ver, t_ray *rdata);
 void	fish_eye(double *distance, int i, t_ray *rdata);
-int		raycasting(t_ray *rdata);
+int	raycasting(t_ray *rdata);
 
 /* utils.c */
 double	to_radian(double angle);
@@ -123,11 +126,11 @@ void	normalise_angle(double *angle);
 
 // src -----------------------
 
+/* main.c */
+int	main(int ac, char *av[]);
+
 /* print_strcts.c */
 void	print_parser(t_parser parse);
 void	print_ray(t_ray ray);
-
-/* main.c */
-int		main(int ac, char *av[]);
 
 #endif

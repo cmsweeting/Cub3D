@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:43:19 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 17:43:23 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:21:47 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static bool	is_color(t_parser *fdata, char *str)
 	{
 		rgb = ft_split(skip_whitespaces(&str[1]), ',');
 		if (!rgb)
-			return (print_error(errno, "while retrieving RGB colors"), false);
+			return (perr(errno, "while retrieving RGB colors"), false);
 		if (!rgb_to_int(fdata, rgb, true))
 			return (free_dtab(rgb), false);
 		fdata->allt_found += 1;
@@ -77,7 +77,7 @@ static bool	is_color(t_parser *fdata, char *str)
 	{
 		rgb = ft_split(skip_whitespaces(&str[1]), ',');
 		if (!rgb)
-			return (print_error(errno, "while retrieving RGB colors"), false);
+			return (perr(errno, "while retrieving RGB colors"), false);
 		if (!rgb_to_int(fdata, rgb, false))
 			return (free_dtab(rgb), false);
 		fdata->allt_found += 1;
@@ -96,15 +96,15 @@ bool	get_values(t_parser *fdata, char **rfile)
 		if (rfile[i][0] != '\n')
 		{
 			if (fdata->allt_found > 6)
-				return (print_error(0, "Error: extra texture"), false);
+				return (perr(0, "Error: extra texture"), false);
 			if (!is_path(fdata, rfile[i]))
-				return (print_error(0, "Error: invalid texture"), false);
+				return (perr(0, "Error: invalid texture"), false);
 			if (!is_color(fdata, rfile[i]))
 				return (false);
 			if (is_map(rfile[i]))
 			{
 				if (!cpy_fdata(fdata, rfile, i))
-					return (print_error(errno, "while retrieving map"), false);
+					return (perr(errno, "while retrieving map"), false);
 				break ;
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 17:40:54 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:21:59 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int ac, char *av[])
 	t_ray		rdata;
 
 	if (ac != 2)
-		return (print_error(EINVAL, "expected one argument"), EINVAL);
+		return (perr(EINVAL, "expected one argument"), EINVAL);
 	fdata = (t_parser){0};
 	rdata = (t_ray){0};
 	if (!fill_fdata(av[1], &fdata))
@@ -40,8 +40,7 @@ int	main(int ac, char *av[])
 	if (!fdata_is_valid(&fdata))
 		return (free_fdata(&fdata), EINVAL);
 	if (!fill_rdata(&rdata, fdata))
-		return (free_fdata(&fdata), free_rdata(&rdata), print_error(EINVAL, "image"), EINVAL);
+		return (dall(&fdata, &rdata), perr(EINVAL, "invalid texture"), EINVAL);
 	run_game(&rdata);
-	free_fdata(&fdata);
-	free_rdata(&rdata);
+	dall(&fdata, &rdata);
 }

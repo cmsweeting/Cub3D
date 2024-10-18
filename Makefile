@@ -6,7 +6,7 @@
 #    By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:01:27 by cdomet-d          #+#    #+#              #
-#    Updated: 2024/10/17 17:34:01 by cdomet-d         ###   ########.fr        #
+#    Updated: 2024/10/18 11:25:43 by cdomet-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC +=	main.c \
 SRC += $(addprefix $(MADIR), $(MASRC))
 MADIR:=	parsing/memory_allocation/
 MASRC:=	memalloc.c \
+		destroy_structs.c \
 
 SRC += $(addprefix $(PDIR), $(PSRC))
 PDIR:=	parsing/
@@ -51,14 +52,14 @@ PSRC:=	extract_file.c \
 # ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ ERRORS ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ #
 SRC += $(addprefix $(RAYDIR), $(RAYSRC))
 RAYDIR:=	error_handling/
-RAYSRC:=	error_handling.c
+RAYSRC:=	error_handling.c \
 		
 # ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ RAYCASTING ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ #
 SRC += $(addprefix $(EDIR), $(ESRC))
 EDIR:=	raycasting/
 ESRC:=	display.c \
 		draw.c \
-		events.c \
+		events.c \gi
 		raycasting.c \
 		utils.c \
 
