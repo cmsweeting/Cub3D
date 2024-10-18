@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/18 14:56:17 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:41:00 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ double	smallest_distance(double hor, double ver, t_ray *rdata)
 		else
 			rdata->cwall = rdata->map.ea;
 	}
+	printf(" i : %f\n", rdata->i);
 	return (smallest);
 }
 
