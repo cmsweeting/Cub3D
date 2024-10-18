@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:05:10 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/18 13:24:27 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:59:23 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	new_position(t_ray *rdata, double angle)
 	double	x;
 	double	y;
 
-	x = cos(radian(angle)) * 0.2;
-	y = sin(radian(angle)) * 0.2;
+	x = cos(radian(angle)) * 0.005;
+	y = sin(radian(angle)) * 0.005;
 	y *= -1.0;
 	x += rdata->p.x;
 	y += rdata->p.y;
@@ -35,9 +35,9 @@ void	move(t_ray *rdata)
 	double	angle;
 
 	if (rdata->moves.lturn)
-		rdata->c_angle += (30.0 * rdata->rayspacing);
+		rdata->c_angle += (3.0 * rdata->rayspacing);
 	if (rdata->moves.rturn)
-		rdata->c_angle -= (30.0 * rdata->rayspacing);
+		rdata->c_angle -= (3.0 * rdata->rayspacing);
 	angle = rdata->c_angle;
 	if (rdata->moves.down)
 		angle += 180;
