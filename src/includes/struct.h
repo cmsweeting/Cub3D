@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 14:42:35 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:58:55 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct s_ray
 	t_moves			moves;
 	t_point			hhitpt;
 	t_point			vhitpt;
-	int				i;
+	double			i;
 }	t_ray;
 
 // error_handling ------------
