@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:05:10 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/17 19:25:48 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:24:27 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,5 @@ int	key_release(int keysym, t_ray *rdata)
 		rdata->moves.lturn = false;
 	if (keysym == XK_Right)
 		rdata->moves.rturn = false;
+	return (0);
 }
