@@ -115,9 +115,7 @@ void	fish_eye(double *distance, int i, t_ray *rdata);
 int		raycasting(t_ray *rdata);
 
 /* utils.c */
-double	to_radian(double angle);
-double	get_opposite(double adj, double angle);
-double	get_adjacent(double opposite, double angle);
+double	radian(double angle);
 double	get_distance(t_point *pt, t_ray *rdata);
 void	normalise_angle(double *angle);
 

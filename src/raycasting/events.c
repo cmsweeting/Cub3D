@@ -17,8 +17,8 @@ void	new_position(t_ray *rdata, double angle)
 	double	x;
 	double	y;
 
-	x = cosf(to_radian(angle)) * 0.2;
-	y = sinf(to_radian(angle)) * 0.2;
+	x = cos(radian(angle)) * 0.2;
+	y = sin(radian(angle)) * 0.2;
 	y *= -1.0;
 	x += rdata->p.x;
 	y += rdata->p.y;

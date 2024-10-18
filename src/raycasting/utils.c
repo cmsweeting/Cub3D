@@ -12,25 +12,9 @@
 
 #include "cub3D.h"
 
-double	to_radian(double angle)
+double	radian(double angle)
 {
 	return (angle * (PI / 180.0f));
-}
-
-double	get_opposite(double adj, double angle)
-{
-	double	op;
-
-	op = tanf(to_radian(angle)) * adj;
-	return (op);
-}
-
-double	get_adjacent(double opposite, double angle)
-{
-	double	adj;
-
-	adj = opposite / tanf(to_radian(angle));
-	return (adj);
 }
 
 double	get_distance(t_point *pt, t_ray *rdata)
