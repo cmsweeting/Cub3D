@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/18 13:44:24 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:54:10 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	init_display(t_ray *rdata)
 	if (!rdata->mlx)
 		return (1);
 	if (!create_images(rdata))
+		return (1);
+	if(!get_xpmstr(rdata))
 		return (1);
 	rdata->img.strxpm = mlx_get_data_addr(rdata->img.ptr, &rdata->img.bpp, \
 					&rdata->img.len, &rdata->img.endian);
