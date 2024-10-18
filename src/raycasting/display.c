@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/18 12:53:50 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:44:24 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ void	get_angles(t_ray *rdata, t_card pcard)
 
 void	init_data(t_ray *rdata)
 {
+	rdata->map.msize.i -= 1;
+	rdata->map.msize.j -= 1;
 	rdata->p.x = (double)rdata->map.p.j + 0.5;
 	rdata->p.y = (double)rdata->map.p.i + 0.5;
-	rdata->d_screen = (S_WIDTH * 0.5) / tanf(to_radian(FOV * 0.5));
+	rdata->d_screen = (S_WIDTH * 0.5) / tan(radian(FOV * 0.5));
 	get_angles(rdata, rdata->map.pcard);
 }
 
@@ -55,24 +57,18 @@ int	init_display(t_ray *rdata)
 	rdata->img.strxpm = mlx_get_data_addr(rdata->img.ptr, &rdata->img.bpp, \
 					&rdata->img.len, &rdata->img.endian);
 	if (!rdata->img.strxpm)
-	{
 		mlx_destroy_image(rdata->mlx, rdata->img.ptr);
-		return (1);
-	}
 	rdata->win = mlx_new_window(rdata->mlx, S_WIDTH, S_HEIGHT, "Cub3D");
 	if (!rdata->win)
-	{
-		mlx_destroy_display(rdata->mlx);
-		free(rdata->mlx);
 		return (1);
-	}
 	return (0);
 }
 
 void	run_game(t_ray *rdata)
 {
 	mlx_loop_hook(rdata->mlx, &raycasting, rdata);
-	mlx_hook(rdata->win, 2, 1L << 0, &keys, rdata);
+	mlx_hook(rdata->win, 2, 1L << 0, &key_press, rdata);
+	mlx_hook(rdata->win, 3, 1L << 1, &key_release, rdata);
 	mlx_hook(rdata->win, 17, 0, &close_win, rdata);
 	mlx_loop(rdata->mlx);
 }

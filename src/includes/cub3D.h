@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 13:38:16 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:43:29 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # include <X11/X.h>
 # include <X11/X.h>
 
-# define EPSILON 0.00001
+# define EP 0.00001
 # define PI 3.14159265359
 # define CUB 64
 # define FOV 60
@@ -92,6 +92,9 @@ size_t	max_len(char **map);
 bool	found_all_elements(t_parser map);
 char	*skip_whitespaces(char *str);
 
+/* init_mlx.c */
+bool	create_images(t_ray *rdata);
+
 // raycasting ----------------
 
 /* minimap.c */
@@ -110,9 +113,10 @@ void	draw_column(t_ray *rdata, double distance, int colomn);
 
 /* events.c */
 void	new_position(t_ray *rdata, double angle);
-void	move(int keysym, t_ray *rdata);
+void	move(t_ray *rdata);
 int		close_win(t_ray *rdata);
-int		keys(int keysym, t_ray *rdata);
+int		key_press(int keysym, t_ray *rdata);
+int		key_release(int keysym, t_ray *rdata);
 
 /* raycasting.c */
 int		check_collisions(double x, double y, t_ray *rdata);
@@ -124,9 +128,7 @@ void	fish_eye(double *distance, int i, t_ray *rdata);
 int		raycasting(t_ray *rdata);
 
 /* utils.c */
-double	to_radian(double angle);
-double	get_opposite(double adj, double angle);
-double	get_adjacent(double opposite, double angle);
+double	radian(double angle);
 double	get_distance(t_point *pt, t_ray *rdata);
 void	normalise_angle(double *angle);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/17 17:09:13 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:49:39 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	check_collisions(double x, double y, t_ray *rdata)
 {
-	size_t	i;
-	size_t	j;
+	ssize_t	i;
+	ssize_t	j;
 
-	i = (size_t)y;
-	j = (size_t)x;
+	i = (ssize_t)y;
+	j = (ssize_t)x;
 	if (i < 0 || j < 0 || i > rdata->map.msize.i || j > rdata->map.msize.j \
 		|| !rdata->map.map[i][j])
 		return (-1);
@@ -47,21 +47,21 @@ double	vertical_intersection(t_ray *rdata)
 	t_point	step;
 
 	step.x = 1;
-	step.y = get_opposite(1, rdata->r_angle);
+	step.y = tan(radian(rdata->r_angle)) * 1;
 	pt.x = (int)(rdata->p.x);
-	if (cos(to_radian(rdata->r_angle)) == 0)
+	if (cos(radian(rdata->r_angle)) == 0)
 		return (-1);
 	if (rdata->r_angle > 90.0 && rdata->r_angle < 270.0)
 	{
 		step.x *= -1;
-		pt.x -= EPSILON;
+		pt.x -= EP;
 	}
 	else
 	{
 		step.y *= -1;
 		pt.x += 1;
 	}
-	pt.y = rdata->p.y + get_opposite((rdata->p.x) - pt.x, rdata->r_angle);
+	pt.y = rdata->p.y + tan(radian(rdata->r_angle)) * (rdata->p.x - pt.x);
 	if (find_wall(rdata, &pt, &step) == -1)
 		return (-1);
 	return (get_distance(&pt, rdata));
@@ -74,15 +74,15 @@ double	horizontal_intersection(t_ray *rdata)
 
 	step.y = 1;
 	step.x = 0;
-	if (cos(to_radian(rdata->r_angle)) != 0)
-		step.x = get_adjacent(1, rdata->r_angle);
+	if (cos(radian(rdata->r_angle)) != 0)
+		step.x = 1 / tan(radian(rdata->r_angle));
 	pt.y = (int)(rdata->p.y);
-	if (sinf(to_radian(rdata->r_angle)) == 0)
+	if (sin(radian(rdata->r_angle)) == 0)
 		return (-1);
 	if (rdata->r_angle > 0.0 && rdata->r_angle < 180.0)
 	{
 		step.y *= -1;
-		pt.y -= EPSILON;
+		pt.y -= EP;
 	}
 	else
 	{
@@ -90,8 +90,8 @@ double	horizontal_intersection(t_ray *rdata)
 		pt.y += 1;
 	}
 	pt.x = rdata->p.x;
-	if (cos(to_radian(rdata->r_angle)) != 0)
-		pt.x = rdata->p.x + get_adjacent(rdata->p.y - pt.y, rdata->r_angle);
+	if (cos(radian(rdata->r_angle)) != 0)
+		pt.x = rdata->p.x + (rdata->p.y - pt.y) / tan(radian(rdata->r_angle));
 	if (find_wall(rdata, &pt, &step) == -1)
 		return (-1);
 	return (get_distance(&pt, rdata));
@@ -127,7 +127,7 @@ void	fish_eye(double *distance, int i, t_ray *rdata)
 	double	angle;
 
 	angle = (i - S_WIDTH * 0.5) * rdata->rayspacing;
-	*distance *= cosf(to_radian(angle));
+	*distance *= cos(radian(angle));
 }
 
 int	raycasting(t_ray *rdata)
@@ -138,6 +138,7 @@ int	raycasting(t_ray *rdata)
 	double	distance;
 
 	i = 0;
+	move(rdata);
 	rdata->r_angle = rdata->c_angle + 30.0f;
 	normalise_angle(&rdata->r_angle);
 	while (i < S_WIDTH)

@@ -37,8 +37,8 @@
 
 typedef struct s_co
 {
-	size_t	i;
-	size_t	j;
+	ssize_t	i;
+	ssize_t	j;
 }	t_co;
 
 /* Simple chained list*/
