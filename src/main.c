@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 20:03:04 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/18 21:52:05 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 int	main(int ac, char *av[])
 {
-	t_ray		rdata;
+	t_ray		r;
 
 	if (ac != 2)
 		return (perr(EINVAL, "expected one argument"), EINVAL);
-	rdata = (t_ray){0};
-	if (!fill_fdata(av[1], &rdata.map))
-		return (free_fdata(&rdata.map), EINVAL);
-	if (!fdata_is_valid(&rdata.map))
-		return (free_fdata(&rdata.map), EINVAL);
-	if (init_display(&rdata))
-		return (dall(&rdata), perr(EINVAL, "invalid texture"), EINVAL);
-	// print_ray(rdata);
-	run_game(&rdata);
-	dall(&rdata);
+	r = (t_ray){0};
+	if (!fill_f(av[1], &r.map))
+		return (free_f(&r.map), EINVAL);
+	if (!f_is_valid(&r.map))
+		return (free_f(&r.map), EINVAL);
+	if (init_display(&r))
+		return (dall(&r), perr(EINVAL, "invalid texture"), EINVAL);
+	// print_ray(r);
+	run_game(&r);
+	dall(&r);
 }

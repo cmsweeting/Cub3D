@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   destroy_structs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 11:14:28 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 13:47:30 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 21:52:05 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	free_fdata(t_parser *map)
+void	free_f(t_parser *map)
 {
 	if (map->no.pto_file)
 		free(map->no.pto_file);
@@ -25,7 +25,7 @@ void	free_fdata(t_parser *map)
 	free_dtab(map->map);
 }
 
-void	free_rdata(t_ray *ray)
+void	free_r(t_ray *ray)
 {
 	if (ray->map.ea.ptr)
 		mlx_destroy_image(ray->mlx, ray->map.ea.ptr);
@@ -42,6 +42,6 @@ void	free_rdata(t_ray *ray)
 
 void	dall(t_ray *ray)
 {
-	free_fdata(&ray->map);
-	free_rdata(ray);
+	free_f(&ray->map);
+	free_r(ray);
 }
