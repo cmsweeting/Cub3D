@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/18 17:46:32 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 18:49:33 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ void	draw_column(t_ray *rdata, double distance, int colomn)
 	int	half_hp;
 	int	half_screen_height;
 	int col;
-	
 
-	printf("strlen : %ld\n", strlen(rdata->cwall.strxpm));
 	i = 0;
 	line = 0;
 	hp = rdata->d_screen / distance;
@@ -46,9 +44,7 @@ void	draw_column(t_ray *rdata, double distance, int colomn)
 	// 	printf("col : %d\n", (int)(rdata->i * 64) % 64);
 	while (hp > 0 && i < S_HEIGHT)
 	{
-		
-		rdata->color = *(int *)rdata->cwall.strxpm + ((line * rdata->cwall.len + col) * (rdata->cwall.bpp / 8));
-		// printf("index: %d\n", ((line * rdata->cwall.len + col) * (rdata->cwall.bpp / 8)) / 64);
+		rdata->color = *(int *)rdata->cwall.strxpm + (line * rdata->cwall.len + col * (rdata->cwall.bpp / 8));
 		ft_put_pixel(&rdata->img, colomn, i, rdata->color);
 		i++;
 		line++;

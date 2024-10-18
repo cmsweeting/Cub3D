@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:12:15 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 17:01:26 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 18:30:01 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ bool	create_images(t_ray *rdata)
 	rdata->img.ptr = mlx_new_image(rdata->mlx, S_WIDTH, S_HEIGHT);
 	if (!rdata->img.ptr)
 		return (false);
-	printf("%d\n", xpmsize);
+	// printf("%d\n", xpmsize);
 	return (true);
 }
