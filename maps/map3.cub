@@ -1,10 +1,7 @@
-NO ./path_to_th0_north_t0xtur0
-EA 		./path_to_th0_0ast_t0xtur0
-
-
-
-
-WE ./path_to_th0_w0st_t0xtur0
+NO textures/toto.xpm
+EA textures/jojo.xpm
+WE textures/toto.xpm
+SO textures/jojo.xpm
 
 F 08,087,9
 
@@ -13,7 +10,6 @@ F 08,087,9
 C 89,30,89
 
 
-SO ./path_to_th0_south_t0xtur0
 
 11111111
 10000001
