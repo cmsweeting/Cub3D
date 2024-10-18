@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/18 16:23:44 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:42:25 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	draw_column(t_ray *rdata, double distance, int colomn)
 		ft_put_pixel(&rdata->img, colomn, i, SKY);
 		i++;
 	}
-	col = rdata->i - floor(rdata->i) * 64;//) % 64;
+	// col = rdata->i - floor(rdata->i) * 64;//) % 64;
 	// col = 60;
 	printf("col : %d\n", (int)(rdata->i * 64) % 64);
 	while (hp > 0 && i < S_HEIGHT)
