@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 13:02:31 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:42:35 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,12 @@ typedef struct s_ray
 	double			r_angle;
 	int				color;
 	t_img			img;
+	t_img			cwall;
 	t_point			p;
 	t_moves			moves;
+	t_point			hhitpt;
+	t_point			vhitpt;
+	int				i;
 }	t_ray;
 
 // error_handling ------------

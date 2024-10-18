@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/17 17:49:39 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:56:17 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,58 +43,56 @@ int	find_wall(t_ray *rdata, t_point *pt, t_point *step)
 
 double	vertical_intersection(t_ray *rdata)
 {
-	t_point	pt;
 	t_point	step;
 
 	step.x = 1;
 	step.y = tan(radian(rdata->r_angle)) * 1;
-	pt.x = (int)(rdata->p.x);
+	rdata->vhitpt.x = (int)(rdata->p.x);
 	if (cos(radian(rdata->r_angle)) == 0)
 		return (-1);
 	if (rdata->r_angle > 90.0 && rdata->r_angle < 270.0)
 	{
 		step.x *= -1;
-		pt.x -= EP;
+		rdata->vhitpt.x -= EP;
 	}
 	else
 	{
 		step.y *= -1;
-		pt.x += 1;
+		rdata->vhitpt.x += 1;
 	}
-	pt.y = rdata->p.y + tan(radian(rdata->r_angle)) * (rdata->p.x - pt.x);
-	if (find_wall(rdata, &pt, &step) == -1)
+	rdata->vhitpt.y = rdata->p.y + tan(radian(rdata->r_angle)) * (rdata->p.x - rdata->vhitpt.x);
+	if (find_wall(rdata, &rdata->vhitpt, &step) == -1)
 		return (-1);
-	return (get_distance(&pt, rdata));
+	return (get_distance(&rdata->vhitpt, rdata));
 }
 
 double	horizontal_intersection(t_ray *rdata)
 {
-	t_point	pt;
 	t_point	step;
 
 	step.y = 1;
 	step.x = 0;
 	if (cos(radian(rdata->r_angle)) != 0)
 		step.x = 1 / tan(radian(rdata->r_angle));
-	pt.y = (int)(rdata->p.y);
+	rdata->hhitpt.y = (int)(rdata->p.y);
 	if (sin(radian(rdata->r_angle)) == 0)
 		return (-1);
 	if (rdata->r_angle > 0.0 && rdata->r_angle < 180.0)
 	{
 		step.y *= -1;
-		pt.y -= EP;
+		rdata->hhitpt.y -= EP;
 	}
 	else
 	{
 		step.x *= -1;
-		pt.y += 1;
+		rdata->hhitpt.y += 1;
 	}
-	pt.x = rdata->p.x;
+	rdata->hhitpt.x = rdata->p.x;
 	if (cos(radian(rdata->r_angle)) != 0)
-		pt.x = rdata->p.x + (rdata->p.y - pt.y) / tan(radian(rdata->r_angle));
-	if (find_wall(rdata, &pt, &step) == -1)
+		rdata->hhitpt.x = rdata->p.x + (rdata->p.y - rdata->hhitpt.y) / tan(radian(rdata->r_angle));
+	if (find_wall(rdata, &rdata->hhitpt, &step) == -1)
 		return (-1);
-	return (get_distance(&pt, rdata));
+	return (get_distance(&rdata->hhitpt, rdata));
 }
 
 double	smallest_distance(double hor, double ver, t_ray *rdata)
@@ -105,19 +103,21 @@ double	smallest_distance(double hor, double ver, t_ray *rdata)
 	if (ver == -1 || (hor < ver && hor > 0))
 	{
 		smallest = hor;
+		rdata->i = rdata->hhitpt.x;
 		if (rdata->r_angle > 0.0 && rdata->r_angle < 180.0)
-			rdata->color = WALL_N;
+			rdata->cwall = rdata->map.no;
 		else
-			rdata->color = WALL_S;
+			rdata->cwall = rdata->map.so;
 		return (smallest);
 	}
 	else if (ver > 0)
 	{
 		smallest = ver;
+		rdata->i = rdata->vhitpt.y;
 		if (rdata->r_angle > 90.0 && rdata->r_angle < 270.0)
-			rdata->color = WALL_W;
+			rdata->cwall = rdata->map.we;
 		else
-			rdata->color = WALL_E;
+			rdata->cwall = rdata->map.ea;
 	}
 	return (smallest);
 }
