@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 11:14:28 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 12:58:38 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:47:30 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	free_rdata(t_ray *ray)
 	clean_display(ray);
 }
 
-void	dall(t_parser *map, t_ray *ray)
+void	dall(t_ray *ray)
 {
-	free_fdata(map);
+	free_fdata(&ray->map);
 	free_rdata(ray);
 }
