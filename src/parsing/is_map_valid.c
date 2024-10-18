@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:10:09 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 16:59:16 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:21:47 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ bool	fdata_is_valid(t_parser *map)
 
 	wismissing = false;
 	if (!find_player(map))
-		return (print_error(0, "Error: invalid player start position"), false);
+		return (perr(0, "Error: invalid player start position"), false);
 	if (!sqalloc_map(map))
-		return (print_error(errno, "in fdata_is_valid"), false);
+		return (perr(errno, "in fdata_is_valid"), false);
 	if (!iwall(*map))
 	{
 		print_darr(map->map, false);
-		return (print_error(0, "Error: invalid map"), false);
+		return (perr(0, "Error: invalid map"), false);
 	}
 	print_darr(map->map, false);
 	reset_parser(map);

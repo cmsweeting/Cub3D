@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 17:40:00 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:02:31 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ typedef struct s_ray
 
 /* error_handling.c */
 int		verror(char *s1, char *s2, char *s3);
-void	*print_error(int error_code, char *error_message);
+void	*perr(int error_code, char *error_message);
 
 // src -----------------------
 

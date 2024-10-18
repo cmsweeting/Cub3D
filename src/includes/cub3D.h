@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 18:35:45 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:46:59 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 
 /* error_handling.c */
 int		verror(char *s1, char *s2, char *s3);
-void	*print_error(int error_code, char *error_message);
+void	*perr(int error_code, char *error_message);
 
 // memory_allocation ---------
 
@@ -56,8 +56,11 @@ void	*print_error(int error_code, char *error_message);
 bool	ft_realloc(size_t size, char ***arr);
 bool	sqalloc_map(t_parser *map);
 bool	cpy_fdata(t_parser *map, char **rfile, size_t i);
+
+/* destroy_structs.c */
 void	free_fdata(t_parser *map);
 void	free_rdata(t_ray *ray);
+void	dall(t_ray *ray);
 
 // parsing -------------------
 
@@ -70,11 +73,17 @@ bool	get_values(t_parser *fdata, char **rfile);
 /* handle_colors.c */
 bool	rgb_to_int(t_parser *map, char **rgb, bool floor);
 
+/* init_mlx.c */
+bool	create_images(t_ray *rdata);
+
 /* is_map_valid.c */
 bool	fdata_is_valid(t_parser *map);
 
 /* iterative_floodfill.c */
 bool	iwall(t_parser map);
+
+/* init_textures.c */
+bool	get_xpmstr(t_ray *ray);
 
 /* p_utils.c */
 bool	is_invalid_char(char *str);
@@ -87,6 +96,9 @@ char	*skip_whitespaces(char *str);
 bool	create_images(t_ray *rdata);
 
 // raycasting ----------------
+
+/* minimap.c */
+bool	build_minimap(t_ray *ray);
 
 /* display.c */
 void	clean_display(t_ray *rdata);
@@ -122,11 +134,11 @@ void	normalise_angle(double *angle);
 
 // src -----------------------
 
+/* main.c */
+int		main(int ac, char *av[]);
+
 /* print_strcts.c */
 void	print_parser(t_parser parse);
 void	print_ray(t_ray ray);
-
-/* main.c */
-int		main(int ac, char *av[]);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:01:27 by cdomet-d          #+#    #+#              #
-#    Updated: 2024/10/17 17:34:01 by cdomet-d         ###   ########.fr        #
+#    Updated: 2024/10/18 13:38:44 by cdomet-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,39 +24,42 @@ LIB := $(LFTDIR)/libft.a
 H:= -I src/includes/ -I libs/libft -I libs/mlx
 
 CC := cc
-CFLAGS := -Werror -Wextra -Wall -Wshadow -Ofast
-# -g3
+CFLAGS := -Werror -Wextra -Wall -Wshadow -g3 
+# -Ofast
 CPPFLAGS = -MMD -MP $(H)
 MAKEFLAGS += --no-print-directory
 MFLAGS = -L$(MLXDIR) -lmlx_Linux -L/usr/lib -I $(MLX) -lX11 -lm -lz -lXext $(MLX)
 
 SRC +=	main.c \
-		print_strcts.c
+		print_strcts.c \
 
 # ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ PARSING ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ #
 SRC += $(addprefix $(MADIR), $(MASRC))
 MADIR:=	parsing/memory_allocation/
 MASRC:=	memalloc.c \
+		destroy_structs.c \
 
 SRC += $(addprefix $(PDIR), $(PSRC))
 PDIR:=	parsing/
 PSRC:=	extract_file.c \
 		get_map_data.c \
-		p_utils.c \
 		handle_colors.c \
+		init_mlx.c \
+		init_textures.c \
 		is_map_valid.c \
 		iterative_floodfill.c \
-		init_mlx.c \
+		p_utils.c \
 
 # ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ ERRORS ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ #
 SRC += $(addprefix $(RAYDIR), $(RAYSRC))
 RAYDIR:=	error_handling/
-RAYSRC:=	error_handling.c
+RAYSRC:=	error_handling.c \
 		
 # ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ RAYCASTING ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ #
 SRC += $(addprefix $(EDIR), $(ESRC))
 EDIR:=	raycasting/
 ESRC:=	display.c \
+		minimap.c \
 		draw.c \
 		events.c \
 		raycasting.c \

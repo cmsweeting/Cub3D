@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:09:25 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 16:30:19 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:21:47 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static bool	rgb_is_valid(char **rgb)
 
 	i = 0;
 	if (ft_arrlen(rgb) != 3)
-		return (print_error(EINVAL, "missing RGB value"), false);
+		return (perr(EINVAL, "missing RGB value"), false);
 	while (rgb[i])
 	{
 		if (ft_strlen(rgb[i]) > 3 || !str_is_num(rgb[i]))
