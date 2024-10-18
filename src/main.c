@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 13:46:39 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 20:03:04 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int ac, char *av[])
 		return (free_fdata(&rdata.map), EINVAL);
 	if (init_display(&rdata))
 		return (dall(&rdata), perr(EINVAL, "invalid texture"), EINVAL);
+	// print_ray(rdata);
 	run_game(&rdata);
 	dall(&rdata);
 }

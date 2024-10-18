@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/18 14:54:10 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/18 21:44:50 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ int	init_display(t_ray *rdata)
 		return (1);
 	if (!create_images(rdata))
 		return (1);
-	if(!get_xpmstr(rdata))
+	if (!get_xpmstr(rdata))
 		return (1);
-	rdata->img.strxpm = mlx_get_data_addr(rdata->img.ptr, &rdata->img.bpp, \
+	rdata->img.sxpm = mlx_get_data_addr(rdata->img.ptr, &rdata->img.bpp, \
 					&rdata->img.len, &rdata->img.endian);
-	if (!rdata->img.strxpm)
+	if (!rdata->img.sxpm)
 		mlx_destroy_image(rdata->mlx, rdata->img.ptr);
 	rdata->win = mlx_new_window(rdata->mlx, S_WIDTH, S_HEIGHT, "Cub3D");
 	if (!rdata->win)

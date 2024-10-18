@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 15:58:55 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/18 21:44:40 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,17 @@ typedef enum e_cardinal
 
 typedef struct s_img
 {
+	// ptr to xpm
 	void			*ptr;
+	// path to file
 	char			*pto_file;
-	char			*strxpm;
+	// texture size
+	int				xpms;
+	// char * containing xpm data
+	char			*sxpm;
 	// bits per pixel
 	int				bpp;
+	// lenght of the (char *) sxpm
 	int				len;
 	int				endian;
 }	t_img;
@@ -64,7 +70,7 @@ typedef struct s_parser
 	unsigned char	allt_found;
 }	t_parser;
 
-typedef struct	s_moves
+typedef struct s_moves
 {
 	bool			up;
 	bool			down;
@@ -73,6 +79,28 @@ typedef struct	s_moves
 	bool			lturn;
 	bool			rturn;
 }	t_moves;
+
+typedef struct s_draw
+{
+	// vertical iterator
+	int	v_it;
+	// wall perceived height
+	int	phght;
+	// half-screen height
+	int	h_sheight;
+	// wall half perceived height
+	int	h_phght;
+}	t_draw;
+
+typedef struct t_drawco
+{
+	// current column being drawn
+	int		y;
+	// line in which to get pixel in xpmstr
+	double	x;
+	// line incrementer
+	double	x_it;
+}	t_draw_co;
 
 typedef struct s_ray
 {

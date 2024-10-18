@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+         #
+#    By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:01:27 by cdomet-d          #+#    #+#              #
-#    Updated: 2024/10/18 13:38:44 by cdomet-d         ###   ########.fr        #
+#    Updated: 2024/10/18 20:20:38 by cdomet-d         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ LIB := $(LFTDIR)/libft.a
 H:= -I src/includes/ -I libs/libft -I libs/mlx
 
 CC := cc
-CFLAGS := -Werror -Wextra -Wall -Wshadow -g3 
+CFLAGS := -Werror -Wextra -Wall -Wshadow
+#-g3 
 # -Ofast
 CPPFLAGS = -MMD -MP $(H)
 MAKEFLAGS += --no-print-directory

@@ -3,56 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/18 18:49:33 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/18 21:45:20 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	ft_put_pixel(t_img *img, int colomn, int line, int color)
+void	ft_put_pixel(t_img *img, int col, int line, int color)
 {
 	char	*pixel;
 
-	if (colomn < 0 || colomn >= S_WIDTH || line < 0 \
+	if (col < 0 || col >= S_WIDTH || line < 0 \
 		|| line >= S_HEIGHT)
 		return ;
-	pixel = img->strxpm + (line * img->len + colomn * (img->bpp / 8));
+	pixel = img->sxpm + (line * img->len + col * (img->bpp / 8));
 	*(int *)pixel = color;
 }
 
-void	draw_column(t_ray *rdata, double distance, int colomn)
+void	draw_column(t_ray *r, double distance, int col)
 {
-	int	hp;
-	int	i;
-	int	line;
-	int	half_hp;
-	int	half_screen_height;
-	int col;
+	t_draw		dvl;
+	t_draw_co	it;
 
-	i = 0;
-	line = 0;
-	hp = rdata->d_screen / distance;
-	half_hp = hp * 0.5;
-	half_screen_height = S_HEIGHT * 0.5;
-	while (i < (half_screen_height - half_hp) && i < S_HEIGHT)
-		ft_put_pixel(&rdata->img, colomn, i++, SKY);
-	col = (int)((rdata->i) * 64.0) % 64;
-	// if (colomn == 0)
-	// 	printf("col : %d\n", (int)(rdata->i * 64) % 64);
-	while (hp > 0 && i < S_HEIGHT)
+	it.x = 0;
+	dvl.v_it = 0;
+	dvl.phght = r->d_screen / distance;
+	it.x_it = (double)r->cwall.xpms / dvl.phght;
+	dvl.h_phght = dvl.phght * 0.5;
+	dvl.h_sheight = S_HEIGHT * 0.5;
+	while (dvl.v_it < ((dvl.h_sheight) - dvl.h_phght) && dvl.v_it < S_HEIGHT)
+		ft_put_pixel(&r->img, col, dvl.v_it++, SKY);
+	it.y = (int)(r->i * r->cwall.xpms) % r->cwall.xpms;
+	while (dvl.phght > 0 && dvl.v_it < S_HEIGHT)
 	{
-		rdata->color = *(int *)rdata->cwall.strxpm + (line * rdata->cwall.len + col * (rdata->cwall.bpp / 8));
-		ft_put_pixel(&rdata->img, colomn, i, rdata->color);
-		i++;
-		line++;
-		hp--;
+		r->color = *(int *)(r->cwall.sxpm + \
+			((int)it.x * r->cwall.len + it.y * (r->cwall.bpp / 8)));
+		ft_put_pixel(&r->img, col, dvl.v_it, r->color);
+		dvl.v_it++;
+		it.x += it.x_it;
+		dvl.phght--;
 	}
-	while (i < S_HEIGHT)
-	{
-		ft_put_pixel(&rdata->img, colomn, i, GROUND);
-		i++;
-	}
+	while (dvl.v_it < S_HEIGHT)
+		ft_put_pixel(&r->img, col, dvl.v_it++, GROUND);
 }

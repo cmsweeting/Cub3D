@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 17:33:16 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 21:35:49 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 # define PI 3.14159265359
 # define CUB 64
 # define FOV 60
-# define S_WIDTH 1050.0
-# define S_HEIGHT 550.0
+# define S_WIDTH 1900.0
+# define S_HEIGHT 1080.0
 # define SKY 0x112ACD
 # define GROUND 0x070E3F
 # define WALL_N 0xFF9933 //orange
@@ -108,8 +108,8 @@ int		init_display(t_ray *rdata);
 void	run_game(t_ray *rdata);
 
 /* draw.c */
-void	ft_put_pixel(t_img *img, int colomn, int line, int color);
-void	draw_column(t_ray *rdata, double distance, int colomn);
+void	ft_put_pixel(t_img *img, int col, int line, int color);
+void	draw_column(t_ray *r, double distance, int col);
 
 /* events.c */
 void	new_position(t_ray *rdata, double angle);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_strcts.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:49:09 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 17:40:25 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 21:32:09 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ static void	pstart(t_card pcard, t_co p)
 static void	pimg(t_img	texture)
 {
 	printf("Img\n---\n");
-	printf("ptr: %p\n", texture.ptr);
-	printf("xpm_data: %s\n", texture.strxpm);
-	printf("BPP: %d\n", texture.bpp);
-	printf("len: %d\n", texture.len);
-	printf("endian: %d\n", texture.endian);
+	printf("ptr		: %p\n", texture.ptr);
+	printf("xpm_data	: %s\n", texture.sxpm);
+	printf("bpp		: %d\n", texture.bpp);
+	printf("xpms		: %d\n", texture.bpp);
+	printf("len		: %d\n", texture.len);
+	printf("endian		: %d\n", texture.endian);
 	printf("---\n");
 }
 
