@@ -35,8 +35,8 @@
 # define PI 3.14159265359
 # define CUB 64
 # define FOV 60
-# define S_WIDTH 1900.0
-# define S_HEIGHT 1080.0
+# define S_WIDTH 1050.0
+# define S_HEIGHT 550.0
 # define SKY 0x112ACD
 # define GROUND 0x070E3F
 # define WALL_N 0xFF9933 //orange
