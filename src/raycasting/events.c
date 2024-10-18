@@ -22,11 +22,11 @@ void	new_position(t_ray *rdata, double angle)
 	y *= -1.0;
 	x += rdata->p.x;
 	y += rdata->p.y;
-	if (((size_t)x >= 0 || (size_t)x <= rdata->map.msize.j) \
-		&& rdata->map.map[(size_t)y][(size_t)x] != '1')
+	if (((ssize_t)x >= 0 || (ssize_t)x <= rdata->map.msize.j) \
+		&& rdata->map.map[(ssize_t)y][(ssize_t)x] != '1')
 		rdata->p.x = x;
-	if (((size_t)y >= 0 || (size_t)y <= rdata->map.msize.i) \
-		&& rdata->map.map[(size_t)y][(size_t)x] != '1')
+	if (((ssize_t)y >= 0 || (ssize_t)y <= rdata->map.msize.i) \
+		&& rdata->map.map[(ssize_t)y][(ssize_t)x] != '1')
 		rdata->p.y = y;
 }
 

@@ -14,11 +14,11 @@
 
 int	check_collisions(double x, double y, t_ray *rdata)
 {
-	size_t	i;
-	size_t	j;
+	ssize_t	i;
+	ssize_t	j;
 
-	i = (size_t)y;
-	j = (size_t)x;
+	i = (ssize_t)y;
+	j = (ssize_t)x;
 	if (i < 0 || j < 0 || i > rdata->map.msize.i || j > rdata->map.msize.j \
 		|| !rdata->map.map[i][j])
 		return (-1);
