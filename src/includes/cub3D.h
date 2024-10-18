@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 12:58:10 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:38:16 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ bool	found_all_elements(t_parser map);
 char	*skip_whitespaces(char *str);
 
 // raycasting ----------------
+
+/* minimap.c */
+bool	build_minimap(t_ray *ray);
 
 /* display.c */
 void	clean_display(t_ray *rdata);

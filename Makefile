@@ -6,7 +6,7 @@
 #    By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:01:27 by cdomet-d          #+#    #+#              #
-#    Updated: 2024/10/18 11:43:52 by cdomet-d         ###   ########.fr        #
+#    Updated: 2024/10/18 13:38:44 by cdomet-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIB := $(LFTDIR)/libft.a
 H:= -I src/includes/ -I libs/libft -I libs/mlx
 
 CC := cc
-CFLAGS := -Werror -Wextra -Wall -Wshadow -g3
+CFLAGS := -Werror -Wextra -Wall -Wshadow -g3 
 # -Ofast
 CPPFLAGS = -MMD -MP $(H)
 MAKEFLAGS += --no-print-directory
@@ -59,6 +59,7 @@ RAYSRC:=	error_handling.c \
 SRC += $(addprefix $(EDIR), $(ESRC))
 EDIR:=	raycasting/
 ESRC:=	display.c \
+		minimap.c \
 		draw.c \
 		events.c \
 		raycasting.c \
