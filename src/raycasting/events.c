@@ -3,110 +3,110 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:05:10 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/18 14:59:23 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/18 21:46:06 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	new_position(t_ray *rdata, double angle)
+void	new_position(t_ray *r, double angle)
 {
 	double	x;
 	double	y;
 
-	x = cos(radian(angle)) * 0.005;
-	y = sin(radian(angle)) * 0.005;
+	x = cos(radian(angle)) * 0.1;
+	y = sin(radian(angle)) * 0.1;
 	y *= -1.0;
-	x += rdata->p.x;
-	y += rdata->p.y;
-	if (((ssize_t)x >= 0 || (ssize_t)x <= rdata->map.msize.j) \
-		&& rdata->map.map[(ssize_t)y][(ssize_t)x] != '1')
-		rdata->p.x = x;
-	if (((ssize_t)y >= 0 || (ssize_t)y <= rdata->map.msize.i) \
-		&& rdata->map.map[(ssize_t)y][(ssize_t)x] != '1')
-		rdata->p.y = y;
+	x += r->p.x;
+	y += r->p.y;
+	if (((ssize_t)x >= 0 || (ssize_t)x <= r->map.msize.j) \
+		&& r->map.map[(ssize_t)y][(ssize_t)x] != '1')
+		r->p.x = x;
+	if (((ssize_t)y >= 0 || (ssize_t)y <= r->map.msize.i) \
+		&& r->map.map[(ssize_t)y][(ssize_t)x] != '1')
+		r->p.y = y;
 }
 
-void	move(t_ray *rdata)
+void	move(t_ray *r)
 {
 	double	angle;
 
-	if (rdata->moves.lturn)
-		rdata->c_angle += (3.0 * rdata->rayspacing);
-	if (rdata->moves.rturn)
-		rdata->c_angle -= (3.0 * rdata->rayspacing);
-	angle = rdata->c_angle;
-	if (rdata->moves.down)
+	if (r->moves.lturn)
+		r->c_angle += (10.0 * r->rayspacing);
+	if (r->moves.rturn)
+		r->c_angle -= (10.0 * r->rayspacing);
+	angle = r->c_angle;
+	if (r->moves.down)
 		angle += 180;
-	if (rdata->moves.left)
+	if (r->moves.left)
 	{
-		if (rdata->moves.down)
+		if (r->moves.down)
 			angle -= 45;
-		else if (rdata->moves.up)
+		else if (r->moves.up)
 			angle += 45;
 		else
 			angle += 90;
 	}
-	if (rdata->moves.right)
+	if (r->moves.right)
 	{
-		if (rdata->moves.down)
+		if (r->moves.down)
 			angle += 45;
-		else if (rdata->moves.up)
+		else if (r->moves.up)
 			angle -= 45;
 		else
 			angle -= 90;
 	}
-	normalise_angle(&rdata->c_angle);
-	if ((rdata->moves.down && rdata->moves.up) || (rdata->moves.right && rdata->moves.left))
+	normalise_angle(&r->c_angle);
+	if ((r->moves.down && r->moves.up) || (r->moves.right && r->moves.left))
 		return ;
-	else if (rdata->moves.down || rdata->moves.up || rdata->moves.right || rdata->moves.left)
-		new_position(rdata, angle);
+	else if (r->moves.down || r->moves.up || r->moves.right || r->moves.left)
+		new_position(r, angle);
 }
 
-int	close_win(t_ray *rdata)
+int	close_win(t_ray *r)
 {
-	mlx_loop_end(rdata->mlx);
+	mlx_loop_end(r->mlx);
 	return (0);
 }
 
-int	key_press(int keysym, t_ray *rdata)
+int	key_press(int keysym, t_ray *r)
 {
 	if (keysym == XK_Escape)
-		close_win(rdata);
+		close_win(r);
 	else
 	{
 		if (keysym == XK_w)
-			rdata->moves.up = true;
+			r->moves.up = true;
 		if (keysym == XK_s)
-			rdata->moves.down = true;
+			r->moves.down = true;
 		if (keysym == XK_a)
-			rdata->moves.left = true;
+			r->moves.left = true;
 		if (keysym == XK_d)
-			rdata->moves.right = true;
+			r->moves.right = true;
 		if (keysym == XK_Left)
-			rdata->moves.lturn = true;
+			r->moves.lturn = true;
 		if (keysym == XK_Right)
-			rdata->moves.rturn = true;
+			r->moves.rturn = true;
 	}
 	return (0);
 }
 
-int	key_release(int keysym, t_ray *rdata)
+int	key_release(int keysym, t_ray *r)
 {
 	if (keysym == XK_w)
-		rdata->moves.up = false;
+		r->moves.up = false;
 	if (keysym == XK_s)
-		rdata->moves.down = false;
+		r->moves.down = false;
 	if (keysym == XK_a)
-		rdata->moves.left = false;
+		r->moves.left = false;
 	if (keysym == XK_d)
-		rdata->moves.right = false;
+		r->moves.right = false;
 	if (keysym == XK_Left)
-		rdata->moves.lturn = false;
+		r->moves.lturn = false;
 	if (keysym == XK_Right)
-		rdata->moves.rturn = false;
+		r->moves.rturn = false;
 	return (0);
 }
