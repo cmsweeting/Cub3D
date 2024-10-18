@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 11:21:59 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 12:57:33 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ static bool	fill_rdata(t_ray *rdata, t_parser fdata)
 
 	i = -1;
 	rdata->map = fdata;
-	if (init_display(rdata, fdata))
+	if (init_display(rdata))
 		return (false);
-	rdata->map.map = fdata.map;
 	rdata->map.msize.i = fdata.msize.i - 1;
 	rdata->map.msize.j = fdata.msize.j - 1;
+	if (!get_xpmstr(rdata))
+		return (false);
+	print_ray(*rdata);
 	return (true);
 }
 

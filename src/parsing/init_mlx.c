@@ -6,32 +6,32 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:12:15 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/17 17:38:10 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 12:57:57 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "cub3D.h"
 
-bool	create_images(t_ray *rdata, t_parser fdata)
+bool	create_images(t_ray *rdata)
 {
 	int		xpmsize;
 
 	xpmsize = CUB;
-	rdata->map.ea.ptr = mlx_xpm_file_to_image(rdata->mlx, fdata.ea.pto_file, \
-	&xpmsize, &xpmsize);
+	rdata->map.ea.ptr = mlx_xpm_file_to_image(rdata->mlx, \
+		rdata->map.ea.pto_file, &xpmsize, &xpmsize);
 	if (!rdata->map.ea.ptr)
 		return (false);
-	rdata->map.so.ptr = mlx_xpm_file_to_image(rdata->mlx, fdata.so.pto_file, \
-	&xpmsize, &xpmsize);
+	rdata->map.so.ptr = mlx_xpm_file_to_image(rdata->mlx, \
+		rdata->map.so.pto_file, &xpmsize, &xpmsize);
 	if (!rdata->map.so.ptr)
 		return (false);
-	rdata->map.we.ptr = mlx_xpm_file_to_image(rdata->mlx, fdata.we.pto_file, \
-	&xpmsize, &xpmsize);
+	rdata->map.we.ptr = mlx_xpm_file_to_image(rdata->mlx, \
+		rdata->map.we.pto_file, &xpmsize, &xpmsize);
 	if (!rdata->map.we.ptr)
 		return (false);
-	rdata->map.no.ptr = mlx_xpm_file_to_image(rdata->mlx, fdata.no.pto_file, \
-	&xpmsize, &xpmsize);
+	rdata->map.no.ptr = mlx_xpm_file_to_image(rdata->mlx, \
+		rdata->map.no.pto_file, &xpmsize, &xpmsize);
 	if (!rdata->map.no.ptr)
 		return (false);
 	rdata->img.ptr = mlx_new_image(rdata->mlx, S_WIDTH, S_HEIGHT);
