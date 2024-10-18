@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 14:07:34 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/10 16:14:07 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:06:08 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	print_darr(char **arr, bool verbose)
 	i = 0;
 	j = 0;
 	if (!arr || !(*arr))
+	{
+		printf("adress: %p\n", arr);
 		return;
+	}	
 	if (verbose)
 	{
 		printf("arr adress:		%p\n", arr);

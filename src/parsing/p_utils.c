@@ -6,11 +6,11 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:24:31 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/15 17:04:57 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:57:49 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "cub3D.h"
 
 bool	is_invalid_char(char *str)
 {
@@ -63,10 +63,10 @@ size_t	max_len(char **map)
 	return (max);
 }
 
-bool	found_all_elements(t_map map)
+bool	found_all_elements(t_parser map)
 {
-	if ((map.allt_found < 6) || !map.ea_texture || !map.no_texture || \
-	!map.so_texture || !map.we_texture || !map.map)
+	if ((map.allt_found < 6) || !map.ea.pto_file || !map.no.pto_file || \
+	!map.so.pto_file || !map.we.pto_file || !map.map)
 		return (print_error(0, "Error: missing element"), false);
 	return (true);
 }

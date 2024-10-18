@@ -6,98 +6,98 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/16 18:32:04 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:49:39 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#include "cub3D.h"
 
-int	check_collisions(double x, double y, t_data *data)
+int	check_collisions(double x, double y, t_ray *rdata)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
-	i = (int)y;
-	j = (int)x;
-	if (i < 0 || j < 0 || i > data->map_y || j > data->map_x \
-		|| !data->map[i][j])
+	i = (size_t)y;
+	j = (size_t)x;
+	if (i < 0 || j < 0 || i > rdata->map.msize.i || j > rdata->map.msize.j \
+		|| !rdata->map.map[i][j])
 		return (-1);
-	if (data->map[i][j] == '1')
+	if (rdata->map.map[i][j] == '1')
 		return (1);
 	return (0);
 }
 
-int	find_wall(t_data *data, t_point *pt, t_point *step)
+int	find_wall(t_ray *rdata, t_point *pt, t_point *step)
 {
 	int	i;
 
-	i = check_collisions(pt->x, pt->y, data);
+	i = check_collisions(pt->x, pt->y, rdata);
 	while (!i)
 	{
 		pt->x += step->x;
 		pt->y += step->y;
-		i = check_collisions(pt->x, pt->y, data);
+		i = check_collisions(pt->x, pt->y, rdata);
 	}
 	return (i);
 }
 
-double	vertical_intersection(t_data *data)
+double	vertical_intersection(t_ray *rdata)
 {
 	t_point	pt;
 	t_point	step;
 
 	step.x = 1;
-	step.y = get_opposite(1, data->ray_angle);
-	pt.x = (int)(data->p.x);
-	if (cos(to_radian(data->ray_angle)) == 0)
+	step.y = get_opposite(1, rdata->r_angle);
+	pt.x = (int)(rdata->p.x);
+	if (cos(to_radian(rdata->r_angle)) == 0)
 		return (-1);
-	if (data->ray_angle > 90.0 && data->ray_angle < 270.0)
+	if (rdata->r_angle > 90.0 && rdata->r_angle < 270.0)
 	{
 		step.x *= -1;
-		pt.x -= EPSILON;
+		pt.x -= EP;
 	}
 	else
 	{
 		step.y *= -1;
 		pt.x += 1;
 	}
-	pt.y = data->p.y + get_opposite((data->p.x) - pt.x, data->ray_angle);
-	if (find_wall(data, &pt, &step) == -1)
+	pt.y = rdata->p.y + get_opposite((rdata->p.x) - pt.x, rdata->r_angle);
+	if (find_wall(rdata, &pt, &step) == -1)
 		return (-1);
-	return (get_distance(&pt, data));
+	return (get_distance(&pt, rdata));
 }
 
-double	horizontal_intersection(t_data *data)
+double	horizontal_intersection(t_ray *rdata)
 {
 	t_point	pt;
 	t_point	step;
 
 	step.y = 1;
 	step.x = 0;
-	if (cos(to_radian(data->ray_angle)) != 0)
-		step.x = get_adjacent(1, data->ray_angle);
-	pt.y = (int)(data->p.y);
-	if (sinf(to_radian(data->ray_angle)) == 0)
+	if (cos(to_radian(rdata->r_angle)) != 0)
+		step.x = get_adjacent(1, rdata->r_angle);
+	pt.y = (int)(rdata->p.y);
+	if (sinf(to_radian(rdata->r_angle)) == 0)
 		return (-1);
-	if (data->ray_angle > 0.0 && data->ray_angle < 180.0)
+	if (rdata->r_angle > 0.0 && rdata->r_angle < 180.0)
 	{
 		step.y *= -1;
-		pt.y -= EPSILON;
+		pt.y -= EP;
 	}
 	else
 	{
 		step.x *= -1;
 		pt.y += 1;
 	}
-	pt.x = data->p.x;
-	if (cos(to_radian(data->ray_angle)) != 0)
-		pt.x = data->p.x + get_adjacent(data->p.y - pt.y, data->ray_angle);
-	if (find_wall(data, &pt, &step) == -1)
+	pt.x = rdata->p.x;
+	if (cos(to_radian(rdata->r_angle)) != 0)
+		pt.x = rdata->p.x + get_adjacent(rdata->p.y - pt.y, rdata->r_angle);
+	if (find_wall(rdata, &pt, &step) == -1)
 		return (-1);
-	return (get_distance(&pt, data));
+	return (get_distance(&pt, rdata));
 }
 
-double	smallest_distance(double hor, double ver, t_data *data)
+double	smallest_distance(double hor, double ver, t_ray *rdata)
 {
 	double	smallest;
 
@@ -105,32 +105,32 @@ double	smallest_distance(double hor, double ver, t_data *data)
 	if (ver == -1 || (hor < ver && hor > 0))
 	{
 		smallest = hor;
-		if (data->ray_angle > 0.0 && data->ray_angle < 180.0)
-			data->color = WALL_N;
+		if (rdata->r_angle > 0.0 && rdata->r_angle < 180.0)
+			rdata->color = WALL_N;
 		else
-			data->color = WALL_S;
+			rdata->color = WALL_S;
 		return (smallest);
 	}
 	else if (ver > 0)
 	{
 		smallest = ver;
-		if (data->ray_angle > 90.0 && data->ray_angle < 270.0)
-			data->color = WALL_W;
+		if (rdata->r_angle > 90.0 && rdata->r_angle < 270.0)
+			rdata->color = WALL_W;
 		else
-			data->color = WALL_E;
+			rdata->color = WALL_E;
 	}
 	return (smallest);
 }
 
-void	fish_eye(double *distance, int i, t_data *data)
+void	fish_eye(double *distance, int i, t_ray *rdata)
 {
 	double	angle;
 
-	angle = (i - S_WIDTH * 0.5) * data->angle_bt_rays;
+	angle = (i - S_WIDTH * 0.5) * rdata->rayspacing;
 	*distance *= cosf(to_radian(angle));
 }
 
-int	raycasting(t_data *data)
+int	raycasting(t_ray *rdata)
 {
 	int		i;
 	double	horizontal;
@@ -138,19 +138,20 @@ int	raycasting(t_data *data)
 	double	distance;
 
 	i = 0;
-	data->ray_angle = data->p_angle + 30.0f;
-	normalise_angle(&data->ray_angle);
+	rdata->r_angle = rdata->c_angle + 30.0f;
+	normalise_angle(&rdata->r_angle);
 	while (i < S_WIDTH)
 	{
-		horizontal = horizontal_intersection(data);
-		vertical = vertical_intersection(data);
-		distance = smallest_distance(horizontal, vertical, data);
-		fish_eye(&distance, i, data);
-		draw_column(data, distance, i);
-		data->ray_angle -= data->angle_bt_rays;
-		normalise_angle(&data->ray_angle);
+		horizontal = horizontal_intersection(rdata);
+		vertical = vertical_intersection(rdata);
+		distance = smallest_distance(horizontal, vertical, rdata);
+		fish_eye(&distance, i, rdata);
+		draw_column(rdata, distance, i);
+		rdata->r_angle -= rdata->rayspacing;
+		normalise_angle(&rdata->r_angle);
 		i++;
 	}
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.ptr, 0, 0);
+	mlx_put_image_to_window(rdata->mlx, rdata->win, \
+		rdata->img.ptr, 0, 0);
 	return (0);
 }
