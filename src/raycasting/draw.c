@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/18 21:45:20 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/19 12:50:19 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,17 @@ void	draw_column(t_ray *r, double distance, int col)
 	t_draw		dvl;
 	t_draw_co	it;
 
-	it.x = 0;
 	dvl.v_it = 0;
 	dvl.phght = r->d_screen / distance;
-	it.x_it = (double)r->cwall.xpms / dvl.phght;
+	it.x = (double)r->cwall.xpms / dvl.phght;
 	dvl.h_phght = dvl.phght * 0.5;
 	dvl.h_sheight = S_HEIGHT * 0.5;
+	it.x_it = (double)r->cwall.xpms / dvl.phght;
+	int wall_top = dvl.h_sheight - dvl.h_phght;
+	if (wall_top < 0)
+		it.x = -wall_top * it.x_it;
+	else
+		it.x = 0.0;
 	while (dvl.v_it < ((dvl.h_sheight) - dvl.h_phght) && dvl.v_it < S_HEIGHT)
 		ft_put_pixel(&r->img, col, dvl.v_it++, SKY);
 	it.y = (int)(r->i * r->cwall.xpms) % r->cwall.xpms;
