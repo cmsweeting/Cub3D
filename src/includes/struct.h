@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/21 17:37:32 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:47:01 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ typedef struct s_moves
 typedef struct s_draw
 {
 	// vertical iterator
-	int	cur_col;
+	int	line;
 	// wall perceived height
 	int	p_height;
 	// half-screen height
@@ -100,7 +100,7 @@ typedef struct s_draw
 // coordinates used to move in char * sxpm
 typedef struct t_drawco
 {
-	// current column being drawn
+	// col in which to get pixel in xpmstr
 	int		col;
 	// line in which to get pixel in xpmstr
 	double	line;
@@ -125,7 +125,6 @@ typedef struct s_ray
 	double			d_screen;
 	// current ray angle
 	double			r_angle;
-	int				color;
 	t_img			cwall;
 	t_img			img;
 	t_img			minim;
