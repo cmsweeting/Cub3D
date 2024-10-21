@@ -39,10 +39,6 @@
 # define S_HEIGHT 550.0
 # define SKY 0x112ACD
 # define GROUND 0x070E3F
-# define WALL_N 0xFF9933 //orange
-# define WALL_S 0xFF3399 //pink
-# define WALL_W 0x4C0099 //purple
-# define WALL_E 0xFFFF00 //yellow
 
 // error_handling ------------
 
