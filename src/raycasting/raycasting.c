@@ -126,7 +126,7 @@ void	fish_eye(double *distance, int i, t_ray *r)
 {
 	double	angle;
 
-	angle = (i - S_WIDTH * 0.5) * r->rayspacing;
+	angle = (i - r->hs_width) * r->rayspacing;
 	*distance *= cos(radian(angle));
 }
 

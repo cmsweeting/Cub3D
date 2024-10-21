@@ -126,6 +126,8 @@ typedef struct s_ray
 	t_point			hhitpt;
 	t_point			vhitpt;
 	double			i;
+	// half-screen width
+	double			hs_width;
 }	t_ray;
 
 // error_handling ------------
