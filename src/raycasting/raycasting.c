@@ -70,7 +70,7 @@ static double	smallest_distance(double hor, double ver, t_ray *r)
 {
 	double	smallest;
 
-	smallest = 0.0;
+	smallest = 1.0;
 	if (ver == -1 || (hor < ver && hor > 0))
 	{
 		smallest = hor;
