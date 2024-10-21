@@ -23,7 +23,7 @@ void	clean_display(t_ray *r)
 	free(r->mlx);
 }
 
-void	get_angles(t_ray *r, t_card pcard)
+static void	get_angles(t_ray *r, t_card pcard)
 {
 	if (pcard == EA)
 		r->c_angle = 0.0;
@@ -36,7 +36,7 @@ void	get_angles(t_ray *r, t_card pcard)
 	r->rayspacing = 60.0 / (S_WIDTH - 1.0);
 }
 
-void	init_data(t_ray *r)
+static void	init_data(t_ray *r)
 {
 	r->map.msize.i -= 1;
 	r->map.msize.j -= 1;

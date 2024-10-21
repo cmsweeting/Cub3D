@@ -12,36 +12,7 @@
 
 #include "cub3D.h"
 
-int	check_collisions(double x, double y, t_ray *r)
-{
-	ssize_t	i;
-	ssize_t	j;
-
-	i = (ssize_t)y;
-	j = (ssize_t)x;
-	if (i < 0 || j < 0 || i > r->map.msize.i || j > r->map.msize.j \
-		|| !r->map.map[i][j])
-		return (-1);
-	if (r->map.map[i][j] == '1')
-		return (1);
-	return (0);
-}
-
-int	find_wall(t_ray *r, t_point *pt, t_point *step)
-{
-	int	i;
-
-	i = check_collisions(pt->x, pt->y, r);
-	while (!i)
-	{
-		pt->x += step->x;
-		pt->y += step->y;
-		i = check_collisions(pt->x, pt->y, r);
-	}
-	return (i);
-}
-
-double	vertical_intersection(t_ray *r)
+static double	vertical_intersection(t_ray *r)
 {
 	t_point	step;
 
@@ -66,7 +37,7 @@ double	vertical_intersection(t_ray *r)
 	return (get_distance(&r->vhitpt, r));
 }
 
-double	horizontal_intersection(t_ray *r)
+static double	horizontal_intersection(t_ray *r)
 {
 	t_point	step;
 
@@ -95,7 +66,7 @@ double	horizontal_intersection(t_ray *r)
 	return (get_distance(&r->hhitpt, r));
 }
 
-double	smallest_distance(double hor, double ver, t_ray *r)
+static double	smallest_distance(double hor, double ver, t_ray *r)
 {
 	double	smallest;
 
@@ -122,7 +93,7 @@ double	smallest_distance(double hor, double ver, t_ray *r)
 	return (smallest);
 }
 
-void	fish_eye(double *distance, int i, t_ray *r)
+static void	fish_eye(double *distance, int i, t_ray *r)
 {
 	double	angle;
 

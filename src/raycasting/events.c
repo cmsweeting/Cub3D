@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-void	new_position(t_ray *r, double angle)
+static void	new_position(t_ray *r, double angle)
 {
 	double	x;
 	double	y;

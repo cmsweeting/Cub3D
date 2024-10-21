@@ -98,35 +98,27 @@ bool	build_minimap(t_ray *ray);
 
 /* display.c */
 void	clean_display(t_ray *r);
-void	get_angles(t_ray *r, t_card pcard);
-void	init_data(t_ray *r);
 int		init_display(t_ray *r);
 void	run_game(t_ray *r);
 
 /* draw.c */
-void	ft_put_pixel(t_img *img, int col, int line, int color);
 void	draw_column(t_ray *r, double distance, int col);
 
 /* events.c */
-void	new_position(t_ray *r, double angle);
 void	move(t_ray *r);
 int		close_win(t_ray *r);
 int		key_press(int keysym, t_ray *r);
 int		key_release(int keysym, t_ray *r);
 
 /* raycasting.c */
-int		check_collisions(double x, double y, t_ray *r);
-int		find_wall(t_ray *r, t_point *pt, t_point *step);
-double	vertical_intersection(t_ray *r);
-double	horizontal_intersection(t_ray *r);
-double	smallest_distance(double hor, double ver, t_ray *r);
-void	fish_eye(double *distance, int i, t_ray *r);
 int		raycasting(t_ray *r);
 
 /* utils.c */
 double	radian(double angle);
 double	get_distance(t_point *pt, t_ray *r);
 void	normalise_angle(double *angle);
+int		check_collisions(double x, double y, t_ray *r);
+int		find_wall(t_ray *r, t_point *pt, t_point *step);
 
 // src -----------------------
 
