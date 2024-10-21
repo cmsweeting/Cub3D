@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/21 16:49:59 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:37:38 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ bool	fill_f(char *arg, t_parser *f);
 bool	get_values(t_parser *f, char **rfile);
 
 /* handle_colors.c */
-unsigned long int_to_hex(short int color[3]);
+unsigned long	int_to_hex(short int color[3]);
 bool	rgb_to_int(t_parser *map, char **rgb, bool floor);
 
 /* init_mlx.c */
