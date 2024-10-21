@@ -39,8 +39,6 @@
 # define EBYTES 0xff
 # define S_WIDTH 1050.0
 # define S_HEIGHT 550.0
-# define SKY 0x112ACD
-# define GROUND 0x070E3F
 
 // error_handling ------------
 
@@ -108,10 +106,12 @@ void	run_game(t_ray *r);
 void	draw_column(t_ray *r, double distance, int col);
 
 /* events.c */
-void	move(t_ray *r);
 int		close_win(t_ray *r);
 int		key_press(int keysym, t_ray *r);
 int		key_release(int keysym, t_ray *r);
+
+/* movements.c */
+void	move(t_ray *r);
 
 /* raycasting.c */
 int		raycasting(t_ray *r);

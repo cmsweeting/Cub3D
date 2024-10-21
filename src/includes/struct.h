@@ -80,6 +80,10 @@ typedef struct s_moves
 	bool			right;
 	bool			lturn;
 	bool			rturn;
+	// rotation speed
+	double			rot_s;
+	// movement speed
+	double			mov_s;
 }	t_moves;
 
 // values used to draw the textures in the window

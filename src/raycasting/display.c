@@ -45,6 +45,8 @@ static void	init_data(t_ray *r)
 	r->hs_width = S_WIDTH * 0.5;
 	r->d_screen = r->hs_width / tan(radian(FOV * 0.5));
 	get_angles(r, r->map.pcard);
+	r->moves.rot_s = 10.0 * (S_WIDTH / 1050.0) * r->rayspacing;
+	r->moves.mov_s = 0.1 * (S_WIDTH / 1050.0);
 }
 
 int	init_display(t_ray *r)

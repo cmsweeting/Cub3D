@@ -66,6 +66,7 @@ EDIR:=	raycasting/
 ESRC:=	display.c \
 		draw.c \
 		events.c \
+		movements.c \
 		raycasting.c \
 		utils.c \
 
