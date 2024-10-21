@@ -42,7 +42,8 @@ void	init_data(t_ray *r)
 	r->map.msize.j -= 1;
 	r->p.x = (double)r->map.p.j + 0.5;
 	r->p.y = (double)r->map.p.i + 0.5;
-	r->d_screen = (S_WIDTH * 0.5) / tan(radian(FOV * 0.5));
+	r->hs_width = S_WIDTH * 0.5;
+	r->d_screen = r->hs_width / tan(radian(FOV * 0.5));
 	get_angles(r, r->map.pcard);
 }
 
@@ -56,10 +57,6 @@ int	init_display(t_ray *r)
 		return (1);
 	if (!get_xpmstr(r))
 		return (1);
-	r->img.sxpm = mlx_get_data_addr(r->img.ptr, &r->img.bpp, \
-					&r->img.len, &r->img.endian);
-	if (!r->img.sxpm)
-		mlx_destroy_image(r->mlx, r->img.ptr);
 	r->win = mlx_new_window(r->mlx, S_WIDTH, S_HEIGHT, "Cub3D");
 	if (!r->win)
 		return (1);
