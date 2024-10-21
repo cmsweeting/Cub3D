@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:16:41 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/21 16:51:53 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:50:18 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void	new_position(t_ray *r, double angle)
 	double	x;
 	double	y;
 
-	x = cos(radian(angle)) * 0.065;
-	y = sin(radian(angle)) * 0.065;
+	x = cos(radian(angle)) * 0.125;
+	y = sin(radian(angle)) * 0.125;
 	y *= -1.0;
 	x += r->p.x;
 	y += r->p.y;
