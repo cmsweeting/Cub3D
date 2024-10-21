@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/21 17:27:55 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:33:41 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ double	smallest_distance(double hor, double ver, t_ray *r)
 		else
 		{
 			r->i = fabs(1 - r->i);
-			// r->i = 1 - r->i;
 			r->cwall = r->map.so;
 		}
 		return (smallest);
@@ -121,7 +120,6 @@ double	smallest_distance(double hor, double ver, t_ray *r)
 		if (r->r_angle > 90.0 && r->r_angle < 270.0)
 		{
 			r->i = fabs(1 - r->i);
-			// r->i = 1 - r->i;
 			r->cwall = r->map.we;
 		}
 		else
@@ -160,7 +158,6 @@ int	raycasting(t_ray *r)
 		normalise_angle(&r->r_angle);
 		i++;
 	}
-	mlx_put_image_to_window(r->mlx, r->win, \
-		r->img.ptr, 0, 0);
+	mlx_put_image_to_window(r->mlx, r->win, r->img.ptr, 0, 0);
 	return (0);
 }
