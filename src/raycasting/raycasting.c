@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/21 10:49:17 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:27:55 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,11 @@ double	smallest_distance(double hor, double ver, t_ray *r)
 		if (r->r_angle > 0.0 && r->r_angle < 180.0)
 			r->cwall = r->map.no;
 		else
+		{
+			r->i = fabs(1 - r->i);
+			// r->i = 1 - r->i;
 			r->cwall = r->map.so;
+		}
 		return (smallest);
 	}
 	else if (ver > 0)
@@ -115,7 +119,11 @@ double	smallest_distance(double hor, double ver, t_ray *r)
 		smallest = ver;
 		r->i = r->vhitpt.y;
 		if (r->r_angle > 90.0 && r->r_angle < 270.0)
+		{
+			r->i = fabs(1 - r->i);
+			// r->i = 1 - r->i;
 			r->cwall = r->map.we;
+		}
 		else
 			r->cwall = r->map.ea;
 	}
