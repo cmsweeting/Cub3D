@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:43:19 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 21:52:05 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/21 11:45:17 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,7 @@ bool	get_values(t_parser *f, char **rfile)
 		}
 		i++;
 	}
+	f->ceiling = int_to_hex(f->ccolor);
+	f->floor = int_to_hex(f->fcolor);
 	return (found_all_elements(*f));
 }

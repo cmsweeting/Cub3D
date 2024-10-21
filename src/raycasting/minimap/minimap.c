@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 13:08:09 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 21:46:29 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/21 11:22:36 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-// bool	build_minimap(t_ray *ray)
-// {
-// }
+bool	build_minimap(t_ray *ray)
+{
+	(void)ray;
+	return (true);
+}
