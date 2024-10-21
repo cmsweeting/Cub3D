@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/19 12:45:22 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/21 11:22:07 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define PI 3.14159265359
 # define CUB 64
 # define FOV 60
+// masks the 8 lowest bytes of a RGB component
+# define EBYTES 0xff
 # define S_WIDTH 1050.0
 # define S_HEIGHT 550.0
 # define SKY 0x112ACD
@@ -71,6 +73,7 @@ bool	fill_f(char *arg, t_parser *f);
 bool	get_values(t_parser *f, char **rfile);
 
 /* handle_colors.c */
+unsigned long int_to_hex(short int color[3]);
 bool	rgb_to_int(t_parser *map, char **rgb, bool floor);
 
 /* init_mlx.c */
@@ -98,7 +101,7 @@ bool	create_images(t_ray *r);
 // raycasting ----------------
 
 /* minimap.c */
-bool	build_minimap(t_ray *ray);
+// bool	build_minimap(t_ray *ray);
 
 /* display.c */
 void	clean_display(t_ray *r);

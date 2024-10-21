@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/19 21:46:36 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/21 11:43:18 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	draw_column(t_ray *r, double distance, int col)
 	if (d.wall_top < 0)
 		it.line = -d.wall_top * it.line_it;
 	while (d.cur_col < ((d.hs_height) - d.hp_height) && d.cur_col < S_HEIGHT)
-		ft_put_pixel(&r->img, col, d.cur_col++, SKY);
+		ft_put_pixel(&r->img, col, d.cur_col++, r->map.ceiling);
 	it.col = (int)(r->i * r->cwall.xpms) % r->cwall.xpms;
 	while (d.p_height-- > 0 && d.cur_col < S_HEIGHT)
 	{
@@ -48,5 +48,5 @@ void	draw_column(t_ray *r, double distance, int col)
 		it.line += it.line_it;
 	}
 	while (d.cur_col < S_HEIGHT)
-		ft_put_pixel(&r->img, col, d.cur_col++, GROUND);
+		ft_put_pixel(&r->img, col, d.cur_col++, r->map.floor);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/19 21:48:27 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/21 11:06:11 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct s_parser
 	char			**map;
 	short int		ccolor[3];
 	short int		fcolor[3];
+	unsigned long	ceiling;
+	unsigned long	floor;
 	t_card			pcard;
 	t_co			msize;
 	t_co			p;
@@ -80,7 +82,7 @@ typedef struct s_moves
 	bool			rturn;
 }	t_moves;
 
-// 
+// values used to draw the textures in the window
 typedef struct s_draw
 {
 	// vertical iterator
@@ -95,6 +97,7 @@ typedef struct s_draw
 	int	wall_top;
 }	t_draw;
 
+// coordinates used to move in char * sxpm
 typedef struct t_drawco
 {
 	// current column being drawn
@@ -119,11 +122,11 @@ typedef struct s_ray
 	// current ray angle
 	double			r_angle;
 	int				color;
-	t_img			img;
 	t_img			cwall;
-	t_point			p;
+	t_img			img;
 	t_moves			moves;
 	t_point			hhitpt;
+	t_point			p;
 	t_point			vhitpt;
 	double			i;
 }	t_ray;

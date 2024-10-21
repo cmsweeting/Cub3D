@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/18 21:46:22 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/21 10:49:17 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	check_collisions(double x, double y, t_ray *r)
 
 	i = (ssize_t)y;
 	j = (ssize_t)x;
-	if (i < 0 || j < 0 || i > r->map.msize.i || j > r->map.msize.j \
-		|| !r->map.map[i][j])
+	if (i < 0 || j < 0 || i > r->map.msize.i || \
+	j > r->map.msize.j || !r->map.map[i][j])
 		return (-1);
 	if (r->map.map[i][j] == '1')
 		return (1);
