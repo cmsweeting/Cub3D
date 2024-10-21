@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 21:44:40 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/19 21:48:27 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,26 +80,29 @@ typedef struct s_moves
 	bool			rturn;
 }	t_moves;
 
+// 
 typedef struct s_draw
 {
 	// vertical iterator
-	int	v_it;
+	int	cur_col;
 	// wall perceived height
-	int	phght;
+	int	p_height;
 	// half-screen height
-	int	h_sheight;
+	int	hs_height;
 	// wall half perceived height
-	int	h_phght;
+	int	hp_height;
+	// used to see if the top of the wall is visible or not
+	int	wall_top;
 }	t_draw;
 
 typedef struct t_drawco
 {
 	// current column being drawn
-	int		y;
+	int		col;
 	// line in which to get pixel in xpmstr
-	double	x;
+	double	line;
 	// line incrementer
-	double	x_it;
+	double	line_it;
 }	t_draw_co;
 
 typedef struct s_ray
