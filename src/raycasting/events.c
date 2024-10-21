@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:05:10 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/18 21:46:06 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/21 17:03:24 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	move(t_ray *r)
 		r->c_angle += (10.0 * r->rayspacing);
 	if (r->moves.rturn)
 		r->c_angle -= (10.0 * r->rayspacing);
+	normalise_angle(&r->c_angle);
 	angle = r->c_angle;
 	if (r->moves.down)
 		angle += 180;
@@ -59,7 +60,7 @@ void	move(t_ray *r)
 		else
 			angle -= 90;
 	}
-	normalise_angle(&r->c_angle);
+	normalise_angle(&angle);
 	if ((r->moves.down && r->moves.up) || (r->moves.right && r->moves.left))
 		return ;
 	else if (r->moves.down || r->moves.up || r->moves.right || r->moves.left)

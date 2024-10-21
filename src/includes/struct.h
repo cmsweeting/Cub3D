@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/21 11:06:11 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/21 15:21:18 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,10 @@ typedef struct t_drawco
 	double	line_it;
 }	t_draw_co;
 
+typedef struct s_minimap
+{
+}	t_mmap;
+
 typedef struct s_ray
 {
 	void			*mlx;
@@ -124,6 +128,7 @@ typedef struct s_ray
 	int				color;
 	t_img			cwall;
 	t_img			img;
+	t_img			minim;
 	t_moves			moves;
 	t_point			hhitpt;
 	t_point			p;

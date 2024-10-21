@@ -1,10 +1,10 @@
-NO textures/north.xpm
-EA textures/east.xpm
-WE textures/west.xpm
-SO textures/south.xpm
+NO textures/jkk1.xpm
+EA textures/jkk2.xpm
+WE textures/jkk3.xpm
+SO textures/jkk4.xpm
 
-C 83,114,187
-F 159,220,22
+C 174,198,210
+F 255,131,214
 
 1111111111111111111111111
 10000010000010000000001
