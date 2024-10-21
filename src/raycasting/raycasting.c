@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/21 17:33:41 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:07:10 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static double	smallest_distance(double hor, double ver, t_ray *r)
 			r->cwall = r->map.no;
 		else
 		{
-			r->i = fabs(1 - r->i);
+			r->i = 1.0 - fmod(r->i, 1.0);
 			r->cwall = r->map.so;
 		}
 		return (smallest);
@@ -90,7 +90,7 @@ static double	smallest_distance(double hor, double ver, t_ray *r)
 		r->i = r->vhitpt.y;
 		if (r->r_angle > 90.0 && r->r_angle < 270.0)
 		{
-			r->i = fabs(1 - r->i);
+			r->i = 1.0 - fmod(r->i, 1.0);
 			r->cwall = r->map.we;
 		}
 		else
