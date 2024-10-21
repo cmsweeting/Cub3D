@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memalloc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:07:10 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 11:14:38 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 21:52:05 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ bool	sqalloc_map(t_parser *map)
 	return (true);
 }
 
-bool	cpy_fdata(t_parser *map, char **rfile, size_t i)
+bool	cpy_f(t_parser *map, char **rfile, size_t i)
 {
 	size_t	size;
 	size_t	j;

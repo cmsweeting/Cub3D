@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 13:02:31 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/19 21:48:27 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,17 @@ typedef enum e_cardinal
 
 typedef struct s_img
 {
+	// ptr to xpm
 	void			*ptr;
+	// path to file
 	char			*pto_file;
-	char			*strxpm;
+	// texture size
+	int				xpms;
+	// char * containing xpm data
+	char			*sxpm;
 	// bits per pixel
 	int				bpp;
+	// lenght of the (char *) sxpm
 	int				len;
 	int				endian;
 }	t_img;
@@ -64,7 +70,7 @@ typedef struct s_parser
 	unsigned char	allt_found;
 }	t_parser;
 
-typedef struct	s_moves
+typedef struct s_moves
 {
 	bool			up;
 	bool			down;
@@ -73,6 +79,31 @@ typedef struct	s_moves
 	bool			lturn;
 	bool			rturn;
 }	t_moves;
+
+// 
+typedef struct s_draw
+{
+	// vertical iterator
+	int	cur_col;
+	// wall perceived height
+	int	p_height;
+	// half-screen height
+	int	hs_height;
+	// wall half perceived height
+	int	hp_height;
+	// used to see if the top of the wall is visible or not
+	int	wall_top;
+}	t_draw;
+
+typedef struct t_drawco
+{
+	// current column being drawn
+	int		col;
+	// line in which to get pixel in xpmstr
+	double	line;
+	// line incrementer
+	double	line_it;
+}	t_draw_co;
 
 typedef struct s_ray
 {
@@ -89,8 +120,12 @@ typedef struct s_ray
 	double			r_angle;
 	int				color;
 	t_img			img;
+	t_img			cwall;
 	t_point			p;
 	t_moves			moves;
+	t_point			hhitpt;
+	t_point			vhitpt;
+	double			i;
 }	t_ray;
 
 // error_handling ------------

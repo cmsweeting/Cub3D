@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:31:22 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 11:21:47 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 21:52:05 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static bool	open_file(char *arg, char ***rfile)
 	return (true);
 }
 
-bool	fill_fdata(char *arg, t_parser *fdata)
+bool	fill_f(char *arg, t_parser *f)
 {
 	char	**rfile;
 
@@ -73,7 +73,7 @@ bool	fill_fdata(char *arg, t_parser *fdata)
 		return (perr(EINVAL, "extension should be .cub"), false);
 	if (!open_file(arg, &rfile))
 		return (false);
-	if (!get_values(fdata, rfile))
+	if (!get_values(f, rfile))
 		return (free_dtab(rfile), perr(errno, "Error while processing \
 file"), false);
 	free_dtab(rfile);

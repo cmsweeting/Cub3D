@@ -3,72 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/18 13:44:24 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 21:51:29 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "cub3D.h"
 
-void	clean_display(t_ray *rdata)
+void	clean_display(t_ray *r)
 {
-	if (rdata->win)
-		mlx_destroy_window(rdata->mlx, rdata->win);
-	rdata->win = NULL;
-	if (rdata->mlx)
-		mlx_destroy_display(rdata->mlx);
-	free(rdata->mlx);
+	if (r->win)
+		mlx_destroy_window(r->mlx, r->win);
+	r->win = NULL;
+	if (r->mlx)
+		mlx_destroy_display(r->mlx);
+	free(r->mlx);
 }
 
-void	get_angles(t_ray *rdata, t_card pcard)
+void	get_angles(t_ray *r, t_card pcard)
 {
 	if (pcard == EA)
-		rdata->c_angle = 0.0;
+		r->c_angle = 0.0;
 	else if (pcard == NO)
-		rdata->c_angle = 90.0;
+		r->c_angle = 90.0;
 	else if (pcard == WE)
-		rdata->c_angle = 180.0;
+		r->c_angle = 180.0;
 	else if (pcard == SO)
-		rdata->c_angle = 270.0;
-	rdata->rayspacing = 60.0 / (S_WIDTH - 1.0);
+		r->c_angle = 270.0;
+	r->rayspacing = 60.0 / (S_WIDTH - 1.0);
 }
 
-void	init_data(t_ray *rdata)
+void	init_data(t_ray *r)
 {
-	rdata->map.msize.i -= 1;
-	rdata->map.msize.j -= 1;
-	rdata->p.x = (double)rdata->map.p.j + 0.5;
-	rdata->p.y = (double)rdata->map.p.i + 0.5;
-	rdata->d_screen = (S_WIDTH * 0.5) / tan(radian(FOV * 0.5));
-	get_angles(rdata, rdata->map.pcard);
+	r->map.msize.i -= 1;
+	r->map.msize.j -= 1;
+	r->p.x = (double)r->map.p.j + 0.5;
+	r->p.y = (double)r->map.p.i + 0.5;
+	r->d_screen = (S_WIDTH * 0.5) / tan(radian(FOV * 0.5));
+	get_angles(r, r->map.pcard);
 }
 
-int	init_display(t_ray *rdata)
+int	init_display(t_ray *r)
 {
-	init_data(rdata);
-	rdata->mlx = mlx_init();
-	if (!rdata->mlx)
+	init_data(r);
+	r->mlx = mlx_init();
+	if (!r->mlx)
 		return (1);
-	if (!create_images(rdata))
+	if (!create_images(r))
 		return (1);
-	rdata->img.strxpm = mlx_get_data_addr(rdata->img.ptr, &rdata->img.bpp, \
-					&rdata->img.len, &rdata->img.endian);
-	if (!rdata->img.strxpm)
-		mlx_destroy_image(rdata->mlx, rdata->img.ptr);
-	rdata->win = mlx_new_window(rdata->mlx, S_WIDTH, S_HEIGHT, "Cub3D");
-	if (!rdata->win)
+	if (!get_xpmstr(r))
+		return (1);
+	r->img.sxpm = mlx_get_data_addr(r->img.ptr, &r->img.bpp, \
+					&r->img.len, &r->img.endian);
+	if (!r->img.sxpm)
+		mlx_destroy_image(r->mlx, r->img.ptr);
+	r->win = mlx_new_window(r->mlx, S_WIDTH, S_HEIGHT, "Cub3D");
+	if (!r->win)
 		return (1);
 	return (0);
 }
 
-void	run_game(t_ray *rdata)
+void	run_game(t_ray *r)
 {
-	mlx_loop_hook(rdata->mlx, &raycasting, rdata);
-	mlx_hook(rdata->win, 2, 1L << 0, &key_press, rdata);
-	mlx_hook(rdata->win, 3, 1L << 1, &key_release, rdata);
-	mlx_hook(rdata->win, 17, 0, &close_win, rdata);
-	mlx_loop(rdata->mlx);
+	mlx_loop_hook(r->mlx, &raycasting, r);
+	mlx_hook(r->win, 2, 1L << 0, &key_press, r);
+	mlx_hook(r->win, 3, 1L << 1, &key_release, r);
+	mlx_hook(r->win, 17, 0, &close_win, r);
+	mlx_loop(r->mlx);
 }

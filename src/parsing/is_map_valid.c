@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_map_valid.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:10:09 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 11:21:47 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/18 21:52:05 by cdomet-d         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,12 @@ static bool	find_player(t_parser *map)
 	return (map->found_p);
 }
 
-bool	fdata_is_valid(t_parser *map)
+bool	f_is_valid(t_parser *map)
 {
-	bool	wismissing;
-
-	wismissing = false;
 	if (!find_player(map))
 		return (perr(0, "Error: invalid player start position"), false);
 	if (!sqalloc_map(map))
-		return (perr(errno, "in fdata_is_valid"), false);
+		return (perr(errno, "in f_is_valid"), false);
 	if (!iwall(*map))
 	{
 		print_darr(map->map, false);
