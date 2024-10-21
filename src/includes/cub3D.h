@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/21 11:22:07 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:49:59 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define FOV 60
 // masks the 8 lowest bytes of a RGB component
 # define EBYTES 0xff
-# define S_WIDTH 1050.0
-# define S_HEIGHT 550.0
+# define S_WIDTH 1920.0
+# define S_HEIGHT 1080.0
 
 // error_handling ------------
 

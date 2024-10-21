@@ -1,4 +1,14 @@
-//HEADER
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movements.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/21 14:16:41 by csweetin          #+#    #+#             */
+/*   Updated: 2024/10/21 16:51:53 by csweetin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3D.h"
 
@@ -7,8 +17,8 @@ static void	new_position(t_ray *r, double angle)
 	double	x;
 	double	y;
 
-	x = cos(radian(angle)) * r->moves.mov_s;
-	y = sin(radian(angle)) * r->moves.mov_s;
+	x = cos(radian(angle)) * 0.065;
+	y = sin(radian(angle)) * 0.065;
 	y *= -1.0;
 	x += r->p.x;
 	y += r->p.y;
@@ -51,9 +61,9 @@ void	move(t_ray *r)
 	double	angle;
 
 	if (r->moves.lturn)
-		r->c_angle += r->moves.rot_s;
+		r->c_angle += 1.0;
 	if (r->moves.rturn)
-		r->c_angle -= r->moves.rot_s;
+		r->c_angle -= 1.0;
 	normalise_angle(&r->c_angle);
 	move_angle(r, &angle);
 	if ((r->moves.down && r->moves.up) || (r->moves.right && r->moves.left))

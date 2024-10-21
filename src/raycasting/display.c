@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/18 21:51:29 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/21 16:49:02 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ static void	init_data(t_ray *r)
 	r->hs_width = S_WIDTH * 0.5;
 	r->d_screen = r->hs_width / tan(radian(FOV * 0.5));
 	get_angles(r, r->map.pcard);
-	r->moves.rot_s = 10.0 * (S_WIDTH / 1050.0) * r->rayspacing;
-	r->moves.mov_s = 0.1 * (S_WIDTH / 1050.0);
 }
 
 int	init_display(t_ray *r)
