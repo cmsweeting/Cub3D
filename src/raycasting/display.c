@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:29 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/18 21:51:29 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/21 16:49:02 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	clean_display(t_ray *r)
 	free(r->mlx);
 }
 
-void	get_angles(t_ray *r, t_card pcard)
+static void	get_angles(t_ray *r, t_card pcard)
 {
 	if (pcard == EA)
 		r->c_angle = 0.0;
@@ -36,13 +36,14 @@ void	get_angles(t_ray *r, t_card pcard)
 	r->rayspacing = 60.0 / (S_WIDTH - 1.0);
 }
 
-void	init_data(t_ray *r)
+static void	init_data(t_ray *r)
 {
 	r->map.msize.i -= 1;
 	r->map.msize.j -= 1;
 	r->p.x = (double)r->map.p.j + 0.5;
 	r->p.y = (double)r->map.p.i + 0.5;
-	r->d_screen = (S_WIDTH * 0.5) / tan(radian(FOV * 0.5));
+	r->hs_width = S_WIDTH * 0.5;
+	r->d_screen = r->hs_width / tan(radian(FOV * 0.5));
 	get_angles(r, r->map.pcard);
 }
 
@@ -56,10 +57,6 @@ int	init_display(t_ray *r)
 		return (1);
 	if (!get_xpmstr(r))
 		return (1);
-	r->img.sxpm = mlx_get_data_addr(r->img.ptr, &r->img.bpp, \
-					&r->img.len, &r->img.endian);
-	if (!r->img.sxpm)
-		mlx_destroy_image(r->mlx, r->img.ptr);
 	r->win = mlx_new_window(r->mlx, S_WIDTH, S_HEIGHT, "Cub3D");
 	if (!r->win)
 		return (1);

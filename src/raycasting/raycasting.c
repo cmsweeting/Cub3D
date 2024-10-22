@@ -3,45 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/21 17:33:41 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/21 18:07:10 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	check_collisions(double x, double y, t_ray *r)
-{
-	ssize_t	i;
-	ssize_t	j;
-
-	i = (ssize_t)y;
-	j = (ssize_t)x;
-	if (i < 0 || j < 0 || i > r->map.msize.i || \
-	j > r->map.msize.j || !r->map.map[i][j])
-		return (-1);
-	if (r->map.map[i][j] == '1')
-		return (1);
-	return (0);
-}
-
-int	find_wall(t_ray *r, t_point *pt, t_point *step)
-{
-	int	i;
-
-	i = check_collisions(pt->x, pt->y, r);
-	while (!i)
-	{
-		pt->x += step->x;
-		pt->y += step->y;
-		i = check_collisions(pt->x, pt->y, r);
-	}
-	return (i);
-}
-
-double	vertical_intersection(t_ray *r)
+static double	vertical_intersection(t_ray *r)
 {
 	t_point	step;
 
@@ -66,7 +37,7 @@ double	vertical_intersection(t_ray *r)
 	return (get_distance(&r->vhitpt, r));
 }
 
-double	horizontal_intersection(t_ray *r)
+static double	horizontal_intersection(t_ray *r)
 {
 	t_point	step;
 
@@ -95,11 +66,11 @@ double	horizontal_intersection(t_ray *r)
 	return (get_distance(&r->hhitpt, r));
 }
 
-double	smallest_distance(double hor, double ver, t_ray *r)
+static double	smallest_distance(double hor, double ver, t_ray *r)
 {
 	double	smallest;
 
-	smallest = 0.0;
+	smallest = 1.0;
 	if (ver == -1 || (hor < ver && hor > 0))
 	{
 		smallest = hor;
@@ -108,7 +79,7 @@ double	smallest_distance(double hor, double ver, t_ray *r)
 			r->cwall = r->map.no;
 		else
 		{
-			r->i = fabs(1 - r->i);
+			r->i = 1.0 - fmod(r->i, 1.0);
 			r->cwall = r->map.so;
 		}
 		return (smallest);
@@ -119,7 +90,7 @@ double	smallest_distance(double hor, double ver, t_ray *r)
 		r->i = r->vhitpt.y;
 		if (r->r_angle > 90.0 && r->r_angle < 270.0)
 		{
-			r->i = fabs(1 - r->i);
+			r->i = 1.0 - fmod(r->i, 1.0);
 			r->cwall = r->map.we;
 		}
 		else
@@ -128,11 +99,11 @@ double	smallest_distance(double hor, double ver, t_ray *r)
 	return (smallest);
 }
 
-void	fish_eye(double *distance, int i, t_ray *r)
+static void	fish_eye(double *distance, int i, t_ray *r)
 {
 	double	angle;
 
-	angle = (i - S_WIDTH * 0.5) * r->rayspacing;
+	angle = (i - r->hs_width) * r->rayspacing;
 	*distance *= cos(radian(angle));
 }
 

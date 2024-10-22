@@ -30,5 +30,9 @@ bool	get_xpmstr(t_ray *ray)
 	&ray->map.no.len, &ray->map.no.endian);
 	if (!ray->map.no.sxpm)
 		return (false);
+	ray->img.sxpm = mlx_get_data_addr(ray->img.ptr, &ray->img.bpp, \
+	&ray->img.len, &ray->img.endian);
+	if (!ray->img.sxpm)
+		return (false);
 	return (true);
 }

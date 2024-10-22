@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/21 17:34:33 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:37:38 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,8 @@
 # define FOV 60
 // masks the 8 lowest bytes of a RGB component
 # define EBYTES 0xff
-# define S_WIDTH 1050.0
-# define S_HEIGHT 550.0
-# define SKY 0x112ACD
-# define GROUND 0x070E3F
-# define WALL_N 0xFF9933 //orange
-# define WALL_S 0xFF3399 //pink
-# define WALL_W 0x4C0099 //purple
-# define WALL_E 0xFFFF00 //yellow
+# define S_WIDTH 1920.0
+# define S_HEIGHT 1080.0
 
 // error_handling ------------
 
@@ -105,35 +99,29 @@ bool	create_images(t_ray *r);
 
 /* display.c */
 void	clean_display(t_ray *r);
-void	get_angles(t_ray *r, t_card pcard);
-void	init_data(t_ray *r);
 int		init_display(t_ray *r);
 void	run_game(t_ray *r);
 
 /* draw.c */
-void	ft_put_pixel(t_img *img, int col, int line, int color);
 void	draw_column(t_ray *r, double distance, int col);
 
 /* events.c */
-void	new_position(t_ray *r, double angle);
-void	move(t_ray *r);
 int		close_win(t_ray *r);
 int		key_press(int keysym, t_ray *r);
 int		key_release(int keysym, t_ray *r);
 
+/* movements.c */
+void	move(t_ray *r);
+
 /* raycasting.c */
-int		check_collisions(double x, double y, t_ray *r);
-int		find_wall(t_ray *r, t_point *pt, t_point *step);
-double	vertical_intersection(t_ray *r);
-double	horizontal_intersection(t_ray *r);
-double	smallest_distance(double hor, double ver, t_ray *r);
-void	fish_eye(double *distance, int i, t_ray *r);
 int		raycasting(t_ray *r);
 
 /* utils.c */
 double	radian(double angle);
 double	get_distance(t_point *pt, t_ray *r);
 void	normalise_angle(double *angle);
+int		check_collisions(double x, double y, t_ray *r);
+int		find_wall(t_ray *r, t_point *pt, t_point *step);
 
 // src -----------------------
 
