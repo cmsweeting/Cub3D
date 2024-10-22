@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/21 17:37:38 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/22 14:31:13 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,10 @@ void	draw_column(t_ray *r, double distance, int col);
 int		close_win(t_ray *r);
 int		key_press(int keysym, t_ray *r);
 int		key_release(int keysym, t_ray *r);
+
+/* intersection.c */
+double	vertical_intersection(t_ray *r);
+double	horizontal_intersection(t_ray *r);
 
 /* movements.c */
 void	move(t_ray *r);
