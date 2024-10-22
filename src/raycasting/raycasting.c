@@ -74,12 +74,12 @@ static double	smallest_distance(double hor, double ver, t_ray *r)
 	if (ver == -1 || (hor < ver && hor > 0))
 	{
 		smallest = hor;
-		r->i = r->hhitpt.x;
+		r->i = fmod(r->hhitpt.x, 1.0);
 		if (r->r_angle > 0.0 && r->r_angle < 180.0)
 			r->cwall = r->map.no;
 		else
 		{
-			r->i = 1.0 - fmod(r->i, 1.0);
+			r->i = 1.0 - r->i;
 			r->cwall = r->map.so;
 		}
 		return (smallest);
@@ -87,10 +87,10 @@ static double	smallest_distance(double hor, double ver, t_ray *r)
 	else if (ver > 0)
 	{
 		smallest = ver;
-		r->i = r->vhitpt.y;
+		r->i = fmod(r->vhitpt.y, 1.0);
 		if (r->r_angle > 90.0 && r->r_angle < 270.0)
 		{
-			r->i = 1.0 - fmod(r->i, 1.0);
+			r->i = 1.0 - r->i;
 			r->cwall = r->map.we;
 		}
 		else

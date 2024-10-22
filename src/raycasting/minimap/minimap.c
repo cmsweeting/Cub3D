@@ -21,7 +21,7 @@
 // 	r->minim.ptr = mlx_new_image(r->mlx, (S_WIDTH / 4), (S_HEIGHT / 4));
 // 	if (!r->minim.ptr)
 // 		return (false);
-// 	while (it.i >= 0 && it.i <= r->map.msize.i && \
+// 	while (it.i >= 0 && it.i <= r->map.msize.i &&
 // it.j >= 0 && it.j <= r->map.msize.j)
 // 	{
 // 		if (r->map.map[it.i][it.j] == '0');
