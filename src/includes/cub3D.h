@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/21 17:37:38 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:55:23 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ bool	create_images(t_ray *r);
 // raycasting ----------------
 
 /* minimap.c */
-// bool	build_minimap(t_ray *ray);
+bool	build_minimap(t_ray *r);
 
 /* display.c */
 void	clean_display(t_ray *r);
@@ -104,6 +104,7 @@ void	run_game(t_ray *r);
 
 /* draw.c */
 void	draw_column(t_ray *r, double distance, int col);
+void	ft_put_pixel(t_img *img, int col, int line, int color);
 
 /* events.c */
 int		close_win(t_ray *r);
