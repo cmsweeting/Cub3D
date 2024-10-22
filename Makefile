@@ -6,7 +6,7 @@
 #    By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:01:27 by cdomet-d          #+#    #+#              #
-#    Updated: 2024/10/22 18:17:22 by csweetin         ###   ########.fr        #
+#    Updated: 2024/10/22 18:21:45 by csweetin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,7 @@ LIB := $(LFTDIR)/libft.a
 H:= -I src/includes/ -I libs/libft -I libs/mlx
 
 CC := cc
-CFLAGS := -Werror -Wextra -Wall -Wshadow #-fsanitize=address -fno-omit-frame-pointer
-#-g3 
+CFLAGS := -Werror -Wextra -Wall -Wshadow -g3 
 # -Ofast
 CPPFLAGS = -MMD -MP $(H)
 MAKEFLAGS += --no-print-directory

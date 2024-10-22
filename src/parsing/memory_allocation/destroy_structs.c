@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy_structs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 11:14:28 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 21:52:05 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/22 11:14:51 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	free_r(t_ray *ray)
 		mlx_destroy_image(ray->mlx, ray->map.no.ptr);
 	if (ray->img.ptr)
 		mlx_destroy_image(ray->mlx, ray->img.ptr);
+	if (ray->minim.ptr)
+		mlx_destroy_image(ray->mlx, ray->minim.ptr);
 	clean_display(ray);
 }
 
