@@ -23,11 +23,12 @@ static void	new_position(t_ray *r, double angle)
 	x += r->p.x;
 	y += r->p.y;
 	if (((ssize_t)x >= 0 || (ssize_t)x <= r->map.msize.j) \
+		&& ((ssize_t)y >= 0 || (ssize_t)y <= r->map.msize.i) \
 		&& r->map.map[(ssize_t)y][(ssize_t)x] != '1')
+	{
 		r->p.x = x;
-	if (((ssize_t)y >= 0 || (ssize_t)y <= r->map.msize.i) \
-		&& r->map.map[(ssize_t)y][(ssize_t)x] != '1')
 		r->p.y = y;
+	}
 }
 
 static void	move_angle(t_ray *r, double *angle)
