@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/23 18:54:07 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/23 19:20:43 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,14 @@ static double	vertical_intersection(t_ray *r)
 {
 	t_point	step;
 
+	// cos(90) = 0
+	// cos(270) = 0
+	// si le rayon a un angle de 90 ou 270 ca veut dire qu'il est parfaitement vertical
+	// donc il ne rencontrera jamais de mur vertical donc on return -1
 	if (cos(radian(r->r_angle)) == 0)
 		return (-1);
 	step.x = 1;
+	// ici on met pas de protection comme pour les intersections horizontales parce que si cos(a) est egal a zero on est deja sortie de la fonction comme tu peux voir plus haut
 	step.y = tan(radian(r->r_angle)) * 1;
 	r->vhitpt.x = (int)(r->p.x);
 	if (r->r_angle > 90.0 && r->r_angle < 270.0)
@@ -111,14 +116,22 @@ static double	smallest_distance(double hor, double ver, t_ray *r)
 	double	smallest;
 
 	smallest = 1.0;
+	// si ver = -1 ca veut dire qu'on n'a pas trouve de mur vertical
+	// si c'est pas le cas on verifie si hor est inferieur a ver si c'est le cas la plus petite distance sera egale a la distance horizontale
 	if (ver == -1 || (hor < ver && hor > 0))
 	{
 		smallest = hor;
+		// r->i c'est le point ou tape le rayon dans la case du mur donc dans une intervalle de [0,1]
+		// donc si hhitpt.x = 3.5 on fait 3.5 % 1 qui donne 0,5 donc le rayon tape le milieu du mur
+		// ce qui nour permettra de savoir quel pixel aller chercher dans notre texture
 		r->i = fmod(r->hhitpt.x, 1.0);
+		// si l'angle est entre 0 et 180 ca veut dire que le rayon est vers le haut donc le nord
 		if (r->r_angle > 0.0 && r->r_angle < 180.0)
 			r->cwall = r->map.no;
+		// sinon il est vers le bas donc vers sud
 		else
 		{
+			// on fait se calcul pour eviter l'effet miroir
 			r->i = 1.0 - r->i;
 			r->cwall = r->map.so;
 		}
