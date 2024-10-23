@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/22 18:21:54 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/23 14:52:24 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@
 # define EBYTES 0xff
 # define S_WIDTH 1920.0
 # define S_HEIGHT 1080.0
+# define MMAP	0xffFF8A5B
+# define ERASE	0xff000000
+# define PLAYER 0xffEA526F
 
 // error_handling ------------
 
@@ -96,6 +99,8 @@ bool	create_images(t_ray *r);
 
 /* minimap.c */
 bool	build_minimap(t_ray *r);
+void	place_player(t_ray	*r);
+void	clear_player(t_ray *r, t_co offset);
 
 /* display.c */
 void	clean_display(t_ray *r);

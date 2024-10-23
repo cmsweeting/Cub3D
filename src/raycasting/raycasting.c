@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/22 18:22:03 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:12:02 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ int	raycasting(t_ray *r)
 	}
 	mlx_put_image_to_window(r->mlx, r->win, r->img.ptr, 0, 0);
 	mlx_put_image_to_window(r->mlx, r->win, r->minim.ptr, 5, 5);
+	place_player(r);
 	return (0);
 }

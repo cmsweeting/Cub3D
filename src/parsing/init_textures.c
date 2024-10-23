@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 11:30:01 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 21:32:09 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 11:10:05 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ bool	get_xpmstr(t_ray *ray)
 	ray->img.sxpm = mlx_get_data_addr(ray->img.ptr, &ray->img.bpp, \
 	&ray->img.len, &ray->img.endian);
 	if (!ray->img.sxpm)
+		return (false);
+	ray->minim.sxpm = mlx_get_data_addr(ray->minim.ptr, &ray->minim.bpp, \
+	&ray->minim.len, &ray->minim.endian);
+	if (!ray->minim.sxpm)
 		return (false);
 	return (true);
 }
