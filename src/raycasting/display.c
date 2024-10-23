@@ -42,6 +42,7 @@ static void	init_data(t_ray *r)
 	r->map.msize.j -= 1;
 	r->p.x = (double)r->map.p.j + 0.5;
 	r->p.y = (double)r->map.p.i + 0.5;
+	r->hs_height = S_HEIGHT * 0.5;
 	r->hs_width = S_WIDTH * 0.5;
 	r->d_screen = r->hs_width / tan(radian(FOV * 0.5));
 	get_angles(r, r->map.pcard);
