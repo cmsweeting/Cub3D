@@ -16,11 +16,11 @@ static double	vertical_intersection(t_ray *r)
 {
 	t_point	step;
 
+	if (cos(radian(r->r_angle)) == 0)
+		return (-1);
 	step.x = 1;
 	step.y = tan(radian(r->r_angle)) * 1;
 	r->vhitpt.x = (int)(r->p.x);
-	if (cos(radian(r->r_angle)) == 0)
-		return (-1);
 	if (r->r_angle > 90.0 && r->r_angle < 270.0)
 	{
 		step.x *= -1;
@@ -41,13 +41,13 @@ static double	horizontal_intersection(t_ray *r)
 {
 	t_point	step;
 
+	if (sin(radian(r->r_angle)) == 0)
+		return (-1);
 	step.y = 1;
 	step.x = 0;
 	if (cos(radian(r->r_angle)) != 0)
 		step.x = 1 / tan(radian(r->r_angle));
 	r->hhitpt.y = (int)(r->p.y);
-	if (sin(radian(r->r_angle)) == 0)
-		return (-1);
 	if (r->r_angle > 0.0 && r->r_angle < 180.0)
 	{
 		step.y *= -1;
