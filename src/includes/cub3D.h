@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/23 14:52:24 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/23 17:27:03 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ bool	create_images(t_ray *r);
 /* minimap.c */
 bool	build_minimap(t_ray *r);
 void	place_player(t_ray	*r);
-void	clear_player(t_ray *r, t_co offset);
+void	draw_line(t_ray *r);
+void	clear_player(t_ray *r, t_point offset);
 
 /* display.c */
 void	clean_display(t_ray *r);
