@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/22 18:22:03 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/23 18:54:07 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,68 @@ static double	horizontal_intersection(t_ray *r)
 {
 	t_point	step;
 
+	// sin(0) = 0
+	// sin(360) = 0
+	// sin(180) = 0
+	// si le rayon a un angle de 0, 360 ou 270 ca veut dire qu'il est parfaitement horizontal
+	// donc il ne rencontrera jamais de mur horizontal donc on return -1
 	if (sin(radian(r->r_angle)) == 0)
 		return (-1);
+	// step.y est egal a la hauteur d'un cub 
+	// nos cub font 64 px mais pour les calculs on choisit une unite de 1 px pour avoir moins d'erreur d'arrondi avec les doubles
 	step.y = 1;
+	// si cos(angle) = 0
+		// cos(90) = 0
+		// cos (270) = 0
+		// si l'angle de notre rayon est de 90 ou 270 ca veut dire qu'il est parfaitement vertical
+		// donc quand on cherchera le mur pas besoin de modifier hhitpt.x il faudra juste augmenter ou diminer hhitpt.y donc on laisse step.x a 0
+		// de plus tan(a) = sin(a) / cos(a)
+		// or si cos(a) est egal a 0 on ferait une division par zero ce qui est interdit
+	// sinon
+		// on calcul step.x qu'on utilisera plus tard pour passer au point suivant de notre rayon et voir si c'est un mur
 	step.x = 0;
 	if (cos(radian(r->r_angle)) != 0)
 		step.x = 1 / tan(radian(r->r_angle));
+	// hhitpoint.y c'est la coordonnee y du premier point sur une grille
+	// PS : a chaque fois on regarde les points sur les grilles parce qu'un mur fait une case entiere donc si on regarde sur les grilles on est sur de pas louper de mur 
+	// si r->p.y = 3.5 px (qui est la ligne 3 dans le tableau map) alors r->hhitpt.y = 3 px
 	r->hhitpt.y = (int)(r->p.y);
 	if (r->r_angle > 0.0 && r->r_angle < 180.0)
 	{
+		// si le rayon est dirige vers le haut on veut que step.y soit negatif
+		// vu que l'axe y augmente du haut vers le bas et la le rayon va du bas vers le haut
+		// plus tard pour trouver le prochain point il faudra decrementer r->hhitpt.y
 		step.y *= -1;
+		// pour l'instant r->hhitpt.y est sur la case du player mais nous on veut aller voir la case au dessus du player vu que le rayon regarde vers le haut
+		// donc on soustrait epsilon ce qui ferait r->hhitpt.y = 2.99999 et on irait chercher dans le tableau map la ligne 2
 		r->hhitpt.y -= EP;
 	}
 	else
 	{
+		// on sait que tan(a) = sin(a) / cos(a)
+		// et step.x = 1 / tan(radian(r->r_angle));
+		// angle entre 180 et 270
+			// le cos et le sin d'un angle entre 180 et 270 degres est negatif ce qui ferait que tan serait positif parce que : -a / -b = + c
+			// et donc step.x serait positif
+			// or si l'angle du rayon est entre 180 et 270 ca veut dire que le rayon se dirige vers la gauche
+			// donc on veut que step.x devienne negatif pour decrementer r->hhitpt.x plus tard quand on cherche le mur
+		// angle entre 270 et 360
+			// le cos d'un angle de cet interval est positif et le sin est negatif ce qui fait que le tan est negatif car : -a / b = -c
+			// et donc step.x serait negatif
+			// or si l'angle du rayon est dans cet interval ca veut dire que le rayon se dirige vers la droite
+			// donc on veut que step.x devienne positif pour incrementer r->hhitpt.x plus tard quand on cherche le mur
 		step.x *= -1;
+		// ici le rayon regarde vers le bas donc on ajoute 1 pour aller voir la case d'apres
 		r->hhitpt.y += 1;
 	}
+	// meme logique que pour step.x
 	r->hhitpt.x = r->p.x;
 	if (cos(radian(r->r_angle)) != 0)
 		r->hhitpt.x = r->p.x + (r->p.y - r->hhitpt.y) / tan(radian(r->r_angle));
+	// on va chercher les coordonne de l'intersection avec un mur horizontal
 	if (find_wall(r, &r->hhitpt, &step) == -1)
 		return (-1);
+	// on retourne la distance entre le joueur et l'intersection trouve juste avant
 	return (get_distance(&r->hhitpt, r));
 }
 
@@ -96,6 +136,8 @@ static void	fish_eye(double *distance, int i, t_ray *r)
 {
 	double	angle;
 
+	// c'est l'angle entre le rayon traite actuellement et l'angle central
+	// sa valeur varie entre -30 et 30
 	angle = (i - r->hs_width) * r->rayspacing;
 	*distance *= cos(radian(angle));
 }
