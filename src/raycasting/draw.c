@@ -31,10 +31,9 @@ void	draw_column(t_ray *r, double distance, int col)
 	img.line = 0;
 	img.p_height = r->d_screen / distance;
 	img.hp_height = img.p_height * 0.5;
-	img.hs_height = S_HEIGHT * 0.5;
-	img.wall_top = img.hs_height - img.hp_height;
-	tex.col = (int)(r->i * r->cwall.xpms) % r->cwall.xpms;
-	tex.line = (double)r->cwall.xpms / img.p_height;
+	img.wall_top = r->hs_height - img.hp_height;
+	tex.col = (int)(r->i * r->cwall.xpmw) % r->cwall.xpmw;
+	tex.line = (double)r->cwall.xpmw / img.p_height;
 	tex.line_it = tex.line;
 	if (img.wall_top < 0)
 		tex.line = -img.wall_top * tex.line_it;
@@ -42,8 +41,9 @@ void	draw_column(t_ray *r, double distance, int col)
 		ft_put_pixel(&r->img, col, img.line++, r->map.ceiling);
 	while (img.p_height-- > 0 && img.line < S_HEIGHT)
 	{
-		color = *(int *)(r->cwall.sxpm + ((int)tex.line * r->cwall.len + \
-		tex.col * (r->cwall.bpp / 8)));
+		if ((int)tex.line < r->cwall.xpmh)
+			color = *(int *)(r->cwall.sxpm + ((int)tex.line * r->cwall.len + \
+			tex.col * (r->cwall.bpp / 8)));
 		ft_put_pixel(&r->img, col, img.line++, color);
 		tex.line += tex.line_it;
 	}

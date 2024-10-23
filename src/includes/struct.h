@@ -37,8 +37,10 @@ typedef struct s_img
 	void			*ptr;
 	// path to file
 	char			*pto_file;
-	// texture size
-	int				xpms;
+	// texture width
+	int				xpmw;
+	// texture height
+	int				xpmh;
 	// char * containing xpm data
 	char			*sxpm;
 	// bits per pixel
@@ -89,8 +91,6 @@ typedef struct s_draw
 	int	line;
 	// wall perceived height
 	int	p_height;
-	// half-screen height
-	int	hs_height;
 	// wall half perceived height
 	int	hp_height;
 	// used to see if the top of the wall is visible or not
@@ -135,6 +135,8 @@ typedef struct s_ray
 	double			i;
 	// half-screen width
 	double			hs_width;
+	// half-screen height
+	int				hs_height;
 }	t_ray;
 
 // error_handling ------------
