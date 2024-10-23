@@ -109,15 +109,29 @@ int	raycasting(t_ray *r)
 
 	i = 0;
 	move(r);
+	// on ajoute 30° à l'angle central (c_angle) pour obtenir l'angle du rayon le plus à gauche du plan de projection
+	// car on dessine de gauche à droite / on remplie l'image de gauche à droite
+	// 30 = moitié de FOV
+	// c_angle est l'angle du rayon au centre du FOV donc il y a 30 degres de chaque coté de ce rayon
 	r->r_angle = r->c_angle + 30.0f;
+	// si l'angle dépasse 360° ou devient < 0° on le normalise pour le remettre dans l'interval [0,360]
 	normalise_angle(&r->r_angle);
+	// on va boucler S_WIDTH qui est le nombre de colonne de pixel à dessiner dans img
+	// c'est aussi le nombre de rayon
 	while (i < S_WIDTH)
 	{
+		// horizontal est la distance entre le joueur et la première intersection avec un mur horizontal
+		// c'est aussi la longueur du rayon projeté vers un mur horizontal
 		horizontal = horizontal_intersection(r);
+		// pareil mais avec un mur vertical
 		vertical = vertical_intersection(r);
+		// distance est la distance la plus petite entre horizontal et vertical
 		distance = smallest_distance(horizontal, vertical, r);
+		// permet d'avoir des murs droit et pas courbés
 		fish_eye(&distance, i, r);
+		// ici on va dessiner la colonne de pixel
 		draw_column(r, distance, i);
+		// on augmente l'angle pour passer au rayon suivant / à la colonne de pixel suivante
 		r->r_angle -= r->rayspacing;
 		normalise_angle(&r->r_angle);
 		i++;
