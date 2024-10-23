@@ -55,6 +55,7 @@ static double	horizontal_intersection(t_ray *r)
 		return (-1);
 	// step.y est egal a la hauteur d'un cub 
 	// nos cub font 64 px mais pour les calculs on choisit une unite de 1 px pour avoir moins d'erreur d'arrondi avec les doubles
+	// on utilisera step.y pour augmenter ou diminuer hhitpt.y pour aller chercher le prochain point sur une grille et voir si c'est un mur
 	step.y = 1;
 	// si cos(angle) = 0
 		// cos(90) = 0
@@ -64,7 +65,7 @@ static double	horizontal_intersection(t_ray *r)
 		// de plus tan(a) = sin(a) / cos(a)
 		// or si cos(a) est egal a 0 on ferait une division par zero ce qui est interdit
 	// sinon
-		// on calcul step.x qu'on utilisera plus tard pour passer au point suivant de notre rayon et voir si c'est un mur
+		// on calcul step.x qu'on ajoutera ou soustraira a hhitpt.x pour passer au point suivant de notre rayon et voir si c'est un mur
 	step.x = 0;
 	if (cos(radian(r->r_angle)) != 0)
 		step.x = 1 / tan(radian(r->r_angle));
@@ -74,12 +75,12 @@ static double	horizontal_intersection(t_ray *r)
 	r->hhitpt.y = (int)(r->p.y);
 	if (r->r_angle > 0.0 && r->r_angle < 180.0)
 	{
-		// si le rayon est dirige vers le haut on veut que step.y soit negatif
-		// vu que l'axe y augmente du haut vers le bas et la le rayon va du bas vers le haut
+		// si le rayon est dirigé vers le haut on veut que step.y soit negatif
+		// car l'axe y augmente du haut vers le bas
 		// plus tard pour trouver le prochain point il faudra decrementer r->hhitpt.y
 		step.y *= -1;
 		// pour l'instant r->hhitpt.y est sur la case du player mais nous on veut aller voir la case au dessus du player vu que le rayon regarde vers le haut
-		// donc on soustrait epsilon ce qui ferait r->hhitpt.y = 2.99999 et on irait chercher dans le tableau map la ligne 2
+		// donc on soustrait epsilon ce qui ferait r->hhitpt.y = 2.99999 ce qui est dans le tableau map la ligne 2
 		r->hhitpt.y -= EP;
 	}
 	else
@@ -123,7 +124,7 @@ static double	smallest_distance(double hor, double ver, t_ray *r)
 		smallest = hor;
 		// r->i c'est le point ou tape le rayon dans la case du mur donc dans une intervalle de [0,1]
 		// donc si hhitpt.x = 3.5 on fait 3.5 % 1 qui donne 0,5 donc le rayon tape le milieu du mur
-		// ce qui nour permettra de savoir quel pixel aller chercher dans notre texture
+		// ce qui nous permettra de savoir quel pixel aller chercher dans notre texture
 		r->i = fmod(r->hhitpt.x, 1.0);
 		// si l'angle est entre 0 et 180 ca veut dire que le rayon est vers le haut donc le nord
 		if (r->r_angle > 0.0 && r->r_angle < 180.0)
