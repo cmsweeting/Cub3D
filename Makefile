@@ -65,10 +65,10 @@ EDIR:=	raycasting/
 ESRC:=	display.c \
 		draw.c \
 		events.c \
-		intersection.c \
+		math_utils.c \
 		movements.c \
+		raycasting_utils.c \
 		raycasting.c \
-		utils.c \
 
 $(BDIR)%.o: $(SDIR)%.c 
 	mkdir -p $(dir $@)
