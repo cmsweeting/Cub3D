@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:31:22 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 21:52:05 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/24 16:32:04 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ bool	fill_f(char *arg, t_parser *f)
 	if (!open_file(arg, &rfile))
 		return (false);
 	if (!get_values(f, rfile))
-		return (free_dtab(rfile), perr(errno, "Error while processing \
-file"), false);
+		return (free_dtab(rfile), false);
 	free_dtab(rfile);
 	return (true);
 }
