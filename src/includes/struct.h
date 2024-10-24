@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/23 16:21:43 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/24 10:07:25 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,18 +121,16 @@ typedef struct s_ray
 	double			d_screen;
 	// current ray angle
 	double			r_angle;
+	// wall currently being textured
 	t_img			cwall;
 	t_img			img;
-	t_img			minim;
 	t_moves			moves;
 	t_point			p;
-	t_point			prev_p;
 	// last horizontal hitpoint
 	t_point			hhitpt;
 	// last vertical hitpoint
 	t_point			vhitpt;
 	// coordinates of the last found intersection
-	t_point			shitpt;
 	double			i;
 	// half-screen width
 	double			hs_width;

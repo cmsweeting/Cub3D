@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:12:15 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/23 17:36:46 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/24 10:09:24 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 bool	create_images(t_ray *r)
 {
-	r->minim.xpmh = S_HEIGHT / 6;
-	r->minim.xpmw = S_WIDTH / 6;
 	r->map.ea.ptr = mlx_xpm_file_to_image(r->mlx, \
 		r->map.ea.pto_file, &r->map.ea.xpmw, &r->map.ea.xpmh);
 	if (!r->map.ea.ptr)
@@ -35,9 +33,6 @@ bool	create_images(t_ray *r)
 		return (false);
 	r->img.ptr = mlx_new_image(r->mlx, S_WIDTH, S_HEIGHT);
 	if (!r->img.ptr)
-		return (false);
-	r->minim.ptr = mlx_new_image(r->mlx, r->minim.xpmw, r->minim.xpmh);
-	if (!r->minim.ptr)
 		return (false);
 	return (true);
 }

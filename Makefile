@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+         #
+#    By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:01:27 by cdomet-d          #+#    #+#              #
-#    Updated: 2024/10/22 18:21:45 by csweetin         ###   ########.fr        #
+#    Updated: 2024/10/24 10:09:48 by cdomet-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,10 +56,6 @@ RAYDIR:=	error_handling/
 RAYSRC:=	error_handling.c \
 		
 # ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ RAYCASTING ⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒⌒ #
-SRC += $(addprefix $(MINIDIR), $(MINISRC))
-MINIDIR:=	raycasting/minimap/
-MINISRC:=	minimap.c \
-
 SRC += $(addprefix $(EDIR), $(ESRC))
 EDIR:=	raycasting/
 ESRC:=	display.c \
