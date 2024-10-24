@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/23 17:27:03 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:57:51 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	dall(t_ray *ray);
 bool	fill_f(char *arg, t_parser *f);
 
 /* get_map_data.c */
+bool	is_map(char *str);
 bool	get_values(t_parser *f, char **rfile);
 
 /* handle_colors.c */

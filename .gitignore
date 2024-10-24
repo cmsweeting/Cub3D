@@ -8,7 +8,7 @@
 obj
 brouillon
 .bdir
-.libs/libft/dir_build
+.libs/libft/.dir_build
 .vscode
 
 # Executables

@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:24:31 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 11:21:47 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:20:23 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*skip_whitespaces(char *str)
 	size_t	i;
 
 	i = 0;
-	while (str[i] && ((str[i] >= 9 && str[i] <= 13) || str[i] == 32))
+	while (str[i] && str[i] == 32)
 		i++;
 	return (&str[i]);
 }
