@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/23 18:59:15 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:24:01 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	draw_column(t_ray *r, double distance, int col)
 	{
 		if ((int)tex.line < r->cwall.xpmh && tex.col >= 0)
 			color = *(int *)(r->cwall.sxpm + ((int)tex.line * r->cwall.len + \
-			tex.col * (r->cwall.bpp / 8)));
+			(int)tex.col * (r->cwall.bpp / 8)));
 		ft_put_pixel(&r->img, col, img.line++, color);
 		tex.line += tex.line_it;
 	}
