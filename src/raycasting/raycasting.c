@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:29:50 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/24 10:10:05 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:26:11 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,11 @@ static void	fish_eye(double *distance, int i, t_ray *r)
 {
 	double	angle;
 
-	angle = (i - r->hs_width) * r->rayspacing;
+	angle = ((double)i - r->hs_width) * r->rayspacing;
+	if (angle > 30)
+		angle = 30;
+	if (angle < -30)
+		angle = -30;
 	*distance *= cos(radian(angle));
 }
 
