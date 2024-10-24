@@ -6,13 +6,13 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:43:19 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/21 11:45:17 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:20:01 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static bool	is_map(char *str)
+bool	is_map(char *str)
 {
 	size_t	i;
 
@@ -20,6 +20,8 @@ static bool	is_map(char *str)
 	if (!str && !str[i])
 		return (false);
 	if (is_texture(str))
+		return (false);
+	if (ft_strncmp("F ", str, 1) == 0 || ft_strncmp("C ", str, 1) == 0)
 		return (false);
 	while (str[i])
 	{
