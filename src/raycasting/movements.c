@@ -6,7 +6,7 @@
 /*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:16:41 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/21 17:50:18 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:05:45 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,25 @@ static void	new_position(t_ray *r, double angle)
 {
 	double	x;
 	double	y;
+	double	x2;
+	double	y2;
 
 	x = cos(radian(angle)) * 0.125;
 	y = sin(radian(angle)) * 0.125;
 	y *= -1.0;
 	x += r->p.x;
 	y += r->p.y;
-	if (((ssize_t)x >= 0 || (ssize_t)x <= r->map.msize.j) \
-		&& ((ssize_t)y >= 0 || (ssize_t)y <= r->map.msize.i) \
-		&& r->map.map[(ssize_t)y][(ssize_t)x] != '1')
-	{
+	x2 = cos(radian(angle)) * 0.188;
+	y2 = sin(radian(angle)) * 0.188;
+	y2 *= -1.0;
+	x2 += r->p.x;
+	y2 += r->p.y;
+	if (((ssize_t)x2 >= 0 && (ssize_t)x2 <= r->map.msize.j) \
+		&& r->map.map[(ssize_t)r->p.y][(ssize_t)x2] != '1')
 		r->p.x = x;
+	if (((ssize_t)y2 >= 0 && (ssize_t)y2 <= r->map.msize.i) \
+		&& r->map.map[(ssize_t)y2][(ssize_t)r->p.x] != '1')
 		r->p.y = y;
-	}
 }
 
 static void	move_angle(t_ray *r, double *angle)

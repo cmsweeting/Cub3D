@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/24 10:07:25 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:24:21 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,20 +88,20 @@ typedef struct s_moves
 typedef struct s_draw
 {
 	// vertical iterator
-	int	line;
+	double	line;
 	// wall perceived height
-	int	p_height;
+	double	p_height;
 	// wall half perceived height
-	int	hp_height;
+	double	hp_height;
 	// used to see if the top of the wall is visible or not
-	int	wall_top;
+	double	wall_top;
 }	t_draw;
 
 // coordinates used to move in char * sxpm
 typedef struct t_drawco
 {
 	// col in which to get pixel in xpmstr
-	int		col;
+	double		col;
 	// line in which to get pixel in xpmstr
 	double	line;
 	// line incrementer
@@ -135,7 +135,7 @@ typedef struct s_ray
 	// half-screen width
 	double			hs_width;
 	// half-screen height
-	int				hs_height;
+	double			hs_height;
 }	t_ray;
 
 // error_handling ------------
