@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memalloc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:07:10 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 21:52:05 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/24 17:26:48 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ bool	cpy_f(t_parser *map, char **rfile, size_t i)
 		map->map[j] = ft_strtrim(rfile[i], "\n");
 		if (!map->map[j])
 			return (false);
-		i++;
 		j++;
+		i++;
 	}
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:31:22 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/24 16:32:04 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:22:44 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static bool	open_file(char *arg, char ***rfile)
 	if (fd == -1)
 		return (perr(errno, "could not open file"), false);
 	if (!extract_file(fd, rfile))
-		return (close(fd), perr(errno, "during file extraction"), false);
+		return (close(fd), perr(errno, "dug file extraction"), false);
 	close(fd);
 	return (true);
 }
@@ -74,7 +74,10 @@ bool	fill_f(char *arg, t_parser *f)
 	if (!open_file(arg, &rfile))
 		return (false);
 	if (!get_values(f, rfile))
+	{
+		print_parser(*f);
 		return (free_dtab(rfile), false);
+	}
 	free_dtab(rfile);
 	return (true);
 }
