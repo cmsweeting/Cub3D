@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/22 16:37:56 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/24 10:10:13 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int ac, char *av[])
 	if (init_display(&r))
 		return (dall(&r), perr(EINVAL, "invalid texture"), EINVAL);
 	print_darr(r.map.map, false);
-	build_minimap(&r);
 	run_game(&r);
 	dall(&r);
 }
