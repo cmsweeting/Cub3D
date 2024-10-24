@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/22 10:58:45 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/23 18:59:15 by csweetin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	draw_column(t_ray *r, double distance, int col)
 		ft_put_pixel(&r->img, col, img.line++, r->map.ceiling);
 	while (img.p_height-- > 0 && img.line < S_HEIGHT)
 	{
-		if ((int)tex.line < r->cwall.xpmh)
+		if ((int)tex.line < r->cwall.xpmh && tex.col >= 0)
 			color = *(int *)(r->cwall.sxpm + ((int)tex.line * r->cwall.len + \
 			tex.col * (r->cwall.bpp / 8)));
 		ft_put_pixel(&r->img, col, img.line++, color);

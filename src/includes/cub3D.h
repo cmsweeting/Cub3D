@@ -117,22 +117,20 @@ int		close_win(t_ray *r);
 int		key_press(int keysym, t_ray *r);
 int		key_release(int keysym, t_ray *r);
 
-/* intersection.c */
-double	vertical_intersection(t_ray *r);
-double	horizontal_intersection(t_ray *r);
+/* math_utils.c */
+double	radian(double angle);
+double	get_distance(t_point *pt, t_ray *r);
+void	normalise_angle(double *angle);
 
 /* movements.c */
 void	move(t_ray *r);
 
+/* raycasting_utils.c */
+int		find_wall(t_ray *r, t_point *pt, t_point *step);
+void	vertical_hitpt(t_ray *r);
+
 /* raycasting.c */
 int		raycasting(t_ray *r);
-
-/* utils.c */
-double	radian(double angle);
-double	get_distance(t_point *pt, t_ray *r);
-void	normalise_angle(double *angle);
-int		check_collisions(double x, double y, t_ray *r);
-int		find_wall(t_ray *r, t_point *pt, t_point *step);
 
 // src -----------------------
 
