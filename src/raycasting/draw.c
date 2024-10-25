@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/24 16:24:01 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:07:50 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	draw_column(t_ray *r, double distance, int col)
 	img.hp_height = img.p_height * 0.5;
 	img.wall_top = r->hs_height - img.hp_height;
 	tex.col = (int)(r->i * r->cwall.xpmw) % r->cwall.xpmw;
-	tex.line = (double)r->cwall.xpmw / img.p_height;
+	tex.line = (double)r->cwall.xpmh / img.p_height;
 	tex.line_it = tex.line;
 	if (img.wall_top < 0)
 		tex.line = -img.wall_top * tex.line_it;
