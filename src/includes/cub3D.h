@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/24 16:57:51 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:53:26 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ bool	is_map(char *str);
 bool	get_values(t_parser *f, char **rfile);
 
 /* handle_colors.c */
-unsigned long	int_to_hex(short int color[3]);
+size_t	int_to_hex(short int color[3]);
 bool	rgb_to_int(t_parser *map, char **rgb, bool floor);
 
 /* init_mlx.c */
@@ -88,7 +88,7 @@ bool	get_xpmstr(t_ray *ray);
 
 /* p_utils.c */
 bool	is_invalid_char(char *str);
-bool	is_texture(char *str);
+bool	is_element(char *str);
 size_t	max_len(char **map);
 bool	found_all_elements(t_parser map);
 char	*skip_whitespaces(char *str);
