@@ -6,31 +6,11 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:10:09 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/22 16:38:07 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:49:51 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-static void	reset_parser(t_parser *map)
-{
-	t_co	it;
-
-	it.i = 0;
-	while (map->map[it.i])
-	{
-		it.j = 0;
-		while (map->map[it.i][it.j])
-		{
-			if (map->map[it.i][it.j] == '0')
-				map->map[it.i][it.j] = '1';
-			if (map->map[it.i][it.j] == ' ')
-				map->map[it.i][it.j] = '0';
-			it.j++;
-		}
-		it.i++;
-	}
-}
 
 static void	save_start(t_parser *map, t_co _it)
 {
@@ -80,6 +60,5 @@ bool	f_is_valid(t_parser *map)
 		return (perr(errno, "in f_is_valid"), false);
 	if (!iwall(*map))
 		return (perr(0, "Error: invalid map"), false);
-	reset_parser(map);
 	return (true);
 }

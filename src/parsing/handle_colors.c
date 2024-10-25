@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:09:25 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/22 17:54:02 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:53:39 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ bool	rgb_to_int(t_parser *map, char **rgb, bool floor)
 	return (true);
 }
 
-unsigned long	int_to_hex(short int color[3])
+size_t	int_to_hex(short int color[3])
 {
 	return (((color[0] & EBYTES) << 16) + ((color[1] & EBYTES) << 8) \
 	+ ((color[2]) & EBYTES));
