@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:16:41 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/24 17:05:45 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/25 18:47:11 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static void	new_position(t_ray *r, double angle)
 	double	x2;
 	double	y2;
 
-	x = cos(radian(angle)) * 0.125;
-	y = sin(radian(angle)) * 0.125;
+	x = cos(radian(angle)) * 0.05;
+	y = sin(radian(angle)) * 0.05;
 	y *= -1.0;
 	x += r->p.x;
 	y += r->p.y;
-	x2 = cos(radian(angle)) * 0.188;
-	y2 = sin(radian(angle)) * 0.188;
+	x2 = cos(radian(angle)) * 0.1;
+	y2 = sin(radian(angle)) * 0.1;
 	y2 *= -1.0;
 	x2 += r->p.x;
 	y2 += r->p.y;

@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/25 11:53:26 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/25 18:46:47 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@
 # define EBYTES 0xff
 # define S_WIDTH 1920.0
 # define S_HEIGHT 1080.0
-# define MMAP	0xffFF8A5B
-# define ERASE	0xff000000
-# define PLAYER 0xffEA526F
 
 // error_handling ------------
 

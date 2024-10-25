@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:52:15 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/25 11:52:22 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/25 18:36:08 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	vertical_hitpt(t_ray *r)
 	if (r->r_angle > 90.0 && r->r_angle < 270.0)
 	{
 		r->i = 1.0 - r->i;
-		r->cwall = r->map.we;
+		r->cwall = r->map.ea;
 	}
 	else
-		r->cwall = r->map.ea;
+		r->cwall = r->map.we;
 }
