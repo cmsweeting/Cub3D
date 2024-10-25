@@ -21,7 +21,7 @@ double	get_distance(t_point *pt, t_ray *r)
 {
 	double	d;
 
-	d = sqrtf(powf((r->p.x - pt->x), 2) + powf((r->p.y - pt->y), 2));
+	d = sqrt(pow((r->p.x - pt->x), 2) + pow((r->p.y - pt->y), 2));
 	return (d);
 }
 

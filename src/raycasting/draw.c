@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 20:13:08 by csweetin          #+#    #+#             */
-/*   Updated: 2024/10/25 13:07:50 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:03:25 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	draw_column(t_ray *r, double distance, int col)
 		tex.line = -img.wall_top * tex.line_it;
 	while (img.line < img.wall_top && img.line < S_HEIGHT)
 		ft_put_pixel(&r->img, col, img.line++, r->map.ceiling);
-	while (img.p_height-- > 0 && img.line < S_HEIGHT)
+	while (img.p_height-- >= 0 && img.line < S_HEIGHT)
 	{
 		if ((int)tex.line < r->cwall.xpmh && tex.col >= 0)
 			color = *(int *)(r->cwall.sxpm + ((int)tex.line * r->cwall.len + \
