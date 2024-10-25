@@ -6,7 +6,7 @@
 #    By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:01:27 by cdomet-d          #+#    #+#              #
-#    Updated: 2024/10/24 10:09:48 by cdomet-d         ###   ########.fr        #
+#    Updated: 2024/10/25 10:41:16 by cdomet-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,7 +111,7 @@ print:
 cdir:= $(shell pwd)
 val:= valgrind --track-fds=yes --log-file="$(cdir)/val.log" --leak-check=full --show-leak-kinds=all --track-origins=yes
 run: all
-	$(val) ./$(NAME) maps/map1.cub
+	$(val) ./$(NAME) maps/fun/bts.cub
 
 re: fclean all
 # Formatting combinations

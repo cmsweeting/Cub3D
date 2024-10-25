@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csweetin <csweetin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/24 16:24:21 by csweetin         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:52:42 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
-
-//TODO: determine when + where textures are needed
 
 typedef struct s_queue
 {
@@ -103,9 +101,9 @@ typedef struct t_drawco
 	// col in which to get pixel in xpmstr
 	double		col;
 	// line in which to get pixel in xpmstr
-	double	line;
+	double		line;
 	// line incrementer
-	double	line_it;
+	double		line_it;
 }	t_draw_co;
 
 typedef struct s_ray

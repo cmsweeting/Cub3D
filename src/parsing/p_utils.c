@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:24:31 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/24 17:20:23 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:44:48 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,15 @@ bool	is_invalid_char(char *str)
 	return (false);
 }
 
-bool	is_texture(char *str)
+bool	is_element(char *str)
 {
 	if (ft_strncmp(str, "NO ", 3) == 0 || \
 	ft_strncmp(str, "SO ", 3) == 0 || \
 	ft_strncmp(str, "WE ", 3) == 0 || \
 	ft_strncmp(str, "EA ", 3) == 0 || \
 	ft_strncmp("F ", str, 2) == 0 || \
-	ft_strncmp("C ", str, 2) == 0)
+	ft_strncmp("C ", str, 2) == 0 || \
+	str[0] == '\n')
 		return (true);
 	return (false);
 }
@@ -76,7 +77,7 @@ char	*skip_whitespaces(char *str)
 	size_t	i;
 
 	i = 0;
-	while (str[i] && str[i] == 32)
+	while (str[i] && str[i] == ' ')
 		i++;
 	return (&str[i]);
 }
