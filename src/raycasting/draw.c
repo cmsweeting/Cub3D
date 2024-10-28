@@ -39,7 +39,7 @@ void	draw_column(t_ray *r, double distance, int col)
 		tex.line = -img.wall_top * tex.line_it;
 	while (img.line < img.wall_top && img.line < S_HEIGHT)
 		ft_put_pixel(&r->img, col, img.line++, r->map.ceiling);
-	while (img.p_height-- >= 0 && img.line < S_HEIGHT)
+	while (img.p_height-- > 0 && img.line < S_HEIGHT)
 	{
 		if ((int)tex.line < r->cwall.xpmh && tex.col >= 0)
 			color = *(int *)(r->cwall.sxpm + ((int)tex.line * r->cwall.len + \

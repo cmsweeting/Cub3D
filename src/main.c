@@ -25,6 +25,6 @@ int	main(int ac, char *av[])
 		return (print_parser(r.map), free_f(&r.map), EINVAL);
 	if (init_display(&r))
 		return (dall(&r), perr(EINVAL, "invalid texture"), EINVAL);
-	// run_game(&r);
+	run_game(&r);
 	dall(&r);
 }
