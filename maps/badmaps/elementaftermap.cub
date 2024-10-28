@@ -1,9 +1,9 @@
 EA textures/bts2.xpm
 WE textures/bts3.xpm
-SO textures/bts4.xpm
 NO textures/bts1.xpm
 
 F 255,255,255
+C 238,204,229
 
     111111111 00         
    11 00000010000        
@@ -19,4 +19,4 @@ F 255,255,255
       11 10000 0         
        11100             
 
-C 238,204,229
+SO textures/bts4.xpm
