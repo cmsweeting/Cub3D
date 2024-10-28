@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:17:49 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/28 09:45:52 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:32:40 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	main(int ac, char *av[])
 	if (ac != 2)
 		return (perr(EINVAL, "expected one argument"), EINVAL);
 	r = (t_ray){0};
+	r.map.ceiling = -1;
+	r.map.floor = -1;
 	if (!fill_f(av[1], &r.map))
 		return (print_parser(r.map), free_f(&r.map), EINVAL);
 	if (!f_is_valid(&r.map))

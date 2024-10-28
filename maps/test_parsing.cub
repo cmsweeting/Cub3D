@@ -1,11 +1,10 @@
 WE textures/cyberwickW.xpm
-
-C 83,114,187
-F 159,220,22
-
-NO textures/cyberwickN.xpm
 EA textures/cyberwickE.xpm
 SO textures/cyberwickS.xpm
+NO textures/cyberwickN.xpm
+
+F 83,255,180
+C 159,220,22
 
     111111111 00         
    11 00000010000

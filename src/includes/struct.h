@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/25 11:52:42 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:34:55 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ typedef struct s_parser
 	char			**map;
 	short int		ccolor[3];
 	short int		fcolor[3];
-	unsigned long	ceiling;
-	unsigned long	floor;
+	long			ceiling;
+	long			floor;
 	t_card			pcard;
 	t_co			msize;
 	t_co			p;

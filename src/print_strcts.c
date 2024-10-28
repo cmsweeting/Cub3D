@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:49:09 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/28 09:47:32 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:36:41 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	pstart(t_card pcard, t_co p)
 	if (p.i == 0 && p.j == 0)
 	{
 		printf("\nPlayer position not found\n");
-		return;
+		return ;
 	}
 	if (pcard == SO)
 		printf("Player starts facing south at: ");

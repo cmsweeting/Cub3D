@@ -6,7 +6,7 @@
 #    By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:01:27 by cdomet-d          #+#    #+#              #
-#    Updated: 2024/10/28 13:26:37 by cdomet-d         ###   ########.fr        #
+#    Updated: 2024/10/28 15:13:10 by cdomet-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIB := $(LFTDIR)/libft.a
 H:= -I src/includes/ -I libs/libft -I libs/mlx
 
 CC := cc
-CFLAGS := -Werror -Wextra -Wall -Ofast
+CFLAGS := -Werror -Wextra -Wall -g3
 CPPFLAGS = -MMD -MP $(H)
 MAKEFLAGS += --no-print-directory
 MFLAGS = -L$(MLXDIR) -lmlx_Linux -L/usr/lib -I $(MLX) -lX11 -lm -lz -lXext $(MLX)
@@ -108,9 +108,9 @@ print:
 	@echo $(H)
 
 cdir:= $(shell pwd)
-val:= valgrind --track-fds=yes --log-file="$(cdir)/val.log" --leak-check=full --show-leak-kinds=all --track-origins=yes
+val:= valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all --track-origins=yes
 run: all
-	$(val) ./$(NAME) maps/fun/bts.cub
+	$(val) ./$(NAME) maps/test_parsing.cub
 
 re: fclean all
 # Formatting combinations
