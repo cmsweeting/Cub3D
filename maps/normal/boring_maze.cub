@@ -4,8 +4,8 @@ SO textures/stone_wall.xpm
 EA textures/stone_wall.xpm
 
 
-C 102,178,255
-F 153,76,0
+C 255,195,0
+F 0,8,20
 
 WE textures/stone_wall.xpm
 
