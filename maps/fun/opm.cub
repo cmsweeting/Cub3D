@@ -1,7 +1,7 @@
-NO textures/cyberwickN.xpm
-EA textures/cyberwickE.xpm
-WE textures/cyberwickW.xpm
-SO textures/cyberwickS.xpm
+NO textures/one_punch_man.xpm
+EA textures/one_punch_man.xpm
+WE textures/one_punch_man.xpm
+SO textures/one_punch_man.xpm
 
 C 83,114,187
 F 159,220,22
@@ -9,8 +9,8 @@ F 159,220,22
     111111111 00         
    11 00000010000
  111 00 0 00100 0
-1    0 0110110
- 11110 00001010 0
+1    0 01101 0
+ 11110 00011110 0
    1 1100011001000
    1100 0N000001 0
     100 00000110  0

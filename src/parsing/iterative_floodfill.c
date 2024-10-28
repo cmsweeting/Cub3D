@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 17:39:27 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/21 14:35:13 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:08:55 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ static bool	is_invalid_z(t_co msize, t_co cur, char **map)
 {
 	if ((cur.i == 0 || cur.i == msize.i -1 || cur.j == 0 || \
 	cur.j == msize.j - 1) && map[cur.i][cur.j] == '0')
+	{
+		// map[cur.i][cur.j] = ' ';
 		return (true);
+	}
 	return (false);
 }
 

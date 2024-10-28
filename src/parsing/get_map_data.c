@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:43:19 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/25 18:38:55 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:21:20 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,14 @@ bool	get_values(t_parser *f, char **rfile)
 			else if (!is_color(f, rfile[i]))
 				return (false);
 		}
-		else if (is_map(rfile[i]))
+		else if (is_map(rfile[i]) && f->allt_found == 6)
 		{
 			if (!cpy_f(f, rfile, i))
 				return (false);
 			break ;
 		}
 		else
-			return (perr(EINVAL, rfile[i]), false);
+			return (perr(0, "Error: missing element"), false);
 		i++;
 	}
 	return (found_all_elements(*f));

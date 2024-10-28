@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 11:14:28 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/24 10:09:08 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:33:07 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	free_f(t_parser *map)
 {
 	if (map->no.pto_file)
 		free(map->no.pto_file);
-	if (map->no.pto_file)
+	if (map->so.pto_file)
 		free(map->so.pto_file);
 	if (map->we.pto_file)
 		free(map->we.pto_file);

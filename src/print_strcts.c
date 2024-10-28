@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_strcts.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdomet-d <cdomet-d@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:49:09 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/18 21:32:09 by cdomet-d         ###   ########lyon.fr   */
+/*   Updated: 2024/10/25 19:00:46 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ static void	pimg(t_img	texture)
 
 void	print_parser(t_parser parse)
 {
-	printf("player position : %ld || %ld\n", parse.p.i, parse.p.j);
+	pstart(parse.pcard, parse.p);
 	printf("\n");
-	printf("%s\n", parse.ea.pto_file);
-	printf("%s\n", parse.we.pto_file);
-	printf("%s\n", parse.no.pto_file);
-	printf("%s\n", parse.so.pto_file);
+	printf("east: %s\n", parse.ea.pto_file);
+	printf("west: %s\n", parse.we.pto_file);
+	printf("north: %s\n", parse.no.pto_file);
+	printf("south: %s\n", parse.so.pto_file);
 	printf("\n");
 	printf("floor color:	%d	|	%d	|	%d\n", parse.fcolor[0], \
 	parse.fcolor[1], parse.fcolor[2]);
