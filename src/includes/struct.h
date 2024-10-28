@@ -136,19 +136,4 @@ typedef struct s_ray
 	double			hs_height;
 }	t_ray;
 
-// error_handling ------------
-
-/* error_handling.c */
-int		verror(char *s1, char *s2, char *s3);
-void	*perr(int error_code, char *error_message);
-
-// src -----------------------
-
-/* main.c */
-int		main(int ac, char *av[]);
-
-/* print_strcts.c */
-void	print_parser(t_parser parse);
-void	print_ray(t_ray ray);
-
 #endif
