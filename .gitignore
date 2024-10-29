@@ -7,7 +7,6 @@
 # Directories
 obj
 brouillon
-scripts
 .bdir
 libs/libft/.dir_build
 .vscode
