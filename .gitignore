@@ -10,7 +10,6 @@ brouillon
 .bdir
 libs/libft/.dir_build
 .vscode
-scripts/
 
 # Executables
 cub3D

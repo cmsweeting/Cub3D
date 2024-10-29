@@ -1,0 +1,20 @@
+#!/bin/bash
+
+dir="maps/badmaps"
+exe="./cub3D"
+val=" -q --track-fds=yes --leak-check=full --show-leak-kinds=all --track-origins=yes"
+
+
+if [ ! -d "$dir" ]; then
+	echo "$dir not found"
+	exit 1
+fi
+
+for file in "$dir"/*; do
+	if [ -f "$file" ]; then
+		echo
+		echo "$file"
+		echo
+		valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all --track-origins=yes "$exe" "$file"
+	fi
+done
