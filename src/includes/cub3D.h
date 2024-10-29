@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/29 09:24:45 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/29 09:29:09 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # define S_HEIGHT 1080.0
 // masks the 8 lowest bytes of a RGB component
 # define EBYTES 0xff
-
 // error_handling ------------
 
 /* error_handling.c */
@@ -41,40 +40,30 @@ void	*perr(int error_code, char *error_message);
 
 // memory_allocation ---------
 
-/* memalloc.c */
-bool	ft_realloc(size_t size, char ***arr);
-bool	sqalloc_map(t_parser *map);
-bool	cpy_f(t_parser *map, char **rfile, size_t i);
-
 /* destroy_structs.c */
 void	free_f(t_parser *map);
 void	free_r(t_ray *ray);
 void	dall(t_ray *ray);
 
+/* memalloc.c */
+bool	ft_realloc(size_t size, char ***arr);
+bool	sqalloc_map(t_parser *map);
+bool	cpy_f(t_parser *map, char **rfile, size_t i);
+
 // parsing -------------------
-
-/* extract_file.c */
-bool	fill_f(char *arg, t_parser *f);
-
-/* get_map_data.c */
-bool	is_map(char *str);
-bool	get_values(t_parser *f, char **rfile);
-
-/* handle_colors.c */
-size_t	int_to_hex(short int color[3]);
-bool	rgb_to_int(t_parser *map, char **rgb, bool floor);
 
 /* init_mlx.c */
 bool	create_images(t_ray *r);
 
+/* extract_file.c */
+bool	fill_f(char *arg, t_parser *f);
+
+/* handle_colors.c */
+bool	rgb_to_int(t_parser *map, char **rgb, bool floor);
+size_t	int_to_hex(short int color[3]);
+
 /* is_map_valid.c */
 bool	f_is_valid(t_parser *map);
-
-/* iterative_floodfill.c */
-bool	iwall(t_parser map);
-
-/* init_textures.c */
-bool	get_xpmstr(t_ray *ray);
 
 /* p_utils.c */
 bool	is_invalid_char(char *str);
@@ -83,43 +72,47 @@ size_t	max_len(char **map);
 bool	found_all_elements(t_parser map);
 char	*skip_whitespaces(char *str);
 
-/* init_mlx.c */
-bool	create_images(t_ray *r);
+/* init_textures.c */
+bool	get_xpmstr(t_ray *ray);
+
+/* get_map_data.c */
+bool	is_map(char *str);
+bool	get_values(t_parser *f, char **rfile);
+
+/* iterative_floodfill.c */
+bool	iwall(t_parser map);
 
 // raycasting ----------------
-
-/* display.c */
-void	clean_display(t_ray *r);
-int		init_display(t_ray *r);
-void	run_game(t_ray *r);
-
-/* draw.c */
-void	draw_column(t_ray *r, double distance, int col);
-void	ft_put_pixel(t_img *img, int col, int line, int color);
 
 /* events.c */
 int		close_win(t_ray *r);
 int		key_press(int keysym, t_ray *r);
 int		key_release(int keysym, t_ray *r);
 
+/* display.c */
+void	clean_display(t_ray *r);
+int		init_display(t_ray *r);
+void	run_game(t_ray *r);
+
+/* movements.c */
+void	move(t_ray *r);
+
 /* math_utils.c */
 double	radian(double angle);
 double	get_distance(t_point *pt, t_ray *r);
 void	normalise_angle(double *angle);
 
-/* movements.c */
-void	move(t_ray *r);
-
-/* raycasting_utils.c */
-int		find_wall(t_ray *r, t_point *pt, t_point *step);
+/* draw.c */
+void	ft_put_pixel(t_img *img, int col, int line, int color);
+void	draw_column(t_ray *r, double distance, int col);
 
 /* raycasting.c */
 int		raycasting(t_ray *r);
 
-// src -----------------------
+/* raycasting_utils.c */
+int		find_wall(t_ray *r, t_point *pt, t_point *step);
 
-/* main.c */
-int		main(int ac, char *av[]);
+// src -----------------------
 
 /* print_strcts.c */
 void	print_parser(t_parser parse);
