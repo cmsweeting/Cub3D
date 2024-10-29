@@ -40,15 +40,3 @@ int	find_wall(t_ray *r, t_point *pt, t_point *step)
 	}
 	return (i);
 }
-
-void	vertical_hitpt(t_ray *r)
-{
-	r->i = fmod(r->vhitpt.y, 1.0);
-	if (r->r_angle > 90.0 && r->r_angle < 270.0)
-	{
-		r->i = 1.0 - r->i;
-		r->cwall = r->map.ea;
-	}
-	else
-		r->cwall = r->map.we;
-}

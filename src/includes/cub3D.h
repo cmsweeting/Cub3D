@@ -88,12 +88,6 @@ bool	create_images(t_ray *r);
 
 // raycasting ----------------
 
-/* minimap.c */
-bool	build_minimap(t_ray *r);
-void	place_player(t_ray	*r);
-void	draw_line(t_ray *r);
-void	clear_player(t_ray *r, t_point offset);
-
 /* display.c */
 void	clean_display(t_ray *r);
 int		init_display(t_ray *r);
@@ -118,7 +112,6 @@ void	move(t_ray *r);
 
 /* raycasting_utils.c */
 int		find_wall(t_ray *r, t_point *pt, t_point *step);
-void	vertical_hitpt(t_ray *r);
 
 /* raycasting.c */
 int		raycasting(t_ray *r);
