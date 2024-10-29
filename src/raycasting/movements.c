@@ -19,16 +19,10 @@ static void	new_position(t_ray *r, double angle)
 	double	x2;
 	double	y2;
 
-	x = cos(radian(angle)) * 0.05;
-	y = sin(radian(angle)) * 0.05;
-	y *= -1.0;
-	x += r->p.x;
-	y += r->p.y;
-	x2 = cos(radian(angle)) * 0.1;
-	y2 = sin(radian(angle)) * 0.1;
-	y2 *= -1.0;
-	x2 += r->p.x;
-	y2 += r->p.y;
+	x = cos(radian(angle)) * 0.05 + r->p.x;
+	y = sin(radian(angle)) * 0.05 * -1.0 + r->p.y;
+	x2 = cos(radian(angle)) * 0.1 + r->p.x;
+	y2 = sin(radian(angle)) * 0.1 * -1.0 + r->p.y;
 	if (((ssize_t)x2 >= 0 && (ssize_t)x2 <= r->map.msize.j) \
 		&& r->map.map[(ssize_t)r->p.y][(ssize_t)x2] != '1')
 		r->p.x = x;
