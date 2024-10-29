@@ -68,12 +68,8 @@ static double	horizontal_intersection(t_ray *r)
 
 static double	smallest_distance(double hor, double ver, t_ray *r)
 {
-	double	smallest;
-
-	smallest = 1.0;
 	if (ver == -1 || (hor < ver && hor > 0))
 	{
-		smallest = hor;
 		r->i = fmod(r->hhitpt.x, 1.0);
 		if (r->r_angle > 0.0 && r->r_angle < 180.0)
 			r->cwall = r->map.so;
@@ -82,14 +78,21 @@ static double	smallest_distance(double hor, double ver, t_ray *r)
 			r->i = 1.0 - r->i;
 			r->cwall = r->map.no;
 		}
-		return (smallest);
+		return (hor);
 	}
 	else if (ver > 0)
 	{
-		smallest = ver;
-		vertical_hitpt(r);
+		r->i = fmod(r->vhitpt.y, 1.0);
+		if (r->r_angle > 90.0 && r->r_angle < 270.0)
+		{
+			r->i = 1.0 - r->i;
+			r->cwall = r->map.ea;
+		}
+		else
+			r->cwall = r->map.we;
+		return (ver);
 	}
-	return (smallest);
+	return (1);
 }
 
 static void	fish_eye(double *distance, int i, t_ray *r)
