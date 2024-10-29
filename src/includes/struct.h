@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:41:42 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/28 15:34:55 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/29 10:12:47 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_parser
 	t_img			no;
 	t_img			so;
 	t_img			we;
-	unsigned char	allt_found;
+	unsigned char	alle_found;
 }	t_parser;
 
 typedef struct s_moves

@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:43:19 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/28 15:43:34 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/29 10:21:18 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,25 @@ static bool	is_path(t_parser *f, char *str)
 	{
 		if (!f->no.pto_file)
 			f->no.pto_file = ft_strtrim(skip_whitespaces(&str[2]), "\n");
-		return (elemf(&f->allt_found), f->no.pto_file);
+		return (elemf(&f->alle_found), f->no.pto_file);
 	}
 	if (ft_strncmp("SO ", str, 3) == 0)
 	{
 		if (!f->so.pto_file)
 			f->so.pto_file = ft_strtrim(skip_whitespaces(&str[2]), "\n");
-		return (elemf(&f->allt_found), f->so.pto_file);
+		return (elemf(&f->alle_found), f->so.pto_file);
 	}
 	if (ft_strncmp("WE ", str, 3) == 0)
 	{
 		if (!f->we.pto_file)
 			f->we.pto_file = ft_strtrim(skip_whitespaces(&str[2]), "\n");
-		return (elemf(&f->allt_found), f->we.pto_file);
+		return (elemf(&f->alle_found), f->we.pto_file);
 	}
 	if (ft_strncmp("EA ", str, 3) == 0)
 	{
 		if (!f->ea.pto_file)
 			f->ea.pto_file = ft_strtrim(skip_whitespaces(&str[2]), "\n");
-		return (elemf(&f->allt_found), f->ea.pto_file);
+		return (elemf(&f->alle_found), f->ea.pto_file);
 	}
 	return (true);
 }
@@ -74,7 +74,7 @@ static bool	is_color(t_parser *f, char *str)
 			return (perr(errno, "while retrieving RGB colors"), false);
 		if (!rgb_to_int(f, rgb, true))
 			return (free_dtab(rgb), false);
-		f->allt_found += 1;
+		f->alle_found += 1;
 		f->floor = int_to_hex(f->fcolor);
 	}
 	if (ft_strncmp("C ", str, 2) == 0)
@@ -84,7 +84,7 @@ static bool	is_color(t_parser *f, char *str)
 			return (perr(errno, "while retrieving RGB colors"), false);
 		if (!rgb_to_int(f, rgb, false))
 			return (free_dtab(rgb), false);
-		f->allt_found += 1;
+		f->alle_found += 1;
 		f->ceiling = int_to_hex(f->ccolor);
 	}
 	free_dtab(rgb);
@@ -98,7 +98,7 @@ bool	get_values(t_parser *f, char **rfile)
 	i = 0;
 	while (rfile[i])
 	{
-		if (f->allt_found > 6)
+		if (f->alle_found > 6)
 			return (perr(0, "Error: extra element"), false);
 		if (is_element(rfile[i]))
 		{
@@ -107,14 +107,14 @@ bool	get_values(t_parser *f, char **rfile)
 			else if (!is_color(f, rfile[i]))
 				return (false);
 		}
-		else if (is_map(rfile[i]) && f->allt_found == 6)
+		else if (is_map(rfile[i]))
 		{
-			if (!cpy_f(f, rfile, i))
-				return (false);
-			break ;
+			if (f->alle_found != 6)
+				return (perr(0, "Error: missing element"), false);
+			return (cpy_f(f, rfile, i));
 		}
 		else
-			return (perr(0, "Error: missing element"), false);
+			return (perr(EINVAL, rfile[i]), false);
 		i++;
 	}
 	return (found_all_elements(*f));

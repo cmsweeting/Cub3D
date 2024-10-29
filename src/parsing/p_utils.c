@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:24:31 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/28 15:39:34 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/29 10:29:33 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ bool	is_invalid_char(char *str)
 	i = 0;
 	if (!str)
 		return (false);
-	if (str[i] == '\n')
-		return (true);
+	if (str[0] == '\n')
+		return (perr(0, "Error: newline in map"), true);
 	while (str[i])
 	{
 		if (str[i] == ' ')
@@ -66,7 +66,7 @@ size_t	max_len(char **map)
 
 bool	found_all_elements(t_parser map)
 {
-	if ((map.allt_found < 6) || !map.ea.pto_file || !map.no.pto_file || \
+	if ((map.alle_found < 6) || !map.ea.pto_file || !map.no.pto_file || \
 	!map.so.pto_file || !map.we.pto_file || map.ceiling == -1 || \
 	map.floor == -1 || !map.map)
 		return (perr(0, "Error: missing element"), false);
