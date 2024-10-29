@@ -1,6 +1,6 @@
-EA textures/bts2.xpm
-WE textures/bts3.xpm
-NO textures/bts1.xpm
+EA textures/normalE.xpm
+WE textures/normalW.xpm
+NO textures/normalN.xpm
 
 F 255,255,255
 C 238,204,229
@@ -19,4 +19,4 @@ C 238,204,229
       11 10000 0         
        11100             
 
-SO textures/bts4.xpm
+SO textures/normalS.xpm

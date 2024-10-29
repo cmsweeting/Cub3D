@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:09:25 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/25 11:53:39 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/29 13:27:28 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ bool	rgb_to_int(t_parser *map, char **rgb, bool floor)
 		{
 			map->fcolor[i] = ft_atoi(rgb[i]);
 			if (map->fcolor[i] < 0 || map->fcolor[i] > 255)
-				return (verror(strerror(EINVAL), "floor: invalid RGB value: ", \
+				return (verror(strerror(EINVAL), ": flo: invalid RGB value: ", \
 				rgb[i]), false);
 		}
 		else
 		{
 			map->ccolor[i] = ft_atoi(rgb[i]);
 			if (map->ccolor[i] < 0 || map->ccolor[i] > 255)
-				return (verror(strerror(EINVAL), "sky: invalid RGB value: ", \
+				return (verror(strerror(EINVAL), ": sky: invalid RGB value: ", \
 				rgb[i]), false);
 		}
 		i++;
