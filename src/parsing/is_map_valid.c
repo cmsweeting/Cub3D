@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:10:09 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/28 15:31:58 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/29 10:37:33 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static bool	find_player(t_parser *map)
 			map->map[it.i][it.j] == 'E' || map->map[it.i][it.j] == 'W')
 			{
 				if (map->found_p == true)
-					return (false);
+					return (perr(0, "Error: too many players"), false);
 				save_start(map, it);
 			}
 			it.j++;
@@ -57,8 +57,8 @@ bool	f_is_valid(t_parser *map)
 	if (!find_player(map))
 		return (perr(0, "Error: invalid player start position"), false);
 	if (!sqalloc_map(map))
-		return (perr(errno, "in f_is_valid"), false);
+		return (perr(errno, "when allocating square map"), false);
 	if (!iwall(*map))
-		return (perr(0, "Error: invalid map"), false);
+		return (perr(0, "Error: open map"), false);
 	return (true);
 }
