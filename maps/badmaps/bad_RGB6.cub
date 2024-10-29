@@ -1,11 +1,11 @@
 
-NO textures/jjk1.xpm
-SO textures/jjk2.xpm
-WE textures/jjk3.xpm
+NO textures/jkk1.xpm
+SO textures/jkk2.xpm
+WE textures/jkk3.xpm
 EA textures/cyberwickN.xpm
 
-F 0,0,0
-C 51,198,227
+F 184,113,39
+C 51,198
 
 1111111111111
 1000000000001
