@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/29 09:29:09 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:17:38 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ bool	f_is_valid(t_parser *map);
 bool	is_invalid_char(char *str);
 bool	is_element(char *str);
 size_t	max_len(char **map);
-bool	found_all_elements(t_parser map);
+bool	found_all_elements(t_parser map, bool check_map);
 char	*skip_whitespaces(char *str);
 
 /* init_textures.c */
