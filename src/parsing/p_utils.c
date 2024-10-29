@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:24:31 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/29 10:29:33 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:17:19 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,22 @@ size_t	max_len(char **map)
 	return (max);
 }
 
-bool	found_all_elements(t_parser map)
+bool	found_all_elements(t_parser map, bool check_map)
 {
-	if ((map.alle_found < 6) || !map.ea.pto_file || !map.no.pto_file || \
-	!map.so.pto_file || !map.we.pto_file || map.ceiling == -1 || \
-	map.floor == -1 || !map.map)
-		return (perr(0, "Error: missing element"), false);
+	if (!check_map)
+	{
+		if ((map.alle_found < 6) || !map.ea.pto_file || !map.no.pto_file || \
+		!map.so.pto_file || !map.we.pto_file || map.ceiling == -1 || \
+		map.floor == -1)
+			return (perr(0, "Error: missing element"), false);
+	}
+	else
+	{
+		if ((map.alle_found < 6) || !map.ea.pto_file || !map.no.pto_file || \
+		!map.so.pto_file || !map.we.pto_file || map.ceiling == -1 || \
+		map.floor == -1 || !map.map)
+			return (perr(0, "Error: missing element"), false);
+	}
 	return (true);
 }
 

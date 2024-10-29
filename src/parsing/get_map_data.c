@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:43:19 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/29 10:51:13 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:17:49 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ bool	get_values(t_parser *f, char **rfile)
 		}
 		else if (is_map(rfile[i]))
 		{
-			if (!found_all_elements(*f))
+			if (!found_all_elements(*f, false))
 				return (false);
 			return (cpy_f(f, rfile, i));
 		}
@@ -117,5 +117,5 @@ bool	get_values(t_parser *f, char **rfile)
 			return (perr(EINVAL, rfile[i]), false);
 		i++;
 	}
-	return (found_all_elements(*f));
+	return (found_all_elements(*f, true));
 }
