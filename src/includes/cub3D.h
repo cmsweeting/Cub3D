@@ -6,7 +6,7 @@
 /*   By: cdomet-d <cdomet-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:26:14 by cdomet-d          #+#    #+#             */
-/*   Updated: 2024/10/25 18:46:47 by cdomet-d         ###   ########.fr       */
+/*   Updated: 2024/10/29 09:24:45 by cdomet-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,19 @@
 # include <errno.h>
 # include <fcntl.h> // open
 # include <math.h>
-# include <math.h>
-# include <stdbool.h>
 # include <stdio.h>
-# include <stdlib.h>
 # include <string.h>
-# include <sys/stat.h> // open
-# include <unistd.h>
 # include <X11/keysym.h>
-# include <X11/keysym.h>
-# include <X11/X.h>
 # include <X11/X.h>
 
 # define EP 0.00001
 # define PI 3.14159265359
 # define CUB 64
 # define FOV 60
-// masks the 8 lowest bytes of a RGB component
-# define EBYTES 0xff
 # define S_WIDTH 1920.0
 # define S_HEIGHT 1080.0
+// masks the 8 lowest bytes of a RGB component
+# define EBYTES 0xff
 
 // error_handling ------------
 
