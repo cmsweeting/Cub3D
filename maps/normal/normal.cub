@@ -1,7 +1,7 @@
-NO textures/north.xpm
-EA textures/east.xpm
-WE textures/west.xpm
-SO textures/south.xpm
+NO textures/normalN.xpm
+EA textures/normalE.xpm
+WE textures/normalW.xpm
+SO textures/normalS.xpm
 
 C 238,204,229
 F 255,255,255
