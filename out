@@ -1,0 +1,216 @@
+maps/test_parsing.cub
+exf
+extract_funct
+norm
+prep
+push
+readme
+test_parsing
+src/main.c
+src/print_strcts.c
+textures/cyberwickE.xpm
+textures/cyberwickN.xpm
+textures/cyberwickS.xpm
+textures/cyberwickW.xpm
+textures/jkk1.xpm
+textures/jkk2.xpm
+textures/jkk3.xpm
+textures/jkk4.xpm
+textures/johnny1.xpm
+textures/johnny2.xpm
+textures/johnny3.xpm
+textures/johnny4.xpm
+textures/normalE.xpm
+textures/normalN.xpm
+textures/normalS.xpm
+textures/normalW.xpm
+textures/nsquare_horizontal_toji.xpm
+textures/nsquare_vertical_johnny.xpm
+textures/one_punch_man.xpm
+textures/stone_wall.xpm
+textures/toji1.xpm
+textures/toji2.xpm
+textures/toji3.xpm
+
+libs/libft:
+		ft_arrlen.c
+		ft_atoi.c
+		ft_atoi_intmax.c
+		ft_atoll.c
+		ft_bzero.c
+		ft_calloc.c
+		ft_free_dtab.c
+		ft_isalnum.c
+		ft_isalpha.c
+		ft_isascii.c
+		ft_isdigit.c
+		ft_isdigit_negative.c
+		ft_isprint.c
+		ft_isspace.c
+		ft_itoa.c
+		ft_lstadd_back.c
+		ft_lstadd_front.c
+		ft_lstclear.c
+		ft_lstdelone.c
+		ft_lstfree.c
+		ft_lstiter.c
+		ft_lstlast.c
+		ft_lstmap.c
+		ft_lstnew.c
+		ft_lstsize.c
+		ft_memchr.c
+		ft_memcmp.c
+		ft_memcpy.c
+		ft_memmove.c
+		ft_memset.c
+		ft_print_chars.c
+		ft_print_darr.c
+		ft_printf.c
+		ft_print_nums.c
+		ft_putchar_fd.c
+		ft_putendl_fd.c
+		ft_putnbr_fd.c
+		ft_putnbrs.c
+		ft_putstr_fd.c
+		ft_split.c
+		ft_strchr.c
+		ft_strdup.c
+		ft_striteri.c
+		ft_strjoin.c
+		ft_strlcat.c
+		ft_strlcpy.c
+		ft_strlen.c
+		ft_strmapi.c
+		ft_strncmp.c
+		ft_strnstr.c
+		ft_strrchr.c
+		ft_strtrim.c
+		ft_substr.c
+		ft_tolower.c
+		ft_toupper.c
+		get_next_line.c
+		get_next_line_utils.c
+		libft.h
+		Makefile
+
+libs/mlx:
+configure
+LICENSE
+Makefile
+Makefile.gen
+Makefile.mk
+man
+mlx_clear_window.c
+mlx_destroy_display.c
+mlx_destroy_image.c
+mlx_destroy_window.c
+mlx_expose_hook.c
+mlx_ext_randr.c
+mlx_flush_event.c
+mlx_get_color_value.c
+mlx_get_data_addr.c
+mlx.h
+mlx_hook.c
+mlx_init.c
+mlx_int_anti_resize_win.c
+mlx_int_do_nothing.c
+mlx_int_get_visual.c
+mlx_int.h
+mlx_int_param_event.c
+mlx_int_set_win_event_mask.c
+mlx_int_str_to_wordtab.c
+mlx_int_wait_first_expose.c
+mlx_key_hook.c
+mlx_lib_xpm.c
+mlx_loop.c
+mlx_loop_hook.c
+mlx_mouse.c
+mlx_mouse_hook.c
+mlx_new_image.c
+mlx_new_window.c
+mlx_pixel_put.c
+mlx_put_image_to_window.c
+mlx_rgb.c
+mlx_screen_size.c
+mlx_set_font.c
+mlx_string_put.c
+mlx_xpm.c
+mlx_xpm.c.ok
+README.md
+rgb2c.pl
+test
+
+maps/badmaps:
+badextension.cube
+map_missing.cub
+map_nl.cub
+map_open1.cub
+map_open2.cub
+map_open3.cub
+misc_forbidenchar.cub
+RGB_doubleID.cub
+RGB_forchar1.cub
+RGB_forchar2.cub
+RGB_forchar3.cub
+RGB_missingID.cub
+RGB_missingval.cub
+RGB_negative1.cub
+RGB_toobig.cub
+texture_aftermap.cub
+texture_badfile2.cub
+texture_badfile.cub
+texture_doubleID2.cub
+texture_doubleID.cub
+texture_missing.cub
+texture_missing_path.cub
+void.cub
+
+maps/fun:
+cyber.cub
+jjk.cub
+nsquare_textures.cub
+opm.cub
+simp.cub
+worse_giant.cub
+
+maps/normal:
+boring.cub
+boring_maze.cub
+normal.cub
+tiny.cub
+worse_giant.cub
+
+src:
+error_handling
+includes
+main.c
+parsing
+print_strcts.c
+raycasting
+
+src/error_handling:
+error_handling.c
+
+src/includes:
+cub3D.h
+struct.h
+
+src/parsing:
+extract_file.c
+get_map_data.c
+handle_colors.c
+init_mlx.c
+init_textures.c
+is_map_valid.c
+iterative_floodfill.c
+memory_allocation
+p_utils.c
+
+src/raycasting:
+		display.c
+		draw.c
+		events.c
+		math_utils.c
+		movements.c
+		raycasting.c
+		raycasting_utils.c
